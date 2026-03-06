@@ -12,8 +12,8 @@
     --bleu: #3498db; --bleu-light: #85c1e9;
     --orange: #e67e22; --orange-light: #f8c471;
     --rouge: #e74c3c; --rouge-light: #f1948a;
-    --jaune: #f1c40f; --jaune-light: #fdebd0;
-    --rose: #e91e8c; --teal: #1abc9c;
+    --jaune: #f1c40f; --teal: #1abc9c;
+    --rose: #e91e8c;
     --bg: #fef9f0; --card: #fff;
     --text: #2c3e50; --muted: #7f8c8d;
     --shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -22,324 +22,265 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-  /* HEADER */
   header {
     background: linear-gradient(135deg, #2ecc71 0%, #3498db 50%, #8e44ad 100%);
-    padding: 24px 20px 16px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 24px 20px 16px; text-align: center; position: relative; overflow: hidden;
   }
   header::before {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
   header h1 { font-family: 'Baloo 2', cursive; font-size: 2rem; font-weight: 800; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.2); position: relative; }
   header p { color: rgba(255,255,255,0.9); font-size: 1rem; margin-top: 4px; position: relative; }
-  .emoji-row { font-size: 1.6rem; margin-bottom: 8px; }
+  .emoji-row { font-size: 1.6rem; margin-bottom: 8px; position: relative; }
+  .btn-accueil {
+    position: absolute; top: 14px; left: 14px;
+    background: rgba(255,255,255,0.2); color: #fff; text-decoration: none;
+    padding: 7px 14px; border-radius: 50px; font-family: 'Baloo 2', cursive;
+    font-weight: 700; font-size: 0.85rem; backdrop-filter: blur(4px);
+    transition: background 0.2s; z-index: 10;
+  }
+  .btn-accueil:hover { background: rgba(255,255,255,0.35); }
 
-  /* NAV */
   nav {
     display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
-    padding: 16px 16px 0;
-    position: sticky; top: 0; z-index: 100;
-    background: var(--bg);
-    border-bottom: 3px solid #eee;
+    padding: 16px 16px 0; position: sticky; top: 0; z-index: 100;
+    background: var(--bg); border-bottom: 3px solid #eee;
   }
-  .nav-btn {
-    padding: 10px 18px; border: none; border-radius: 50px;
-    font-family: 'Baloo 2', cursive; font-size: 0.95rem; font-weight: 700;
-    cursor: pointer; transition: all 0.25s; white-space: nowrap;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  }
+  .nav-btn { padding: 10px 18px; border: none; border-radius: 50px; font-family: 'Baloo 2', cursive; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.25s; white-space: nowrap; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
   .nav-btn.active, .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
   .nav-btn[data-tab="cours"] { background: linear-gradient(135deg,#2ecc71,#27ae60); color:#fff; }
   .nav-btn[data-tab="synthese"] { background: linear-gradient(135deg,#3498db,#2980b9); color:#fff; }
   .nav-btn[data-tab="qcm"] { background: linear-gradient(135deg,#e67e22,#d35400); color:#fff; }
   .nav-btn[data-tab="exercices"] { background: linear-gradient(135deg,#8e44ad,#6c3483); color:#fff; }
 
-  /* SECTIONS */
   section { display: none; padding: 24px 16px; max-width: 900px; margin: 0 auto; }
   section.active { display: block; animation: fadeIn 0.35s ease; }
   @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
-  /* CARDS */
-  .card {
-    background: var(--card); border-radius: var(--radius);
-    padding: 20px; margin-bottom: 20px;
-    box-shadow: var(--shadow); border-left: 6px solid;
-    transition: transform 0.2s;
-  }
+  .card { background: var(--card); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); border-left: 6px solid; transition: transform 0.2s; }
   .card:hover { transform: translateY(-2px); }
   .card.vert { border-color: var(--vert); }
   .card.bleu { border-color: var(--bleu); }
   .card.violet { border-color: var(--violet); }
   .card.orange { border-color: var(--orange); }
   .card.rouge { border-color: var(--rouge); }
-  .card.teal { border-color: var(--teal); }
-
-  .card-title {
-    font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800;
-    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
-  }
+  .card-title { font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .card.vert .card-title { color: var(--vert-dark); }
   .card.bleu .card-title { color: var(--bleu); }
   .card.violet .card-title { color: var(--violet); }
   .card.orange .card-title { color: var(--orange); }
   .card.rouge .card-title { color: var(--rouge); }
-  .card.teal .card-title { color: var(--teal); }
-
-  .badge {
-    display: inline-block; padding: 3px 12px; border-radius: 50px;
-    font-size: 0.78rem; font-weight: 700; margin-bottom: 10px;
-  }
+  .badge { display: inline-block; padding: 3px 12px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; margin-bottom: 10px; }
   .badge.vert { background: #d5f5e3; color: var(--vert-dark); }
   .badge.bleu { background: #d6eaf8; color: var(--bleu); }
   .badge.violet { background: #e8daef; color: var(--violet); }
   .badge.orange { background: #fdebd0; color: var(--orange); }
-
   p, li { line-height: 1.7; font-size: 0.97rem; }
   ul { padding-left: 20px; }
   li { margin-bottom: 6px; }
-
-  .highlight-box {
-    border-radius: 12px; padding: 14px 16px; margin: 12px 0; font-weight: 600;
-  }
+  .highlight-box { border-radius: 12px; padding: 14px 16px; margin: 12px 0; font-weight: 600; }
   .highlight-box.yellow { background: #fef9c3; border-left: 4px solid var(--jaune); }
   .highlight-box.green { background: #d5f5e3; border-left: 4px solid var(--vert); }
   .highlight-box.pink { background: #fde8f4; border-left: 4px solid var(--rose); }
   .highlight-box.blue { background: #d6eaf8; border-left: 4px solid var(--bleu); }
+  .formula { text-align: center; font-family: 'Baloo 2', cursive; font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg,#8e44ad,#3498db); color:#fff; border-radius: 14px; padding: 16px; margin: 16px 0; box-shadow: 0 4px 15px rgba(142,68,173,0.3); }
+  .section-title { font-family: 'Baloo 2', cursive; font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 
-  /* FORMULE */
-  .formula {
-    text-align: center; font-family: 'Baloo 2', cursive; font-size: 1.3rem;
-    font-weight: 800; background: linear-gradient(135deg,#8e44ad,#3498db);
-    color:#fff; border-radius: 14px; padding: 16px; margin: 16px 0;
-    box-shadow: 0 4px 15px rgba(142,68,173,0.3);
-  }
+  /* TOOLTIPS */
+  .mot-cle { background: linear-gradient(135deg, #8e44ad, #3498db); color: #fff; padding: 2px 8px; border-radius: 20px; font-weight: 700; cursor: pointer; white-space: nowrap; position: relative; display: inline-block; transition: transform 0.2s; font-size: 0.93rem; }
+  .mot-cle:hover { transform: translateY(-1px); }
+  .mot-cle::after { content: ' 💬'; font-size: 0.75rem; }
+  .tooltip-overlay { display: none; position: fixed; inset: 0; z-index: 9998; background: rgba(0,0,0,0.45); align-items: center; justify-content: center; padding: 20px; }
+  .tooltip-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+  .tooltip-box { background: #fff; border-radius: 20px; padding: 28px; max-width: 400px; width: 100%; box-shadow: 0 12px 50px rgba(0,0,0,0.25); position: relative; animation: popIn 0.25s ease; }
+  @keyframes popIn { from { transform: scale(0.85); opacity:0; } to { transform: scale(1); opacity:1; } }
+  .tooltip-mot { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; background: linear-gradient(135deg, #8e44ad, #3498db); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+  .tooltip-def { font-size: 1rem; line-height: 1.6; color: #2c3e50; }
+  .tooltip-close { position: absolute; top: 12px; right: 16px; background: #f0f0f0; border: none; border-radius: 50%; width: 32px; height: 32px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .tooltip-close:hover { background: #e0e0e0; }
 
-  /* SCHEMA VISUEL */
-  .schema {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    justify-content: center; margin: 16px 0;
-  }
-  .schema-item {
-    border-radius: 12px; padding: 10px 16px; font-weight: 700;
-    font-size: 0.9rem; text-align: center; flex: 1; min-width: 120px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  }
-  .arrow { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--muted); }
+  /* ANIMATION TECTONIQUE */
+  .anim-container { background: #fff; border-radius: 16px; padding: 20px; margin: 16px 0; box-shadow: var(--shadow); }
+  .anim-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .anim-tab { padding: 8px 16px; border: none; border-radius: 50px; font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; background: #eee; color: #666; }
+  .anim-tab.active { background: linear-gradient(135deg,#3498db,#8e44ad); color:#fff; }
+  .anim-scene { display: none; flex-direction: column; gap: 12px; }
+  .anim-scene.active { display: flex; }
 
-  /* FICHE SYNTHESE */
-  .synth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media(max-width:600px) { .synth-grid { grid-template-columns: 1fr; } }
-  .synth-card {
-    border-radius: var(--radius); padding: 18px; text-align: center;
-    box-shadow: var(--shadow);
-  }
-  .synth-card h3 { font-family:'Baloo 2',cursive; font-size:1.1rem; font-weight:800; margin-bottom:10px; }
-  .synth-card .big-emoji { font-size: 2.5rem; margin-bottom: 8px; display:block; }
+  .tecto-stage { position: relative; height: 180px; background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 50%, #8B6914 50%); border-radius: 12px; overflow: hidden; }
+  .tecto-stage .eau { position: absolute; bottom: 90px; left: 0; right: 0; height: 50px; background: linear-gradient(180deg, rgba(52,152,219,0.4), rgba(52,152,219,0.7)); }
+  .plaque { position: absolute; bottom: 0; height: 90px; width: 200px; background: linear-gradient(180deg, #95a5a6, #7f8c8d); display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 0.9rem; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+  .plaque-g { left: 20px; }
+  .plaque-d { right: 20px; }
+  .div-g { animation: moveLeft 3s ease-in-out infinite alternate; }
+  .div-d { animation: moveRight 3s ease-in-out infinite alternate; }
+  @keyframes moveLeft { from { transform: translateX(0); } to { transform: translateX(-18px); } }
+  @keyframes moveRight { from { transform: translateX(0); } to { transform: translateX(18px); } }
+  .conv-g { animation: convL 3s ease-in-out infinite alternate; }
+  .conv-d { animation: convR 3s ease-in-out infinite alternate; }
+  @keyframes convL { from { transform: translateX(0); } to { transform: translateX(15px); } }
+  @keyframes convR { from { transform: translateX(0); } to { transform: translateX(-15px); } }
+
+  .dorsale { position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 24px solid transparent; border-right: 24px solid transparent; border-bottom: 50px solid #e67e22; animation: dPulse 3s ease-in-out infinite alternate; filter: drop-shadow(0 0 6px rgba(230,126,34,0.6)); }
+  @keyframes dPulse { from { border-bottom-width: 50px; } to { border-bottom-width: 65px; } }
+  .magma-tube { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 18px; background: linear-gradient(180deg,#e74c3c,#e67e22); animation: mRise 3s ease-in-out infinite alternate; }
+  @keyframes mRise { from { height: 50px; } to { height: 78px; } }
+  .label-dorsale { position: absolute; bottom: 148px; left: 50%; transform: translateX(-50%); background: rgba(230,126,34,0.92); color:#fff; padding: 3px 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; white-space: nowrap; }
+
+  .montagne { position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 80px solid #7f8c8d; animation: mGrow 3s ease-in-out infinite alternate; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.25)); }
+  @keyframes mGrow { from { border-bottom-width: 72px; } to { border-bottom-width: 90px; } }
+  .neige { position: absolute; bottom: 162px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 28px solid #ecf0f1; z-index: 2; animation: mGrow 3s ease-in-out infinite alternate; }
+  .label-montagne { position: absolute; bottom: 172px; left: 50%; transform: translateX(-50%); background: rgba(127,140,141,0.92); color:#fff; padding: 3px 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; white-space: nowrap; z-index: 3; }
+  .fleche-anim { position: absolute; top: 48px; font-size: 1.6rem; animation: fp 1.5s ease-in-out infinite; }
+  @keyframes fp { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+
+  .anim-legende { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .anim-legende-item { display: flex; align-items: center; gap: 6px; background: #f8f9fa; border-radius: 8px; padding: 5px 10px; font-size: 0.82rem; font-weight: 600; }
+  .ldot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .anim-explication { background: #f0f8ff; border-radius: 12px; padding: 12px 16px; border-left: 4px solid var(--bleu); font-size: 0.9rem; font-weight: 600; }
+
+  /* SÉISME INTERACTIF */
+  .seisme-schema { position: relative; height: 270px; background: linear-gradient(180deg,#e8f4fd 0%,#e8f4fd 46%,#c8a97e 46%); border-radius: 16px; overflow: visible; margin: 16px 0; box-shadow: var(--shadow); }
+  .s-sol { position: absolute; top: 46%; left: 0; right: 0; height: 3px; background: #7d5a3c; }
+  .s-foyer { position: absolute; top: 73%; left: 50%; transform: translate(-50%,-50%); width: 58px; height: 58px; border-radius: 50%; background: radial-gradient(circle,#e74c3c,#c0392b); display: flex; align-items: center; justify-content: center; font-family: 'Baloo 2',cursive; font-weight: 800; font-size: 0.65rem; color: #fff; cursor: pointer; z-index: 5; box-shadow: 0 0 20px rgba(231,76,60,0.5); animation: fp2 2s ease-in-out infinite; transition: transform 0.2s; }
+  .s-foyer:hover { transform: translate(-50%,-50%) scale(1.1); }
+  @keyframes fp2 { 0%,100%{box-shadow:0 0 14px rgba(231,76,60,0.4);}50%{box-shadow:0 0 28px rgba(231,76,60,0.8);} }
+  .s-epicentre { position: absolute; top: calc(46% - 11px); left: 50%; transform: translateX(-50%); width: 22px; height: 22px; border-radius: 50%; background: #e67e22; border: 3px solid #fff; cursor: pointer; z-index: 5; box-shadow: 0 0 12px rgba(230,126,34,0.5); animation: ep2 2s ease-in-out infinite; }
+  @keyframes ep2 { 0%,100%{transform:translateX(-50%) scale(1);}50%{transform:translateX(-50%) scale(1.2);} }
+  .s-onde { position: absolute; top: 73%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; border: 2px solid rgba(52,152,219,0.5); animation: oExp 2s ease-out infinite; pointer-events: none; }
+  @keyframes oExp { 0%{width:40px;height:40px;opacity:0.8;margin-left:-20px;margin-top:-20px;} 100%{width:210px;height:210px;opacity:0;margin-left:-105px;margin-top:-105px;} }
+  .s-onde:nth-child(3){animation-delay:0.65s;} .s-onde:nth-child(4){animation-delay:1.3s;}
+  .s-ligne { position: absolute; left: 50%; top: 46%; width: 2px; height: 27%; background: repeating-linear-gradient(180deg,#e67e22 0,#e67e22 5px,transparent 5px,transparent 10px); transform: translateX(-50%); }
+  .s-label { position: absolute; background: #fff; border-radius: 8px; padding: 5px 9px; font-size: 0.78rem; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer; white-space: nowrap; z-index: 10; transition: transform 0.2s; }
+  .s-label:hover { transform: scale(1.06); }
+  .lbl-foyer { top: 74%; left: 57%; color:#c0392b; border:2px solid #e74c3c; }
+  .lbl-epi { top: 38%; left: 57%; color:#d35400; border:2px solid #e67e22; }
+  .lbl-onde { top: 60%; left: 66%; color:#2980b9; border:2px solid #3498db; }
+  .lbl-richter { top: 4%; left: 2%; color:#d35400; border:2px solid #e67e22; background:#fdebd0; }
+  .lbl-mercalli { top: 18%; left: 2%; color:#b7950b; border:2px solid #f1c40f; background:#fef9c3; }
+  .lbl-sismo { top: 4%; right: 2%; color:#2980b9; border:2px solid #3498db; background:#d6eaf8; }
+
+  /* VOLCANS */
+  .volcans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  @media(max-width:560px){.volcans-grid{grid-template-columns:1fr;}}
+  .volcan-card { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+  .volcan-header { padding: 10px 14px; font-family: 'Baloo 2',cursive; font-weight: 800; font-size: 1rem; color: #fff; }
+  .v-eff-header { background: linear-gradient(135deg,#e67e22,#f39c12); }
+  .v-exp-header { background: linear-gradient(135deg,#e74c3c,#c0392b); }
+  .volcan-anim { position: relative; height: 140px; overflow: hidden; }
+  .v-eff-bg { background: linear-gradient(180deg,#fef9c3 0%,#c8a97e 60%); }
+  .v-exp-bg { background: linear-gradient(180deg,#bdc3c7 0%,#c8a97e 60%); }
+  .eff-mont { position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-bottom:92px solid #95a5a6; }
+  .eff-crat { position:absolute;bottom:90px;left:50%;transform:translateX(-50%);width:18px;height:8px;border-radius:50%;background:#c0392b; }
+  .eff-lave { position:absolute;bottom:52px;left:calc(50% + 6px);width:13px;height:48px;background:linear-gradient(180deg,#e74c3c,#e67e22,#f39c12);border-radius:0 0 8px 8px;transform-origin:top;animation:lFlow 2s ease-in-out infinite alternate; }
+  @keyframes lFlow{from{transform:rotate(-14deg);}to{transform:rotate(-20deg) scaleY(1.1);}}
+  .exp-mont { position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:0;border-left:55px solid transparent;border-right:55px solid transparent;border-bottom:90px solid #7f8c8d; }
+  .exp-nua { position:absolute;border-radius:50%;background:#bdc3c7;opacity:0;animation:nExp 2.5s ease-in-out infinite; }
+  .n1{width:52px;height:42px;bottom:90px;left:calc(50% - 26px);animation-delay:0s;}
+  .n2{width:42px;height:36px;bottom:118px;left:calc(50% - 32px);animation-delay:0.3s;}
+  .n3{width:42px;height:36px;bottom:118px;left:calc(50% - 8px);animation-delay:0.5s;}
+  @keyframes nExp{0%,100%{opacity:0;transform:translateY(10px) scale(0.8);}40%,60%{opacity:0.85;transform:translateY(0) scale(1);}}
+  .exp-pr { position:absolute;width:7px;height:7px;border-radius:50%;background:#922b21;animation:prA 2.5s ease-in-out infinite; }
+  .p1{bottom:94px;left:calc(50% - 18px);--dx:-24px;--dy:-44px;animation-delay:0.2s;}
+  .p2{bottom:94px;left:calc(50% + 14px);--dx:24px;--dy:-40px;animation-delay:0.4s;}
+  .p3{bottom:94px;left:50%;--dx:0px;--dy:-54px;animation-delay:0.1s;}
+  @keyframes prA{0%,100%{opacity:0;transform:translate(0,0);}30%{opacity:1;}70%{opacity:0.4;transform:translate(var(--dx),var(--dy));}100%{opacity:0;transform:translate(calc(var(--dx)*1.4),4px);}}
+  .volcan-body{padding:12px;background:#fff;}
+  .volcan-body p{font-size:0.88rem;line-height:1.6;}
+
+  /* RISQUE */
+  .risque-schema { display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:16px 0; }
+  .risque-box { border-radius:14px;padding:16px 18px;text-align:center;font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;box-shadow:0 4px 15px rgba(0,0,0,0.1);min-width:110px; }
+  .rb-alea{background:#e8daef;color:#6c3483;border:2px solid #8e44ad;}
+  .rb-enjeu{background:#d6eaf8;color:#1a5276;border:2px solid #3498db;}
+  .rb-risque{background:linear-gradient(135deg,#8e44ad,#3498db);color:#fff;font-size:1.1rem;}
+  .risque-arrow{font-size:1.8rem;color:var(--muted);}
+
+  /* SYNTHESE */
+  .synth-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:600px){.synth-grid{grid-template-columns:1fr;}}
+  .synth-card{border-radius:var(--radius);padding:18px;text-align:center;box-shadow:var(--shadow);}
+  .synth-card h3{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;margin-bottom:10px;}
+  .big-emoji{font-size:2.5rem;margin-bottom:8px;display:block;}
 
   /* QCM */
-  .qcm-progress-bar {
-    height: 8px; background: #eee; border-radius: 10px; margin: 12px 0 20px;
-    overflow: hidden;
-  }
-  .qcm-progress-fill {
-    height: 100%; border-radius: 10px;
-    background: linear-gradient(90deg, var(--vert), var(--bleu));
-    transition: width 0.4s ease;
-  }
-  .question-card {
-    background: var(--card); border-radius: var(--radius); padding: 22px;
-    box-shadow: var(--shadow); margin-bottom: 20px;
-  }
-  .question-num {
-    font-family: 'Baloo 2', cursive; font-size: 0.85rem; font-weight: 700;
-    color: var(--muted); margin-bottom: 8px;
-  }
-  .question-text { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; line-height: 1.5; }
-  .options { display: flex; flex-direction: column; gap: 10px; }
-  .option-btn {
-    padding: 12px 16px; border: 2.5px solid #e0e0e0; border-radius: 12px;
-    background: #fff; cursor: pointer; font-family: 'Nunito', sans-serif;
-    font-size: 0.95rem; font-weight: 600; text-align: left;
-    transition: all 0.2s; display: flex; align-items: center; gap: 10px;
-  }
-  .option-btn:hover:not(:disabled) { border-color: var(--bleu); background: #eaf4fd; transform: translateX(4px); }
-  .option-btn.correct { border-color: var(--vert); background: #d5f5e3; color: var(--vert-dark); }
-  .option-btn.wrong { border-color: var(--rouge); background: #fde8e8; color: var(--rouge); }
-  .option-btn:disabled { cursor: default; }
-  .option-letter {
-    width: 28px; height: 28px; border-radius: 50%; background: #eee;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
-  }
-  .option-btn.correct .option-letter { background: var(--vert); color: #fff; }
-  .option-btn.wrong .option-letter { background: var(--rouge); color: #fff; }
-
-  .feedback {
-    margin-top: 14px; padding: 12px 16px; border-radius: 12px;
-    font-weight: 600; font-size: 0.95rem; display: none;
-  }
-  .feedback.show { display: flex; align-items: flex-start; gap: 10px; }
-  .feedback.correct-fb { background: #d5f5e3; color: var(--vert-dark); }
-  .feedback.wrong-fb { background: #fde8e8; color: #c0392b; }
-
-  .qcm-score {
-    text-align: center; padding: 30px; background: linear-gradient(135deg,#2ecc71,#3498db);
-    border-radius: var(--radius); color: #fff; display: none;
-    box-shadow: 0 8px 30px rgba(46,204,113,0.3);
-  }
-  .qcm-score.show { display: block; animation: fadeIn 0.5s ease; }
-  .score-big { font-family: 'Baloo 2', cursive; font-size: 3.5rem; font-weight: 800; }
-  .score-label { font-size: 1.1rem; opacity: 0.9; margin-top: 4px; }
-
-  .btn-primary {
-    display: inline-block; padding: 12px 28px; border: none; border-radius: 50px;
-    font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700;
-    cursor: pointer; transition: all 0.25s; margin-top: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  }
-  .btn-primary.green { background: linear-gradient(135deg,#2ecc71,#27ae60); color:#fff; }
-  .btn-primary.blue { background: linear-gradient(135deg,#3498db,#2980b9); color:#fff; }
-  .btn-primary.purple { background: linear-gradient(135deg,#8e44ad,#6c3483); color:#fff; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+  .qcm-progress-bar{height:8px;background:#eee;border-radius:10px;margin:12px 0 20px;overflow:hidden;}
+  .qcm-progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--vert),var(--bleu));transition:width 0.4s ease;}
+  .question-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;}
+  .question-num{font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;color:var(--muted);margin-bottom:8px;}
+  .question-text{font-size:1.05rem;font-weight:700;margin-bottom:16px;line-height:1.5;}
+  .options{display:flex;flex-direction:column;gap:10px;}
+  .option-btn{padding:12px 16px;border:2.5px solid #e0e0e0;border-radius:12px;background:#fff;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:600;text-align:left;transition:all 0.2s;display:flex;align-items:center;gap:10px;}
+  .option-btn:hover:not(:disabled){border-color:var(--bleu);background:#eaf4fd;transform:translateX(4px);}
+  .option-btn.correct{border-color:var(--vert);background:#d5f5e3;color:var(--vert-dark);}
+  .option-btn.wrong{border-color:var(--rouge);background:#fde8e8;color:var(--rouge);}
+  .option-btn:disabled{cursor:default;}
+  .option-letter{width:28px;height:28px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;}
+  .option-btn.correct .option-letter{background:var(--vert);color:#fff;}
+  .option-btn.wrong .option-letter{background:var(--rouge);color:#fff;}
+  .feedback{margin-top:14px;padding:12px 16px;border-radius:12px;font-weight:600;font-size:0.95rem;display:none;}
+  .feedback.show{display:flex;align-items:flex-start;gap:10px;}
+  .feedback.correct-fb{background:#d5f5e3;color:var(--vert-dark);}
+  .feedback.wrong-fb{background:#fde8e8;color:#c0392b;}
+  .qcm-score{text-align:center;padding:30px;background:linear-gradient(135deg,#2ecc71,#3498db);border-radius:var(--radius);color:#fff;display:none;box-shadow:0 8px 30px rgba(46,204,113,0.3);}
+  .qcm-score.show{display:block;animation:fadeIn 0.5s ease;}
+  .score-big{font-family:'Baloo 2',cursive;font-size:3.5rem;font-weight:800;}
 
   /* EXERCICES */
-  .exercice-card {
-    background: var(--card); border-radius: var(--radius); padding: 22px;
-    box-shadow: var(--shadow); margin-bottom: 20px;
-    border-top: 5px solid;
-  }
-  .exercice-card.ex1 { border-color: var(--orange); }
-  .exercice-card.ex2 { border-color: var(--violet); }
-  .exercice-card.ex3 { border-color: var(--teal); }
-  .exercice-card.ex4 { border-color: var(--rouge); }
+  .exercice-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;border-top:5px solid;}
+  .exercice-card.ex1{border-color:var(--orange);}
+  .exercice-card.ex2{border-color:var(--violet);}
+  .exercice-card.ex3{border-color:var(--teal);}
+  .exercice-card.ex4{border-color:var(--rouge);}
+  .ex-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .ex-num{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1rem;color:#fff;flex-shrink:0;}
+  .ex1 .ex-num{background:var(--orange);}
+  .ex2 .ex-num{background:var(--violet);}
+  .ex3 .ex-num{background:var(--teal);}
+  .ex4 .ex-num{background:var(--rouge);}
+  .ex-title{font-family:'Baloo 2',cursive;font-size:1.15rem;font-weight:800;}
+  .ex-input{width:100%;max-width:300px;padding:10px 14px;border:2.5px solid #ddd;border-radius:10px;font-family:'Nunito',sans-serif;font-size:0.95rem;margin:4px 0;transition:border-color 0.2s;}
+  .ex-input:focus{outline:none;border-color:var(--bleu);}
+  .ex-input.correct{border-color:var(--vert);background:#d5f5e3;}
+  .ex-input.wrong{border-color:var(--rouge);background:#fde8e8;}
+  .drag-container{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+  .drag-word{padding:8px 16px;background:#e8daef;color:var(--violet);border-radius:50px;font-weight:700;cursor:grab;font-size:0.9rem;border:2px solid var(--violet-light);user-select:none;transition:all 0.2s;}
+  .drag-word:hover{background:var(--violet);color:#fff;transform:scale(1.05);}
+  .drop-zone{min-height:44px;border:2.5px dashed #ccc;border-radius:12px;padding:8px 14px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;background:#fafafa;margin:8px 0;transition:all 0.2s;min-width:200px;}
+  .drop-zone.over{border-color:var(--violet);background:#f0e6f8;}
+  .correction{margin-top:14px;padding:14px 16px;border-radius:12px;background:#eafaf1;border-left:4px solid var(--vert);display:none;font-size:0.93rem;}
+  .correction.show{display:block;animation:fadeIn 0.3s ease;}
+  .btn-primary{display:inline-block;padding:12px 28px;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.25s;margin-top:16px;box-shadow:0 4px 15px rgba(0,0,0,0.15);}
+  .btn-primary.green{background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;}
+  .btn-primary.blue{background:linear-gradient(135deg,#3498db,#2980b9);color:#fff;}
+  .btn-primary.purple{background:linear-gradient(135deg,#8e44ad,#6c3483);color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.2);}
 
-  .ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-  .ex-num {
-    width: 40px; height: 40px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.1rem;
-    color: #fff; flex-shrink: 0;
-  }
-  .ex1 .ex-num { background: var(--orange); }
-  .ex2 .ex-num { background: var(--violet); }
-  .ex3 .ex-num { background: var(--teal); }
-  .ex4 .ex-num { background: var(--rouge); }
-  .ex-title { font-family: 'Baloo 2', cursive; font-size: 1.15rem; font-weight: 800; }
+  /* SCHEMA LEGENDAGE */
+  .legend-target{position:absolute;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.92);border:3px dashed #aaa;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:800;color:#999;transition:all 0.2s;cursor:pointer;}
+  .legend-target.filled{border-color:var(--vert);background:#d5f5e3;color:var(--vert-dark);border-style:solid;}
+  .legend-target.wrong{border-color:var(--rouge);background:#fde8e8;color:var(--rouge);border-style:solid;}
+  .legend-word{padding:8px 16px;border-radius:50px;font-weight:700;font-size:0.88rem;cursor:pointer;user-select:none;transition:all 0.2s;border:2px solid;display:inline-block;}
+  .legend-word.used{opacity:0.35;cursor:default;}
+  .legend-word:not(.used):hover{transform:scale(1.05);}
+  .legend-word.selected{outline:3px solid #8e44ad;outline-offset:2px;}
 
-  .fill-blank {
-    display: inline-block;
-    border-bottom: 2.5px solid var(--violet);
-    min-width: 100px; padding: 2px 6px;
-    font-weight: 700; color: var(--violet);
-  }
-  .ex-input {
-    width: 100%; max-width: 300px; padding: 10px 14px;
-    border: 2.5px solid #ddd; border-radius: 10px;
-    font-family: 'Nunito', sans-serif; font-size: 0.95rem;
-    margin: 4px 0; transition: border-color 0.2s;
-  }
-  .ex-input:focus { outline: none; border-color: var(--bleu); }
-  .ex-input.correct { border-color: var(--vert); background: #d5f5e3; }
-  .ex-input.wrong { border-color: var(--rouge); background: #fde8e8; }
-
-  .drag-container { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
-  .drag-word {
-    padding: 8px 16px; background: #e8daef; color: var(--violet);
-    border-radius: 50px; font-weight: 700; cursor: grab; font-size: 0.9rem;
-    border: 2px solid var(--violet-light); user-select: none;
-    transition: all 0.2s;
-  }
-  .drag-word:hover { background: var(--violet); color: #fff; transform: scale(1.05); }
-
-  .drop-zone {
-    min-height: 44px; border: 2.5px dashed #ccc; border-radius: 12px;
-    padding: 8px 14px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-    background: #fafafa; margin: 8px 0; transition: all 0.2s; min-width: 200px;
-  }
-  .drop-zone.over { border-color: var(--violet); background: #f0e6f8; }
-
-  .correction {
-    margin-top: 14px; padding: 14px 16px; border-radius: 12px;
-    background: #eafaf1; border-left: 4px solid var(--vert);
-    display: none; font-size: 0.93rem;
-  }
-  .correction.show { display: block; animation: fadeIn 0.3s ease; }
-  .correction strong { color: var(--vert-dark); }
-
-  .section-title {
-    font-family: 'Baloo 2', cursive; font-size: 1.6rem; font-weight: 800;
-    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
-  }
-  .section-title .emoji { font-size: 1.8rem; }
-
-  /* IMAGES FICHES */
-  .fiche-img-block {
-    margin: 18px 0;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
-    background: #fff;
-  }
-  .fiche-img-block .img-caption {
-    background: linear-gradient(90deg,#f8f9fa,#eee);
-    padding: 8px 14px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--muted);
-    display: flex; align-items: center; gap: 6px;
-    border-bottom: 2px solid #e0e0e0;
-  }
-  .fiche-img-block img {
-    width: 100%;
-    display: block;
-    cursor: zoom-in;
-    transition: transform 0.3s ease;
-  }
-  .fiche-img-block img:hover { transform: scale(1.01); }
-
-  /* MODALE ZOOM IMAGE */
-  .img-modal {
-    display: none; position: fixed; inset: 0; z-index: 9999;
-    background: rgba(0,0,0,0.85); align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  .img-modal.open { display: flex; animation: fadeIn 0.2s ease; }
-  .img-modal img {
-    max-width: 95vw; max-height: 92vh;
-    border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-    object-fit: contain;
-  }
-  .img-modal-close {
-    position: fixed; top: 16px; right: 20px;
-    background: #fff; border: none; border-radius: 50%;
-    width: 40px; height: 40px; font-size: 1.2rem;
-    cursor: pointer; box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 10000;
-  }
-
-  /* Responsive */
-  @media(max-width:500px) {
-    header h1 { font-size: 1.5rem; }
-    .nav-btn { padding: 8px 12px; font-size: 0.85rem; }
-  }
+  @media(max-width:500px){header h1{font-size:1.5rem;}.nav-btn{padding:8px 12px;font-size:0.85rem;}.s-label{font-size:0.62rem;padding:3px 5px;}}
 </style>
 </head>
 <body>
 
-<!-- MODALE ZOOM IMAGE -->
-<div class="img-modal" id="imgModal" onclick="closeModal()">
-  <button class="img-modal-close" onclick="closeModal()">✕</button>
-  <img id="modalImg" src="" alt="Fiche agrandie">
+<div class="tooltip-overlay" id="tooltipOverlay" onclick="closeTooltip()">
+  <div class="tooltip-box" onclick="event.stopPropagation()">
+    <button class="tooltip-close" onclick="closeTooltip()">✕</button>
+    <div class="tooltip-mot" id="tooltipMot"></div>
+    <div class="tooltip-def" id="tooltipDef"></div>
+  </div>
 </div>
 
 <header>
-  <a href="../index.html" style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,0.2);color:#fff;text-decoration:none;padding:7px 14px;border-radius:50px;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.85rem;backdrop-filter:blur(4px);">← Accueil</a>
+  <a href="../index.html" class="btn-accueil">← Accueil</a>
   <div class="emoji-row">🌋 🌍 ⚡</div>
   <h1>SVT – 4e</h1>
   <p>Risques sismiques et volcaniques</p>
@@ -352,473 +293,187 @@
   <button class="nav-btn" data-tab="exercices" onclick="showTab('exercices')">✏️ Exercices</button>
 </nav>
 
-<!-- ===================== COURS ===================== -->
 <section id="cours" class="active">
-  <div class="section-title"><span class="emoji">📚</span> Cours</div>
+  <div class="section-title">📚 Cours</div>
 
-  <!-- Carte 1 : Structure de la Terre -->
   <div class="card vert">
     <div class="card-title">🌍 1. La dynamique de la Terre</div>
     <span class="badge vert">Structure interne</span>
-    <p>La Terre est une planète active dont la surface est en perpétuel mouvement. Elle est composée de plusieurs couches concentriques :</p>
+    <p>La Terre est une planète active dont la surface est en perpétuel mouvement. Elle est composée de plusieurs couches :</p>
     <ul style="margin:10px 0 12px 20px;">
-      <li><strong>La croûte terrestre</strong> : couche externe rigide, divisée en <em>plaques lithosphériques</em></li>
-      <li><strong>Le manteau</strong> : zone semi-fluide qui permet les mouvements des plaques</li>
-      <li><strong>Le noyau</strong> : centre très chaud à l'origine de l'énergie interne</li>
+      <li><strong>La <span class="mot-cle" onclick="showTooltip('Croûte terrestre')">croûte terrestre</span></strong> : couche externe rigide, divisée en <span class="mot-cle" onclick="showTooltip('Plaques lithosphériques')">plaques lithosphériques</span></li>
+      <li><strong>Le <span class="mot-cle" onclick="showTooltip('Manteau')">manteau</span></strong> : zone semi-fluide qui permet les mouvements des plaques</li>
+      <li><strong>Le <span class="mot-cle" onclick="showTooltip('Noyau')">noyau</span></strong> : centre très chaud à l'origine de l'énergie interne</li>
     </ul>
-    <div class="highlight-box green">
-      💡 <strong>À retenir :</strong> Les séismes et les éruptions volcaniques sont provoqués par la <strong>dynamique externe</strong> de la Terre (mouvements des plaques).
-    </div>
-    <div class="schema">
-      <div class="schema-item" style="background:#d5f5e3;color:#1e8449;">🌱 Dynamique de la Terre</div>
-      <div class="arrow">→</div>
-      <div class="schema-item" style="background:#d6eaf8;color:#1a5276;">⚙️ Dynamique externe</div>
-      <div class="arrow">→</div>
-      <div class="schema-item" style="background:#fdebd0;color:#7d6608;">🌊 Séismes + Volcans</div>
-    </div>
+    <div class="highlight-box green">💡 <strong>À retenir :</strong> Les séismes et les éruptions sont provoqués par la <strong>dynamique interne</strong> de la Terre (mouvements des plaques).</div>
   </div>
 
-  <!-- Carte 2 : Tectonique des plaques -->
   <div class="card bleu">
     <div class="card-title">🧩 2. La tectonique des plaques</div>
     <span class="badge bleu">Mouvement des plaques</span>
-    <p>La surface de la Terre est découpée en une douzaine de <strong>plaques lithosphériques rigides</strong> qui se déplacent lentement sur le manteau. Ces mouvements sont à l'origine des zones d'activité sismique et volcanique.</p>
+    <p>La surface de la Terre est découpée en une douzaine de <span class="mot-cle" onclick="showTooltip('Plaques lithosphériques')">plaques lithosphériques</span> rigides qui se déplacent lentement. Ces mouvements créent des zones d'activité sismique et volcanique.</p>
     <br>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div class="highlight-box blue">
-        ⬅️➡️ <strong>Type DIVERGENT</strong><br>
-        Les plaques s'écartent → formation de dorsales océaniques
+    <div class="anim-container">
+      <div class="anim-tabs">
+        <button class="anim-tab active" onclick="switchAnim('div',this)">⬅️➡️ Frontière Divergente</button>
+        <button class="anim-tab" onclick="switchAnim('conv',this)">➡️⬅️ Frontière Convergente</button>
       </div>
-      <div class="highlight-box pink">
-        ➡️⬅️ <strong>Type CONVERGENT</strong><br>
-        Les plaques se rapprochent → formation de chaînes de montagnes et fosses océaniques
+      <div class="anim-scene active" id="anim-div">
+        <div class="tecto-stage">
+          <div class="eau"></div>
+          <div class="plaque plaque-g div-g">Plaque A</div>
+          <div class="plaque plaque-d div-d">Plaque B</div>
+          <div class="magma-tube"></div>
+          <div class="dorsale"></div>
+          <div class="label-dorsale">🔥 Dorsale océanique</div>
+          <div class="fleche-anim" style="left:200px;">⬅️</div>
+          <div class="fleche-anim" style="right:200px;">➡️</div>
+        </div>
+        <div class="anim-legende">
+          <div class="anim-legende-item"><div class="ldot" style="background:#7fb3d3"></div>Plaques</div>
+          <div class="anim-legende-item"><div class="ldot" style="background:#e67e22"></div><span class="mot-cle" onclick="showTooltip('Dorsale océanique')">Dorsale océanique</span></div>
+          <div class="anim-legende-item"><div class="ldot" style="background:#e74c3c"></div>Magma qui remonte</div>
+        </div>
+        <div class="anim-explication">⬅️➡️ Les plaques <strong>s'écartent</strong> → magma qui remonte → <span class="mot-cle" onclick="showTooltip('Dorsale océanique')">dorsale océanique</span> (chaîne de volcans sous-marins). Ex : Islande.</div>
       </div>
-    </div>
-    <p style="margin-top:12px;"><strong>Dans les deux cas</strong>, ces zones sont des zones de <em>haute activité sismique et volcanique</em>.</p>
-    <!-- SCHÉMA SVG : Tectonique des plaques -->
-    <div class="fiche-img-block" style="margin-top:16px;">
-      <div class="img-caption">🖼️ Schéma – Types de frontières de plaques</div>
-      <div style="padding:16px;background:#fff;">
-        <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
-          <!-- Divergent -->
-          <rect x="10" y="10" width="320" height="200" rx="14" fill="#e8f4fd" stroke="#3498db" stroke-width="2"/>
-          <text x="170" y="36" text-anchor="middle" font-weight="800" font-size="14" fill="#2980b9">Type DIVERGENT</text>
-          <!-- plaque gauche -->
-          <rect x="30" y="55" width="110" height="40" rx="6" fill="#7fb3d3"/>
-          <rect x="30" y="95" width="110" height="30" rx="0" fill="#5d8a6b"/>
-          <text x="85" y="80" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Plaque A</text>
-          <!-- flèche gauche -->
-          <text x="148" y="80" font-size="22" fill="#e74c3c">←</text>
-          <!-- dorsale -->
-          <polygon points="170,55 185,95 155,95" fill="#e67e22"/>
-          <text x="170" y="120" text-anchor="middle" font-size="9" fill="#d35400" font-weight="700">Dorsale</text>
-          <!-- flèche droite -->
-          <text x="188" y="80" font-size="22" fill="#e74c3c">→</text>
-          <!-- plaque droite -->
-          <rect x="210" y="55" width="110" height="40" rx="6" fill="#7fb3d3"/>
-          <rect x="210" y="95" width="110" height="30" rx="0" fill="#5d8a6b"/>
-          <text x="265" y="80" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Plaque B</text>
-          <text x="170" y="150" text-anchor="middle" font-size="10" fill="#555">Les plaques s'<tspan font-weight="800">écartent</tspan></text>
-          <text x="170" y="165" text-anchor="middle" font-size="10" fill="#555">→ Formation de <tspan fill="#e67e22" font-weight="800">dorsales océaniques</tspan></text>
-          <text x="170" y="182" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="700">⚡ Zone sismique &amp; volcanique</text>
-
-          <!-- Convergent -->
-          <rect x="370" y="10" width="320" height="200" rx="14" fill="#fde8f4" stroke="#8e44ad" stroke-width="2"/>
-          <text x="530" y="36" text-anchor="middle" font-weight="800" font-size="14" fill="#6c3483">Type CONVERGENT</text>
-          <!-- plaque gauche -->
-          <rect x="390" y="55" width="110" height="40" rx="6" fill="#c39bd3"/>
-          <rect x="390" y="95" width="110" height="30" rx="0" fill="#5d8a6b"/>
-          <text x="445" y="80" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Plaque A</text>
-          <!-- flèche droite -->
-          <text x="503" y="80" font-size="22" fill="#e74c3c">→</text>
-          <!-- montagne -->
-          <polygon points="530,55 555,95 505,95" fill="#7f8c8d"/>
-          <text x="530" y="118" text-anchor="middle" font-size="9" fill="#555" font-weight="700">Montagne</text>
-          <!-- flèche gauche -->
-          <text x="558" y="80" font-size="22" fill="#e74c3c">←</text>
-          <!-- plaque droite -->
-          <rect x="570" y="55" width="110" height="40" rx="6" fill="#c39bd3"/>
-          <rect x="570" y="95" width="110" height="30" rx="0" fill="#5d8a6b"/>
-          <text x="625" y="80" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Plaque B</text>
-          <text x="530" y="150" text-anchor="middle" font-size="10" fill="#555">Les plaques se <tspan font-weight="800">rapprochent</tspan></text>
-          <text x="530" y="165" text-anchor="middle" font-size="10" fill="#555">→ Formation de <tspan fill="#8e44ad" font-weight="800">chaînes de montagnes</tspan></text>
-          <text x="530" y="182" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="700">⚡ Zone sismique &amp; volcanique</text>
-        </svg>
+      <div class="anim-scene" id="anim-conv">
+        <div class="tecto-stage">
+          <div class="plaque plaque-g conv-g" style="background:linear-gradient(180deg,#c39bd3,#8e44ad);">Plaque A</div>
+          <div class="plaque plaque-d conv-d" style="background:linear-gradient(180deg,#c39bd3,#8e44ad);">Plaque B</div>
+          <div class="montagne"></div>
+          <div class="neige"></div>
+          <div class="label-montagne">🏔️ Chaîne de montagnes</div>
+          <div class="fleche-anim" style="left:190px;">➡️</div>
+          <div class="fleche-anim" style="right:190px;">⬅️</div>
+        </div>
+        <div class="anim-legende">
+          <div class="anim-legende-item"><div class="ldot" style="background:#c39bd3"></div>Plaques</div>
+          <div class="anim-legende-item"><div class="ldot" style="background:#7f8c8d"></div>Chaîne de montagnes</div>
+          <div class="anim-legende-item"><div class="ldot" style="background:#ecf0f1"></div>Neige</div>
+        </div>
+        <div class="anim-explication">➡️⬅️ Les plaques <strong>se rapprochent</strong> → elles se plissent → <strong>chaînes de montagnes</strong> et <span class="mot-cle" onclick="showTooltip('Fosse océanique')">fosses océaniques</span>. Ex : Himalaya, Alpes.</div>
       </div>
     </div>
+    <div class="highlight-box blue">⚡ <strong>Dans les deux cas :</strong> zones de haute activité sismique et volcanique !</div>
   </div>
 
-  <!-- Carte 3 : Aléa, enjeu, risque -->
   <div class="card violet">
     <div class="card-title">⚖️ 3. Aléa, Enjeu et Risque</div>
     <span class="badge violet">Vocabulaire essentiel</span>
     <ul style="margin:10px 0;">
-      <li>🎲 <strong>Aléa</strong> : possibilité qu'un événement naturel (séisme, éruption) affecte une zone</li>
-      <li>🏘️ <strong>Enjeu</strong> : conséquences sur les <em>populations et les activités humaines</em></li>
-      <li>⚠️ <strong>Risque</strong> : probabilité des dommages liés à un aléa dans une région aux enjeux connus</li>
+      <li>🎲 <span class="mot-cle" onclick="showTooltip('Aléa')">Aléa</span> : possibilité qu'un événement naturel affecte une zone</li>
+      <li>🏘️ <span class="mot-cle" onclick="showTooltip('Enjeu')">Enjeu</span> : conséquences sur les populations et les activités humaines</li>
+      <li>⚠️ <span class="mot-cle" onclick="showTooltip('Risque')">Risque</span> : probabilité des dommages liés à un aléa</li>
     </ul>
-    <div class="formula">RISQUE = ALÉA × ENJEU</div>
-    <div class="highlight-box yellow">
-      🧠 <strong>Exemple :</strong> Un volcan actif dans un désert = fort aléa, faible enjeu → risque limité.<br>
-      Un volcan actif près d'une grande ville = fort aléa + fort enjeu → risque très élevé.
+    <div class="risque-schema">
+      <div class="risque-box rb-alea">🎲<br>ALÉA<br><small style="font-size:0.7rem;font-weight:600;">événement naturel</small></div>
+      <div class="risque-arrow">✕</div>
+      <div class="risque-box rb-enjeu">🏘️<br>ENJEU<br><small style="font-size:0.7rem;font-weight:600;">populations & biens</small></div>
+      <div class="risque-arrow">=</div>
+      <div class="risque-box rb-risque">⚠️<br>RISQUE</div>
     </div>
-    <!-- SCHÉMA SVG : Aléa, Enjeu, Risque -->
-    <div class="fiche-img-block">
-      <div class="img-caption">🖼️ Schéma – Aléa × Enjeu = Risque</div>
-      <div style="padding:16px;background:#fff;">
-        <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
-          <!-- ALÉA -->
-          <ellipse cx="130" cy="100" rx="110" ry="70" fill="#e8daef" stroke="#8e44ad" stroke-width="2.5"/>
-          <text x="130" y="82" text-anchor="middle" font-weight="800" font-size="16" fill="#6c3483">ALÉA</text>
-          <text x="130" y="100" text-anchor="middle" font-size="10" fill="#555">Possibilité qu'un</text>
-          <text x="130" y="114" text-anchor="middle" font-size="10" fill="#555">événement affecte</text>
-          <text x="130" y="128" text-anchor="middle" font-size="10" fill="#555">une zone</text>
-          <!-- flèche gauche vers risque -->
-          <line x1="240" y1="100" x2="310" y2="130" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#arr1)"/>
-          <!-- ENJEU -->
-          <ellipse cx="550" cy="100" rx="110" ry="70" fill="#d6eaf8" stroke="#3498db" stroke-width="2.5"/>
-          <text x="550" y="82" text-anchor="middle" font-weight="800" font-size="16" fill="#1a5276">ENJEU</text>
-          <text x="550" y="100" text-anchor="middle" font-size="10" fill="#555">Conséquences sur</text>
-          <text x="550" y="114" text-anchor="middle" font-size="10" fill="#555">les populations et</text>
-          <text x="550" y="128" text-anchor="middle" font-size="10" fill="#555">les activités humaines</text>
-          <!-- flèche droite vers risque -->
-          <line x1="440" y1="100" x2="375" y2="130" stroke="#3498db" stroke-width="2.5" marker-end="url(#arr2)"/>
-          <!-- RISQUE centre -->
-          <ellipse cx="340" cy="155" rx="95" ry="38" fill="#8e44ad" stroke="#6c3483" stroke-width="2"/>
-          <text x="340" y="150" text-anchor="middle" font-weight="800" font-size="14" fill="#fff">RISQUE</text>
-          <text x="340" y="166" text-anchor="middle" font-size="9" fill="#f0e6fa">Probabilité de dommages</text>
-          <!-- markers -->
-          <defs>
-            <marker id="arr1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#8e44ad"/></marker>
-            <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#3498db"/></marker>
-          </defs>
-        </svg>
-      </div>
-    </div>
+    <div class="highlight-box yellow">🧠 Volcan dans un désert → fort aléa + enjeu nul = <strong>risque faible</strong>. Volcan près d'une grande ville → fort aléa + fort enjeu = <strong>risque élevé</strong> !</div>
   </div>
 
-  <!-- Carte 4 : Séismes -->
   <div class="card orange">
     <div class="card-title">💥 4. Les séismes</div>
     <span class="badge orange">Tremblements de terre</span>
-    <p>Un séisme est provoqué par un <strong>déplacement brutal de roches</strong> en profondeur, libérant une grande quantité d'énergie.</p>
-    <ul style="margin:10px 0;">
-      <li>🎯 <strong>Foyer</strong> : point de départ du séisme en profondeur</li>
-      <li>📍 <strong>Épicentre</strong> : point en surface situé juste au-dessus du foyer (le plus touché)</li>
-      <li>〰️ <strong>Ondes sismiques</strong> : vibrations qui se propagent dans toutes les directions</li>
-      <li>📊 <strong>Sismogramme</strong> : enregistrement des ondes par un sismographe</li>
-    </ul>
-    <br>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div class="highlight-box blue">
-        📏 <strong>Échelle de Richter</strong><br>
-        Mesure la <em>puissance</em> (énergie libérée)<br>
-        Chaque degré = x30 fois plus d'énergie
-      </div>
-      <div class="highlight-box yellow">
-        🏚️ <strong>Échelle de Mercalli</strong><br>
-        Mesure l'<em>intensité</em> (dommages subis)<br>
-        Echelle I à XII selon les conséquences
-      </div>
+    <p>Un séisme est provoqué par un <strong>déplacement brutal de roches</strong> en profondeur. Clique sur les étiquettes pour les explorer 👇</p>
+    <div class="seisme-schema">
+      <div class="s-sol"></div>
+      <div class="s-onde"></div><div class="s-onde"></div><div class="s-onde"></div>
+      <div class="s-ligne"></div>
+      <div class="s-foyer" onclick="showTooltip('Foyer')">FOYER</div>
+      <div class="s-epicentre" onclick="showTooltip('Épicentre')"></div>
+      <div class="s-label lbl-foyer" onclick="showTooltip('Foyer')">🔴 Foyer</div>
+      <div class="s-label lbl-epi" onclick="showTooltip('Épicentre')">🟠 Épicentre</div>
+      <div class="s-label lbl-onde" onclick="showTooltip('Ondes sismiques')">〰️ Ondes</div>
+      <div class="s-label lbl-richter" onclick="showTooltip('Échelle de Richter')">📏 Richter</div>
+      <div class="s-label lbl-mercalli" onclick="showTooltip('Échelle de Mercalli')">🏚️ Mercalli</div>
+      <div class="s-label lbl-sismo" onclick="showTooltip('Sismographe')">📊 Sismographe</div>
     </div>
-    <br>
-    <div class="highlight-box green">
-      🛡️ <strong>Prévention et protection :</strong>
-      <ul style="margin-top:6px;">
-        <li>Surveillance par un réseau de <strong>sismographes</strong></li>
-        <li>Exercices réguliers d'<strong>évacuation</strong> des populations</li>
-        <li>Construction de bâtiments <strong>parasismiques</strong> (normes parasismiques, chaînages)</li>
-      </ul>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+      <div class="highlight-box blue">📏 <strong><span class="mot-cle" onclick="showTooltip('Échelle de Richter')">Richter</span></strong> : puissance (énergie). Chaque degré = ×30 !</div>
+      <div class="highlight-box yellow">🏚️ <strong><span class="mot-cle" onclick="showTooltip('Échelle de Mercalli')">Mercalli</span></strong> : intensité (dommages). Échelle I à XII.</div>
     </div>
-    <!-- SCHÉMA SVG : Séisme Foyer / Épicentre -->
-    <div class="fiche-img-block" style="margin-top:16px;">
-      <div class="img-caption">🖼️ Schéma – Structure d'un séisme</div>
-      <div style="padding:16px 16px 8px;background:#fff;">
-        <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
-          <defs>
-            <marker id="arrs" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#e67e22"/></marker>
-          </defs>
-          <!-- Sol -->
-          <rect x="0" y="100" width="620" height="140" rx="0" fill="#c8a97e" opacity="0.3"/>
-          <line x1="0" y1="100" x2="620" y2="100" stroke="#7d5a3c" stroke-width="3"/>
-          <!-- Relief surface -->
-          <path d="M0,100 Q155,85 310,100 Q465,115 620,100" stroke="#5d8a6b" stroke-width="2.5" fill="none"/>
-          <!-- Surface label -->
-          <text x="10" y="94" font-size="10" fill="#555" font-weight="700">Surface terrestre</text>
-          <!-- Foyer -->
-          <circle cx="310" cy="185" r="22" fill="#e74c3c" opacity="0.9"/>
-          <text x="310" y="189" text-anchor="middle" font-size="10" fill="#fff" font-weight="800">FOYER</text>
-          <!-- Épicentre -->
-          <circle cx="310" cy="100" r="10" fill="#e67e22"/>
-          <text x="350" y="96" font-size="11" fill="#d35400" font-weight="800">ÉPICENTRE</text>
-          <!-- Ligne foyer-épicentre -->
-          <line x1="310" y1="163" x2="310" y2="110" stroke="#e67e22" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrs)"/>
-          <!-- Ondes concentriques -->
-          <ellipse cx="310" cy="185" rx="55" ry="30" fill="none" stroke="#3498db" stroke-width="1.5" opacity="0.6"/>
-          <ellipse cx="310" cy="185" rx="95" ry="52" fill="none" stroke="#3498db" stroke-width="1.5" opacity="0.4"/>
-          <ellipse cx="310" cy="185" rx="140" ry="75" fill="none" stroke="#3498db" stroke-width="1" opacity="0.3"/>
-          <text x="430" y="188" font-size="9" fill="#2980b9" font-weight="700">ondes sismiques</text>
-          <!-- Sismographe droite -->
-          <rect x="490" y="55" width="115" height="42" rx="8" fill="#eaf4fd" stroke="#3498db" stroke-width="1.5"/>
-          <text x="548" y="72" text-anchor="middle" font-size="10" fill="#2980b9" font-weight="800">SISMOGRAPHE</text>
-          <path d="M502,85 Q510,75 518,85 Q526,95 534,80 Q542,68 550,85 Q558,95 566,82 Q574,72 582,85 Q590,93 598,85" stroke="#e74c3c" stroke-width="1.8" fill="none"/>
-          <!-- Richter / Mercalli -->
-          <rect x="10" y="55" width="130" height="38" rx="8" fill="#fdebd0" stroke="#e67e22" stroke-width="1.5"/>
-          <text x="75" y="71" text-anchor="middle" font-size="10" fill="#d35400" font-weight="800">Échelle de Richter</text>
-          <text x="75" y="85" text-anchor="middle" font-size="9" fill="#555">Puissance (magnitude)</text>
-          <rect x="10" y="100" width="130" height="38" rx="8" fill="#fef9c3" stroke="#f1c40f" stroke-width="1.5"/>
-          <text x="75" y="116" text-anchor="middle" font-size="10" fill="#b7950b" font-weight="800">Échelle de Mercalli</text>
-          <text x="75" y="130" text-anchor="middle" font-size="9" fill="#555">Intensité (dommages)</text>
-        </svg>
-      </div>
-    </div>
+    <div class="highlight-box green" style="margin-top:12px;">🛡️ <strong>Prévention :</strong> <span class="mot-cle" onclick="showTooltip('Sismographe')">sismographes</span>, évacuations, bâtiments <span class="mot-cle" onclick="showTooltip('Parasismique')">parasismiques</span>.</div>
   </div>
 
-  <!-- Carte 5 : Volcans -->
   <div class="card rouge">
     <div class="card-title">🌋 5. Les éruptions volcaniques</div>
     <span class="badge vert">Volcanisme</span>
-    <p>Un volcan est formé par la remontée du <strong>magma</strong> (roche en fusion riche en gaz) depuis les profondeurs vers la surface. Le magma devient de la <strong>lave</strong> une fois sorti.</p>
-    <br>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div style="background:#fdebd0;border-radius:12px;padding:14px;">
-        🌊 <strong>Éruption EFFUSIVE</strong><br><br>
-        Magma fluide, peu de gaz<br>
-        → Coulées de lave lente<br>
-        → Volcan calme (ex: Hawaii)
+    <p>Un volcan est formé par la remontée du <span class="mot-cle" onclick="showTooltip('Magma')">magma</span> depuis les profondeurs. Une fois sorti, il devient de la <span class="mot-cle" onclick="showTooltip('Lave')">lave</span>.</p><br>
+    <div class="volcans-grid">
+      <div class="volcan-card">
+        <div class="volcan-header v-eff-header">🌊 Éruption EFFUSIVE</div>
+        <div class="volcan-anim v-eff-bg">
+          <div class="eff-mont"></div><div class="eff-crat"></div><div class="eff-lave"></div>
+        </div>
+        <div class="volcan-body"><p>🫧 <strong>Magma fluide</strong>, peu de gaz<br>→ Lave qui coule doucement<br>→ Volcan calme<br>📍 Ex : Hawaii</p></div>
       </div>
-      <div style="background:#fde8e8;border-radius:12px;padding:14px;">
-        💣 <strong>Éruption EXPLOSIVE</strong><br><br>
-        Magma visqueux, riche en gaz<br>
-        → Projections de cendres, blocs, nuées ardentes<br>
-        → Très dangereuse (ex: Vésuve)
-      </div>
-    </div>
-    <br>
-    <div class="highlight-box green">
-      🛡️ <strong>Prévention et protection :</strong>
-      <ul style="margin-top:6px;">
-        <li>Le volcanisme est <strong>plus prévisible</strong> que les séismes</li>
-        <li>Surveillance des tremblements, déformations du sol, émissions de gaz</li>
-        <li>Plans d'<strong>évacuation</strong> des zones à risque</li>
-        <li>En France métropolitaine et aux Antilles (Martinique) : Plans de Prévention des Risques Volcaniques</li>
-      </ul>
-    </div>
-    <!-- SCHÉMA SVG : Volcans effusif vs explosif -->
-    <div class="fiche-img-block" style="margin-top:16px;">
-      <div class="img-caption">🖼️ Schéma – Éruption effusive vs explosive</div>
-      <div style="padding:16px;background:#fff;">
-        <svg viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
-          <!-- Sol -->
-          <rect x="0" y="175" width="640" height="55" fill="#8B6914" opacity="0.25" rx="0"/>
-          <line x1="0" y1="175" x2="640" y2="175" stroke="#7d5a3c" stroke-width="2"/>
-
-          <!-- === VOLCAN EFFUSIF (gauche) === -->
-          <polygon points="160,175 220,175 190,100" fill="#95a5a6"/>
-          <polygon points="160,175 220,175 190,105" fill="#7f8c8d"/>
-          <!-- cratère -->
-          <ellipse cx="190" cy="100" rx="12" ry="6" fill="#c0392b"/>
-          <!-- lave qui coule -->
-          <path d="M190,100 Q230,130 250,165 Q260,175 270,175" stroke="#e74c3c" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.85"/>
-          <path d="M190,102 Q215,125 230,160 Q238,175 250,175" stroke="#e67e22" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
-          <!-- petite fumée -->
-          <ellipse cx="190" cy="88" rx="8" ry="12" fill="#bdc3c7" opacity="0.5"/>
-          <!-- Label -->
-          <rect x="60" y="10" width="165" height="50" rx="10" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
-          <text x="143" y="30" text-anchor="middle" font-weight="800" font-size="13" fill="#d35400">🌊 EFFUSIVE</text>
-          <text x="143" y="47" text-anchor="middle" font-size="9" fill="#555">Magma fluide • lave calme</text>
-          <text x="143" y="58" text-anchor="middle" font-size="9" fill="#555">Ex : Hawaii</text>
-          <line x1="143" y1="60" x2="175" y2="95" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,3"/>
-
-          <!-- === VOLCAN EXPLOSIF (droite) === -->
-          <polygon points="420,175 500,175 460,90" fill="#7f8c8d"/>
-          <polygon points="430,175 490,175 460,95" fill="#95a5a6"/>
-          <!-- cratère -->
-          <ellipse cx="460" cy="90" rx="14" ry="7" fill="#922b21"/>
-          <!-- explosion nuage -->
-          <ellipse cx="460" cy="60" rx="35" ry="25" fill="#bdc3c7" opacity="0.7"/>
-          <ellipse cx="440" cy="45" rx="22" ry="16" fill="#aab7b8" opacity="0.6"/>
-          <ellipse cx="478" cy="42" rx="20" ry="14" fill="#aab7b8" opacity="0.6"/>
-          <!-- cendres projetées -->
-          <line x1="450" y1="50" x2="400" y2="20" stroke="#7f8c8d" stroke-width="2" opacity="0.6"/>
-          <line x1="460" y1="45" x2="460" y2="10" stroke="#7f8c8d" stroke-width="2" opacity="0.6"/>
-          <line x1="470" y1="50" x2="520" y2="18" stroke="#7f8c8d" stroke-width="2" opacity="0.6"/>
-          <circle cx="400" cy="18" r="5" fill="#7f8c8d" opacity="0.7"/>
-          <circle cx="460" cy="8" r="6" fill="#95a5a6" opacity="0.7"/>
-          <circle cx="522" cy="16" r="5" fill="#7f8c8d" opacity="0.7"/>
-          <!-- Label -->
-          <rect x="415" y="10" width="175" height="50" rx="10" fill="#fde8e8" stroke="#e74c3c" stroke-width="2"/>
-          <text x="503" y="30" text-anchor="middle" font-weight="800" font-size="13" fill="#c0392b">💣 EXPLOSIVE</text>
-          <text x="503" y="47" text-anchor="middle" font-size="9" fill="#555">Magma visqueux • cendres</text>
-          <text x="503" y="58" text-anchor="middle" font-size="9" fill="#555">Ex : Vésuve</text>
-          <line x1="480" y1="60" x2="462" y2="85" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,3"/>
-
-          <!-- Légende magma -->
-          <text x="160" y="195" text-anchor="middle" font-size="9" fill="#7d5a3c" font-weight="700">Magma fluide (peu de gaz)</text>
-          <text x="460" y="195" text-anchor="middle" font-size="9" fill="#7d5a3c" font-weight="700">Magma visqueux (riche en gaz)</text>
-          <!-- Chambre magmatique gauche -->
-          <ellipse cx="165" cy="215" rx="40" ry="12" fill="#e74c3c" opacity="0.3" stroke="#e74c3c" stroke-width="1"/>
-          <text x="165" y="219" text-anchor="middle" font-size="8" fill="#922b21" font-weight="700">chambre magmatique</text>
-          <!-- Chambre magmatique droite -->
-          <ellipse cx="460" cy="215" rx="40" ry="12" fill="#922b21" opacity="0.4" stroke="#922b21" stroke-width="1"/>
-          <text x="460" y="219" text-anchor="middle" font-size="8" fill="#922b21" font-weight="700">chambre magmatique</text>
-        </svg>
+      <div class="volcan-card">
+        <div class="volcan-header v-exp-header">💣 Éruption EXPLOSIVE</div>
+        <div class="volcan-anim v-exp-bg">
+          <div class="exp-mont"></div>
+          <div class="exp-nua n1"></div><div class="exp-nua n2"></div><div class="exp-nua n3"></div>
+          <div class="exp-pr p1"></div><div class="exp-pr p2"></div><div class="exp-pr p3"></div>
+        </div>
+        <div class="volcan-body"><p>💨 <strong>Magma visqueux</strong>, riche en gaz<br>→ Cendres + <span class="mot-cle" onclick="showTooltip('Nuée ardente')">nuées ardentes</span><br>→ Très dangereuse<br>📍 Ex : Vésuve</p></div>
       </div>
     </div>
+    <div class="highlight-box green">🛡️ <strong>Prévention :</strong> Le volcanisme est <strong>plus prévisible</strong> que les séismes ! Signes : tremblements, gaz, déformation du sol.</div>
   </div>
 </section>
 
-<!-- ===================== SYNTHESE ===================== -->
 <section id="synthese">
-  <div class="section-title"><span class="emoji">🗂️</span> Fiche de synthèse</div>
-
+  <div class="section-title">🗂️ Fiche de synthèse</div>
   <div class="card bleu" style="border-left:none;border-top:6px solid var(--bleu);">
     <div class="card-title" style="justify-content:center;font-size:1.4rem;">🌍 Tout en un coup d'œil</div>
-    <div class="formula" style="font-size:1.1rem;margin-bottom:20px;">RISQUE = ALÉA × ENJEU</div>
-
+    <div class="risque-schema" style="margin-bottom:20px;">
+      <div class="risque-box rb-alea">🎲<br>ALÉA</div>
+      <div class="risque-arrow">✕</div>
+      <div class="risque-box rb-enjeu">🏘️<br>ENJEU</div>
+      <div class="risque-arrow">=</div>
+      <div class="risque-box rb-risque">⚠️<br>RISQUE</div>
+    </div>
     <div class="synth-grid">
       <div class="synth-card" style="background:linear-gradient(135deg,#fdebd0,#fef9c3);border:2px solid var(--orange);">
-        <span class="big-emoji">💥</span>
-        <h3 style="color:var(--orange);">SÉISMES</h3>
-        <p style="font-size:0.88rem;">Libération brutale d'énergie en profondeur<br><br>
-        📍 Foyer → Épicentre → Ondes<br><br>
-        📏 Richter (puissance)<br>
-        🏚️ Mercalli (intensité)<br><br>
-        🛡️ Sismographes + bâtiments parasismiques</p>
+        <span class="big-emoji">💥</span><h3 style="color:var(--orange);">SÉISMES</h3>
+        <p style="font-size:0.88rem;">Libération brutale d'énergie<br><br>📍 Foyer → Épicentre → Ondes<br><br>📏 Richter (puissance)<br>🏚️ Mercalli (intensité)<br><br>🛡️ Sismographes + parasismique</p>
       </div>
-
       <div class="synth-card" style="background:linear-gradient(135deg,#fde8e8,#fdebd0);border:2px solid var(--rouge);">
-        <span class="big-emoji">🌋</span>
-        <h3 style="color:var(--rouge);">VOLCANS</h3>
-        <p style="font-size:0.88rem;">Remontée du magma en surface<br><br>
-        🌊 Effusive : coulées de lave<br>
-        💣 Explosive : cendres + nuées<br><br>
-        📍 Plus prévisible que les séismes<br><br>
-        🛡️ Surveillance + évacuation</p>
+        <span class="big-emoji">🌋</span><h3 style="color:var(--rouge);">VOLCANS</h3>
+        <p style="font-size:0.88rem;">Remontée du magma<br><br>🌊 Effusive : lave calme<br>💣 Explosive : cendres + nuées<br><br>📍 Plus prévisible que les séismes<br><br>🛡️ Surveillance + évacuation</p>
       </div>
-
       <div class="synth-card" style="background:linear-gradient(135deg,#e8daef,#d6eaf8);border:2px solid var(--violet);">
-        <span class="big-emoji">🧩</span>
-        <h3 style="color:var(--violet);">PLAQUES</h3>
-        <p style="font-size:0.88rem;">La surface = plaques rigides en mouvement<br><br>
-        ⬅️➡️ Divergent → dorsales<br>
-        ➡️⬅️ Convergent → montagnes<br><br>
-        Les deux = zones sismiques et volcaniques</p>
+        <span class="big-emoji">🧩</span><h3 style="color:var(--violet);">PLAQUES</h3>
+        <p style="font-size:0.88rem;">Surface = plaques en mouvement<br><br>⬅️➡️ Divergent → dorsales<br>➡️⬅️ Convergent → montagnes<br><br>Les deux = zones à risque</p>
       </div>
-
       <div class="synth-card" style="background:linear-gradient(135deg,#d5f5e3,#d6eaf8);border:2px solid var(--vert);">
-        <span class="big-emoji">⚖️</span>
-        <h3 style="color:var(--vert-dark);">RISQUE</h3>
-        <p style="font-size:0.88rem;">🎲 <strong>Aléa</strong> : événement possible<br><br>
-        🏘️ <strong>Enjeu</strong> : personnes et biens menacés<br><br>
-        ⚠️ <strong>Risque</strong> = probabilité de dommages<br><br>
-        Plus l'aléa ET l'enjeu sont forts → plus le risque est élevé</p>
+        <span class="big-emoji">⚖️</span><h3 style="color:var(--vert-dark);">RISQUE</h3>
+        <p style="font-size:0.88rem;">🎲 Aléa : événement possible<br><br>🏘️ Enjeu : personnes & biens<br><br>⚠️ Risque = Aléa × Enjeu<br><br>Plus les deux sont forts → risque élevé</p>
       </div>
     </div>
-
     <div style="margin-top:20px;padding:16px;background:#f8f9fa;border-radius:14px;">
-      <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;margin-bottom:12px;color:var(--text);">🗺️ Les zones à risque dans le monde</div>
-      <p style="font-size:0.9rem;">Les zones les plus à risque se trouvent aux <strong>frontières des plaques</strong> :</p>
-      <ul style="margin-top:8px;font-size:0.9rem;">
-        <li>🔥 La <strong>Ceinture de feu du Pacifique</strong> (Japon, Californie, côte ouest de l'Amérique du Sud)</li>
-        <li>🌊 La <strong>dorsale médio-atlantique</strong> (Islande)</li>
-        <li>⛰️ La <strong>zone méditerranéenne</strong> (Italie, Grèce, Turquie)</li>
-        <li>🇫🇷 En France : <strong>Antilles</strong> (séismes + volcans), <strong>Alpes, Pyrénées</strong> (séismes)</li>
+      <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;margin-bottom:12px;">🗺️ Les zones à risque dans le monde</div>
+      <ul style="font-size:0.9rem;">
+        <li>🔥 <strong>Ceinture de feu du Pacifique</strong> : Japon, Californie, Amérique du Sud</li>
+        <li>🌊 <strong>Dorsale médio-atlantique</strong> : Islande</li>
+        <li>⛰️ <strong>Zone méditerranéenne</strong> : Italie, Grèce, Turquie</li>
+        <li>🇫🇷 <strong>France</strong> : Antilles (volcans + séismes), Alpes, Pyrénées</li>
       </ul>
-    </div>
-
-    <div style="margin-top:24px;">
-      <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1rem;margin-bottom:14px;color:var(--text);">🗺️ Schéma récapitulatif global</div>
-      <div class="fiche-img-block">
-        <div class="img-caption">🖼️ Vue d'ensemble – De la dynamique interne au risque naturel</div>
-        <div style="padding:16px;background:#fff;">
-          <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
-            <defs>
-              <marker id="ra" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#555"/></marker>
-              <marker id="rb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#e74c3c"/></marker>
-              <marker id="rc" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#8e44ad"/></marker>
-            </defs>
-
-            <!-- Boîte 1 : Dynamique de la Terre -->
-            <rect x="10" y="110" width="130" height="50" rx="12" fill="#d5f5e3" stroke="#27ae60" stroke-width="2"/>
-            <text x="75" y="130" text-anchor="middle" font-weight="800" font-size="11" fill="#1e8449">🌍 Dynamique</text>
-            <text x="75" y="147" text-anchor="middle" font-weight="800" font-size="11" fill="#1e8449">de la Terre</text>
-            <line x1="140" y1="135" x2="170" y2="135" stroke="#555" stroke-width="2" marker-end="url(#ra)"/>
-
-            <!-- Boîte 2 : Plaques tectoniques -->
-            <rect x="172" y="110" width="130" height="50" rx="12" fill="#d6eaf8" stroke="#2980b9" stroke-width="2"/>
-            <text x="237" y="130" text-anchor="middle" font-weight="800" font-size="11" fill="#1a5276">🧩 Mouvements</text>
-            <text x="237" y="147" text-anchor="middle" font-weight="800" font-size="11" fill="#1a5276">des plaques</text>
-
-            <!-- flèche vers séismes -->
-            <line x1="302" y1="128" x2="340" y2="90" stroke="#e67e22" stroke-width="2" marker-end="url(#rb)"/>
-            <!-- flèche vers volcans -->
-            <line x1="302" y1="142" x2="340" y2="178" stroke="#e74c3c" stroke-width="2" marker-end="url(#rb)"/>
-
-            <!-- Boîte 3 : Séismes -->
-            <rect x="343" y="55" width="130" height="50" rx="12" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
-            <text x="408" y="75" text-anchor="middle" font-weight="800" font-size="11" fill="#d35400">💥 SÉISMES</text>
-            <text x="408" y="91" text-anchor="middle" font-size="9" fill="#555">Foyer → Épicentre → Ondes</text>
-
-            <!-- Boîte 4 : Volcans -->
-            <rect x="343" y="165" width="130" height="50" rx="12" fill="#fde8e8" stroke="#e74c3c" stroke-width="2"/>
-            <text x="408" y="185" text-anchor="middle" font-weight="800" font-size="11" fill="#c0392b">🌋 VOLCANS</text>
-            <text x="408" y="201" text-anchor="middle" font-size="9" fill="#555">Effusive ou Explosive</text>
-
-            <!-- flèches vers ALÉA -->
-            <line x1="473" y1="80" x2="510" y2="110" stroke="#555" stroke-width="2" marker-end="url(#ra)"/>
-            <line x1="473" y1="190" x2="510" y2="160" stroke="#555" stroke-width="2" marker-end="url(#ra)"/>
-
-            <!-- Boîte 5 : ALÉA -->
-            <ellipse cx="555" cy="135" rx="60" ry="30" fill="#e8daef" stroke="#8e44ad" stroke-width="2"/>
-            <text x="555" y="130" text-anchor="middle" font-weight="800" font-size="12" fill="#6c3483">ALÉA</text>
-            <text x="555" y="146" text-anchor="middle" font-size="9" fill="#555">événement possible</text>
-
-            <!-- flèche ALÉA → RISQUE -->
-            <line x1="602" y1="140" x2="640" y2="155" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#rc)"/>
-
-            <!-- Boîte ENJEU (bas) -->
-            <rect x="343" y="235" width="130" height="36" rx="10" fill="#d6eaf8" stroke="#3498db" stroke-width="1.5"/>
-            <text x="408" y="249" text-anchor="middle" font-weight="800" font-size="11" fill="#1a5276">🏘️ ENJEU</text>
-            <text x="408" y="263" text-anchor="middle" font-size="9" fill="#555">populations &amp; biens</text>
-            <line x1="473" y1="252" x2="640" y2="175" stroke="#3498db" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ra)"/>
-
-            <!-- RISQUE final -->
-            <rect x="620" y="155" width="70" height="45" rx="12" fill="#8e44ad" stroke="#6c3483" stroke-width="2"/>
-            <text x="655" y="174" text-anchor="middle" font-weight="800" font-size="11" fill="#fff">⚠️ RISQUE</text>
-            <text x="655" y="189" text-anchor="middle" font-size="8" fill="#f0e6fa">= Aléa × Enjeu</text>
-
-            <!-- Titre schéma -->
-            <text x="350" y="20" text-anchor="middle" font-weight="800" font-size="13" fill="#2c3e50">De la dynamique interne aux risques naturels</text>
-            <line x1="200" y1="25" x2="500" y2="25" stroke="#ddd" stroke-width="1"/>
-
-            <!-- Prévention bas gauche -->
-            <rect x="10" y="220" width="130" height="50" rx="12" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
-            <text x="75" y="238" text-anchor="middle" font-weight="800" font-size="10" fill="#1e8449">🛡️ PRÉVENTION</text>
-            <text x="75" y="252" text-anchor="middle" font-size="8.5" fill="#555">Sismographes</text>
-            <text x="75" y="264" text-anchor="middle" font-size="8.5" fill="#555">Bâtiments parasismiques</text>
-            <line x1="140" y1="245" x2="170" y2="245" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <line x1="170" y1="160" x2="170" y2="260" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3"/>
-            <line x1="172" y1="160" x2="172" y2="155" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,3"/>
-          </svg>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== QCM ===================== -->
 <section id="qcm">
-  <div class="section-title"><span class="emoji">✅</span> QCM – Teste tes connaissances !</div>
-
+  <div class="section-title">✅ QCM – Teste tes connaissances !</div>
   <div id="qcm-container">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
       <span style="font-weight:700;color:var(--muted);" id="qcm-progress-text">Question 1 / 12</span>
       <span style="font-weight:700;color:var(--vert-dark);" id="qcm-score-live">Score : 0</span>
     </div>
-    <div class="qcm-progress-bar">
-      <div class="qcm-progress-fill" id="progress-fill" style="width:8%;"></div>
-    </div>
+    <div class="qcm-progress-bar"><div class="qcm-progress-fill" id="progress-fill" style="width:8%;"></div></div>
     <div id="questions-area"></div>
     <div class="qcm-score" id="final-score">
       <div style="font-size:2rem;margin-bottom:8px;">🎉</div>
@@ -829,28 +484,19 @@
   </div>
 </section>
 
-<!-- ===================== EXERCICES ===================== -->
 <section id="exercices">
-  <div class="section-title"><span class="emoji">✏️</span> Exercices</div>
+  <div class="section-title">✏️ Exercices</div>
 
-  <!-- Exercice 1 : Vrai / Faux -->
   <div class="exercice-card ex1">
-    <div class="ex-header">
-      <div class="ex-num">1</div>
-      <div class="ex-title">🔍 Vrai ou Faux ?</div>
-    </div>
-    <p style="margin-bottom:14px;">Pour chaque affirmation, clique sur <strong>Vrai</strong> ou <strong>Faux</strong>.</p>
+    <div class="ex-header"><div class="ex-num">1</div><div class="ex-title">🔍 Vrai ou Faux ?</div></div>
+    <p style="margin-bottom:14px;">Clique sur <strong>Vrai</strong> ou <strong>Faux</strong> pour chaque affirmation.</p>
     <div id="vf-container"></div>
     <button class="btn-primary" style="background:linear-gradient(135deg,#e67e22,#d35400);color:#fff;" onclick="checkVF()">Vérifier mes réponses</button>
     <div class="correction" id="vf-correction"></div>
   </div>
 
-  <!-- Exercice 2 : Associer les définitions -->
   <div class="exercice-card ex2">
-    <div class="ex-header">
-      <div class="ex-num">2</div>
-      <div class="ex-title">🔗 Associe le mot à sa définition</div>
-    </div>
+    <div class="ex-header"><div class="ex-num">2</div><div class="ex-title">🔗 Associe le mot à sa définition</div></div>
     <p style="margin-bottom:14px;">Glisse les mots dans la bonne case.</p>
     <div class="drag-container" id="drag-words"></div>
     <div id="drop-zones-container"></div>
@@ -858,29 +504,55 @@
     <div class="correction" id="drag-correction"></div>
   </div>
 
-  <!-- Exercice 3 : Compléter -->
   <div class="exercice-card ex3">
-    <div class="ex-header">
-      <div class="ex-num">3</div>
-      <div class="ex-title">✍️ Complète les phrases</div>
-    </div>
+    <div class="ex-header"><div class="ex-num">3</div><div class="ex-title">✍️ Complète les phrases</div></div>
     <div id="fill-container"></div>
     <button class="btn-primary" style="background:linear-gradient(135deg,#1abc9c,#17a589);color:#fff;" onclick="checkFill()">Vérifier</button>
     <div class="correction" id="fill-correction"></div>
   </div>
 
-  <!-- Exercice 4 : Questions ouvertes -->
   <div class="exercice-card ex4">
-    <div class="ex-header">
-      <div class="ex-num">4</div>
-      <div class="ex-title">💬 Questions de réflexion</div>
-    </div>
-    <div id="open-container"></div>
+    <div class="ex-header"><div class="ex-num">4</div><div class="ex-title">🏷️ Légender le schéma d'un séisme</div></div>
+    <p style="margin-bottom:14px;">Clique sur une étiquette colorée, puis clique sur le bon <strong>?</strong> sur le schéma.</p>
+    <div id="legend-exercise"></div>
   </div>
 </section>
 
 <script>
-// ===================== NAVIGATION =====================
+// ==================== GLOSSAIRE ====================
+const glossaire = {
+  'Croûte terrestre': "La couche la plus externe et rigide de la Terre. C'est sur elle qu'on vit ! Elle est découpée en plaques qui bougent très lentement (quelques cm par an).",
+  'Plaques lithosphériques': "Grands morceaux rigides qui forment la surface de la Terre, comme un puzzle géant. Il en existe une douzaine de grandes. Elles bougent en permanence sur le manteau !",
+  'Manteau': "La couche entre la croûte et le noyau. Le manteau est chaud et semi-fluide (comme du caramel épais). C'est ce mouvement qui fait bouger les plaques.",
+  'Noyau': "Le centre de la Terre, très chaud (+ de 5000°C !). Le noyau externe est liquide, le noyau interne est solide. Il génère le champ magnétique terrestre.",
+  'Dorsale océanique': "Une longue chaîne de volcans SOUS-MARINS formée là où les plaques s'écartent. Du magma remonte et crée de la nouvelle croûte océanique. La dorsale médio-atlantique mesure 20 000 km ! C'est comme une cicatrice au fond de l'océan.",
+  'Fosse océanique': "Un gouffre très profond dans l'océan, formé quand une plaque s'enfonce sous une autre (subduction). La fosse des Mariannes est le point le plus profond de la Terre : -11 000 m !",
+  'Aléa': "La probabilité qu'un phénomène naturel dangereux (séisme, éruption...) se produise dans une zone. Un aléa fort = événement probable ET puissant.",
+  'Enjeu': "Tout ce qui peut être endommagé : les personnes, les bâtiments, les routes, les activités économiques. Plus il y a de monde et de biens, plus l'enjeu est élevé.",
+  'Risque': "La combinaison de l'aléa et de l'enjeu. RISQUE = ALÉA × ENJEU. Un désert avec un volcan = aléa fort mais enjeu nul = risque faible. Une ville avec un volcan = risque très élevé !",
+  'Foyer': "Le point de départ du séisme en PROFONDEUR dans la croûte terrestre. C'est là que les roches se brisent brutalement. Le foyer peut être à quelques km ou plusieurs centaines de km de profondeur.",
+  'Épicentre': "Le point à la SURFACE de la Terre situé juste au-dessus du foyer. C'est la zone la plus secouée. Sur les cartes de séismes, c'est l'étoile qu'on voit sur la zone touchée.",
+  'Ondes sismiques': "Les vibrations qui se propagent depuis le foyer dans toutes les directions, comme les ronds dans l'eau quand on jette un caillou. Plus on est loin du foyer, plus les ondes s'affaiblissent.",
+  'Sismographe': "L'appareil qui détecte et enregistre les ondes sismiques. Son tracé s'appelle un sismogramme. Un réseau mondial de sismographes surveille l'activité sismique en permanence.",
+  'Échelle de Richter': "Échelle qui mesure la PUISSANCE (énergie libérée) d'un séisme. Chaque degré = ×30 en énergie. Un séisme de magnitude 7 libère 30 fois plus d'énergie qu'un magnitude 6 !",
+  'Échelle de Mercalli': "Échelle qui mesure l'INTENSITÉ d'un séisme : les dégâts et effets ressentis. Elle va de I (imperceptible) à XII (destruction totale). Deux zones avec la même magnitude peuvent avoir des intensités différentes.",
+  'Parasismique': "Se dit d'une construction conçue pour résister aux séismes. Bâtiments avec fondations renforcées, chaînages (armatures en acier) et structure flexible pour absorber les vibrations.",
+  'Magma': "Roche en fusion (liquide très chaud) à l'intérieur de la Terre, contenant des gaz. Il est stocké dans des chambres magmatiques. S'il sort du volcan, il devient de la lave.",
+  'Lave': "Le magma une fois sorti du volcan. Elle peut atteindre 1200°C ! Lave fluide = éruption effusive (coule doucement). Lave visqueuse = éruption explosive (explose en cendres).",
+  'Nuée ardente': "Mélange de cendres, de gaz et de fragments de roche très chauds qui dévalent la pente d'un volcan à grande vitesse (+ de 100 km/h !). Extrêmement dangereuse. C'est elle qui a détruit Pompéi en 79 ap. J.-C.",
+};
+
+function showTooltip(mot) {
+  const def = glossaire[mot];
+  if (!def) return;
+  document.getElementById('tooltipMot').textContent = mot;
+  document.getElementById('tooltipDef').textContent = def;
+  document.getElementById('tooltipOverlay').classList.add('open');
+}
+function closeTooltip() { document.getElementById('tooltipOverlay').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTooltip(); });
+
+// ==================== NAVIGATION ====================
 function showTab(tab) {
   document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -888,303 +560,206 @@ function showTab(tab) {
   document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
 }
 
-// ===================== ZOOM IMAGE =====================
-function openModal(src) {
-  document.getElementById('modalImg').src = src;
-  document.getElementById('imgModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+// ==================== ANIMATION TECTONIQUE ====================
+function switchAnim(type, btn) {
+  document.querySelectorAll('.anim-scene').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.anim-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('anim-' + type).classList.add('active');
+  btn.classList.add('active');
 }
-function closeModal() {
-  document.getElementById('imgModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// ===================== QCM DATA =====================
+// ==================== QCM ====================
 const questions = [
-  {
-    q: "Qu'est-ce qui provoque les séismes et les éruptions volcaniques ?",
-    opts: ["La rotation de la Terre", "La dynamique externe de la Terre (mouvements des plaques)", "Les marées", "Le vent solaire"],
-    ans: 1, exp: "Les séismes et éruptions sont provoqués par la dynamique externe, c'est-à-dire les mouvements des plaques lithosphériques."
-  },
-  {
-    q: "Que mesure l'échelle de Richter ?",
-    opts: ["Les dommages causés par un séisme", "La puissance (l'énergie libérée) d'un séisme", "La profondeur du foyer", "La durée d'un séisme"],
-    ans: 1, exp: "L'échelle de Richter mesure la magnitude, c'est-à-dire l'énergie libérée par un séisme."
-  },
-  {
-    q: "Quelle est la formule du risque ?",
-    opts: ["Risque = Aléa + Enjeu", "Risque = Aléa - Enjeu", "Risque = Aléa × Enjeu", "Risque = Enjeu ÷ Aléa"],
-    ans: 2, exp: "RISQUE = ALÉA × ENJEU. Plus l'aléa et l'enjeu sont élevés, plus le risque est important."
-  },
-  {
-    q: "Qu'appelle-t-on l'épicentre d'un séisme ?",
-    opts: ["Le point de départ du séisme en profondeur", "Le point en surface situé juste au-dessus du foyer", "L'instrument qui mesure les séismes", "La zone de rupture des roches"],
-    ans: 1, exp: "L'épicentre est le point à la surface de la Terre situé juste au-dessus du foyer. C'est la zone la plus touchée."
-  },
-  {
-    q: "Une éruption EFFUSIVE, c'est :",
-    opts: ["Une éruption avec de grandes explosions et des nuées ardentes", "Une éruption calme avec des coulées de lave fluide", "Une éruption sous-marine", "Une éruption sans lave"],
-    ans: 1, exp: "Une éruption effusive est due à un magma fluide pauvre en gaz. La lave coule doucement (ex: Hawaii)."
-  },
-  {
-    q: "Quel type de frontière de plaques crée des dorsales océaniques ?",
-    opts: ["Convergente", "Divergente", "Transformante", "Subductive"],
-    ans: 1, exp: "Les frontières divergentes sont des zones où les plaques s'écartent, créant des dorsales océaniques (ex : dorsale médio-atlantique)."
-  },
-  {
-    q: "Comment appelle-t-on les appareils qui enregistrent les ondes sismiques ?",
-    opts: ["Baromètres", "Thermomètres", "Sismographes", "Gravimètres"],
-    ans: 2, exp: "Les sismographes enregistrent les ondes sismiques. Leur enregistrement s'appelle un sismogramme."
-  },
-  {
-    q: "Qu'est-ce qu'un enjeu dans la notion de risque ?",
-    opts: ["La possibilité qu'un événement affecte une zone", "Les conséquences sur les populations et les activités humaines", "La magnitude d'un séisme", "La vitesse de propagation des ondes"],
-    ans: 1, exp: "L'enjeu représente tout ce qui peut être endommagé ou perdu : les personnes, les bâtiments, les activités économiques."
-  },
-  {
-    q: "Le magma qui sort d'un volcan s'appelle :",
-    opts: ["Granite", "Lave", "Basalte", "Gneiss"],
-    ans: 1, exp: "Le magma est la roche en fusion dans le manteau. Quand il sort du volcan, on l'appelle de la lave."
-  },
-  {
-    q: "Quelle est la principale mesure de PROTECTION contre les séismes ?",
-    opts: ["Construire des maisons en bois uniquement", "Construire des bâtiments parasismiques avec des normes spéciales", "Déménager loin des villes", "Planter des arbres"],
-    ans: 1, exp: "Les normes parasismiques imposent des techniques de construction (chaînages, fondations renforcées) pour que les bâtiments résistent mieux aux séismes."
-  },
-  {
-    q: "Par rapport aux séismes, les éruptions volcaniques sont :",
-    opts: ["Totalement imprévisibles", "Plus prévisibles grâce à des signes avant-coureurs", "Aussi imprévisibles", "Impossibles à surveiller"],
-    ans: 1, exp: "Le volcanisme est plus prévisible que les séismes car les volcans montrent des signes avant l'éruption : tremblements, déformations du sol, gaz..."
-  },
-  {
-    q: "Dans quelle zone de France métropolitaine le risque sismique est-il le plus élevé ?",
-    opts: ["La Bretagne et la Normandie", "Les Alpes et les Pyrénées", "La plaine de la Beauce", "Le Massif armoricain"],
-    ans: 1, exp: "Les Alpes et les Pyrénées sont des zones de collision de plaques tectoniques, donc à risque sismique plus élevé qu'ailleurs en France métropolitaine."
-  }
+  {q:"Qu'est-ce qui provoque séismes et éruptions ?",opts:["La rotation de la Terre","Les mouvements des plaques","Les marées","Le vent solaire"],ans:1,exp:"Les séismes et éruptions sont provoqués par les mouvements des plaques lithosphériques."},
+  {q:"Que mesure l'échelle de Richter ?",opts:["Les dommages causés","La puissance (énergie libérée)","La profondeur du foyer","La durée"],ans:1,exp:"Richter mesure la magnitude = l'énergie libérée. Chaque degré = ×30 en énergie !"},
+  {q:"Quelle est la formule du risque ?",opts:["Risque = Aléa + Enjeu","Risque = Aléa - Enjeu","Risque = Aléa × Enjeu","Risque = Enjeu ÷ Aléa"],ans:2,exp:"RISQUE = ALÉA × ENJEU. Si l'un des deux est nul, le risque reste faible."},
+  {q:"L'épicentre d'un séisme, c'est :",opts:["Le point de départ en profondeur","Le point en surface au-dessus du foyer","L'appareil qui mesure les séismes","La zone de rupture des roches"],ans:1,exp:"L'épicentre est en surface, juste au-dessus du foyer. C'est la zone la plus secouée !"},
+  {q:"Une éruption EFFUSIVE, c'est :",opts:["Explosions + nuées ardentes","Coulées de lave fluide et calme","Une éruption sous-marine","Une éruption sans lave"],ans:1,exp:"Effusive = magma fluide + peu de gaz → lave qui coule doucement. Exemple : Hawaii."},
+  {q:"Quel type de frontière crée des dorsales océaniques ?",opts:["Convergente","Divergente","Transformante","Subductive"],ans:1,exp:"Frontière divergente : plaques qui s'écartent → magma qui remonte → dorsale !"},
+  {q:"L'appareil qui enregistre les ondes sismiques s'appelle :",opts:["Baromètre","Thermomètre","Sismographe","Gravimètre"],ans:2,exp:"Le sismographe enregistre les ondes sismiques. Son tracé = le sismogramme."},
+  {q:"Un enjeu dans la notion de risque, c'est :",opts:["La probabilité qu'un séisme se produise","Les populations et biens menacés","La magnitude d'un séisme","La vitesse des ondes"],ans:1,exp:"Enjeu = tout ce qu'on peut perdre : personnes, bâtiments, routes, économie."},
+  {q:"Le magma sorti d'un volcan s'appelle :",opts:["Granite","Lave","Basalte","Gneiss"],ans:1,exp:"Le magma en profondeur devient de la lave une fois sorti. Elle peut atteindre 1200°C !"},
+  {q:"La principale protection contre les séismes :",opts:["Maisons en bois uniquement","Bâtiments parasismiques","Déménager loin des villes","Planter des arbres"],ans:1,exp:"Les normes parasismiques imposent des constructions résistantes aux vibrations."},
+  {q:"Les éruptions volcaniques sont-elles prévisibles ?",opts:["Non, totalement imprévisibles","Oui, plus que les séismes","Aussi imprévisibles","Impossibles à surveiller"],ans:1,exp:"Oui ! Les volcans donnent des signes : tremblements, gaz, déformation du sol."},
+  {q:"Où est le risque sismique le plus élevé en France métropolitaine ?",opts:["Bretagne et Normandie","Alpes et Pyrénées","Plaine de la Beauce","Massif armoricain"],ans:1,exp:"Alpes et Pyrénées = zones de collision de plaques → risque sismique plus élevé."},
 ];
-
-let currentQ = 0, score = 0, answered = [];
-
+let currentQ=0,score=0,answered=[];
 function buildQuestion(index) {
-  if (index >= questions.length) {
-    document.getElementById('questions-area').innerHTML = '';
-    const finalDiv = document.getElementById('final-score');
-    finalDiv.classList.add('show');
-    document.getElementById('score-display').textContent = `${score} / ${questions.length}`;
-    const pct = Math.round(score / questions.length * 100);
-    let msg = pct >= 80 ? '🌟 Excellent ! Tu maîtrises parfaitement le cours !' :
-              pct >= 60 ? '👍 Bien ! Encore quelques révisions et ce sera parfait.' :
-              pct >= 40 ? '📖 Continue à réviser, tu progresses !' :
-              '💪 Relis le cours et réessaie, tu vas y arriver !';
-    document.getElementById('score-msg').textContent = msg;
+  if (index>=questions.length) {
+    document.getElementById('questions-area').innerHTML='';
+    document.getElementById('final-score').classList.add('show');
+    document.getElementById('score-display').textContent=`${score} / ${questions.length}`;
+    const pct=Math.round(score/questions.length*100);
+    document.getElementById('score-msg').textContent=pct>=80?'🌟 Excellent !':pct>=60?'👍 Bien ! Encore un effort !':pct>=40?'📖 Continue à réviser !':'💪 Relis le cours et réessaie !';
     return;
   }
-  const q = questions[index];
-  const letters = ['A','B','C','D'];
-  let optsHTML = q.opts.map((o,i) => `
-    <button class="option-btn" onclick="selectAnswer(${index},${i})" id="opt-${index}-${i}">
-      <span class="option-letter">${letters[i]}</span>${o}
-    </button>`).join('');
-  document.getElementById('questions-area').innerHTML = `
-    <div class="question-card">
-      <div class="question-num">Question ${index+1} sur ${questions.length}</div>
-      <div class="question-text">${q.q}</div>
-      <div class="options">${optsHTML}</div>
-      <div class="feedback" id="fb-${index}"></div>
-    </div>`;
-  updateProgress(index);
+  const q=questions[index],letters=['A','B','C','D'];
+  document.getElementById('questions-area').innerHTML=`<div class="question-card"><div class="question-num">Question ${index+1} sur ${questions.length}</div><div class="question-text">${q.q}</div><div class="options">${q.opts.map((o,i)=>`<button class="option-btn" onclick="selectAnswer(${index},${i})" id="opt-${index}-${i}"><span class="option-letter">${letters[i]}</span>${o}</button>`).join('')}</div><div class="feedback" id="fb-${index}"></div></div>`;
+  document.getElementById('qcm-progress-text').textContent=`Question ${index+1} / ${questions.length}`;
+  document.getElementById('progress-fill').style.width=`${(index/questions.length)*100+8}%`;
 }
-
-function selectAnswer(qIdx, optIdx) {
+function selectAnswer(qIdx,optIdx) {
   if (answered.includes(qIdx)) return;
   answered.push(qIdx);
-  const q = questions[qIdx];
-  const opts = document.querySelectorAll(`[id^="opt-${qIdx}-"]`);
-  opts.forEach(btn => btn.disabled = true);
-  const correct = optIdx === q.ans;
-  if (correct) score++;
-  document.getElementById(`opt-${qIdx}-${optIdx}`).classList.add(correct ? 'correct' : 'wrong');
-  if (!correct) document.getElementById(`opt-${qIdx}-${q.ans}`).classList.add('correct');
-  const fb = document.getElementById(`fb-${qIdx}`);
-  fb.className = `feedback show ${correct ? 'correct-fb' : 'wrong-fb'}`;
-  fb.innerHTML = `${correct ? '✅' : '❌'} <span>${q.exp}</span>`;
-  document.getElementById('qcm-score-live').textContent = `Score : ${score}`;
+  const q=questions[qIdx];
+  document.querySelectorAll(`[id^="opt-${qIdx}-"]`).forEach(b=>b.disabled=true);
+  const correct=optIdx===q.ans;
+  if(correct)score++;
+  document.getElementById(`opt-${qIdx}-${optIdx}`).classList.add(correct?'correct':'wrong');
+  if(!correct)document.getElementById(`opt-${qIdx}-${q.ans}`).classList.add('correct');
+  const fb=document.getElementById(`fb-${qIdx}`);
+  fb.className=`feedback show ${correct?'correct-fb':'wrong-fb'}`;
+  fb.innerHTML=`${correct?'✅':'❌'} <span>${q.exp}</span>`;
+  document.getElementById('qcm-score-live').textContent=`Score : ${score}`;
   currentQ++;
-  setTimeout(() => buildQuestion(currentQ), 1800);
+  setTimeout(()=>buildQuestion(currentQ),1800);
 }
-
-function updateProgress(index) {
-  document.getElementById('qcm-progress-text').textContent = `Question ${index+1} / ${questions.length}`;
-  document.getElementById('progress-fill').style.width = `${((index)/questions.length)*100+8}%`;
-}
-
-function restartQcm() {
-  currentQ = 0; score = 0; answered = [];
-  document.getElementById('final-score').classList.remove('show');
-  document.getElementById('qcm-score-live').textContent = 'Score : 0';
-  buildQuestion(0);
-}
-
+function restartQcm(){currentQ=0;score=0;answered=[];document.getElementById('final-score').classList.remove('show');document.getElementById('qcm-score-live').textContent='Score : 0';buildQuestion(0);}
 buildQuestion(0);
 
-// ===================== EXERCICE 1 : VRAI / FAUX =====================
-const vfData = [
-  { s: "L'épicentre est le point de départ du séisme en profondeur.", ans: false, exp: "Faux. C'est le FOYER qui est en profondeur. L'épicentre est en surface, juste au-dessus." },
-  { s: "Une éruption explosive est causée par un magma fluide.", ans: false, exp: "Faux. Une éruption explosive est due à un magma VISQUEUX et riche en gaz. Le magma fluide donne une éruption effusive." },
-  { s: "RISQUE = ALÉA × ENJEU est la formule correcte.", ans: true, exp: "Vrai ! C'est la formule fondamentale de la notion de risque naturel." },
-  { s: "L'échelle de Mercalli mesure les dommages subis lors d'un séisme.", ans: true, exp: "Vrai ! L'échelle de Mercalli mesure l'intensité, c'est-à-dire les conséquences observées, de I à XII." },
-  { s: "Les éruptions volcaniques sont plus prévisibles que les séismes.", ans: true, exp: "Vrai ! Les volcans donnent des signes avant-coureurs (tremblements, gaz, déformation) qui permettent une meilleure prévision." },
-  { s: "Les séismes se produisent uniquement aux frontières convergentes des plaques.", ans: false, exp: "Faux ! Les séismes se produisent aux frontières convergentes ET divergentes, les deux types de mouvements génèrent de l'activité sismique." },
+// ==================== EX 1 : VRAI / FAUX ====================
+const vfData=[
+  {s:"L'épicentre est le point de départ du séisme en profondeur.",ans:false,exp:"C'est le FOYER qui est en profondeur. L'épicentre est en surface, juste au-dessus."},
+  {s:"Une éruption explosive est causée par un magma fluide.",ans:false,exp:"L'explosive vient d'un magma VISQUEUX riche en gaz. Le magma fluide donne l'effusive."},
+  {s:"RISQUE = ALÉA × ENJEU est la bonne formule.",ans:true,exp:"Oui ! C'est la formule fondamentale du risque naturel."},
+  {s:"Mercalli mesure les dommages subis lors d'un séisme.",ans:true,exp:"Oui, Mercalli mesure l'intensité (effets observés), de I à XII."},
+  {s:"Les éruptions volcaniques sont plus prévisibles que les séismes.",ans:true,exp:"Oui ! Les volcans montrent des signes avant-coureurs (tremblements, gaz, déformations)."},
+  {s:"Les séismes se produisent uniquement aux frontières convergentes.",ans:false,exp:"Faux ! Ils se produisent aussi aux frontières divergentes."},
 ];
-
-let vfAnswers = {};
-const vfCont = document.getElementById('vf-container');
-vfData.forEach((item, i) => {
-  vfAnswers[i] = null;
-  const div = document.createElement('div');
-  div.style.cssText = 'margin-bottom:14px;padding:14px;background:#fafafa;border-radius:12px;border:2px solid #eee;';
-  div.innerHTML = `
-    <p style="margin-bottom:10px;font-weight:600;">${i+1}. ${item.s}</p>
-    <div style="display:flex;gap:10px;">
-      <button onclick="setVF(${i},true,this)" data-val="true" style="padding:8px 20px;border-radius:50px;border:2px solid #2ecc71;background:#fff;color:#27ae60;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.9rem;transition:all 0.2s;">✅ Vrai</button>
-      <button onclick="setVF(${i},false,this)" data-val="false" style="padding:8px 20px;border-radius:50px;border:2px solid #e74c3c;background:#fff;color:#e74c3c;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.9rem;transition:all 0.2s;">❌ Faux</button>
-    </div>`;
+let vfAnswers={};
+const vfCont=document.getElementById('vf-container');
+vfData.forEach((item,i)=>{
+  vfAnswers[i]=null;
+  const div=document.createElement('div');
+  div.style.cssText='margin-bottom:14px;padding:14px;background:#fafafa;border-radius:12px;border:2px solid #eee;';
+  div.innerHTML=`<p style="margin-bottom:10px;font-weight:600;">${i+1}. ${item.s}</p><div style="display:flex;gap:10px;"><button onclick="setVF(${i},true,this)" style="padding:8px 20px;border-radius:50px;border:2px solid #2ecc71;background:#fff;color:#27ae60;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;">✅ Vrai</button><button onclick="setVF(${i},false,this)" style="padding:8px 20px;border-radius:50px;border:2px solid #e74c3c;background:#fff;color:#e74c3c;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;">❌ Faux</button></div>`;
   vfCont.appendChild(div);
 });
-
-function setVF(idx, val, btn) {
-  vfAnswers[idx] = val;
-  const parent = btn.parentElement;
-  parent.querySelectorAll('button').forEach(b => {
-    b.style.opacity = '0.5'; b.style.transform = 'scale(1)';
-  });
-  btn.style.opacity = '1'; btn.style.transform = 'scale(1.08)';
-  btn.style.fontWeight = '800';
+function setVF(idx,val,btn){vfAnswers[idx]=val;btn.parentElement.querySelectorAll('button').forEach(b=>b.style.opacity='0.5');btn.style.opacity='1';btn.style.fontWeight='800';}
+function checkVF(){
+  let ok=0,html='<strong>Correction :</strong><ul style="margin-top:8px;">';
+  vfData.forEach((item,i)=>{const correct=vfAnswers[i]===item.ans;if(correct)ok++;html+=`<li style="margin-bottom:6px;">${correct?'✅':'❌'} <strong>N°${i+1}</strong> : ${item.ans?'VRAI':'FAUX'} – ${item.exp}</li>`;});
+  html+=`</ul><br><strong>Score : ${ok}/${vfData.length}</strong>`;
+  const c=document.getElementById('vf-correction');c.innerHTML=html;c.classList.add('show');
 }
 
-function checkVF() {
-  let ok = 0, html = '<strong>Correction :</strong><ul style="margin-top:8px;">';
-  vfData.forEach((item, i) => {
-    const correct = vfAnswers[i] === item.ans;
-    if (correct) ok++;
-    html += `<li style="margin-bottom:6px;">${correct ? '✅' : '❌'} <strong>Affirmation ${i+1}</strong> : ${item.ans ? 'VRAI' : 'FAUX'} – ${item.exp}</li>`;
-  });
-  html += `</ul><br><strong>Score : ${ok}/${vfData.length}</strong>`;
-  const c = document.getElementById('vf-correction');
-  c.innerHTML = html; c.classList.add('show');
-}
-
-// ===================== EXERCICE 2 : DRAG & DROP =====================
-const dragData = [
-  { word: "Aléa", def: "Possibilité qu'un événement naturel affecte une zone" },
-  { word: "Enjeu", def: "Conséquences possibles sur les populations et biens" },
-  { word: "Foyer", def: "Point de départ d'un séisme en profondeur" },
-  { word: "Magnitude", def: "Energie libérée par un séisme (échelle de Richter)" },
-  { word: "Lave", def: "Magma sorti en surface lors d'une éruption" },
+// ==================== EX 2 : DRAG & DROP ====================
+const dragData=[
+  {word:"Aléa",def:"Possibilité qu'un événement naturel affecte une zone"},
+  {word:"Enjeu",def:"Conséquences possibles sur les populations et biens"},
+  {word:"Foyer",def:"Point de départ d'un séisme en profondeur"},
+  {word:"Magnitude",def:"Énergie libérée par un séisme (échelle de Richter)"},
+  {word:"Lave",def:"Magma sorti en surface lors d'une éruption"},
 ];
-
-const wordsCont = document.getElementById('drag-words');
-const dropCont = document.getElementById('drop-zones-container');
-
-dragData.forEach((item, i) => {
-  const el = document.createElement('div');
-  el.className = 'drag-word'; el.textContent = item.word;
-  el.draggable = true; el.id = `dw-${i}`;
-  el.addEventListener('dragstart', e => e.dataTransfer.setData('text', i));
-  wordsCont.appendChild(el);
+const wCont=document.getElementById('drag-words'),dCont=document.getElementById('drop-zones-container');
+dragData.forEach((item,i)=>{const el=document.createElement('div');el.className='drag-word';el.textContent=item.word;el.draggable=true;el.id=`dw-${i}`;el.addEventListener('dragstart',e=>e.dataTransfer.setData('text',i));wCont.appendChild(el);});
+dragData.forEach((item,i)=>{
+  const row=document.createElement('div');row.style.cssText='display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;';
+  row.innerHTML=`<p style="flex:1;min-width:200px;font-size:0.9rem;">${item.def}</p>`;
+  const zone=document.createElement('div');zone.className='drop-zone';zone.id=`dz-${i}`;zone.innerHTML='<span style="color:#ccc;font-size:0.85rem;">Glisse ici...</span>';
+  zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('over');});
+  zone.addEventListener('dragleave',()=>zone.classList.remove('over'));
+  zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('over');const wIdx=e.dataTransfer.getData('text');zone.innerHTML=`<span style="background:var(--violet);color:#fff;padding:6px 14px;border-radius:50px;font-weight:700;font-size:0.9rem;" data-widx="${wIdx}">${dragData[wIdx].word}</span>`;});
+  row.appendChild(zone);dCont.appendChild(row);
 });
-
-dragData.forEach((item, i) => {
-  const row = document.createElement('div');
-  row.style.cssText = 'display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;';
-  row.innerHTML = `<p style="flex:1;min-width:200px;font-size:0.9rem;">${item.def}</p>`;
-  const zone = document.createElement('div');
-  zone.className = 'drop-zone'; zone.id = `dz-${i}`;
-  zone.innerHTML = '<span style="color:#ccc;font-size:0.85rem;">Glisse ici...</span>';
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('over'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault(); zone.classList.remove('over');
-    const wIdx = e.dataTransfer.getData('text');
-    const word = dragData[wIdx].word;
-    zone.innerHTML = `<span style="background:var(--violet);color:#fff;padding:6px 14px;border-radius:50px;font-weight:700;font-size:0.9rem;" data-widx="${wIdx}">${word}</span>`;
-  });
-  row.appendChild(zone);
-  dropCont.appendChild(row);
-});
-
-function checkDrag() {
-  let ok = 0, html = '<strong>Correction :</strong><ul style="margin-top:8px;">';
-  dragData.forEach((item, i) => {
-    const zone = document.getElementById(`dz-${i}`);
-    const span = zone.querySelector('[data-widx]');
-    const wIdx = span ? parseInt(span.dataset.widx) : -1;
-    const correct = wIdx === i;
-    if (correct) ok++;
-    html += `<li style="margin-bottom:6px;">${correct ? '✅' : '❌'} <strong>${item.def}</strong> → ${item.word}</li>`;
-  });
-  html += `</ul><br><strong>Score : ${ok}/${dragData.length}</strong>`;
-  const c = document.getElementById('drag-correction');
-  c.innerHTML = html; c.classList.add('show');
+function checkDrag(){
+  let ok=0,html='<strong>Correction :</strong><ul style="margin-top:8px;">';
+  dragData.forEach((item,i)=>{const span=document.getElementById(`dz-${i}`).querySelector('[data-widx]');const correct=span&&parseInt(span.dataset.widx)===i;if(correct)ok++;html+=`<li style="margin-bottom:6px;">${correct?'✅':'❌'} ${item.def} → <strong>${item.word}</strong></li>`;});
+  html+=`</ul><strong>Score : ${ok}/${dragData.length}</strong>`;
+  const c=document.getElementById('drag-correction');c.innerHTML=html;c.classList.add('show');
 }
 
-// ===================== EXERCICE 3 : COMPLÉTER =====================
-const fillData = [
-  { before: "Un séisme est provoqué par un déplacement brutal de roches, libérant de l'énergie depuis le ", blank: "foyer", after: ", le point de départ en profondeur." },
-  { before: "La formule du risque est : RISQUE = ALÉA × ", blank: "ENJEU", after: "." },
-  { before: "Une éruption ", blank: "explosive", after: " projette des cendres, des blocs et des nuées ardentes." },
-  { before: "L'échelle de ", blank: "Richter", after: " mesure la puissance (l'énergie libérée) d'un séisme." },
-  { before: "Pour se protéger des séismes, on construit des bâtiments ", blank: "parasismiques", after: " selon des normes strictes." },
+// ==================== EX 3 : TEXTE À TROUS ====================
+const fillData=[
+  {before:"Un séisme libère de l'énergie depuis le ",blank:"foyer",after:", le point de départ en profondeur."},
+  {before:"La formule du risque est : RISQUE = ALÉA × ",blank:"ENJEU",after:"."},
+  {before:"Une éruption ",blank:"explosive",after:" projette des cendres et des nuées ardentes."},
+  {before:"L'échelle de ",blank:"Richter",after:" mesure la puissance d'un séisme."},
+  {before:"Pour résister aux séismes, on construit des bâtiments ",blank:"parasismiques",after:"."},
 ];
-
-const fillCont = document.getElementById('fill-container');
-fillData.forEach((item, i) => {
-  const div = document.createElement('div');
-  div.style.cssText = 'margin-bottom:14px;padding:14px;background:#f0fdf4;border-radius:12px;border:2px solid #a7f3d0;line-height:2;';
-  div.innerHTML = `<p><strong>${i+1}.</strong> ${item.before}<input class="ex-input" id="fi-${i}" placeholder="?" style="width:auto;min-width:120px;display:inline-block;margin:0 4px;">${item.after}</p>`;
-  fillCont.appendChild(div);
-});
-
-function checkFill() {
-  let ok = 0, html = '<strong>Correction :</strong><ul style="margin-top:8px;">';
-  fillData.forEach((item, i) => {
-    const input = document.getElementById(`fi-${i}`);
-    const val = input.value.trim().toLowerCase();
-    const correct = val === item.blank.toLowerCase() || val.includes(item.blank.toLowerCase());
-    if (correct) { ok++; input.classList.add('correct'); input.classList.remove('wrong'); }
-    else { input.classList.add('wrong'); input.classList.remove('correct'); input.value = item.blank; }
-    html += `<li style="margin-bottom:6px;">${correct ? '✅' : '❌'} Réponse : <strong>${item.blank}</strong></li>`;
-  });
-  html += `</ul><strong>Score : ${ok}/${fillData.length}</strong>`;
-  const c = document.getElementById('fill-correction');
-  c.innerHTML = html; c.classList.add('show');
+const fCont=document.getElementById('fill-container');
+fillData.forEach((item,i)=>{const div=document.createElement('div');div.style.cssText='margin-bottom:14px;padding:14px;background:#f0fdf4;border-radius:12px;border:2px solid #a7f3d0;line-height:2;';div.innerHTML=`<p><strong>${i+1}.</strong> ${item.before}<input class="ex-input" id="fi-${i}" placeholder="?" style="width:auto;min-width:120px;display:inline-block;margin:0 4px;">${item.after}</p>`;fCont.appendChild(div);});
+function checkFill(){
+  let ok=0,html='<strong>Correction :</strong><ul style="margin-top:8px;">';
+  fillData.forEach((item,i)=>{const input=document.getElementById(`fi-${i}`);const correct=input.value.trim().toLowerCase().includes(item.blank.toLowerCase());if(correct){ok++;input.classList.add('correct');input.classList.remove('wrong');}else{input.classList.add('wrong');input.classList.remove('correct');input.value=item.blank;}html+=`<li style="margin-bottom:6px;">${correct?'✅':'❌'} Réponse : <strong>${item.blank}</strong></li>`;});
+  html+=`<strong>Score : ${ok}/${fillData.length}</strong>`;
+  const c=document.getElementById('fill-correction');c.innerHTML=html;c.classList.add('show');
 }
 
-// ===================== EXERCICE 4 : OUVERT =====================
-const openQs = [
-  { q: "🌋 Explique avec tes propres mots la différence entre une éruption effusive et une éruption explosive.", corr: "Une éruption effusive est causée par un magma fluide pauvre en gaz → la lave coule doucement (ex: Hawaii). Une éruption explosive est causée par un magma visqueux riche en gaz → le volcan projette violemment des cendres, blocs et nuées ardentes (ex: Vésuve). Les éruptions explosives sont beaucoup plus dangereuses." },
-  { q: "⚖️ Un tremblement de terre de magnitude 7 se produit dans un désert isolé. Un autre de magnitude 5 frappe une grande ville. Lequel présente le plus grand RISQUE ? Justifie.", corr: "Le séisme de magnitude 5 en ville présente un risque plus élevé, même s'il est moins puissant. En effet : RISQUE = ALÉA × ENJEU. Dans le désert, l'enjeu est quasi nul (pas de population ni d'infrastructure). En ville, l'enjeu est très élevé (millions de personnes, bâtiments, économie). C'est la combinaison des deux qui détermine le risque." },
-  { q: "🛡️ Cite et explique 2 mesures de prévention contre les séismes.", corr: "1) Surveillance sismique : un réseau de sismographes détecte les séismes et permet d'alerter rapidement la population. 2) Construction parasismique : les bâtiments sont construits selon des normes spéciales (chaînages, fondations renforcées) pour résister aux vibrations et réduire les effondrements. Bonus : exercices réguliers d'évacuation." },
+// ==================== EX 4 : SCHÉMA À LÉGENDER ====================
+const legendWords=[
+  {id:'foyer',label:'🔴 Foyer',color:'#c0392b',bg:'#fde8e8'},
+  {id:'epicentre',label:'🟠 Épicentre',color:'#d35400',bg:'#fdebd0'},
+  {id:'ondes',label:'〰️ Ondes sismiques',color:'#2980b9',bg:'#d6eaf8'},
+  {id:'surface',label:'🟤 Surface terrestre',color:'#7d5a3c',bg:'#f5e6d3'},
 ];
+const legendTargets=[
+  {id:'foyer',top:'72%',left:'47%',answer:'foyer'},
+  {id:'epicentre',top:'38%',left:'47%',answer:'epicentre'},
+  {id:'ondes',top:'60%',left:'67%',answer:'ondes'},
+  {id:'surface',top:'41%',left:'3%',answer:'surface'},
+];
+let selectedLW=null,targetAnswers={};
+const legendEx=document.getElementById('legend-exercise');
+legendEx.innerHTML=`
+  <div style="position:relative;height:260px;background:linear-gradient(180deg,#87CEEB 0%,#87CEEB 47%,#c8a97e 47%);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);">
+    <div style="position:absolute;top:47%;left:0;right:0;height:3px;background:#7d5a3c;"></div>
+    <div style="position:absolute;top:73%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;border-radius:50%;background:radial-gradient(#e74c3c,#c0392b);display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 15px rgba(231,76,60,0.5);">💥</div>
+    <div style="position:absolute;top:73%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;border:2px solid rgba(52,152,219,0.35);pointer-events:none;"></div>
+    <div style="position:absolute;top:73%;left:50%;transform:translate(-50%,-50%);width:165px;height:165px;border-radius:50%;border:2px solid rgba(52,152,219,0.2);pointer-events:none;"></div>
+    <div style="position:absolute;left:50%;top:47%;width:2px;height:26%;background:repeating-linear-gradient(180deg,#e67e22 0,#e67e22 5px,transparent 5px,transparent 10px);transform:translateX(-50%);"></div>
+    <div style="position:absolute;top:calc(47% - 10px);left:50%;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;background:#e67e22;border:2px solid #fff;"></div>
+    ${legendTargets.map(t=>`<div class="legend-target" id="lt-${t.id}" style="top:${t.top};left:${t.left};" onclick="placeLabel('${t.id}')">?</div>`).join('')}
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;" id="lwords-zone">
+    ${legendWords.map(w=>`<div class="legend-word" id="lw-${w.id}" style="color:${w.color};background:${w.bg};border-color:${w.color};" onclick="selectLW('${w.id}')">${w.label}</div>`).join('')}
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+    <button class="btn-primary" style="background:linear-gradient(135deg,#e74c3c,#c0392b);color:#fff;" onclick="checkLegend()">Vérifier le schéma</button>
+    <button class="btn-primary" style="background:linear-gradient(135deg,#7f8c8d,#636e72);color:#fff;" onclick="resetLegend()">🔄 Réinitialiser</button>
+  </div>
+  <div class="correction" id="legend-correction"></div>`;
 
-const openCont = document.getElementById('open-container');
-openQs.forEach((item, i) => {
-  const div = document.createElement('div');
-  div.style.cssText = 'margin-bottom:18px;padding:18px;background:#fafafa;border-radius:14px;border:2px solid #eee;';
-  div.innerHTML = `
-    <p style="font-weight:700;margin-bottom:12px;">${i+1}. ${item.q}</p>
-    <textarea style="width:100%;min-height:80px;border:2px solid #ddd;border-radius:10px;padding:10px;font-family:'Nunito',sans-serif;font-size:0.93rem;resize:vertical;" placeholder="Écris ta réponse ici..."></textarea>
-    <button onclick="toggleCorr(this)" style="margin-top:10px;padding:8px 18px;border:none;border-radius:50px;background:linear-gradient(135deg,#e74c3c,#c0392b);color:#fff;font-family:'Baloo 2',cursive;font-weight:700;cursor:pointer;font-size:0.9rem;">👁️ Voir la correction</button>
-    <div style="display:none;margin-top:12px;padding:14px;background:#eafaf1;border-radius:12px;border-left:4px solid var(--vert);font-size:0.93rem;" class="open-corr">💡 ${item.corr}</div>`;
-  openCont.appendChild(div);
-});
-
-function toggleCorr(btn) {
-  const corr = btn.nextElementSibling;
-  const shown = corr.style.display === 'block';
-  corr.style.display = shown ? 'none' : 'block';
-  btn.textContent = shown ? '👁️ Voir la correction' : '🙈 Masquer';
+function selectLW(id) {
+  const el=document.getElementById('lw-'+id);
+  if(el.classList.contains('used'))return;
+  document.querySelectorAll('.legend-word').forEach(w=>{w.classList.remove('selected');});
+  selectedLW=id;
+  el.classList.add('selected');
+}
+function placeLabel(targetId) {
+  if(!selectedLW)return;
+  const wEl=document.getElementById('lw-'+selectedLW);
+  if(wEl.classList.contains('used'))return;
+  const tEl=document.getElementById('lt-'+targetId);
+  // Libérer l'ancien mot si la cible était déjà remplie
+  if(tEl.dataset.placed){const old=document.getElementById('lw-'+tEl.dataset.placed);if(old){old.classList.remove('used');}}
+  const word=legendWords.find(w=>w.id===selectedLW);
+  tEl.textContent=word.label.replace(/^[^\s]+\s/,'');
+  tEl.style.fontSize='0.52rem';tEl.style.color=word.color;
+  tEl.classList.add('filled');tEl.classList.remove('wrong');
+  tEl.dataset.placed=selectedLW;
+  targetAnswers[targetId]=selectedLW;
+  wEl.classList.add('used');wEl.classList.remove('selected');
+  selectedLW=null;
+}
+function checkLegend(){
+  let ok=0;
+  legendTargets.forEach(t=>{
+    const el=document.getElementById('lt-'+t.id);
+    if(targetAnswers[t.id]===t.answer){ok++;el.style.background='#d5f5e3';el.style.borderColor='#27ae60';el.style.color='#1e8449';el.style.borderStyle='solid';}
+    else{el.classList.add('wrong');}
+  });
+  const c=document.getElementById('legend-correction');
+  const desc={foyer:'rond rouge en profondeur (💥)',epicentre:'point orange en surface',ondes:'cercles autour du foyer',surface:'ligne brune horizontale'};
+  c.innerHTML=`<strong>Score : ${ok}/${legendTargets.length}</strong><br><br>${ok===legendTargets.length?'🎉 Parfait ! Tout est correct !':'📖 Correction :<ul style="margin-top:8px;">'+legendTargets.map(t=>`<li>${targetAnswers[t.id]===t.answer?'✅':'❌'} <strong>${legendWords.find(w=>w.id===t.answer).label}</strong> → ${desc[t.id]}</li>`).join('')+'</ul>'}`;
+  c.classList.add('show');
+}
+function resetLegend(){
+  targetAnswers={};selectedLW=null;
+  legendTargets.forEach(t=>{const el=document.getElementById('lt-'+t.id);el.textContent='?';el.style.fontSize='0.68rem';el.style.color='#999';el.style.background='rgba(255,255,255,0.92)';el.style.borderColor='#aaa';el.style.borderStyle='dashed';el.classList.remove('filled','wrong');delete el.dataset.placed;});
+  legendWords.forEach(w=>{const el=document.getElementById('lw-'+w.id);if(el){el.classList.remove('used','selected');}});
+  document.getElementById('legend-correction').classList.remove('show');
 }
 </script>
 </body>
