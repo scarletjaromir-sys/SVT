@@ -3,82 +3,1087 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cours de Noah 📚</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<title>SVT 4e – Reproduction & Contraception</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --rose: #e91e8c; --rose-light: #fce4f3; --rose-dark: #c2185b;
+    --violet: #8e44ad; --violet-light: #e8daef;
+    --bleu: #3498db; --bleu-light: #d6eaf8;
+    --vert: #2ecc71; --vert-dark: #27ae60; --vert-light: #d5f5e3;
+    --orange: #e67e22; --orange-light: #fdebd0;
+    --rouge: #e74c3c; --rouge-light: #fde8e8;
+    --teal: #1abc9c; --teal-light: #d1f2eb;
+    --jaune: #f1c40f; --jaune-light: #fef9c3;
+    --bg: #fff5fb; --card: #fff;
+    --text: #2c3e50; --muted: #7f8c8d;
+    --shadow: 0 4px 20px rgba(0,0,0,0.09);
+    --radius: 16px;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Nunito', sans-serif; background: #fef9f0; min-height: 100vh; }
+  body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
   header {
-    background: linear-gradient(135deg, #2ecc71, #3498db, #8e44ad);
-    padding: 30px 20px; text-align: center;
+    background: linear-gradient(135deg, #e91e8c 0%, #8e44ad 50%, #3498db 100%);
+    padding: 24px 20px 16px; text-align: center; position: relative; overflow: hidden;
   }
-  header h1 { font-family: 'Baloo 2', cursive; font-size: 2.2rem; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.2); }
-  header p { color: rgba(255,255,255,0.9); margin-top: 6px; font-size: 1.1rem; }
+  header::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Ccircle cx='20' cy='20' r='8'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  header h1 { font-family: 'Baloo 2', cursive; font-size: 1.9rem; font-weight: 800; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.2); position: relative; }
+  header p { color: rgba(255,255,255,0.9); font-size: 1rem; margin-top: 4px; position: relative; }
 
-  .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+  nav {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+    padding: 14px 16px 0; position: sticky; top: 0; z-index: 100;
+    background: var(--bg); border-bottom: 3px solid #f0d0e8;
+  }
+  .nav-btn {
+    padding: 9px 16px; border: none; border-radius: 50px;
+    font-family: 'Baloo 2', cursive; font-size: 0.9rem; font-weight: 700;
+    cursor: pointer; transition: all 0.25s; white-space: nowrap;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+  .nav-btn.active, .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+  .nav-btn[data-tab="cours"] { background: linear-gradient(135deg,#e91e8c,#c2185b); color:#fff; }
+  .nav-btn[data-tab="synthese"] { background: linear-gradient(135deg,#8e44ad,#6c3483); color:#fff; }
+  .nav-btn[data-tab="qcm"] { background: linear-gradient(135deg,#e67e22,#d35400); color:#fff; }
+  .nav-btn[data-tab="exercices"] { background: linear-gradient(135deg,#3498db,#2980b9); color:#fff; }
+  .nav-btn[data-tab="glossaire"] { background: linear-gradient(135deg,#1abc9c,#17a589); color:#fff; }
 
-  .matiere-title {
-    font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800;
-    margin: 28px 0 14px; display: flex; align-items: center; gap: 10px;
-    color: #2c3e50; border-bottom: 3px solid #eee; padding-bottom: 8px;
+  /* GLOSSAIRE */
+  .glossaire-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:560px){ .glossaire-grid { grid-template-columns: 1fr; } }
+  .gloss-item {
+    background: #fff; border-radius: 14px; box-shadow: var(--shadow);
+    overflow: hidden; cursor: pointer; transition: transform 0.2s;
+    border-left: 5px solid;
+  }
+  .gloss-item:hover { transform: translateY(-2px); }
+  .gloss-header {
+    padding: 13px 16px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .gloss-word { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1rem; }
+  .gloss-arrow { font-size: 1rem; transition: transform 0.3s; color: var(--muted); }
+  .gloss-item.open .gloss-arrow { transform: rotate(180deg); }
+  .gloss-def {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 16px; font-size: 0.9rem; line-height: 1.6; color: #555;
+    border-top: 0px solid #eee;
+  }
+  .gloss-item.open .gloss-def { max-height: 200px; padding: 12px 16px; border-top: 1px solid #eee; }
+
+  /* TOOLTIP mots cliquables dans le cours */
+  .mot-cle {
+    border-bottom: 2px dashed var(--rose); cursor: pointer; color: var(--rose-dark);
+    font-weight: 700; position: relative; display: inline;
+  }
+  .mot-cle:hover { background: var(--rose-light); border-radius: 4px; }
+
+  section { display: none; padding: 22px 16px; max-width: 900px; margin: 0 auto; }
+  section.active { display: block; animation: fadeIn 0.35s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+  .card {
+    background: var(--card); border-radius: var(--radius);
+    padding: 20px; margin-bottom: 20px;
+    box-shadow: var(--shadow); border-left: 6px solid;
+    transition: transform 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card.rose { border-color: var(--rose); }
+  .card.violet { border-color: var(--violet); }
+  .card.bleu { border-color: var(--bleu); }
+  .card.vert { border-color: var(--vert); }
+  .card.orange { border-color: var(--orange); }
+  .card.teal { border-color: var(--teal); }
+
+  .card-title {
+    font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .card.rose .card-title { color: var(--rose-dark); }
+  .card.violet .card-title { color: var(--violet); }
+  .card.bleu .card-title { color: var(--bleu); }
+  .card.vert .card-title { color: var(--vert-dark); }
+  .card.orange .card-title { color: var(--orange); }
+  .card.teal .card-title { color: var(--teal); }
+
+  .badge {
+    display: inline-block; padding: 3px 12px; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 700; margin-bottom: 10px;
+  }
+  .badge.rose { background: var(--rose-light); color: var(--rose-dark); }
+  .badge.violet { background: var(--violet-light); color: var(--violet); }
+  .badge.bleu { background: var(--bleu-light); color: var(--bleu); }
+  .badge.vert { background: var(--vert-light); color: var(--vert-dark); }
+  .badge.teal { background: var(--teal-light); color: var(--teal); }
+
+  p, li { line-height: 1.7; font-size: 0.97rem; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 6px; }
+
+  .highlight-box {
+    border-radius: 12px; padding: 13px 16px; margin: 12px 0; font-weight: 600;
+  }
+  .hb-rose { background: var(--rose-light); border-left: 4px solid var(--rose); }
+  .hb-vert { background: var(--vert-light); border-left: 4px solid var(--vert); }
+  .hb-bleu { background: var(--bleu-light); border-left: 4px solid var(--bleu); }
+  .hb-yellow { background: var(--jaune-light); border-left: 4px solid var(--jaune); }
+  .hb-violet { background: var(--violet-light); border-left: 4px solid var(--violet); }
+  .hb-orange { background: var(--orange-light); border-left: 4px solid var(--orange); }
+  .hb-teal { background: var(--teal-light); border-left: 4px solid var(--teal); }
+
+  .formula {
+    text-align: center; font-family: 'Baloo 2', cursive; font-size: 1.1rem;
+    font-weight: 800; background: linear-gradient(135deg,#e91e8c,#8e44ad);
+    color:#fff; border-radius: 14px; padding: 14px; margin: 14px 0;
+    box-shadow: 0 4px 15px rgba(233,30,140,0.25);
   }
 
-  .cours-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
-
-  .cours-card {
-    display: block; text-decoration: none;
-    border-radius: 16px; padding: 20px 18px;
+  .schema-block {
+    border-radius: 14px; overflow: hidden; margin: 14px 0;
     box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    color: #fff;
   }
-  .cours-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
-  .cours-card .emoji { font-size: 2rem; display: block; margin-bottom: 10px; }
-  .cours-card .titre { font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 800; line-height: 1.3; }
-  .cours-card .niveau { font-size: 0.8rem; opacity: 0.85; margin-top: 6px; }
+  .schema-caption {
+    background: #f8f0f6; padding: 7px 14px;
+    font-size: 0.82rem; font-weight: 700; color: var(--muted);
+    border-bottom: 2px solid #f0d0e8;
+  }
 
-  .svt { background: linear-gradient(135deg, #2ecc71, #27ae60); }
-  .maths { background: linear-gradient(135deg, #3498db, #2980b9); }
-  .physique { background: linear-gradient(135deg, #e67e22, #d35400); }
-  .histoire { background: linear-gradient(135deg, #8e44ad, #6c3483); }
+  .section-title {
+    font-family: 'Baloo 2', cursive; font-size: 1.5rem; font-weight: 800;
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
 
-  footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; margin-top: 20px; }
+  /* QCM */
+  .qcm-progress-bar { height: 8px; background: #f0d0e8; border-radius: 10px; margin: 10px 0 18px; overflow: hidden; }
+  .qcm-progress-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg,var(--rose),var(--violet)); transition: width 0.4s; }
+  .question-card { background: var(--card); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); margin-bottom: 20px; }
+  .question-num { font-size: 0.85rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; }
+  .question-text { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; line-height: 1.5; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option-btn {
+    padding: 11px 16px; border: 2.5px solid #eee; border-radius: 12px;
+    background: #fff; cursor: pointer; font-family: 'Nunito', sans-serif;
+    font-size: 0.94rem; font-weight: 600; text-align: left;
+    transition: all 0.2s; display: flex; align-items: center; gap: 10px;
+  }
+  .option-btn:hover:not(:disabled) { border-color: var(--rose); background: var(--rose-light); transform: translateX(4px); }
+  .option-btn.correct { border-color: var(--vert); background: var(--vert-light); color: var(--vert-dark); }
+  .option-btn.wrong { border-color: var(--rouge); background: var(--rouge-light); color: var(--rouge); }
+  .option-btn:disabled { cursor: default; }
+  .option-letter {
+    width: 28px; height: 28px; border-radius: 50%; background: #eee;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
+  }
+  .option-btn.correct .option-letter { background: var(--vert); color: #fff; }
+  .option-btn.wrong .option-letter { background: var(--rouge); color: #fff; }
+  .feedback { margin-top: 14px; padding: 12px 16px; border-radius: 12px; font-weight: 600; font-size: 0.94rem; display: none; }
+  .feedback.show { display: flex; align-items: flex-start; gap: 10px; }
+  .feedback.correct-fb { background: var(--vert-light); color: var(--vert-dark); }
+  .feedback.wrong-fb { background: var(--rouge-light); color: var(--rouge); }
+  .qcm-score { text-align: center; padding: 30px; background: linear-gradient(135deg,#e91e8c,#8e44ad); border-radius: var(--radius); color: #fff; display: none; box-shadow: 0 8px 30px rgba(233,30,140,0.3); }
+  .qcm-score.show { display: block; animation: fadeIn 0.5s; }
+  .score-big { font-family: 'Baloo 2', cursive; font-size: 3.5rem; font-weight: 800; }
+
+  .btn-primary {
+    display: inline-block; padding: 11px 26px; border: none; border-radius: 50px;
+    font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: all 0.25s; margin-top: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+  .btn-rose { background: linear-gradient(135deg,#e91e8c,#c2185b); color:#fff; }
+  .btn-vert { background: linear-gradient(135deg,#2ecc71,#27ae60); color:#fff; }
+  .btn-bleu { background: linear-gradient(135deg,#3498db,#2980b9); color:#fff; }
+  .btn-violet { background: linear-gradient(135deg,#8e44ad,#6c3483); color:#fff; }
+
+  /* Exercices */
+  .exercice-card { background: var(--card); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); margin-bottom: 20px; border-top: 5px solid; }
+  .ex1 { border-color: var(--rose); }
+  .ex2 { border-color: var(--violet); }
+  .ex3 { border-color: var(--teal); }
+  .ex4 { border-color: var(--orange); }
+  .ex-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .ex-num { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.1rem; color: #fff; flex-shrink: 0; }
+  .ex1 .ex-num { background: var(--rose); }
+  .ex2 .ex-num { background: var(--violet); }
+  .ex3 .ex-num { background: var(--teal); }
+  .ex4 .ex-num { background: var(--orange); }
+  .ex-title { font-family: 'Baloo 2', cursive; font-size: 1.1rem; font-weight: 800; }
+  .ex-input { width: 100%; max-width: 300px; padding: 9px 13px; border: 2.5px solid #ddd; border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 0.94rem; margin: 4px 0; transition: border-color 0.2s; }
+  .ex-input:focus { outline: none; border-color: var(--rose); }
+  .ex-input.correct { border-color: var(--vert); background: var(--vert-light); }
+  .ex-input.wrong { border-color: var(--rouge); background: var(--rouge-light); }
+  .correction { margin-top: 14px; padding: 14px 16px; border-radius: 12px; background: var(--vert-light); border-left: 4px solid var(--vert); display: none; font-size: 0.92rem; }
+  .correction.show { display: block; animation: fadeIn 0.3s; }
+
+  /* Synth grid */
+  .synth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:580px) { .synth-grid { grid-template-columns: 1fr; } .nav-btn { padding: 7px 11px; font-size: 0.82rem; } header h1 { font-size: 1.5rem; } }
+  .synth-card { border-radius: var(--radius); padding: 16px; text-align: center; box-shadow: var(--shadow); }
+  .synth-card h3 { font-family:'Baloo 2',cursive; font-size:1rem; font-weight:800; margin-bottom:8px; }
+  .big-emoji { font-size: 2.2rem; display:block; margin-bottom:6px; }
+
+  /* Calendrier */
+  .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin: 12px 0; }
+  .cal-day { text-align:center; padding: 6px 2px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; }
+  .cal-head { font-size: 0.75rem; color: var(--muted); padding: 4px 0; text-align:center; }
+  .cal-regles { background: #fde8e8; color: var(--rouge); }
+  .cal-fertile { background: #d5f5e3; color: var(--vert-dark); }
+  .cal-ovulation { background: #e91e8c; color: #fff; border-radius: 50%; }
+  .cal-normal { background: #f8f9fa; color: var(--text); }
 </style>
 </head>
 <body>
 
 <header>
-  <div style="font-size:2rem;margin-bottom:8px;">📚 🎓 ✏️</div>
-  <h1>Cours de Noah</h1>
-  <p>4e – Clique sur un cours pour l'ouvrir !</p>
+  <div style="font-size:1.6rem;margin-bottom:6px;">👶 🧬 💊</div>
+  <h1>SVT – 4e</h1>
+  <p>Reproduction & Contraception</p>
 </header>
 
-<div class="container">
+<nav>
+  <button class="nav-btn active" data-tab="cours" onclick="showTab('cours')">📚 Cours</button>
+  <button class="nav-btn" data-tab="synthese" onclick="showTab('synthese')">🗂️ Synthèse</button>
+  <button class="nav-btn" data-tab="qcm" onclick="showTab('qcm')">✅ QCM</button>
+  <button class="nav-btn" data-tab="exercices" onclick="showTab('exercices')">✏️ Exercices</button>
+  <button class="nav-btn" data-tab="glossaire" onclick="showTab('glossaire')">📖 Glossaire</button>
+</nav>
 
-  <div class="matiere-title">🌿 SVT</div>
-  <div class="cours-grid">
-    <a class="cours-card svt" href="risques-sismiques/index.html">
-      <span class="emoji">🌋</span>
-      <div class="titre">Risques sismiques et volcaniques</div>
-      <div class="niveau">SVT · 4e</div>
-    </a>
-    <!-- Ajoute tes prochains cours SVT ici -->
+<!-- ========== COURS ========== -->
+<section id="cours" class="active">
+  <div class="section-title">📚 Cours</div>
+
+  <!-- 1. Cycle menstruel -->
+  <div class="card rose">
+    <div class="card-title">🗓️ 1. Le cycle menstruel</div>
+    <span class="badge rose">Durée : ~28 jours</span>
+    <p>Le cycle menstruel est un phénomène cyclique qui prépare le corps de la femme à une éventuelle grossesse. Il dure en moyenne <strong>28 jours</strong> et se répète de la puberté à la ménopause.</p>
+    <ul style="margin:10px 0;">
+      <li>📅 <strong>Jours 1–5</strong> : Règles (menstruations) → la muqueuse utérine se détache</li>
+      <li>📈 <strong>Jours 6–13</strong> : Phase folliculaire → l'ovule mûrit dans l'ovaire</li>
+      <li>🥚 <strong>Jour 14</strong> : Ovulation → l'ovule est libéré dans la trompe de Fallope</li>
+      <li>📉 <strong>Jours 15–28</strong> : Phase lutéale → l'utérus se prépare à accueillir un embryon</li>
+    </ul>
+    <div class="highlight-box hb-rose">
+      💡 <strong>Période de fécondité :</strong> La femme est fertile environ <strong>5 jours avant l'ovulation et 2 jours après</strong> (jours 9 à 16 environ pour un cycle de 28 jours).
+    </div>
+
+    <!-- Schéma calendrier -->
+    <div class="schema-block">
+      <div class="schema-caption">🗓️ Schéma – Exemple de calendrier sur 28 jours</div>
+      <div style="padding:14px;background:#fff;">
+        <div class="cal-grid">
+          <div class="cal-head">L</div><div class="cal-head">M</div><div class="cal-head">M</div>
+          <div class="cal-head">J</div><div class="cal-head">V</div><div class="cal-head">S</div><div class="cal-head">D</div>
+          <div class="cal-day cal-regles">1</div><div class="cal-day cal-regles">2</div><div class="cal-day cal-regles">3</div>
+          <div class="cal-day cal-regles">4</div><div class="cal-day cal-regles">5</div><div class="cal-day cal-normal">6</div>
+          <div class="cal-day cal-normal">7</div>
+          <div class="cal-day cal-normal">8</div><div class="cal-day cal-fertile">9</div><div class="cal-day cal-fertile">10</div>
+          <div class="cal-day cal-fertile">11</div><div class="cal-day cal-fertile">12</div><div class="cal-day cal-fertile">13</div>
+          <div class="cal-day cal-ovulation">14</div>
+          <div class="cal-day cal-fertile">15</div><div class="cal-day cal-fertile">16</div><div class="cal-day cal-normal">17</div>
+          <div class="cal-day cal-normal">18</div><div class="cal-day cal-normal">19</div><div class="cal-day cal-normal">20</div>
+          <div class="cal-day cal-normal">21</div>
+          <div class="cal-day cal-normal">22</div><div class="cal-day cal-normal">23</div><div class="cal-day cal-normal">24</div>
+          <div class="cal-day cal-normal">25</div><div class="cal-day cal-normal">26</div><div class="cal-day cal-normal">27</div>
+          <div class="cal-day cal-normal">28</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;font-size:0.82rem;">
+          <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:#fde8e8;display:inline-block;"></span> Règles</span>
+          <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:3px;background:#d5f5e3;display:inline-block;"></span> Période fertile</span>
+          <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:50%;background:#e91e8c;display:inline-block;"></span> Ovulation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SVG : Cycle -->
+    <div class="schema-block">
+      <div class="schema-caption">🖼️ Schéma – Les phases du cycle</div>
+      <div style="padding:14px;background:#fff;">
+        <svg viewBox="0 0 640 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
+          <rect x="5" y="40" width="100" height="50" rx="10" fill="#fde8e8" stroke="#e74c3c" stroke-width="1.5"/>
+          <text x="55" y="62" text-anchor="middle" font-weight="800" font-size="10" fill="#c0392b">RÈGLES</text>
+          <text x="55" y="76" text-anchor="middle" font-size="9" fill="#555">Jours 1–5</text>
+          <text x="55" y="88" text-anchor="middle" font-size="8" fill="#888">muqueuse éliminée</text>
+          <line x1="105" y1="65" x2="135" y2="65" stroke="#aaa" stroke-width="1.5" marker-end="url(#arc)"/>
+
+          <rect x="137" y="40" width="120" height="50" rx="10" fill="#fef9c3" stroke="#f1c40f" stroke-width="1.5"/>
+          <text x="197" y="62" text-anchor="middle" font-weight="800" font-size="10" fill="#b7950b">PHASE FOLLICULAIRE</text>
+          <text x="197" y="76" text-anchor="middle" font-size="9" fill="#555">Jours 6–13</text>
+          <text x="197" y="88" text-anchor="middle" font-size="8" fill="#888">l'ovule mûrit</text>
+          <line x1="257" y1="65" x2="287" y2="65" stroke="#aaa" stroke-width="1.5" marker-end="url(#arc)"/>
+
+          <rect x="289" y="30" width="90" height="70" rx="10" fill="#fce4f3" stroke="#e91e8c" stroke-width="2"/>
+          <text x="334" y="55" text-anchor="middle" font-weight="800" font-size="11" fill="#c2185b">OVULATION</text>
+          <text x="334" y="70" text-anchor="middle" font-size="9" fill="#555">Jour 14</text>
+          <text x="334" y="83" text-anchor="middle" font-size="8" fill="#888">ovule libéré 🥚</text>
+          <line x1="379" y1="65" x2="409" y2="65" stroke="#aaa" stroke-width="1.5" marker-end="url(#arc)"/>
+
+          <rect x="411" y="40" width="120" height="50" rx="10" fill="#d6eaf8" stroke="#3498db" stroke-width="1.5"/>
+          <text x="471" y="62" text-anchor="middle" font-weight="800" font-size="10" fill="#1a5276">PHASE LUTÉALE</text>
+          <text x="471" y="76" text-anchor="middle" font-size="9" fill="#555">Jours 15–28</text>
+          <text x="471" y="88" text-anchor="middle" font-size="8" fill="#888">utérus se prépare</text>
+          <line x1="531" y1="65" x2="561" y2="65" stroke="#aaa" stroke-width="1.5" marker-end="url(#arc)"/>
+
+          <rect x="563" y="40" width="70" height="50" rx="10" fill="#fde8e8" stroke="#e74c3c" stroke-width="1.5"/>
+          <text x="598" y="64" text-anchor="middle" font-weight="800" font-size="9" fill="#c0392b">RÈGLES</text>
+          <text x="598" y="78" text-anchor="middle" font-size="8" fill="#888">suivantes</text>
+
+          <defs><marker id="arc" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#aaa"/></marker></defs>
+        </svg>
+      </div>
+    </div>
   </div>
 
-  <div class="matiere-title">➕ Maths</div>
-  <div class="cours-grid">
-    <!-- Cours maths à venir -->
-    <div style="color:#bbb;font-style:italic;padding:10px;">Bientôt disponible...</div>
+  <!-- 2. La fécondation -->
+  <div class="card violet">
+    <div class="card-title">🧬 2. La fécondation</div>
+    <span class="badge violet">Reproduction</span>
+    <p>La fécondation est la <strong>rencontre et la fusion</strong> entre un spermatozoïde (cellule reproductrice mâle) et un ovule (cellule reproductrice femelle). Elle a lieu dans la <strong>trompe de Fallope</strong>.</p>
+    <ul style="margin:10px 0;">
+      <li>🏊 Les spermatozoïdes remontent le vagin → l'utérus → les trompes de Fallope</li>
+      <li>🥚 Un seul spermatozoïde fusionne avec l'ovule → formation d'une <strong>cellule-œuf</strong> (zygote)</li>
+      <li>🚀 La cellule-œuf se divise et migre vers l'utérus</li>
+      <li>🏠 Elle s'implante dans la muqueuse utérine : c'est la <strong>nidation</strong></li>
+    </ul>
+    <div class="highlight-box hb-violet">
+      💡 <strong>À retenir :</strong> Sans nidation, pas de grossesse. La contraception peut agir à différents niveaux pour empêcher ce processus.
+    </div>
+
+    <!-- SVG Fécondation -->
+    <div class="schema-block">
+      <div class="schema-caption">🖼️ Schéma – De la fécondation à la nidation</div>
+      <div style="padding:14px;background:#fff;">
+        <svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
+          <defs>
+            <marker id="af" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#8e44ad"/></marker>
+          </defs>
+          <!-- Ovaire -->
+          <ellipse cx="60" cy="100" rx="45" ry="40" fill="#fce4f3" stroke="#e91e8c" stroke-width="2"/>
+          <text x="60" y="96" text-anchor="middle" font-weight="800" font-size="10" fill="#c2185b">OVAIRE</text>
+          <circle cx="95" cy="80" r="10" fill="#e91e8c" opacity="0.8"/>
+          <text x="108" y="75" font-size="8" fill="#c2185b" font-weight="700">ovule</text>
+
+          <!-- Trompe -->
+          <path d="M105,80 Q200,40 300,80" stroke="#8e44ad" stroke-width="3" fill="none"/>
+          <text x="200" y="48" text-anchor="middle" font-size="9" fill="#6c3483" font-weight="700">trompe de Fallope</text>
+
+          <!-- Spermatozoïdes -->
+          <circle cx="160" cy="75" r="4" fill="#3498db" opacity="0.7"/>
+          <line x1="156" y1="75" x2="148" y2="78" stroke="#3498db" stroke-width="1.5"/>
+          <circle cx="180" cy="70" r="4" fill="#3498db" opacity="0.7"/>
+          <line x1="176" y1="70" x2="168" y2="73" stroke="#3498db" stroke-width="1.5"/>
+          <text x="170" y="95" text-anchor="middle" font-size="8" fill="#2980b9" font-weight="700">spermatozoïdes</text>
+
+          <!-- Fécondation -->
+          <circle cx="300" cy="80" r="18" fill="#8e44ad" opacity="0.9"/>
+          <text x="300" y="76" text-anchor="middle" font-weight="800" font-size="9" fill="#fff">FÉCON-</text>
+          <text x="300" y="88" text-anchor="middle" font-weight="800" font-size="9" fill="#fff">DATION</text>
+          <text x="300" y="112" text-anchor="middle" font-size="8" fill="#6c3483" font-weight="700">cellule-œuf</text>
+
+          <!-- Migration -->
+          <path d="M318,80 Q400,40 460,80" stroke="#8e44ad" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#af)"/>
+          <text x="390" y="48" text-anchor="middle" font-size="8" fill="#555">migration (3-5 jours)</text>
+          <text x="340" y="36" text-anchor="middle" font-size="8" fill="#8e44ad" font-style="italic">divisions cellulaires</text>
+
+          <!-- Utérus -->
+          <path d="M460,60 Q480,40 520,45 Q560,42 580,60 Q600,80 580,110 Q560,130 520,135 Q480,130 460,110 Q440,90 460,60Z" fill="#fce4f3" stroke="#e91e8c" stroke-width="2"/>
+          <text x="520" y="90" text-anchor="middle" font-weight="800" font-size="10" fill="#c2185b">UTÉRUS</text>
+
+          <!-- Nidation -->
+          <circle cx="520" cy="115" r="12" fill="#e91e8c"/>
+          <text x="520" y="119" text-anchor="middle" font-weight="800" font-size="8" fill="#fff">NIDATION</text>
+          <text x="520" y="145" text-anchor="middle" font-size="8" fill="#c2185b" font-weight="700">implantation</text>
+        </svg>
+      </div>
+    </div>
   </div>
 
-  <div class="matiere-title">⚡ Physique-Chimie</div>
-  <div class="cours-grid">
-    <div style="color:#bbb;font-style:italic;padding:10px;">Bientôt disponible...</div>
+  <!-- 3. Contraception -->
+  <div class="card rose">
+    <div class="card-title">💊 3. La contraception</div>
+    <span class="badge rose">Méthodes contraceptives</span>
+    <div class="formula">Contraception = éviter temporairement et réversiblement une grossesse</div>
+    <p>Les méthodes contraceptives agissent à <strong>3 niveaux</strong> différents :</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:14px 0;" class="trois-niveaux">
+      <div class="highlight-box hb-bleu" style="text-align:center;">
+        🏊 <strong>Niveau 1</strong><br>Empêcher les spermatozoïdes d'atteindre l'ovule
+      </div>
+      <div class="highlight-box hb-rose" style="text-align:center;">
+        🥚 <strong>Niveau 2</strong><br>Empêcher l'ovulation (pas d'ovule = pas de fécondation)
+      </div>
+      <div class="highlight-box hb-violet" style="text-align:center;">
+        🏠 <strong>Niveau 3</strong><br>Empêcher la nidation dans l'utérus
+      </div>
+    </div>
+
+    <!-- SVG méthodes contraceptives -->
+    <div class="schema-block">
+      <div class="schema-caption">🖼️ Schéma – Les principales méthodes contraceptives</div>
+      <div style="padding:14px;background:#fff;">
+        <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
+          <!-- Colonne 1 : Mécaniques -->
+          <rect x="10" y="10" width="200" height="240" rx="14" fill="#e8f4fd" stroke="#3498db" stroke-width="2"/>
+          <text x="110" y="34" text-anchor="middle" font-weight="800" font-size="12" fill="#1a5276">🛡️ MÉCANIQUES</text>
+          <line x1="30" y1="42" x2="190" y2="42" stroke="#3498db" stroke-width="1" opacity="0.4"/>
+
+          <rect x="22" y="50" width="176" height="40" rx="8" fill="#fff" stroke="#85c1e9" stroke-width="1.5"/>
+          <text x="110" y="67" text-anchor="middle" font-weight="800" font-size="10" fill="#2980b9">① Préservatif</text>
+          <text x="110" y="80" text-anchor="middle" font-size="8.5" fill="#555">Bloque les spermatozoïdes</text>
+
+          <rect x="22" y="98" width="176" height="40" rx="8" fill="#fff" stroke="#85c1e9" stroke-width="1.5"/>
+          <text x="110" y="115" text-anchor="middle" font-weight="800" font-size="10" fill="#2980b9">② Stérilet en cuivre (DIU)</text>
+          <text x="110" y="128" text-anchor="middle" font-size="8.5" fill="#555">Empêche la nidation</text>
+
+          <rect x="22" y="146" width="176" height="40" rx="8" fill="#fff" stroke="#85c1e9" stroke-width="1.5"/>
+          <text x="110" y="163" text-anchor="middle" font-weight="800" font-size="10" fill="#2980b9">③ Diaphragme</text>
+          <text x="110" y="176" text-anchor="middle" font-size="8.5" fill="#555">Barrière mécanique</text>
+
+          <rect x="22" y="194" width="176" height="40" rx="8" fill="#d6eaf8" stroke="#3498db" stroke-width="1.5"/>
+          <text x="110" y="210" text-anchor="middle" font-weight="800" font-size="9" fill="#1a5276">✅ Aussi protège</text>
+          <text x="110" y="223" text-anchor="middle" font-size="8.5" fill="#1a5276">contre les IST (préservatif)</text>
+
+          <!-- Colonne 2 : Hormonales -->
+          <rect x="222" y="10" width="230" height="240" rx="14" fill="#fce4f3" stroke="#e91e8c" stroke-width="2"/>
+          <text x="337" y="34" text-anchor="middle" font-weight="800" font-size="12" fill="#c2185b">💊 HORMONALES</text>
+          <line x1="242" y1="42" x2="432" y2="42" stroke="#e91e8c" stroke-width="1" opacity="0.4"/>
+
+          <rect x="234" y="50" width="206" height="38" rx="8" fill="#fff" stroke="#f48fb1" stroke-width="1.5"/>
+          <text x="337" y="67" text-anchor="middle" font-weight="800" font-size="10" fill="#c2185b">④ Pilule contraceptive</text>
+          <text x="337" y="79" text-anchor="middle" font-size="8.5" fill="#555">Bloque l'ovulation (hormones)</text>
+
+          <rect x="234" y="96" width="206" height="38" rx="8" fill="#fff" stroke="#f48fb1" stroke-width="1.5"/>
+          <text x="337" y="113" text-anchor="middle" font-weight="800" font-size="10" fill="#c2185b">⑤ Stérilet hormonal (DIU)</text>
+          <text x="337" y="125" text-anchor="middle" font-size="8.5" fill="#555">Hormones + épaissit la glaire</text>
+
+          <rect x="234" y="142" width="206" height="38" rx="8" fill="#fff" stroke="#f48fb1" stroke-width="1.5"/>
+          <text x="337" y="159" text-anchor="middle" font-weight="800" font-size="10" fill="#c2185b">⑥ Implant sous-cutané</text>
+          <text x="337" y="171" text-anchor="middle" font-size="8.5" fill="#555">Bâtonnet sous la peau (3 ans)</text>
+
+          <rect x="234" y="188" width="206" height="38" rx="8" fill="#fff" stroke="#f48fb1" stroke-width="1.5"/>
+          <text x="337" y="204" text-anchor="middle" font-weight="800" font-size="10" fill="#c2185b">⑦ Patch hormonal</text>
+          <text x="337" y="216" text-anchor="middle" font-size="8.5" fill="#555">Hormones à travers la peau</text>
+
+          <!-- Colonne 3 : Chirurgicales -->
+          <rect x="464" y="10" width="228" height="240" rx="14" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
+          <text x="578" y="34" text-anchor="middle" font-weight="800" font-size="12" fill="#d35400">✂️ CHIRURGICALES</text>
+          <line x1="484" y1="42" x2="672" y2="42" stroke="#e67e22" stroke-width="1" opacity="0.4"/>
+
+          <rect x="476" y="50" width="204" height="50" rx="8" fill="#fff" stroke="#f0a500" stroke-width="1.5"/>
+          <text x="578" y="70" text-anchor="middle" font-weight="800" font-size="10" fill="#d35400">⑧ Ligature des trompes</text>
+          <text x="578" y="83" text-anchor="middle" font-size="8.5" fill="#555">Féminin • Permanente</text>
+          <text x="578" y="94" text-anchor="middle" font-size="8" fill="#888">bloque le passage de l'ovule</text>
+
+          <rect x="476" y="110" width="204" height="50" rx="8" fill="#fff" stroke="#f0a500" stroke-width="1.5"/>
+          <text x="578" y="130" text-anchor="middle" font-weight="800" font-size="10" fill="#d35400">⑨ Vasectomie</text>
+          <text x="578" y="143" text-anchor="middle" font-size="8.5" fill="#555">Masculin • Permanente</text>
+          <text x="578" y="154" text-anchor="middle" font-size="8" fill="#888">bloque les spermatozoïdes</text>
+
+          <rect x="476" y="170" width="204" height="68" rx="8" fill="#fef9c3" stroke="#e67e22" stroke-width="1.5"/>
+          <text x="578" y="190" text-anchor="middle" font-weight="800" font-size="10" fill="#d35400">⚠️ ATTENTION</text>
+          <text x="578" y="204" text-anchor="middle" font-size="8.5" fill="#555">Méthodes très difficiles</text>
+          <text x="578" y="216" text-anchor="middle" font-size="8.5" fill="#555">à inverser !</text>
+          <text x="578" y="228" text-anchor="middle" font-size="8" fill="#888">Intervention chirurgicale</text>
+        </svg>
+      </div>
+    </div>
+    <style>.trois-niveaux { } @media(max-width:500px){.trois-niveaux{grid-template-columns:1fr;}}</style>
   </div>
 
-</div>
+  <!-- 4. PMA -->
+  <div class="card teal">
+    <div class="card-title">🏥 4. La PMA – Procréation Médicalement Assistée</div>
+    <span class="badge teal">Aide à la procréation</span>
+    <p>Certains couples ont des difficultés à avoir un enfant à cause de problèmes d'<strong>infertilité</strong>. La PMA regroupe plusieurs techniques médicales pour les aider.</p>
+    <br>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="highlight-box hb-teal">
+        💉 <strong>Insémination artificielle</strong><br>
+        Le sperme est injecté directement dans l'utérus au moment de l'ovulation. Plus simple, utilisée en premier recours.
+      </div>
+      <div class="highlight-box hb-violet">
+        🧪 <strong>Fécondation In Vitro (FIV)</strong><br>
+        Les ovocytes et spermatozoïdes sont mis en contact en laboratoire. Les embryons obtenus sont ensuite transférés dans l'utérus.
+      </div>
+    </div>
 
-<footer>Créé avec ❤️ pour Noah</footer>
+    <!-- SVG FIV -->
+    <div class="schema-block" style="margin-top:14px;">
+      <div class="schema-caption">🖼️ Schéma – La Fécondation In Vitro (FIV)</div>
+      <div style="padding:14px;background:#fff;">
+        <svg viewBox="0 0 680 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;">
+          <defs><marker id="at" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#1abc9c"/></marker></defs>
 
+          <rect x="5" y="30" width="110" height="70" rx="12" fill="#d1f2eb" stroke="#1abc9c" stroke-width="2"/>
+          <text x="60" y="55" text-anchor="middle" font-weight="800" font-size="10" fill="#0e6655">1. Prélèvement</text>
+          <text x="60" y="70" text-anchor="middle" font-size="8.5" fill="#555">ovocytes ponctionnés</text>
+          <text x="60" y="82" text-anchor="middle" font-size="8.5" fill="#555">+ spermatozoïdes</text>
+          <line x1="115" y1="65" x2="148" y2="65" stroke="#1abc9c" stroke-width="2" marker-end="url(#at)"/>
+
+          <rect x="150" y="30" width="110" height="70" rx="12" fill="#d1f2eb" stroke="#1abc9c" stroke-width="2"/>
+          <text x="205" y="55" text-anchor="middle" font-weight="800" font-size="10" fill="#0e6655">2. Fécondation</text>
+          <text x="205" y="70" text-anchor="middle" font-size="8.5" fill="#555">en laboratoire</text>
+          <text x="205" y="82" text-anchor="middle" font-size="8.5" fill="#555">🧪 in vitro</text>
+          <line x1="260" y1="65" x2="293" y2="65" stroke="#1abc9c" stroke-width="2" marker-end="url(#at)"/>
+
+          <rect x="295" y="30" width="110" height="70" rx="12" fill="#d1f2eb" stroke="#1abc9c" stroke-width="2"/>
+          <text x="350" y="55" text-anchor="middle" font-weight="800" font-size="10" fill="#0e6655">3. Embryon</text>
+          <text x="350" y="70" text-anchor="middle" font-size="8.5" fill="#555">divisions cellulaires</text>
+          <text x="350" y="82" text-anchor="middle" font-size="8.5" fill="#555">en laboratoire</text>
+          <line x1="405" y1="65" x2="438" y2="65" stroke="#1abc9c" stroke-width="2" marker-end="url(#at)"/>
+
+          <rect x="440" y="30" width="110" height="70" rx="12" fill="#d1f2eb" stroke="#1abc9c" stroke-width="2"/>
+          <text x="495" y="55" text-anchor="middle" font-weight="800" font-size="10" fill="#0e6655">4. Transfert</text>
+          <text x="495" y="70" text-anchor="middle" font-size="8.5" fill="#555">embryon transféré</text>
+          <text x="495" y="82" text-anchor="middle" font-size="8.5" fill="#555">dans l'utérus</text>
+          <line x1="550" y1="65" x2="583" y2="65" stroke="#1abc9c" stroke-width="2" marker-end="url(#at)"/>
+
+          <rect x="585" y="30" width="90" height="70" rx="12" fill="#1abc9c"/>
+          <text x="630" y="58" text-anchor="middle" font-weight="800" font-size="10" fill="#fff">5. Nidation</text>
+          <text x="630" y="72" text-anchor="middle" font-size="8.5" fill="#fff">grossesse</text>
+          <text x="630" y="84" text-anchor="middle" font-size="8.5" fill="#fff">espérée 🤞</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SYNTHESE ========== -->
+<section id="synthese">
+  <div class="section-title">🗂️ Fiche de synthèse</div>
+
+  <div class="card rose" style="border-left:none;border-top:6px solid var(--rose);">
+    <div class="card-title" style="justify-content:center;font-size:1.3rem;">🌸 Tout en un coup d'œil</div>
+    <div class="formula">Contraception = Temporaire & Réversible ≠ Méthodes chirurgicales (définitives)</div>
+
+    <div class="synth-grid">
+      <div class="synth-card" style="background:linear-gradient(135deg,#fde8f4,#fce4f3);border:2px solid var(--rose);">
+        <span class="big-emoji">🗓️</span>
+        <h3 style="color:var(--rose-dark);">CYCLE MENSTRUEL</h3>
+        <p style="font-size:0.85rem;">28 jours en moyenne<br><br>
+        🔴 J1–5 : Règles<br>
+        📈 J6–13 : Phase folliculaire<br>
+        🥚 J14 : Ovulation<br>
+        📉 J15–28 : Phase lutéale<br><br>
+        🌿 Période fertile : J9–J16</p>
+      </div>
+
+      <div class="synth-card" style="background:linear-gradient(135deg,#e8daef,#d6eaf8);border:2px solid var(--violet);">
+        <span class="big-emoji">🧬</span>
+        <h3 style="color:var(--violet);">FÉCONDATION</h3>
+        <p style="font-size:0.85rem;">Spermatozoïde + Ovule<br>→ Cellule-œuf (zygote)<br><br>
+        📍 Dans la trompe de Fallope<br><br>
+        🏠 Nidation = implantation dans l'utérus<br><br>
+        → Début de la grossesse</p>
+      </div>
+
+      <div class="synth-card" style="background:linear-gradient(135deg,#e8f4fd,#fce4f3);border:2px solid var(--bleu);">
+        <span class="big-emoji">💊</span>
+        <h3 style="color:var(--bleu);">CONTRACEPTION</h3>
+        <p style="font-size:0.85rem;">🛡️ Mécaniques : préservatif, DIU cuivre<br><br>
+        💊 Hormonales : pilule, implant, patch, DIU hormonal<br><br>
+        ✂️ Chirurgicales : ligature, vasectomie (définitives)<br><br>
+        ⚠️ Seul le préservatif protège des IST</p>
+      </div>
+
+      <div class="synth-card" style="background:linear-gradient(135deg,#d1f2eb,#d6eaf8);border:2px solid var(--teal);">
+        <span class="big-emoji">🏥</span>
+        <h3 style="color:var(--teal);">PMA</h3>
+        <p style="font-size:0.85rem;">Pour les couples infertiles<br><br>
+        💉 Insémination artificielle<br>→ sperme injecté dans l'utérus<br><br>
+        🧪 FIV (Fécondation In Vitro)<br>→ fécondation en laboratoire<br>puis transfert embryon</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;padding:16px;background:#fff5fb;border-radius:14px;border:2px solid #f0d0e8;">
+      <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;margin-bottom:10px;color:var(--rose-dark);">📝 Les mots-clés à connaître absolument</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="background:#fce4f3;color:#c2185b;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Ovulation</span>
+        <span style="background:#e8daef;color:#6c3483;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Fécondation</span>
+        <span style="background:#d6eaf8;color:#1a5276;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Nidation</span>
+        <span style="background:#d5f5e3;color:#1e8449;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Cellule-œuf</span>
+        <span style="background:#fdebd0;color:#d35400;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Contraception</span>
+        <span style="background:#fde8e8;color:#c0392b;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Réversible</span>
+        <span style="background:#d1f2eb;color:#0e6655;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">PMA / FIV</span>
+        <span style="background:#fef9c3;color:#b7950b;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Spermatozoïde</span>
+        <span style="background:#fce4f3;color:#c2185b;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Trompe de Fallope</span>
+        <span style="background:#e8daef;color:#6c3483;padding:5px 12px;border-radius:50px;font-weight:700;font-size:0.85rem;">Infertilité</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== QCM ========== -->
+<section id="qcm">
+  <div class="section-title">✅ QCM – Teste tes connaissances !</div>
+  <div id="qcm-container">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+      <span style="font-weight:700;color:var(--muted);" id="qcm-progress-text">Question 1 / 12</span>
+      <span style="font-weight:700;color:var(--rose-dark);" id="qcm-score-live">Score : 0</span>
+    </div>
+    <div class="qcm-progress-bar"><div class="qcm-progress-fill" id="progress-fill" style="width:8%;"></div></div>
+    <div id="questions-area"></div>
+    <div class="qcm-score" id="final-score">
+      <div style="font-size:2rem;margin-bottom:8px;">🎉</div>
+      <div class="score-big" id="score-display"></div>
+      <div style="font-size:1rem;opacity:0.9;margin-top:6px;" id="score-msg"></div>
+      <button class="btn-primary btn-vert" onclick="restartQcm()" style="margin-top:20px;">🔄 Recommencer</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EXERCICES ========== -->
+<section id="exercices">
+  <div class="section-title">✏️ Exercices</div>
+
+  <!-- Ex 1 : Calendrier -->
+  <div class="exercice-card ex1">
+    <div class="ex-header">
+      <div class="ex-num">1</div>
+      <div class="ex-title">🗓️ Lire un calendrier de cycle</div>
+    </div>
+    <p style="margin-bottom:14px;">Marie a ses règles le <strong>1er mars</strong>. Son cycle dure <strong>28 jours</strong>. Réponds aux questions :</p>
+    <div id="cal-questions"></div>
+    <button class="btn-primary btn-rose" onclick="checkCalendar()">Vérifier</button>
+    <div class="correction" id="cal-correction"></div>
+  </div>
+
+  <!-- Ex 2 : Vrai/Faux -->
+  <div class="exercice-card ex2">
+    <div class="ex-header">
+      <div class="ex-num">2</div>
+      <div class="ex-title">🔍 Vrai ou Faux ?</div>
+    </div>
+    <div id="vf-container"></div>
+    <button class="btn-primary btn-violet" onclick="checkVF()">Vérifier</button>
+    <div class="correction" id="vf-correction"></div>
+  </div>
+
+  <!-- Ex 3 : Compléter -->
+  <div class="exercice-card ex3">
+    <div class="ex-header">
+      <div class="ex-num">3</div>
+      <div class="ex-title">✍️ Complète les phrases</div>
+    </div>
+    <div id="fill-container"></div>
+    <button class="btn-primary" style="background:linear-gradient(135deg,#1abc9c,#17a589);color:#fff;" onclick="checkFill()">Vérifier</button>
+    <div class="correction" id="fill-correction"></div>
+  </div>
+
+  <!-- Ex 4 : Ouvert -->
+  <div class="exercice-card ex4">
+    <div class="ex-header">
+      <div class="ex-num">4</div>
+      <div class="ex-title">💬 Questions de réflexion</div>
+    </div>
+    <div id="open-container"></div>
+  </div>
+</section>
+
+<script>
+// NAV
+function showTab(tab) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+}
+
+// QCM
+const questions = [
+  { q:"Où a lieu la fécondation ?", opts:["Dans l'utérus","Dans la trompe de Fallope","Dans l'ovaire","Dans le vagin"], ans:1, exp:"La fécondation a lieu dans la trompe de Fallope, où le spermatozoïde rencontre l'ovule." },
+  { q:"Qu'appelle-t-on la nidation ?", opts:["La libération de l'ovule","La fusion spermatozoïde + ovule","L'implantation de la cellule-œuf dans l'utérus","Le début des règles"], ans:2, exp:"La nidation est l'implantation de la cellule-œuf dans la muqueuse utérine, déclenchant la grossesse." },
+  { q:"Quel jour survient l'ovulation dans un cycle de 28 jours ?", opts:["Jour 1","Jour 7","Jour 14","Jour 28"], ans:2, exp:"L'ovulation survient environ au jour 14 d'un cycle de 28 jours, à mi-cycle." },
+  { q:"La contraception est :", opts:["Définitive et irréversible","Temporaire et réversible","Uniquement hormonale","Uniquement chirurgicale"], ans:1, exp:"Par définition, la contraception est temporaire et réversible. Les méthodes chirurgicales (ligature, vasectomie) ne sont pas considérées comme de la contraception classique." },
+  { q:"Quelle méthode contraceptive protège aussi des IST ?", opts:["La pilule","L'implant","Le préservatif","Le stérilet"], ans:2, exp:"Seul le préservatif (masculin ou féminin) protège à la fois contre une grossesse ET contre les infections sexuellement transmissibles (IST)." },
+  { q:"Comment agit la pilule contraceptive ?", opts:["Elle crée une barrière mécanique","Elle empêche l'ovulation grâce aux hormones","Elle empêche la nidation uniquement","Elle détruit les spermatozoïdes"], ans:1, exp:"La pilule contraceptive contient des hormones qui bloquent l'ovulation : sans ovule, pas de fécondation possible." },
+  { q:"Qu'est-ce que la FIV ?", opts:["Une méthode de contraception","Une fécondation réalisée en laboratoire","Une technique chirurgicale définitive","Un type de stérilet"], ans:1, exp:"La FIV (Fécondation In Vitro) est une technique de PMA où la fécondation se fait en laboratoire avant que l'embryon soit transféré dans l'utérus." },
+  { q:"Pendant combien de temps agit un implant contraceptif ?", opts:["6 mois","1 an","3 ans","10 ans"], ans:2, exp:"L'implant sous-cutané est efficace pendant environ 3 ans. Il libère des hormones en continu sous la peau." },
+  { q:"Qu'est-ce que la cellule-œuf ?", opts:["Un ovule non fécondé","Un spermatozoïde","La cellule formée par la fusion d'un ovule et d'un spermatozoïde","Un embryon de 3 mois"], ans:2, exp:"La cellule-œuf (ou zygote) est la toute première cellule formée par la fusion du spermatozoïde et de l'ovule." },
+  { q:"Les règles surviennent quand :", opts:["L'ovule est fécondé","La nidation a eu lieu","Il n'y a pas eu de fécondation et la muqueuse utérine se détache","L'ovulation a lieu"], ans:2, exp:"Les règles (menstruations) surviennent lorsqu'il n'y a pas eu de grossesse : la muqueuse utérine préparée pour accueillir un embryon se détache et est éliminée." },
+  { q:"La vasectomie est :", opts:["Une méthode contraceptive féminine réversible","Une méthode chirurgicale masculine définitive","Un type de préservatif","Une pilule masculine"], ans:1, exp:"La vasectomie est une intervention chirurgicale masculine qui coupe les canaux déférents pour bloquer les spermatozoïdes. Elle est considérée comme définitive." },
+  { q:"Quelle est la période de fécondité dans un cycle de 28 jours ?", opts:["Jours 1 à 5","Jours 9 à 16","Jours 20 à 28","Jours 1 à 28 (toujours fertile)"], ans:1, exp:"La période de fécondité correspond aux jours autour de l'ovulation (J14), soit environ du jour 9 au jour 16 : 5 jours avant et 2 jours après l'ovulation." },
+];
+
+let currentQ = 0, score = 0, answered = [];
+
+function buildQuestion(index) {
+  if (index >= questions.length) {
+    document.getElementById('questions-area').innerHTML = '';
+    const fs = document.getElementById('final-score');
+    fs.classList.add('show');
+    document.getElementById('score-display').textContent = `${score} / ${questions.length}`;
+    const pct = Math.round(score/questions.length*100);
+    document.getElementById('score-msg').textContent = pct>=80 ? '🌟 Excellent ! Tu maîtrises le cours !' : pct>=60 ? '👍 Bien ! Encore quelques révisions.' : pct>=40 ? '📖 Continue à réviser, tu progresses !' : '💪 Relis le cours et réessaie !';
+    return;
+  }
+  const q = questions[index];
+  const letters = ['A','B','C','D'];
+  document.getElementById('questions-area').innerHTML = `
+    <div class="question-card">
+      <div class="question-num">Question ${index+1} sur ${questions.length}</div>
+      <div class="question-text">${q.q}</div>
+      <div class="options">${q.opts.map((o,i)=>`<button class="option-btn" onclick="selectAnswer(${index},${i})" id="opt-${index}-${i}"><span class="option-letter">${letters[i]}</span>${o}</button>`).join('')}</div>
+      <div class="feedback" id="fb-${index}"></div>
+    </div>`;
+  document.getElementById('qcm-progress-text').textContent = `Question ${index+1} / ${questions.length}`;
+  document.getElementById('progress-fill').style.width = `${(index/questions.length)*100+8}%`;
+}
+
+function selectAnswer(qIdx, optIdx) {
+  if (answered.includes(qIdx)) return;
+  answered.push(qIdx);
+  const q = questions[qIdx];
+  document.querySelectorAll(`[id^="opt-${qIdx}-"]`).forEach(b => b.disabled = true);
+  const correct = optIdx === q.ans;
+  if (correct) score++;
+  document.getElementById(`opt-${qIdx}-${optIdx}`).classList.add(correct?'correct':'wrong');
+  if (!correct) document.getElementById(`opt-${qIdx}-${q.ans}`).classList.add('correct');
+  const fb = document.getElementById(`fb-${qIdx}`);
+  fb.className = `feedback show ${correct?'correct-fb':'wrong-fb'}`;
+  fb.innerHTML = `${correct?'✅':'❌'} <span>${q.exp}</span>`;
+  document.getElementById('qcm-score-live').textContent = `Score : ${score}`;
+  currentQ++;
+  setTimeout(()=>buildQuestion(currentQ), 1900);
+}
+
+function restartQcm() {
+  currentQ=0; score=0; answered=[];
+  document.getElementById('final-score').classList.remove('show');
+  document.getElementById('qcm-score-live').textContent='Score : 0';
+  buildQuestion(0);
+}
+buildQuestion(0);
+
+// EX 1 : Calendrier
+const calQs = [
+  { q:"Quel jour ses prochaines règles commenceront-elles ?", ans:"29 mars", exp:"Cycle de 28 jours à partir du 1er mars → prochaines règles le 29 mars." },
+  { q:"Quel jour a lieu l'ovulation (approximativement) ?", ans:"15 mars", exp:"L'ovulation a lieu au jour 14 du cycle : 1er mars + 14 jours = 15 mars." },
+  { q:"Quelle est la période favorable à une fécondation ?", ans:"du 10 au 17 mars", exp:"La période fertile s'étend du jour 9 au jour 16 : du 10 mars au 17 mars environ." },
+];
+const calCont = document.getElementById('cal-questions');
+calQs.forEach((item,i) => {
+  const div = document.createElement('div');
+  div.style.cssText='margin-bottom:14px;padding:12px;background:#fff5fb;border-radius:12px;border:2px solid #f0d0e8;';
+  div.innerHTML=`<p style="font-weight:700;margin-bottom:8px;">${i+1}. ${item.q}</p><input class="ex-input" id="cq-${i}" placeholder="Ta réponse...">`;
+  calCont.appendChild(div);
+});
+function checkCalendar() {
+  let ok=0, html='<strong>Correction :</strong><ul style="margin-top:8px;">';
+  calQs.forEach((item,i) => {
+    const v = document.getElementById(`cq-${i}`).value.trim().toLowerCase();
+    const correct = v.includes(item.ans.toLowerCase().split(' ')[0]) || v.includes('29') || v.includes('15') || (i===2&&(v.includes('10')||v.includes('fertile')));
+    if(correct) ok++;
+    html+=`<li style="margin-bottom:6px;">${correct?'✅':'❌'} <strong>Réponse :</strong> ${item.ans} – ${item.exp}</li>`;
+  });
+  html+=`</ul><strong>Score : ${ok}/${calQs.length}</strong>`;
+  const c=document.getElementById('cal-correction'); c.innerHTML=html; c.classList.add('show');
+}
+
+// EX 2 : Vrai/Faux
+const vfData = [
+  {s:"La fécondation a lieu dans l'utérus.", ans:false, exp:"Faux ! La fécondation a lieu dans la TROMPE DE FALLOPE."},
+  {s:"La pilule contraceptive protège contre les IST.", ans:false, exp:"Faux ! Seul le préservatif protège contre les IST."},
+  {s:"La nidation est l'implantation de la cellule-œuf dans l'utérus.", ans:true, exp:"Vrai ! C'est la définition exacte de la nidation."},
+  {s:"Un cycle menstruel dure toujours exactement 28 jours.", ans:false, exp:"Faux ! 28 jours est une moyenne. Les cycles varient d'une femme à l'autre (21 à 35 jours)."},
+  {s:"L'implant contraceptif agit pendant environ 3 ans.", ans:true, exp:"Vrai ! L'implant sous-cutané libère des hormones pendant 3 ans."},
+  {s:"La PMA est uniquement la FIV.", ans:false, exp:"Faux ! La PMA regroupe plusieurs techniques : l'insémination artificielle ET la FIV entre autres."},
+];
+let vfAnswers={};
+const vfCont=document.getElementById('vf-container');
+vfData.forEach((item,i)=>{
+  vfAnswers[i]=null;
+  const div=document.createElement('div');
+  div.style.cssText='margin-bottom:12px;padding:13px;background:#fafafa;border-radius:12px;border:2px solid #eee;';
+  div.innerHTML=`<p style="margin-bottom:10px;font-weight:600;">${i+1}. ${item.s}</p>
+  <div style="display:flex;gap:10px;">
+    <button onclick="setVF(${i},true,this)" style="padding:7px 18px;border-radius:50px;border:2px solid #2ecc71;background:#fff;color:#27ae60;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.2s;">✅ Vrai</button>
+    <button onclick="setVF(${i},false,this)" style="padding:7px 18px;border-radius:50px;border:2px solid #e74c3c;background:#fff;color:#e74c3c;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.2s;">❌ Faux</button>
+  </div>`;
+  vfCont.appendChild(div);
+});
+function setVF(idx,val,btn){
+  vfAnswers[idx]=val;
+  btn.parentElement.querySelectorAll('button').forEach(b=>{b.style.opacity='0.5';b.style.transform='scale(1)';});
+  btn.style.opacity='1'; btn.style.transform='scale(1.08)';
+}
+function checkVF(){
+  let ok=0,html='<strong>Correction :</strong><ul style="margin-top:8px;">';
+  vfData.forEach((item,i)=>{
+    const correct=vfAnswers[i]===item.ans; if(correct)ok++;
+    html+=`<li style="margin-bottom:6px;">${correct?'✅':'❌'} <strong>${item.ans?'VRAI':'FAUX'}</strong> – ${item.exp}</li>`;
+  });
+  html+=`</ul><strong>Score : ${ok}/${vfData.length}</strong>`;
+  const c=document.getElementById('vf-correction'); c.innerHTML=html; c.classList.add('show');
+}
+
+// EX 3 : Compléter
+const fillData = [
+  {before:"La fécondation est la rencontre entre un spermatozoïde et un ", blank:"ovule", after:", qui fusionnent pour former une cellule-œuf."},
+  {before:"L'implantation de la cellule-œuf dans l'utérus s'appelle la ", blank:"nidation", after:"."},
+  {before:"La contraception est temporaire et ", blank:"réversible", after:", contrairement aux méthodes chirurgicales."},
+  {before:"L'ovulation dans un cycle de 28 jours a lieu approximativement au jour ", blank:"14", after:"."},
+  {before:"La FIV est une technique de PMA où la fécondation se fait en ", blank:"laboratoire", after:" avant transfert de l'embryon."},
+];
+const fillCont=document.getElementById('fill-container');
+fillData.forEach((item,i)=>{
+  const div=document.createElement('div');
+  div.style.cssText='margin-bottom:13px;padding:13px;background:#fff5fb;border-radius:12px;border:2px solid #f0d0e8;line-height:2;';
+  div.innerHTML=`<p><strong>${i+1}.</strong> ${item.before}<input class="ex-input" id="fi-${i}" placeholder="?" style="width:auto;min-width:120px;display:inline-block;margin:0 4px;">${item.after}</p>`;
+  fillCont.appendChild(div);
+});
+function checkFill(){
+  let ok=0,html='<strong>Correction :</strong><ul style="margin-top:8px;">';
+  fillData.forEach((item,i)=>{
+    const input=document.getElementById(`fi-${i}`);
+    const correct=input.value.trim().toLowerCase().includes(item.blank.toLowerCase());
+    if(correct){ok++;input.classList.add('correct');input.classList.remove('wrong');}
+    else{input.classList.add('wrong');input.classList.remove('correct');input.value=item.blank;}
+    html+=`<li style="margin-bottom:5px;">${correct?'✅':'❌'} <strong>${item.blank}</strong></li>`;
+  });
+  html+=`</ul><strong>Score : ${ok}/${fillData.length}</strong>`;
+  const c=document.getElementById('fill-correction'); c.innerHTML=html; c.classList.add('show');
+}
+
+// EX 4 : Ouvert
+const openQs=[
+  {q:"🗓️ Explique comment calculer la période de fécondité à partir d'une date de règles. Donne un exemple concret.",corr:"Pour trouver la période de fécondité : on repère d'abord la date d'ovulation (J14 du cycle, soit 14 jours après le premier jour des règles). La période fertile s'étend du J9 au J16. Exemple : règles le 1er avril → ovulation vers le 15 avril → période fertile du 10 au 17 avril."},
+  {q:"💊 Quelle est la différence entre contraception mécanique et hormonale ? Donne un exemple de chaque.",corr:"La contraception mécanique crée une barrière physique (ex : préservatif qui bloque les spermatozoïdes, stérilet en cuivre qui empêche la nidation). La contraception hormonale agit sur les hormones pour bloquer l'ovulation ou modifier la glaire cervicale (ex : pilule, implant). La principale différence est leur mode d'action : physique vs chimique/hormonal."},
+  {q:"🏥 Explique la différence entre insémination artificielle et FIV. Dans quel cas utilise-t-on la FIV ?",corr:"L'insémination artificielle consiste à injecter le sperme directement dans l'utérus au moment de l'ovulation : la fécondation a lieu naturellement dans les trompes. La FIV (Fécondation In Vitro) se fait entièrement en laboratoire : ovocytes et spermatozoïdes sont mis en contact en dehors du corps, l'embryon est ensuite transféré dans l'utérus. On utilise la FIV quand les trompes sont bouchées, quand les spermatozoïdes sont peu mobiles, ou quand l'insémination a échoué."},
+];
+const openCont=document.getElementById('open-container');
+openQs.forEach((item,i)=>{
+  const div=document.createElement('div');
+  div.style.cssText='margin-bottom:18px;padding:18px;background:#fff5fb;border-radius:14px;border:2px solid #f0d0e8;';
+  div.innerHTML=`<p style="font-weight:700;margin-bottom:12px;">${i+1}. ${item.q}</p>
+  <textarea style="width:100%;min-height:80px;border:2px solid #f0d0e8;border-radius:10px;padding:10px;font-family:'Nunito',sans-serif;font-size:0.93rem;resize:vertical;" placeholder="Écris ta réponse ici..."></textarea>
+  <button onclick="toggleCorr(this)" style="margin-top:10px;padding:8px 18px;border:none;border-radius:50px;background:linear-gradient(135deg,#e91e8c,#c2185b);color:#fff;font-family:'Baloo 2',cursive;font-weight:700;cursor:pointer;font-size:0.9rem;">👁️ Voir la correction</button>
+  <div style="display:none;margin-top:12px;padding:14px;background:#d5f5e3;border-radius:12px;border-left:4px solid #27ae60;font-size:0.92rem;">💡 ${item.corr}</div>`;
+  openCont.appendChild(div);
+});
+function toggleCorr(btn){
+  const c=btn.nextElementSibling;
+  const shown=c.style.display==='block';
+  c.style.display=shown?'none':'block';
+  btn.textContent=shown?'👁️ Voir la correction':'🙈 Masquer';
+}
+
+// GLOSSAIRE
+const glossaire = [
+  { mot:"Ovulation", cat:"rose", def:"Libération d'un ovule (cellule reproductrice femelle) par l'ovaire. Elle a lieu environ au 14e jour d'un cycle de 28 jours." },
+  { mot:"Spermatozoïde", cat:"bleu", def:"Cellule reproductrice mâle produite par les testicules. Très petite et mobile, elle nage pour atteindre l'ovule." },
+  { mot:"Ovule", cat:"rose", def:"Cellule reproductrice femelle produite par l'ovaire. Elle est libérée lors de l'ovulation et peut être fécondée par un spermatozoïde." },
+  { mot:"Fécondation", cat:"violet", def:"Fusion d'un spermatozoïde et d'un ovule pour former une cellule-œuf (zygote). Elle a lieu dans la trompe de Fallope." },
+  { mot:"Cellule-œuf (zygote)", cat:"violet", def:"Première cellule formée après la fécondation. Elle se divise ensuite pour former un embryon." },
+  { mot:"Nidation", cat:"rose", def:"Implantation de la cellule-œuf dans la muqueuse de l'utérus. C'est le début officiel de la grossesse." },
+  { mot:"Trompe de Fallope", cat:"orange", def:"Canal qui relie l'ovaire à l'utérus. C'est là que la fécondation a lieu. Si elle est bouchée, la fécondation devient impossible naturellement." },
+  { mot:"Utérus", cat:"rose", def:"Organe creux où se développe l'embryon pendant la grossesse. Sa muqueuse (endomètre) est éliminée lors des règles si pas de grossesse." },
+  { mot:"Menstruations (règles)", cat:"rouge", def:"Élimination de la muqueuse utérine lorsqu'il n'y a pas eu de grossesse. Elles surviennent en début de cycle (jours 1 à 5 environ)." },
+  { mot:"Contraception", cat:"vert", def:"Ensemble des méthodes permettant d'éviter une grossesse de façon temporaire et réversible. Elle agit soit sur les spermatozoïdes, soit sur l'ovulation, soit sur la nidation." },
+  { mot:"Réversible", cat:"vert", def:"Qui peut être annulé, arrêté. Une méthode contraceptive réversible permet de retrouver sa fertilité après l'arrêt (ex : pilule, préservatif). Contraire : définitif." },
+  { mot:"IST", cat:"orange", def:"Infection Sexuellement Transmissible. Maladie qui se transmet lors de rapports sexuels (ex : VIH, chlamydia). Seul le préservatif protège contre les IST ET la grossesse." },
+  { mot:"Hormones", cat:"violet", def:"Substances chimiques produites par le corps qui régulent de nombreuses fonctions. Les contraceptifs hormonaux (pilule, implant) utilisent des hormones artificielles pour bloquer l'ovulation." },
+  { mot:"Stérilet (DIU)", cat:"teal", def:"Dispositif Intra-Utérin. Petit objet en T inséré dans l'utérus par un médecin. Il en existe deux types : en cuivre (mécanique) ou hormonal." },
+  { mot:"Implant sous-cutané", cat:"rose", def:"Petit bâtonnet inséré sous la peau du bras qui libère des hormones pendant 3 ans pour empêcher l'ovulation. Très efficace et discret." },
+  { mot:"PMA", cat:"teal", def:"Procréation Médicalement Assistée. Ensemble de techniques médicales pour aider les couples infertiles à avoir un enfant (insémination artificielle, FIV...)." },
+  { mot:"FIV", cat:"teal", def:"Fécondation In Vitro. Technique de PMA où la fécondation se fait en laboratoire (en dehors du corps). L'embryon est ensuite transféré dans l'utérus." },
+  { mot:"Infertilité", cat:"orange", def:"Difficulté ou impossibilité à concevoir un enfant naturellement. Les causes peuvent être féminines (trompes bouchées, absence d'ovulation) ou masculines (peu de spermatozoïdes)." },
+  { mot:"Ligature des trompes", cat:"rouge", def:"Intervention chirurgicale féminine définitive qui consiste à bloquer les trompes de Fallope pour empêcher la rencontre spermatozoïde-ovule. Considérée comme irréversible." },
+  { mot:"Vasectomie", cat:"bleu", def:"Intervention chirurgicale masculine définitive qui coupe les canaux déférents pour empêcher les spermatozoïdes d'être éjaculés. Considérée comme irréversible." },
+];
+
+const colors = {rose:'#e91e8c',bleu:'#3498db',violet:'#8e44ad',vert:'#2ecc71',orange:'#e67e22',teal:'#1abc9c',rouge:'#e74c3c'};
+const bgs = {rose:'#fce4f3',bleu:'#d6eaf8',violet:'#e8daef',vert:'#d5f5e3',orange:'#fdebd0',teal:'#d1f2eb',rouge:'#fde8e8'};
+
+function buildGlossaire() {
+  const grid = document.getElementById('glossaire-grid');
+  if (!grid || grid.children.length > 0) return;
+  glossaire.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'gloss-item';
+    div.style.borderColor = colors[item.cat];
+    div.innerHTML = `
+      <div class="gloss-header" style="background:${bgs[item.cat]};" onclick="toggleGloss(this.parentElement)">
+        <span class="gloss-word" style="color:${colors[item.cat]};">${item.mot}</span>
+        <span class="gloss-arrow">▼</span>
+      </div>
+      <div class="gloss-def">${item.def}</div>`;
+    grid.appendChild(div);
+  });
+}
+function toggleGloss(el) {
+  el.classList.toggle('open');
+}
+</script>
+
+<!-- ========== GLOSSAIRE ========== -->
+<section id="glossaire">
+  <div class="section-title">📖 Glossaire</div>
+  <div style="background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:20px;box-shadow:var(--shadow);border-left:6px solid var(--teal);">
+    <p style="font-size:0.95rem;">💡 Clique sur un mot pour voir sa définition. <span style="color:var(--rose-dark);font-weight:700;">Tous les mots importants du chapitre</span> sont ici !</p>
+  </div>
+
+  <!-- Fiche illustrée contraception SVG -->
+  <div style="background:#fff;border-radius:16px;padding:16px;margin-bottom:20px;box-shadow:var(--shadow);">
+    <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1rem;margin-bottom:12px;color:var(--rose-dark);">🎨 Fiche illustrée – Les méthodes contraceptives</div>
+    <svg viewBox="0 0 720 580" xmlns="http://www.w3.org/2000/svg" style="width:100%;font-family:'Nunito',sans-serif;border-radius:12px;">
+      <!-- Fond -->
+      <rect width="720" height="580" fill="#fff9fe" rx="12"/>
+
+      <!-- Titre principal -->
+      <rect x="160" y="10" width="400" height="52" rx="14" fill="#e91e8c"/>
+      <text x="360" y="30" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="14" fill="#fff">LES MOYENS DE</text>
+      <text x="360" y="50" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="14" fill="#fff">CONTRACEPTION</text>
+
+      <!-- Définition -->
+      <rect x="20" y="72" width="680" height="36" rx="10" fill="#fce4f3" stroke="#e91e8c" stroke-width="1.5"/>
+      <text x="360" y="86" text-anchor="middle" font-size="10" fill="#c2185b" font-weight="700">📋 DÉFINITION : Méthodes pour éviter temporairement</text>
+      <text x="360" y="100" text-anchor="middle" font-size="10" fill="#c2185b">et réversiblement une grossesse</text>
+
+      <!-- ===== COLONNE 1 : MÉCANIQUES ===== -->
+      <rect x="15" y="118" width="215" height="310" rx="14" fill="#e8f4fd" stroke="#3498db" stroke-width="2"/>
+      <rect x="15" y="118" width="215" height="36" rx="14" fill="#3498db"/>
+      <rect x="15" y="140" width="215" height="14" rx="0" fill="#3498db"/>
+      <text x="122" y="141" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="12" fill="#fff">🛡️ 1. MÉCANIQUES</text>
+
+      <!-- Préservatif -->
+      <rect x="25" y="162" width="195" height="60" rx="10" fill="#fff" stroke="#85c1e9" stroke-width="1.5"/>
+      <text x="65" y="183" font-size="22">🫧</text>
+      <text x="90" y="183" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#1a5276">① Préservatif</text>
+      <text x="90" y="197" font-size="9" fill="#555">Masculin &amp; féminin</text>
+      <text x="90" y="209" font-size="9" fill="#2980b9" font-weight="700">Bloque les spermatozoïdes</text>
+      <rect x="170" y="164" width="44" height="16" rx="8" fill="#d5f5e3"/>
+      <text x="192" y="175" text-anchor="middle" font-size="8" fill="#27ae60" font-weight="700">+ IST ✓</text>
+
+      <!-- Stérilet cuivre -->
+      <rect x="25" y="230" width="195" height="55" rx="10" fill="#fff" stroke="#85c1e9" stroke-width="1.5"/>
+      <text x="60" y="250" font-size="18">🔩</text>
+      <text x="85" y="250" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#1a5276">② Stérilet cuivre</text>
+      <text x="85" y="264" font-size="9" fill="#555">DIU (Dispositif Intra-Utérin)</text>
+      <text x="85" y="276" font-size="9" fill="#2980b9" font-weight="700">Empêche la nidation</text>
+
+      <!-- Diaphragme -->
+      <rect x="25" y="293" width="195" height="50" rx="10" fill="#fff" stroke="#85c1e9" stroke-width="1.5"/>
+      <text x="60" y="313" font-size="18">🫙</text>
+      <text x="85" y="313" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#1a5276">③ Diaphragme</text>
+      <text x="85" y="327" font-size="9" fill="#555">Coupelle souple</text>
+      <text x="85" y="338" font-size="9" fill="#2980b9" font-weight="700">Barrière mécanique</text>
+
+      <!-- Note IST -->
+      <rect x="25" y="350" width="195" height="70" rx="10" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="122" y="368" text-anchor="middle" font-weight="800" font-size="10" fill="#1e8449">⭐ Le préservatif est</text>
+      <text x="122" y="381" text-anchor="middle" font-size="9" fill="#1e8449">la SEULE méthode qui</text>
+      <text x="122" y="393" text-anchor="middle" font-size="9" fill="#1e8449">protège aussi contre</text>
+      <text x="122" y="406" text-anchor="middle" font-weight="800" font-size="9" fill="#1e8449">les IST !</text>
+
+      <!-- ===== COLONNE 2 : HORMONALES ===== -->
+      <rect x="245" y="118" width="230" height="310" rx="14" fill="#fce4f3" stroke="#e91e8c" stroke-width="2"/>
+      <rect x="245" y="118" width="230" height="36" rx="14" fill="#e91e8c"/>
+      <rect x="245" y="140" width="230" height="14" rx="0" fill="#e91e8c"/>
+      <text x="360" y="141" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="12" fill="#fff">💊 2. HORMONALES</text>
+
+      <!-- Pilule -->
+      <rect x="255" y="162" width="210" height="55" rx="10" fill="#fff" stroke="#f48fb1" stroke-width="1.5"/>
+      <text x="280" y="181" font-size="18">💊</text>
+      <text x="305" y="181" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#c2185b">④ Pilule</text>
+      <text x="305" y="195" font-size="9" fill="#555">À prendre chaque jour</text>
+      <text x="305" y="207" font-size="9" fill="#c2185b" font-weight="700">Bloque l'ovulation</text>
+
+      <!-- Stérilet hormonal -->
+      <rect x="255" y="225" width="210" height="55" rx="10" fill="#fff" stroke="#f48fb1" stroke-width="1.5"/>
+      <text x="280" y="244" font-size="18">🔧</text>
+      <text x="305" y="244" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#c2185b">⑤ Stérilet hormonal</text>
+      <text x="305" y="258" font-size="9" fill="#555">DIU hormonal</text>
+      <text x="305" y="270" font-size="9" fill="#c2185b" font-weight="700">Hormones + glaire cervicale</text>
+
+      <!-- Implant -->
+      <rect x="255" y="288" width="210" height="55" rx="10" fill="#fff" stroke="#f48fb1" stroke-width="1.5"/>
+      <text x="280" y="307" font-size="18">💉</text>
+      <text x="305" y="307" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#c2185b">⑥ Implant</text>
+      <text x="305" y="321" font-size="9" fill="#555">Bâtonnet sous la peau</text>
+      <text x="305" y="333" font-size="9" fill="#c2185b" font-weight="700">Efficace 3 ans</text>
+
+      <!-- Patch -->
+      <rect x="255" y="351" width="210" height="50" rx="10" fill="#fff" stroke="#f48fb1" stroke-width="1.5"/>
+      <text x="280" y="370" font-size="18">🩹</text>
+      <text x="305" y="370" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#c2185b">⑦ Patch hormonal</text>
+      <text x="305" y="384" font-size="9" fill="#555">Collé sur la peau</text>
+      <text x="305" y="396" font-size="9" fill="#c2185b" font-weight="700">Hormones transdermiques</text>
+
+      <!-- ===== COLONNE 3 : CHIRURGICALES ===== -->
+      <rect x="490" y="118" width="215" height="310" rx="14" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
+      <rect x="490" y="118" width="215" height="36" rx="14" fill="#e67e22"/>
+      <rect x="490" y="140" width="215" height="14" rx="0" fill="#e67e22"/>
+      <text x="597" y="141" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="12" fill="#fff">✂️ 3. CHIRURGICALES</text>
+
+      <!-- Ligature -->
+      <rect x="500" y="162" width="195" height="80" rx="10" fill="#fff" stroke="#f0a500" stroke-width="1.5"/>
+      <text x="525" y="185" font-size="20">♀️</text>
+      <text x="555" y="182" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#d35400">⑧ Ligature</text>
+      <text x="555" y="196" font-weight="800" font-size="10" fill="#d35400">des trompes</text>
+      <text x="555" y="210" font-size="9" fill="#555">Féminin</text>
+      <text x="555" y="223" font-size="9" fill="#d35400" font-weight="700">Bloque l'ovule</text>
+      <rect x="500" y="228" width="90" height="10" rx="5" fill="#fde8e8"/>
+      <text x="545" y="237" text-anchor="middle" font-size="7" fill="#e74c3c" font-weight="700">PERMANENTE</text>
+
+      <!-- Vasectomie -->
+      <rect x="500" y="252" width="195" height="80" rx="10" fill="#fff" stroke="#f0a500" stroke-width="1.5"/>
+      <text x="525" y="275" font-size="20">♂️</text>
+      <text x="555" y="272" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#d35400">⑨ Vasectomie</text>
+      <text x="555" y="286" font-size="9" fill="#555">Masculin</text>
+      <text x="555" y="300" font-size="9" fill="#d35400" font-weight="700">Bloque les spermatozoïdes</text>
+      <rect x="500" y="316" width="90" height="10" rx="5" fill="#fde8e8"/>
+      <text x="545" y="325" text-anchor="middle" font-size="7" fill="#e74c3c" font-weight="700">PERMANENTE</text>
+
+      <!-- Attention -->
+      <rect x="500" y="342" width="195" height="80" rx="10" fill="#fef9c3" stroke="#e67e22" stroke-width="2"/>
+      <text x="597" y="362" text-anchor="middle" font-size="16">⚠️</text>
+      <text x="597" y="378" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="11" fill="#d35400">ATTENTION !</text>
+      <text x="597" y="393" text-anchor="middle" font-size="9" fill="#555">Très difficiles</text>
+      <text x="597" y="406" text-anchor="middle" font-size="9" fill="#555">à inverser !</text>
+      <text x="597" y="418" text-anchor="middle" font-size="8" fill="#888">Intervention chirurgicale</text>
+
+      <!-- ===== BAS : Les 3 niveaux d'action ===== -->
+      <rect x="15" y="440" width="690" height="130" rx="14" fill="#f8f0f6" stroke="#e91e8c" stroke-width="1.5"/>
+      <text x="360" y="460" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="13" fill="#c2185b">Les 3 niveaux d'action de la contraception</text>
+
+      <rect x="25" y="468" width="210" height="90" rx="10" fill="#d6eaf8" stroke="#3498db" stroke-width="1.5"/>
+      <text x="130" y="487" text-anchor="middle" font-size="18">🏊</text>
+      <text x="130" y="505" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="10" fill="#1a5276">Niveau 1</text>
+      <text x="130" y="519" text-anchor="middle" font-size="9" fill="#555">Empêche les spermatozoïdes</text>
+      <text x="130" y="531" text-anchor="middle" font-size="9" fill="#555">d'atteindre l'ovule</text>
+      <text x="130" y="543" text-anchor="middle" font-size="8" fill="#2980b9" font-weight="700">Ex : préservatif</text>
+
+      <rect x="255" y="468" width="210" height="90" rx="10" fill="#fce4f3" stroke="#e91e8c" stroke-width="1.5"/>
+      <text x="360" y="487" text-anchor="middle" font-size="18">🥚</text>
+      <text x="360" y="505" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="10" fill="#c2185b">Niveau 2</text>
+      <text x="360" y="519" text-anchor="middle" font-size="9" fill="#555">Empêche l'ovulation</text>
+      <text x="360" y="531" text-anchor="middle" font-size="9" fill="#555">(pas d'ovule = pas de fécondation)</text>
+      <text x="360" y="543" text-anchor="middle" font-size="8" fill="#c2185b" font-weight="700">Ex : pilule, implant</text>
+
+      <rect x="485" y="468" width="210" height="90" rx="10" fill="#e8daef" stroke="#8e44ad" stroke-width="1.5"/>
+      <text x="590" y="487" text-anchor="middle" font-size="18">🏠</text>
+      <text x="590" y="505" text-anchor="middle" font-family="'Baloo 2',cursive" font-weight="800" font-size="10" fill="#6c3483">Niveau 3</text>
+      <text x="590" y="519" text-anchor="middle" font-size="9" fill="#555">Empêche la nidation</text>
+      <text x="590" y="531" text-anchor="middle" font-size="9" fill="#555">dans l'utérus</text>
+      <text x="590" y="543" text-anchor="middle" font-size="8" fill="#6c3483" font-weight="700">Ex : stérilet cuivre</text>
+    </svg>
+  </div>
+
+  <!-- Grille glossaire -->
+  <div class="glossaire-grid" id="glossaire-grid"></div>
+</section>
+
+<script>
+buildGlossaire();
+
+</script>
 </body>
+</html>
+
 </html>
