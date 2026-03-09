@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Géo 4e – Un monde de migrants & Tourisme</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo:#3b4cca; --indigo-light:#e8eaff; --indigo-dark:#2a36a8;
+    --amber:#e67e22; --amber-light:#fdebd0; --amber-dark:#ca6f1e;
+    --teal:#0ea5a0; --teal-light:#d0f5f4; --teal-dark:#0b8a86;
+    --rose:#e91e8c; --rose-light:#fce4f3; --rose-dark:#c2185b;
+    --violet:#8e44ad; --violet-light:#e8daef;
+    --vert:#27ae60; --vert-light:#d5f5e3;
+    --bleu:#2980b9; --bleu-light:#d6eaf8;
+    --rouge:#c0392b; --rouge-light:#fde8e8;
+    --jaune:#f1c40f; --jaune-light:#fef9c3;
+    --bg:#f0f4ff; --card:#fff;
+    --text:#1a2035; --muted:#6b7280;
+    --shadow:0 4px 20px rgba(59,76,202,0.10);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  /* HEADER */
+  header{background:linear-gradient(135deg,#1a2a6c 0%,#3b4cca 45%,#0ea5a0 100%);padding:24px 20px 16px;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;top:-40px;left:-40px;width:200px;height:200px;background:rgba(255,255,255,0.04);border-radius:50%;}
+  header::after{content:'';position:absolute;bottom:-50px;right:-30px;width:180px;height:180px;background:rgba(255,255,255,0.05);border-radius:50%;}
+  .home-btn{position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:none;color:#fff;border-radius:50px;padding:8px 16px;font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:6px;transition:all 0.2s;z-index:10;}
+  .home-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-1px);}
+  header .emoji-row{font-size:1.8rem;margin-bottom:6px;position:relative;}
+  header h1{font-family:'Baloo 2',cursive;font-size:1.85rem;font-weight:800;color:#fff;text-shadow:2px 2px 10px rgba(0,0,0,0.2);position:relative;}
+  header p{color:rgba(255,255,255,0.88);font-size:0.98rem;margin-top:4px;position:relative;}
+
+  /* NAV */
+  nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:14px 16px 0;position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:3px solid #d0d8ff;}
+  .nav-btn{padding:9px 18px;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+  .nav-btn.active,.nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.16);}
+  .nav-btn[data-tab="cours"]{background:linear-gradient(135deg,var(--indigo),var(--indigo-dark));color:#fff;}
+  .nav-btn[data-tab="synthese"]{background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:#fff;}
+  .nav-btn[data-tab="qcm"]{background:linear-gradient(135deg,var(--amber),var(--amber-dark));color:#fff;}
+  .nav-btn[data-tab="exercices"]{background:linear-gradient(135deg,var(--rose),var(--rose-dark));color:#fff;}
+  .nav-btn[data-tab="glossaire"]{background:linear-gradient(135deg,var(--violet),#6c3483);color:#fff;}
+
+  /* SECTIONS */
+  section{display:none;padding:22px 16px;max-width:920px;margin:0 auto;}
+  section.active{display:block;animation:fadeIn 0.35s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  /* CARDS */
+  .card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);border-left:6px solid;transition:transform 0.2s;}
+  .card:hover{transform:translateY(-2px);}
+  .card.indigo{border-color:var(--indigo);}
+  .card.amber{border-color:var(--amber);}
+  .card.teal{border-color:var(--teal);}
+  .card.rose{border-color:var(--rose);}
+  .card.violet{border-color:var(--violet);}
+  .card.vert{border-color:var(--vert);}
+  .card-title{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .card.indigo .card-title{color:var(--indigo-dark);}
+  .card.amber .card-title{color:var(--amber-dark);}
+  .card.teal .card-title{color:var(--teal-dark);}
+  .card.rose .card-title{color:var(--rose-dark);}
+  .card.violet .card-title{color:var(--violet);}
+  .card.vert .card-title{color:var(--vert);}
+
+  .badge{display:inline-block;padding:3px 12px;border-radius:50px;font-size:0.78rem;font-weight:700;margin-bottom:10px;}
+  .badge.indigo{background:var(--indigo-light);color:var(--indigo-dark);}
+  .badge.amber{background:var(--amber-light);color:var(--amber-dark);}
+  .badge.teal{background:var(--teal-light);color:var(--teal-dark);}
+  .badge.rose{background:var(--rose-light);color:var(--rose-dark);}
+
+  p,li{line-height:1.75;font-size:0.97rem;}
+  ul{padding-left:20px;}
+  li{margin-bottom:6px;}
+
+  .highlight-box{border-radius:12px;padding:13px 16px;margin:12px 0;font-weight:600;}
+  .hb-indigo{background:var(--indigo-light);border-left:4px solid var(--indigo);}
+  .hb-amber{background:var(--amber-light);border-left:4px solid var(--amber);}
+  .hb-teal{background:var(--teal-light);border-left:4px solid var(--teal);}
+  .hb-vert{background:var(--vert-light);border-left:4px solid var(--vert);}
+  .hb-rose{background:var(--rose-light);border-left:4px solid var(--rose);}
+  .hb-violet{background:var(--violet-light);border-left:4px solid var(--violet);}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0;}
+  .stat-card{border-radius:14px;padding:16px;text-align:center;}
+  .stat-card.s1{background:linear-gradient(135deg,#1a2a6c,#3b4cca);color:#fff;}
+  .stat-card.s2{background:linear-gradient(135deg,#0ea5a0,#0b8a86);color:#fff;}
+  .stat-card.s3{background:linear-gradient(135deg,#e67e22,#ca6f1e);color:#fff;}
+  .stat-card.s4{background:linear-gradient(135deg,#8e44ad,#6c3483);color:#fff;}
+  .stat-num{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:800;line-height:1;}
+  .stat-label{font-size:0.78rem;opacity:0.9;margin-top:4px;}
+
+  .formula{text-align:center;font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:800;background:linear-gradient(135deg,#1a2a6c,#3b4cca);color:#fff;border-radius:14px;padding:14px;margin:14px 0;box-shadow:0 4px 15px rgba(59,76,202,0.25);}
+
+  .section-title{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--indigo-dark);}
+  .section-title span{font-size:1.6rem;}
+
+  /* TIMELINE */
+  .timeline{position:relative;padding-left:28px;border-left:3px solid var(--indigo-light);margin:14px 0;}
+  .timeline-item{position:relative;margin-bottom:18px;padding-left:14px;}
+  .timeline-item::before{content:'';position:absolute;left:-22px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--indigo);border:2px solid #fff;box-shadow:0 0 0 2px var(--indigo);}
+  .timeline-item .tl-label{font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;color:var(--indigo);margin-bottom:4px;}
+
+  /* MIGRATION TYPES */
+  .type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0;}
+  .type-card{border-radius:14px;padding:15px;transition:transform 0.2s;}
+  .type-card:hover{transform:translateY(-3px);}
+  .type-card .tc-icon{font-size:1.6rem;margin-bottom:8px;}
+  .type-card .tc-title{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;margin-bottom:5px;}
+  .type-card .tc-desc{font-size:0.85rem;line-height:1.5;}
+  .tc-eco{background:var(--vert-light);border:2px solid var(--vert);} .tc-eco .tc-title{color:var(--vert);}
+  .tc-pol{background:var(--rouge-light);border:2px solid var(--rouge);} .tc-pol .tc-title{color:var(--rouge);}
+  .tc-rel{background:var(--violet-light);border:2px solid var(--violet);} .tc-rel .tc-title{color:var(--violet);}
+  .tc-etu{background:var(--bleu-light);border:2px solid var(--bleu);} .tc-etu .tc-title{color:var(--bleu);}
+  .tc-for{background:var(--amber-light);border:2px solid var(--amber);} .tc-for .tc-title{color:var(--amber-dark);}
+
+  /* TOOLTIPS (hover PC) */
+  .mk{border-bottom:2px dashed var(--indigo);color:var(--indigo-dark);font-weight:700;position:relative;cursor:help;}
+  .mk::after{content:attr(data-def);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a2035;color:#fff;border-radius:12px;padding:10px 14px;font-size:0.85rem;font-weight:500;line-height:1.5;width:250px;white-space:normal;text-align:left;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.2s ease;box-shadow:0 8px 30px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);}
+  .mk::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a2035;opacity:0;transition:opacity 0.2s ease;z-index:9999;}
+  .mk:hover::after,.mk:hover::before{opacity:1;}
+
+  /* QCM */
+  .qcm-progress-bar{height:8px;background:#d0d8ff;border-radius:10px;margin:10px 0 18px;overflow:hidden;}
+  .qcm-progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--indigo),var(--teal));transition:width 0.4s;}
+  .question-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;border-top:4px solid var(--indigo);}
+  .question-num{font-size:0.85rem;font-weight:700;color:var(--muted);margin-bottom:8px;}
+  .question-text{font-size:1.05rem;font-weight:700;margin-bottom:16px;line-height:1.5;}
+  .options{display:flex;flex-direction:column;gap:10px;}
+  .opt-btn{background:#f8f9ff;border:2px solid #d0d8ff;border-radius:12px;padding:12px 16px;text-align:left;font-family:'Nunito',sans-serif;font-size:0.95rem;cursor:pointer;transition:all 0.2s;font-weight:600;}
+  .opt-btn:hover:not(:disabled){background:var(--indigo-light);border-color:var(--indigo);}
+  .opt-btn.correct{background:#d5f5e3;border-color:var(--vert);color:var(--vert);}
+  .opt-btn.wrong{background:var(--rouge-light);border-color:var(--rouge);color:var(--rouge);}
+  .feedback{margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:700;font-size:0.92rem;}
+  .feedback.ok{background:#d5f5e3;color:var(--vert);}
+  .feedback.ko{background:var(--rouge-light);color:var(--rouge);}
+  .qcm-score{text-align:center;padding:30px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);}
+  .score-num{font-family:'Baloo 2',cursive;font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--indigo),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .btn-retry{background:linear-gradient(135deg,var(--indigo),var(--teal));color:#fff;border:none;border-radius:50px;padding:12px 30px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:700;cursor:pointer;margin-top:16px;box-shadow:0 4px 15px rgba(59,76,202,0.3);}
+
+  /* EXERCICES */
+  .ex-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;border-top:4px solid;}
+  .ex-card.ex-vf{border-color:var(--teal);}
+  .ex-card.ex-trou{border-color:var(--amber);}
+  .ex-card.ex-assoc{border-color:var(--violet);}
+  .ex-card.ex-ordre{border-color:var(--rose);}
+  .ex-title{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .vf-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+  .vf-statement{flex:1;font-size:0.95rem;line-height:1.5;}
+  .vf-btns{display:flex;gap:6px;flex-shrink:0;}
+  .vf-btn{border:none;border-radius:8px;padding:6px 14px;font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .vf-btn.v{background:var(--vert-light);color:var(--vert);}
+  .vf-btn.f{background:var(--rouge-light);color:var(--rouge);}
+  .vf-btn.v:hover{background:var(--vert);color:#fff;}
+  .vf-btn.f:hover{background:var(--rouge);color:#fff;}
+  .vf-btn.correct{background:var(--vert)!important;color:#fff!important;box-shadow:0 0 0 3px rgba(39,174,96,0.3);}
+  .vf-btn.incorrect{background:var(--rouge)!important;color:#fff!important;box-shadow:0 0 0 3px rgba(192,57,43,0.3);}
+  .trou-input{border:2px solid #d0d8ff;border-radius:8px;padding:6px 12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;width:130px;text-align:center;outline:none;transition:border-color 0.2s;}
+  .trou-input:focus{border-color:var(--indigo);}
+  .trou-input.ok{border-color:var(--vert);background:var(--vert-light);}
+  .trou-input.ko{border-color:var(--rouge);background:var(--rouge-light);}
+  .check-btn{background:linear-gradient(135deg,var(--indigo),var(--teal));color:#fff;border:none;border-radius:50px;padding:10px 24px;font-family:'Baloo 2',cursive;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:14px;box-shadow:0 4px 12px rgba(59,76,202,0.25);}
+  .check-btn:hover{transform:translateY(-1px);}
+
+  /* DRAG & DROP */
+  .drag-container{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .drag-pool{flex:1;min-width:160px;background:#f8f9ff;border-radius:12px;padding:14px;min-height:80px;border:2px dashed #d0d8ff;}
+  .drag-pool-title{font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;color:var(--muted);margin-bottom:10px;}
+  .drop-zone{flex:1;min-width:160px;}
+  .drop-item{display:flex;align-items:center;gap:8px;background:#f8f9ff;border-radius:10px;padding:10px 12px;margin-bottom:8px;border:2px solid #d0d8ff;}
+  .drop-item .drop-label{font-size:0.88rem;font-weight:700;color:var(--muted);flex-shrink:0;}
+  .drop-item .drop-slot{flex:1;min-height:32px;border:2px dashed #d0d8ff;border-radius:8px;padding:4px 8px;display:flex;align-items:center;}
+  .drop-item .drop-slot.filled{border-color:var(--indigo);background:var(--indigo-light);}
+  .drag-chip{background:var(--indigo-light);border:2px solid var(--indigo);color:var(--indigo-dark);border-radius:8px;padding:5px 12px;font-size:0.85rem;font-weight:700;cursor:grab;user-select:none;display:inline-block;margin:4px;}
+  .drag-chip:active{cursor:grabbing;opacity:0.7;}
+  .drag-chip.placed{background:#e8daef;border-color:var(--violet);color:var(--violet);}
+
+  /* GLOSSAIRE */
+  .glossaire-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+  .glos-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border-top:4px solid var(--indigo);transition:transform 0.2s;}
+  .glos-card:hover{transform:translateY(-2px);}
+  .glos-term{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;color:var(--indigo-dark);margin-bottom:8px;}
+  .glos-def{font-size:0.92rem;line-height:1.6;color:var(--text);}
+  .glos-ex{font-size:0.82rem;color:var(--muted);margin-top:6px;font-style:italic;}
+
+  /* SYNTHESE TABLE */
+  .synth-table{width:100%;border-collapse:collapse;margin:14px 0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .synth-table th{background:linear-gradient(135deg,var(--indigo),var(--teal));color:#fff;padding:12px 14px;text-align:left;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.95rem;}
+  .synth-table td{padding:11px 14px;border-bottom:1px solid #e8eaff;font-size:0.92rem;}
+  .synth-table tr:last-child td{border-bottom:none;}
+  .synth-table tr:nth-child(even) td{background:#f8f9ff;}
+
+  @media(max-width:600px){
+    header h1{font-size:1.45rem;}
+    .type-grid{grid-template-columns:1fr 1fr;}
+    .stat-grid{grid-template-columns:1fr 1fr;}
+    .drag-container{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="home-btn" href="../index.html">← Accueil</a>
+  <div class="emoji-row">🌍 ✈️ 🧳</div>
+  <h1>Un monde de migrants & Tourisme</h1>
+  <p>Géographie · 4e · Thème 2</p>
+</header>
+
+<nav>
+  <button class="nav-btn active" data-tab="cours">📖 Cours</button>
+  <button class="nav-btn" data-tab="synthese">📋 Synthèse</button>
+  <button class="nav-btn" data-tab="qcm">🎯 QCM</button>
+  <button class="nav-btn" data-tab="exercices">✏️ Exercices</button>
+  <button class="nav-btn" data-tab="glossaire">📚 Glossaire</button>
+</nav>
+
+<!-- ===== COURS ===== -->
+<section id="cours" class="active">
+  <div class="section-title"><span>🌍</span> Les migrations mondiales</div>
+
+  <div class="stat-grid">
+    <div class="stat-card s1"><div class="stat-num">250M</div><div class="stat-label">migrants dans le monde (2015)</div></div>
+    <div class="stat-card s2"><div class="stat-num">60M</div><div class="stat-label">réfugiés de guerre chaque année</div></div>
+    <div class="stat-card s3"><div class="stat-num">200M</div><div class="stat-label">migrants climatiques prévus en 2050</div></div>
+    <div class="stat-card s4"><div class="stat-num">85M</div><div class="stat-label">touristes en France (2015)</div></div>
+  </div>
+
+  <div class="card indigo">
+    <div class="badge indigo">Définitions clés</div>
+    <div class="card-title">🧭 Qu'est-ce qu'un migrant ?</div>
+    <p>Un <span class="mk" data-def="Personne qui se déplace d'un pays d'origine vers un pays d'accueil pour s'y établir.">migrant</span> est une personne qui se déplace d'un <strong>pays d'origine</strong> vers un <strong>pays d'accueil</strong>.</p>
+    <div class="highlight-box hb-indigo" style="margin-top:12px;">
+      <p>🔹 Un <span class="mk" data-def="Étranger vivant dans un pays qui n'est pas le sien. Ex : un Algérien vivant en France. (du latin 'in' = dedans)">immigré</span> = étranger installé dans un pays (ex. un Algérien en France)<br>
+      🔹 Un <span class="mk" data-def="Personne qui quitte son pays pour aller vivre à l'étranger. Ex : un retraité français vivant au Maroc. (du latin 'ex' = sortir)">émigré</span> = quelqu'un qui quitte son pays (ex. un retraité français au Maroc)</p>
+    </div>
+    <p style="margin-top:10px;">Les hommes ont toujours migré depuis la <span class="mk" data-def="Période de l'histoire avant l'invention de l'écriture (avant -3300 av. J.-C.). Les premiers Homo sapiens ont quitté l'Afrique il y a environ 70 000 ans.">Préhistoire</span> : de l'Afrique vers l'Europe (−200 000 ans), puis de l'Asie vers l'Amérique du Sud (−9 000 ans).</p>
+  </div>
+
+  <div class="card amber">
+    <div class="badge amber">Caractéristiques</div>
+    <div class="card-title">📊 Les grandes tendances</div>
+    <p>Les migrations partent en général des <strong>pays pauvres</strong> vers les <strong>pays riches</strong>.</p>
+    <div class="highlight-box hb-amber" style="margin-top:10px;">
+      ⚠️ Il existe aussi des migrations <strong>entre pays du Sud</strong> : par exemple, des Philippines vers la <span class="mk" data-def="Région du Moyen-Orient comprenant l'Arabie Saoudite, les Émirats Arabes Unis, le Qatar, le Koweït, Bahreïn et Oman. Ces pays riches en pétrole emploient de nombreux travailleurs étrangers.">péninsule arabique</span>.
+    </div>
+    <p style="margin-top:10px;">Le monde compte <strong>250 millions de migrants</strong> (2015), dont <strong>60 millions de <span class="mk" data-def="Personne forcée de fuir son pays en raison d'une guerre, de persécutions, ou de catastrophes. Reconnue et protégée par le droit international.">réfugiés</span> de guerre</strong> chaque année.</p>
+  </div>
+
+  <div class="card teal">
+    <div class="badge teal">Types de migrations</div>
+    <div class="card-title">🗺️ Pourquoi migre-t-on ?</div>
+    <div class="type-grid">
+      <div class="type-card tc-eco">
+        <div class="tc-icon">💼</div>
+        <div class="tc-title">Économiques</div>
+        <div class="tc-desc">Recherche d'un emploi, fuir la famine ou la pauvreté.</div>
+      </div>
+      <div class="type-card tc-pol">
+        <div class="tc-icon">⚔️</div>
+        <div class="tc-title">Politiques</div>
+        <div class="tc-desc">Réfugiés de guerre (Syriens), <span class="mk" data-def="Processus par lequel les anciennes colonies obtiennent leur indépendance. En Algérie, l'indépendance a eu lieu en 1962 : les colons français (Pieds-Noirs) ont dû rentrer en France.">décolonisation</span> (Pieds-Noirs d'Algérie, 1962).</div>
+      </div>
+      <div class="type-card tc-rel">
+        <div class="tc-icon">✝️ ✡️</div>
+        <div class="tc-title">Religieuses</div>
+        <div class="tc-desc"><span class="mk" data-def="Agression, torture, mauvais traitements ou discrimination infligés à une personne en raison de sa religion, de son origine ou de ses opinions.">Persécutions</span> religieuses : chrétiens du Proche-Orient, Juifs (2e Guerre Mondiale, attentats).</div>
+      </div>
+      <div class="type-card tc-etu">
+        <div class="tc-icon">🎓</div>
+        <div class="tc-title">Études</div>
+        <div class="tc-desc">Programme <span class="mk" data-def="Programme européen d'échange universitaire permettant aux étudiants de suivre une partie de leurs études dans un autre pays de l'Union Européenne.">Erasmus</span> dans l'Union Européenne…</div>
+      </div>
+      <div class="type-card tc-for">
+        <div class="tc-icon">⛓️</div>
+        <div class="tc-title">Forcées</div>
+        <div class="tc-desc">Esclavagisme, traite des êtres humains, prostitution forcée…</div>
+      </div>
+    </div>
+    <div class="highlight-box hb-rose" style="margin-top:12px;">
+      ⚠️ Un <span class="mk" data-def="Migrant en situation irrégulière, sans papiers officiels (passeport, carte de séjour). Il n'a pas de statut légal dans le pays d'accueil.">clandestin</span> est un migrant <strong>illégal</strong> qui n'a pas de papiers (passeport, carte de séjour).
+    </div>
+  </div>
+
+  <div class="card amber">
+    <div class="badge amber">Les 3 grands flux</div>
+    <div class="card-title">📈 Comment s'organisent les migrations ?</div>
+    <p>On distingue trois grands types de flux migratoires :</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0;">
+      <div style="background:var(--vert-light);border:2px solid var(--vert);border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:800;color:var(--vert);">38%</div>
+        <div style="font-weight:700;font-size:0.9rem;color:var(--vert);">Sud → Sud</div>
+        <div style="font-size:0.82rem;margin-top:4px;">Migrations entre pays pauvres (proximité, langue, transit)</div>
+      </div>
+      <div style="background:var(--indigo-light);border:2px solid var(--indigo);border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:800;color:var(--indigo);">34%</div>
+        <div style="font-weight:700;font-size:0.9rem;color:var(--indigo);">Sud → Nord</div>
+        <div style="font-size:0.82rem;margin-top:4px;">Vers les pays riches du Nord</div>
+      </div>
+      <div style="background:var(--bleu-light);border:2px solid var(--bleu);border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:800;color:var(--bleu);">23%</div>
+        <div style="font-weight:700;font-size:0.9rem;color:var(--bleu);">Nord → Nord</div>
+        <div style="font-size:0.82rem;margin-top:4px;">Entre pays riches (ex. en Europe)</div>
+      </div>
+    </div>
+    <div class="highlight-box hb-amber">
+      💡 Un <strong>flux</strong> est un déplacement de personnes important d'une région vers une autre.
+    </div>
+  </div>
+
+  <div class="card teal" style="border-color:var(--rouge);">
+    <div class="badge" style="background:var(--rouge-light);color:var(--rouge);">Étude de cas</div>
+    <div class="card-title" style="color:var(--rouge);">👩 Le parcours de Fatina – Réfugiée syrienne</div>
+    <p>Fatina est Syrienne, originaire d'<strong>Alep</strong>. Son mari est grièvement blessé lors d'un bombardement. Pour lui trouver des soins, la famille quitte tout et migre vers l'Europe.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;">
+      <div style="background:var(--rouge-light);border-radius:10px;padding:12px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--rouge);margin-bottom:6px;">⚠️ Raisons du départ</div>
+        <ul style="font-size:0.88rem;">
+          <li>Mari gravement blessé (besoin de soins)</li>
+          <li>Situation économique dégradée (usine détruite)</li>
+          <li>Guerre civile en Syrie</li>
+        </ul>
+      </div>
+      <div style="background:var(--amber-light);border-radius:10px;padding:12px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--amber-dark);margin-bottom:6px;">🗺️ Le voyage</div>
+        <ul style="font-size:0.88rem;">
+          <li>Syrie → Turquie → Grèce (île de Lesbos)</li>
+          <li>5 000 livres turques (~1 200€) par personne</li>
+          <li>Traversée de 5h sur embarcation de fortune</li>
+          <li>Mari décédé à l'arrivée en Grèce</li>
+        </ul>
+      </div>
+      <div style="background:var(--indigo-light);border-radius:10px;padding:12px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--indigo-dark);margin-bottom:6px;">🏕️ Dans les camps</div>
+        <ul style="font-size:0.88rem;">
+          <li>Vie sous tente plastique, sans confort</li>
+          <li>Froid, manque d'hygiène, insécurité</li>
+          <li>Les femmes sont souvent agressées</li>
+          <li>Sanitaires à 10 min à pied, eau glacée</li>
+        </ul>
+      </div>
+      <div style="background:var(--vert-light);border-radius:10px;padding:12px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--vert);margin-bottom:6px;">🏠 En France (Lyon)</div>
+        <ul style="font-size:0.88rem;">
+          <li>Accueillie dans un CADA près de Lyon</li>
+          <li>Difficultés : pas de travail, logement, langue</li>
+          <li>4 enfants seule, ne parle pas français</li>
+          <li>Intérêt : paix, aides sociales, éducation</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight-box hb-rose">
+      📋 Un <span class="mk" data-def="Centre d'Accueil pour Demandeurs d'Asile : structure qui héberge temporairement les personnes demandant le statut de réfugié en France, et les aide dans leurs démarches administratives.">CADA</span> = Centre d'Accueil pour Demandeurs d'Asile. Depuis la guerre, <strong>4 958 000 Syriens</strong> ont fui le pays (HCR, 2017).
+    </div>
+  </div>
+
+  <div class="card violet">
+    <div class="badge" style="background:var(--violet-light);color:var(--violet);">Étude de cas</div>
+    <div class="card-title">🇮🇳 La diaspora indienne</div>
+    <p>Une <span class="mk" data-def="Communauté de personnes de même nationalité ou origine vivant à l'étranger, qui maintient des liens avec son pays d'origine.">diaspora</span> est une <strong>communauté de même nationalité</strong> établie à l'étranger.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;">
+      <div style="background:var(--violet-light);border-radius:10px;padding:12px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--violet);margin-bottom:6px;">🌍 Pays anglophones</div>
+        <div style="font-size:0.88rem;">États-Unis, Royaume-Uni, Afrique du Sud…</div>
+      </div>
+      <div style="background:var(--teal-light);border-radius:10px;padding:12px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--teal-dark);margin-bottom:6px;">🌏 Pays voisins</div>
+        <div style="font-size:0.88rem;">Malaisie, Arabie Saoudite, Émirats, Myanmar (Birmanie)…</div>
+      </div>
+    </div>
+    <div class="highlight-box hb-violet">
+      👥 <strong>30 millions d'Indiens</strong> sont dispersés dans le monde entier. La diaspora indienne est la plus nombreuse en Asie (Arabie, Malaisie). Elle maintient de forts liens culturels et économiques avec l'Inde.
+    </div>
+  </div>
+
+  <div class="card indigo">
+    <div class="badge indigo">Catégories sociales</div>
+    <div class="card-title">👥 Qui sont les migrants ?</div>
+    <p>Les catégories sociales des migrants sont très diverses :</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;">
+      <div style="background:var(--indigo-light);border:2px solid var(--indigo);border-radius:12px;padding:14px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--indigo-dark);margin-bottom:8px;">📚 Catégorie 1 – Qualifiés</div>
+        <ul style="font-size:0.88rem;">
+          <li>Ingénieurs, médecins, avocats</li>
+          <li>Universitaires, enseignants</li>
+          <li>Étudiants se formant à l'étranger</li>
+          <li>Parlent souvent anglais</li>
+        </ul>
+        <div style="margin-top:8px;font-size:0.82rem;background:#fff;border-radius:8px;padding:6px 10px;font-weight:700;color:var(--indigo);">→ C'est la <span class="mk" data-def="Phénomène d'émigration des personnes les plus qualifiées (médecins, ingénieurs, chercheurs) d'un pays pauvre vers un pays riche. Cela affaiblit le pays d'origine qui perd ses élites.">fuite des cerveaux</span> ("Brain drain" en anglais)</div>
+      </div>
+      <div style="background:var(--amber-light);border:2px solid var(--amber);border-radius:12px;padding:14px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--amber-dark);margin-bottom:8px;">🔧 Catégorie 2 – Non qualifiés</div>
+        <ul style="font-size:0.88rem;">
+          <li>Ouvriers, maçons, agriculteurs</li>
+          <li>Infirmières, aides à domicile</li>
+          <li>Femmes de ménage, employés</li>
+          <li>Souvent plus pauvres</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:#00897b;border-left:6px solid #00897b;">
+    <div class="badge" style="background:#e0f2f1;color:#00897b;">Nouveau !</div>
+    <div class="card-title" style="color:#00897b;">🌊 Les migrants climatiques</div>
+    <p>Au phénomène économique et politique, il faut ajouter les <strong><span class="mk" data-def="Personnes contraintes de quitter leur lieu de vie en raison de catastrophes liées au changement climatique : montée des eaux, sécheresses, inondations, tempêtes. Ce phénomène devrait s'aggraver avec le réchauffement climatique.">migrants climatiques</span></strong>, dus à la montée des eaux.</p>
+    <div style="display:flex;align-items:center;gap:14px;background:#e0f2f1;border-radius:12px;padding:14px;margin:12px 0;flex-wrap:wrap;">
+      <div style="font-size:2.5rem;">🏝️</div>
+      <div>
+        <p><strong>Exemple :</strong> aux îles <strong>Tonga</strong> et <strong>Tuvalu</strong> (Pacifique), les habitants négocient des terres pour se réfugier en <strong>Australie</strong> car leurs îles disparaissent sous les eaux.</p>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,#00897b,#0ea5a0);color:#fff;border-radius:12px;padding:14px;text-align:center;font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;box-shadow:0 4px 15px rgba(0,137,123,0.3);">
+      ⚠️ En 2050, on estime que <strong>200 millions de personnes</strong> seront des migrants climatiques
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:30px;"><span>✈️</span> Le tourisme mondial</div>
+
+  <div class="card rose">
+    <div class="badge rose">Économie</div>
+    <div class="card-title">💰 Impact économique du tourisme</div>
+    <p>Le tourisme est un secteur économique majeur à l'échelle mondiale :</p>
+    <div class="stat-grid" style="margin-top:12px;">
+      <div class="stat-card s1"><div class="stat-num">9%</div><div class="stat-label">du PIB mondial</div></div>
+      <div class="stat-card s2"><div class="stat-num">1/11</div><div class="stat-label">des emplois mondiaux (direct + indirect)</div></div>
+      <div class="stat-card s3"><div class="stat-num">1 500<br><span style="font-size:1rem;">Mds$</span></div><div class="stat-label">en exportations</div></div>
+      <div class="stat-card s4"><div class="stat-num">30%</div><div class="stat-label">des échanges de services</div></div>
+    </div>
+    <div class="highlight-box hb-indigo" style="margin-top:12px;">
+      💡 Le tourisme représente <strong>6% des exportations mondiales</strong> de biens et services.
+    </div>
+  </div>
+
+  <div class="card violet">
+    <div class="badge" style="background:var(--violet-light);color:var(--violet);">France</div>
+    <div class="card-title">🗼 La France, 1ère destination mondiale</div>
+    <p>La France est la <strong>première destination touristique mondiale</strong> avec près de <strong>85 millions de touristes</strong> accueillis en 2015.</p>
+    <div class="highlight-box hb-violet" style="margin-top:12px;">
+      🏆 Ses atouts : patrimoine historique exceptionnel, gastronomie, paysages variés (montagne, mer, campagne), Paris comme capitale culturelle mondiale.
+    </div>
+  </div>
+
+  <div class="card vert">
+    <div class="card-title">📌 En résumé</div>
+    <div class="formula">
+      🌍 250M migrants · 38% Sud→Sud · 34% Sud→Nord · 23% Nord→Nord · 200M migrants climatiques en 2050 · France n°1 tourisme (85M)
+    </div>
+    <p>Les migrations mondiales concernent 250 millions de personnes, principalement des pays pauvres vers les pays riches, incluant 60 millions de réfugiés. Le tourisme représente 9% du <span class="mk" data-def="Produit Intérieur Brut : mesure la richesse totale produite par un pays en une année. C'est l'indicateur principal de la taille d'une économie.">PIB</span> mondial et génère 1 500 milliards de dollars, avec la France comme première destination (85 millions de touristes).</p>
+  </div>
+</section>
+
+<!-- ===== SYNTHESE ===== -->
+<section id="synthese">
+  <div class="section-title"><span>📋</span> Fiche de synthèse</div>
+
+  <div class="card indigo">
+    <div class="card-title">🌍 Les migrations en chiffres (2015)</div>
+    <table class="synth-table">
+      <thead><tr><th>Donnée</th><th>Chiffre</th><th>Détail</th></tr></thead>
+      <tbody>
+        <tr><td>Migrants dans le monde</td><td><strong>250 millions</strong></td><td>~3,3% de la pop. mondiale</td></tr>
+        <tr><td>Réfugiés de guerre</td><td><strong>60 millions/an</strong></td><td>Syriens, Africains… dont 4 958 000 Syriens (HCR 2017)</td></tr>
+        <tr><td>Flux Sud → Sud</td><td><strong>38%</strong></td><td>Proximité, langue, transit temporaire</td></tr>
+        <tr><td>Flux Sud → Nord</td><td><strong>34%</strong></td><td>Pays pauvres → pays riches</td></tr>
+        <tr><td>Flux Nord → Nord</td><td><strong>23%</strong></td><td>Entre pays riches (ex. en Europe)</td></tr>
+        <tr><td>Migrants climatiques (2050)</td><td><strong>200 millions</strong></td><td>Montée des eaux (Tonga, Tuvalu → Australie)</td></tr>
+        <tr><td>Diaspora indienne</td><td><strong>30 millions</strong></td><td>Dispersés dans le monde, la plus nombreuse en Asie</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card amber">
+    <div class="card-title">✈️ Le tourisme en chiffres (2015)</div>
+    <table class="synth-table">
+      <thead><tr><th>Indicateur</th><th>Valeur</th></tr></thead>
+      <tbody>
+        <tr><td>Part du PIB mondial</td><td><strong>9%</strong></td></tr>
+        <tr><td>Emplois (direct + indirect)</td><td><strong>1 emploi sur 11</strong></td></tr>
+        <tr><td>Revenus en exportations</td><td><strong>1 500 milliards de dollars</strong></td></tr>
+        <tr><td>Part des échanges de services</td><td><strong>30%</strong></td></tr>
+        <tr><td>Part des exportations mondiales</td><td><strong>6%</strong></td></tr>
+        <tr><td>France : touristes accueillis</td><td><strong>85 millions</strong></td></tr>
+        <tr><td>Rang de la France</td><td><strong>1ère destination mondiale</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <div class="card-title">🗂️ Les types de migrations</div>
+    <ul>
+      <li>💼 <strong>Économiques</strong> : recherche d'emploi, famine</li>
+      <li>⚔️ <strong>Politiques</strong> : réfugiés de guerre, décolonisation</li>
+      <li>✝️ <strong>Religieuses</strong> : persécutions (chrétiens du Proche-Orient, Juifs)</li>
+      <li>🎓 <strong>Pour les études</strong> : Erasmus (UE)</li>
+      <li>⛓️ <strong>Forcées</strong> : esclavagisme, traite, prostitution</li>
+      <li>🌊 <strong>Climatiques</strong> : montée des eaux, sécheresses (Tonga, Tuvalu → Australie)</li>
+    </ul>
+    <div class="highlight-box hb-teal" style="margin-top:12px;">
+      📌 <strong>Immigré</strong> (vient de l'extérieur) ≠ <strong>Émigré</strong> (part vers l'extérieur)<br>
+      🧠 <strong>Brain drain</strong> = fuite des cerveaux (médecins, ingénieurs qualifiés qui migrent)
+    </div>
+  </div>
+</section>
+
+<!-- ===== QCM ===== -->
+<section id="qcm">
+  <div class="section-title"><span>🎯</span> QCM – 12 questions</div>
+  <div class="qcm-progress-bar"><div class="qcm-progress-fill" id="qcm-progress" style="width:0%"></div></div>
+  <div id="qcm-container"></div>
+  <div id="qcm-score" class="qcm-score" style="display:none"></div>
+</section>
+
+<!-- ===== EXERCICES ===== -->
+<section id="exercices">
+  <div class="section-title"><span>✏️</span> Exercices interactifs</div>
+
+  <!-- VRAI/FAUX -->
+  <div class="ex-card ex-vf">
+    <div class="ex-title" style="color:var(--teal-dark);">🔵 Exercice 1 – Vrai ou Faux ?</div>
+    <div id="vf-items"></div>
+    <button class="check-btn" onclick="checkVF()">Vérifier mes réponses</button>
+    <div id="vf-feedback" style="margin-top:12px;font-weight:700;"></div>
+  </div>
+
+  <!-- TEXTE À TROUS -->
+  <div class="ex-card ex-trou">
+    <div class="ex-title" style="color:var(--amber-dark);">✏️ Exercice 2 – Texte à compléter</div>
+    <p id="trou-text" style="line-height:2.4;font-size:0.97rem;"></p>
+    <button class="check-btn" onclick="checkTrou()">Vérifier</button>
+    <div id="trou-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+
+  <!-- ASSOCIATION DRAG & DROP -->
+  <div class="ex-card ex-assoc">
+    <div class="ex-title" style="color:var(--violet);">🔗 Exercice 3 – Associe les définitions</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Glisse chaque mot vers sa bonne définition.</p>
+    <div class="drag-container">
+      <div>
+        <div class="drag-pool-title">MOTS :</div>
+        <div id="drag-pool"></div>
+      </div>
+      <div class="drop-zone" id="drop-zone"></div>
+    </div>
+    <button class="check-btn" onclick="checkDrag()">Vérifier</button>
+    <div id="drag-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+
+  <!-- ORDRE CHRONOLOGIQUE -->
+  <div class="ex-card ex-ordre">
+    <div class="ex-title" style="color:var(--rose-dark);">🕐 Exercice 4 – Remets dans l'ordre</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Classe ces migrations de la plus ancienne à la plus récente :</p>
+    <div id="ordre-items"></div>
+    <button class="check-btn" onclick="checkOrdre()">Vérifier</button>
+    <div id="ordre-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+</section>
+
+<!-- ===== GLOSSAIRE ===== -->
+<section id="glossaire">
+  <div class="section-title"><span>📚</span> Glossaire</div>
+  <div class="glossaire-grid" id="glossaire-grid"></div>
+</section>
+
+<script>
+// ===== NAVIGATION =====
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ===== QCM DATA =====
+const qcmData = [
+  { q: "Combien de migrants comptait le monde en 2015 ?", opts: ["100 millions", "250 millions", "500 millions", "1 milliard"], ans: 1, expl: "Le monde comptait 250 millions de migrants en 2015, soit environ 3,3% de la population mondiale." },
+  { q: "Quel est le flux migratoire le plus important en volume ?", opts: ["Sud → Nord (34%)", "Nord → Nord (23%)", "Sud → Sud (38%)", "Nord → Sud (5%)"], ans: 2, expl: "Le flux le plus important est Sud → Sud (38%) : migrations entre pays pauvres pour des raisons de proximité, de langue ou transit." },
+  { q: "Quelle part des migrants va des pays pauvres vers les pays riches (Sud → Nord) ?", opts: ["23%", "34%", "38%", "50%"], ans: 1, expl: "34% des migrants vont du Sud (pays pauvres) vers le Nord (pays riches)." },
+  { q: "Un 'immigré' est :", opts: ["Quelqu'un qui quitte son pays", "Un étranger installé dans un pays", "Un touriste", "Un étudiant en échange"], ans: 1, expl: "Un immigré est un étranger dans un pays d'accueil (du latin 'in' = dedans). Ex : un Algérien en France." },
+  { q: "Qu'est-ce que le 'brain drain' (fuite des cerveaux) ?", opts: ["Des étudiants qui reviennent dans leur pays", "L'émigration de personnes très qualifiées vers les pays riches", "Des migrants climatiques", "Des réfugiés de guerre"], ans: 1, expl: "Le brain drain est la fuite des cerveaux : des médecins, ingénieurs et universitaires qualifiés quittent leur pays pour aller dans des pays riches." },
+  { q: "Qu'est-ce qu'une diaspora ?", opts: ["Un flux migratoire important", "Une communauté de même nationalité vivant à l'étranger", "Un réfugié politique", "Un centre d'accueil"], ans: 1, expl: "Une diaspora est une communauté de personnes de même nationalité ou origine vivant à l'étranger et maintenant des liens avec son pays." },
+  { q: "Combien d'Indiens sont dispersés dans le monde (diaspora indienne) ?", opts: ["10 millions", "20 millions", "30 millions", "50 millions"], ans: 2, expl: "La diaspora indienne compte 30 millions de personnes dispersées dans le monde, surtout en pays anglophones et en Asie." },
+  { q: "Pourquoi Fatina a-t-elle quitté la Syrie ?", opts: ["Pour des études", "Son mari était blessé et elle cherchait des soins en Europe", "Pour travailler", "Pour des raisons religieuses"], ans: 1, expl: "Fatina a quitté Alep pour soigner son mari grièvement blessé lors d'un bombardement, et fuir la guerre civile syrienne." },
+  { q: "Combien de Syriens ont fui leur pays depuis le début de la guerre ?", opts: ["500 000", "1 million", "2 millions", "4 958 000"], ans: 3, expl: "Selon le HCR (2017), près de 4 958 000 personnes ont fui la Syrie depuis le début de la guerre civile." },
+  { q: "Qu'est-ce qu'un migrant climatique ?", opts: ["Un migrant qui fuit le froid", "Une personne forcée de migrer à cause du changement climatique (montée des eaux…)", "Un touriste écologique", "Un réfugié politique"], ans: 1, expl: "Les migrants climatiques fuient des catastrophes liées au climat : montée des eaux, sécheresses, inondations. Ex : Tonga et Tuvalu → Australie." },
+  { q: "Combien de migrants climatiques sont attendus en 2050 ?", opts: ["50 millions", "100 millions", "200 millions", "500 millions"], ans: 2, expl: "On estime qu'en 2050, 200 millions de personnes seront des migrants climatiques à cause de la montée des eaux et du changement climatique." },
+  { q: "La France est la première destination touristique mondiale. Combien de touristes a-t-elle accueillis en 2015 ?", opts: ["60 millions", "75 millions", "85 millions", "100 millions"], ans: 2, expl: "La France a accueilli 85 millions de touristes en 2015, ce qui en fait la 1ère destination touristique mondiale." },
+];
+
+let qcmAnswered = {};
+function renderQCM() {
+  const container = document.getElementById('qcm-container');
+  container.innerHTML = '';
+  qcmAnswered = {};
+  qcmData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'question-card';
+    div.id = 'q'+i;
+    div.innerHTML = `<div class="question-num">Question ${i+1} / ${qcmData.length}</div>
+      <div class="question-text">${q.q}</div>
+      <div class="options">${q.opts.map((o,j)=>`<button class="opt-btn" onclick="answerQCM(${i},${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div>
+      <div class="feedback" id="fb${i}" style="display:none"></div>`;
+    container.appendChild(div);
+  });
+  updateProgress();
+}
+function answerQCM(qi, oi) {
+  if (qcmAnswered[qi] !== undefined) return;
+  qcmAnswered[qi] = oi;
+  const q = qcmData[qi];
+  const card = document.getElementById('q'+qi);
+  card.querySelectorAll('.opt-btn').forEach((b,j) => {
+    b.disabled = true;
+    if (j === q.ans) b.classList.add('correct');
+    else if (j === oi) b.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb'+qi);
+  fb.style.display = 'block';
+  fb.className = 'feedback ' + (oi === q.ans ? 'ok' : 'ko');
+  fb.innerHTML = (oi === q.ans ? '✅ Bonne réponse ! ' : '❌ Non. ') + q.expl;
+  updateProgress();
+  if (Object.keys(qcmAnswered).length === qcmData.length) setTimeout(showScore, 600);
+}
+function updateProgress() {
+  const pct = (Object.keys(qcmAnswered).length / qcmData.length) * 100;
+  document.getElementById('qcm-progress').style.width = pct + '%';
+}
+function showScore() {
+  const correct = Object.entries(qcmAnswered).filter(([qi,oi]) => oi === qcmData[qi].ans).length;
+  const pct = Math.round(correct/qcmData.length*100);
+  let emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '💪';
+  let msg = pct >= 80 ? 'Excellent travail !' : pct >= 60 ? 'Bien joué, continue !' : 'Revois le cours et réessaie !';
+  document.getElementById('qcm-score').style.display = 'block';
+  document.getElementById('qcm-score').innerHTML = `<div style="font-size:3rem">${emoji}</div>
+    <div class="score-num">${correct} / ${qcmData.length}</div>
+    <p style="font-size:1.1rem;font-weight:700;margin:8px 0">${msg}</p>
+    <p style="color:var(--muted)">${pct}% de bonnes réponses</p>
+    <button class="btn-retry" onclick="retryQCM()">🔄 Réessayer</button>`;
+  document.getElementById('qcm-score').scrollIntoView({behavior:'smooth'});
+}
+function retryQCM() {
+  document.getElementById('qcm-score').style.display = 'none';
+  renderQCM();
+}
+renderQCM();
+
+// ===== VRAI/FAUX =====
+const vfData = [
+  { s: "Il y avait 250 millions de migrants dans le monde en 2015.", v: true },
+  { s: "Le flux migratoire le plus important est Sud → Nord (vers les pays riches).", v: false },
+  { s: "La diaspora indienne compte 30 millions de personnes dans le monde.", v: true },
+  { s: "Le tourisme représente 9% du PIB mondial.", v: true },
+  { s: "La France est la 2e destination touristique mondiale.", v: false },
+  { s: "En 2050, on estime que 200 millions de personnes seront des migrants climatiques.", v: true },
+  { s: "Fatina a trouvé facilement du travail à son arrivée en France.", v: false },
+];
+const vfContainer = document.getElementById('vf-items');
+vfData.forEach((item, i) => {
+  const d = document.createElement('div');
+  d.className = 'vf-item';
+  d.innerHTML = `<div class="vf-statement">${i+1}. ${item.s}</div>
+    <div class="vf-btns">
+      <button class="vf-btn v" id="vf-v-${i}" onclick="selectVF(${i},'v')">VRAI</button>
+      <button class="vf-btn f" id="vf-f-${i}" onclick="selectVF(${i},'f')">FAUX</button>
+    </div>`;
+  vfContainer.appendChild(d);
+});
+let vfAnswers = {};
+function selectVF(i, choice) {
+  vfAnswers[i] = choice;
+  document.getElementById('vf-v-'+i).classList.remove('selected');
+  document.getElementById('vf-f-'+i).classList.remove('selected');
+  document.getElementById(`vf-${choice}-${i}`).style.outline = '3px solid var(--indigo)';
+}
+function checkVF() {
+  let score = 0;
+  vfData.forEach((item, i) => {
+    const correct = item.v ? 'v' : 'f';
+    const chosen = vfAnswers[i];
+    ['v','f'].forEach(c => {
+      const btn = document.getElementById(`vf-${c}-${i}`);
+      btn.classList.remove('correct','incorrect');
+      btn.style.outline = '';
+    });
+    if (chosen) {
+      document.getElementById(`vf-${correct}-${i}`).classList.add('correct');
+      if (chosen !== correct) document.getElementById(`vf-${chosen}-${i}`).classList.add('incorrect');
+      else score++;
+    } else {
+      document.getElementById(`vf-${correct}-${i}`).classList.add('correct');
+    }
+  });
+  const fb = document.getElementById('vf-feedback');
+  fb.innerHTML = `Score : ${score} / ${vfData.length} ${score >= 4 ? '✅ Bravo !' : '💪 Revois le cours !'}`;
+  fb.style.color = score >= 4 ? 'var(--vert)' : 'var(--rouge)';
+}
+
+// ===== TEXTE À TROUS =====
+const trouData = [
+  { before: "En 2015, le monde comptait ", key: "250", after: " millions de migrants." },
+  { before: "Le flux le plus important est Sud → Sud avec ", key: "38", after: "% des migrants." },
+  { before: "La fuite des cerveaux s'appelle en anglais le ", key: "brain drain", after: "." },
+  { before: "En 2050, on estime que ", key: "200", after: " millions de personnes seront des migrants climatiques." },
+  { before: "La diaspora indienne compte ", key: "30", after: " millions de personnes dans le monde." },
+];
+const trouText = document.getElementById('trou-text');
+trouData.forEach((item, i) => {
+  const span = document.createElement('span');
+  span.innerHTML = `${item.before}<input class="trou-input" id="trou-${i}" placeholder="?" />${item.after} `;
+  trouText.appendChild(span);
+});
+function checkTrou() {
+  let score = 0;
+  trouData.forEach((item, i) => {
+    const inp = document.getElementById('trou-'+i);
+    inp.classList.remove('ok','ko');
+    if (inp.value.trim().toLowerCase() === item.key.toLowerCase()) { inp.classList.add('ok'); score++; }
+    else { inp.classList.add('ko'); inp.placeholder = item.key; }
+  });
+  const fb = document.getElementById('trou-feedback');
+  fb.innerHTML = `${score} / ${trouData.length} ${score === trouData.length ? '✅ Parfait !' : '❌ Les bonnes réponses apparaissent en rouge.'}`;
+  fb.style.color = score === trouData.length ? 'var(--vert)' : 'var(--rouge)';
+}
+
+// ===== DRAG & DROP =====
+const dragData = [
+  { word: "Immigré", def: "Étranger installé dans un pays d'accueil" },
+  { word: "Émigré", def: "Personne qui quitte son pays" },
+  { word: "Diaspora", def: "Communauté de même nationalité vivant à l'étranger" },
+  { word: "Brain drain", def: "Fuite des cerveaux (médecins, ingénieurs qualifiés)" },
+  { word: "Migrant climatique", def: "Personne qui fuit la montée des eaux ou sécheresses" },
+];
+const pool = document.getElementById('drag-pool');
+const dropZone = document.getElementById('drop-zone');
+let dragAnswers = {};
+dragData.forEach(item => {
+  const chip = document.createElement('div');
+  chip.className = 'drag-chip';
+  chip.textContent = item.word;
+  chip.draggable = true;
+  chip.id = 'chip-'+item.word;
+  chip.addEventListener('dragstart', e => e.dataTransfer.setData('text', item.word));
+  chip.addEventListener('touchstart', handleTouchStart, {passive:true});
+  pool.appendChild(chip);
+});
+dragData.forEach((item, i) => {
+  const row = document.createElement('div');
+  row.className = 'drop-item';
+  row.innerHTML = `<div class="drop-slot" id="slot-${i}" data-answer="${item.word}"
+    ondragover="event.preventDefault()"
+    ondrop="dropChip(event,${i})">${item.def}</div>`;
+  dropZone.appendChild(row);
+});
+let touchChip = null;
+function handleTouchStart(e) { touchChip = e.target; }
+document.querySelectorAll('.drop-slot').forEach(slot => {
+  slot.addEventListener('touchend', e => {
+    if (touchChip) {
+      const i = slot.id.replace('slot-','');
+      placeChip(touchChip.textContent, slot, i);
+    }
+  });
+});
+function dropChip(e, i) {
+  const word = e.dataTransfer.getData('text');
+  const slot = document.getElementById('slot-'+i);
+  placeChip(word, slot, i);
+}
+function placeChip(word, slot, i) {
+  const oldSlot = Object.entries(dragAnswers).find(([k,v]) => v === word);
+  if (oldSlot) { delete dragAnswers[oldSlot[0]]; document.getElementById('slot-'+oldSlot[0]).innerHTML = dragData[oldSlot[0]].def; }
+  if (dragAnswers[i]) {
+    const old = document.getElementById('chip-'+dragAnswers[i]);
+    if (old) old.style.display = 'inline-block';
+  }
+  dragAnswers[i] = word;
+  slot.innerHTML = `<strong>${word}</strong>`;
+  slot.classList.add('filled');
+  const chip = document.getElementById('chip-'+word);
+  if (chip) chip.style.display = 'none';
+}
+function checkDrag() {
+  let score = 0;
+  dragData.forEach((item, i) => {
+    const slot = document.getElementById('slot-'+i);
+    if (dragAnswers[i] === item.word) { score++; slot.style.background = 'var(--vert-light)'; slot.style.borderColor = 'var(--vert)'; }
+    else { slot.style.background = 'var(--rouge-light)'; slot.style.borderColor = 'var(--rouge)'; }
+  });
+  const fb = document.getElementById('drag-feedback');
+  fb.innerHTML = `${score} / ${dragData.length} ${score >= 4 ? '✅ Bravo !' : '❌ Réessaie !'}`;
+  fb.style.color = score >= 4 ? 'var(--vert)' : 'var(--rouge)';
+}
+
+// ===== ORDRE CHRONOLOGIQUE =====
+const ordreData = [
+  { event: "Migration de l'Afrique vers l'Europe", date: "-200 000 ans", ordre: 1 },
+  { event: "Migration de l'Asie vers l'Amérique du Sud", date: "-9 000 ans", ordre: 2 },
+  { event: "Traite des esclaves (esclavagisme)", date: "XVIe – XIXe siècle", ordre: 3 },
+  { event: "Retour des Pieds-Noirs d'Algérie en France (décolonisation)", date: "1962", ordre: 4 },
+  { event: "Crise des réfugiés syriens", date: "2011 – aujourd'hui", ordre: 5 },
+];
+const shuffled = [...ordreData].sort(() => Math.random() - 0.5);
+let ordreList = [...shuffled];
+const ordreContainer = document.getElementById('ordre-items');
+function renderOrdre() {
+  ordreContainer.innerHTML = '';
+  ordreList.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:8px;';
+    d.innerHTML = `<div style="flex:1;background:#f8f9ff;border:2px solid #d0d8ff;border-radius:10px;padding:10px 14px;font-size:0.92rem;font-weight:600;">${item.event}</div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <button onclick="moveOrdre(${i},-1)" style="background:var(--indigo-light);border:1px solid var(--indigo);border-radius:6px;padding:2px 10px;cursor:pointer;font-weight:700;">▲</button>
+        <button onclick="moveOrdre(${i},1)" style="background:var(--indigo-light);border:1px solid var(--indigo);border-radius:6px;padding:2px 10px;cursor:pointer;font-weight:700;">▼</button>
+      </div>`;
+    ordreContainer.appendChild(d);
+  });
+}
+function moveOrdre(i, dir) {
+  const ni = i + dir;
+  if (ni < 0 || ni >= ordreList.length) return;
+  [ordreList[i], ordreList[ni]] = [ordreList[ni], ordreList[i]];
+  renderOrdre();
+}
+function checkOrdre() {
+  const correct = ordreList.every((item, i) => item.ordre === i + 1);
+  let score = 0;
+  ordreList.forEach((item, i) => { if (item.ordre === i + 1) score++; });
+  const fb = document.getElementById('ordre-feedback');
+  fb.innerHTML = `${score} / ${ordreList.length} ${correct ? '✅ Parfait, ordre correct !' : '❌ Pas tout à fait. Réessaie !'}`;
+  fb.style.color = correct ? 'var(--vert)' : 'var(--rouge)';
+}
+renderOrdre();
+
+// ===== GLOSSAIRE =====
+const glossaireData = [
+  { term: "Migrant", def: "Personne qui se déplace d'un pays d'origine vers un pays d'accueil pour s'y établir.", ex: "Un Mexicain qui s'installe aux États-Unis." },
+  { term: "Immigré", def: "Étranger vivant dans un pays d'accueil qui n'est pas le sien.", ex: "Un Algérien vivant en France (du latin 'in' = dedans)." },
+  { term: "Émigré", def: "Personne qui quitte son pays d'origine pour vivre à l'étranger.", ex: "Un retraité français vivant au Maroc (du latin 'ex' = sortir)." },
+  { term: "Réfugié", def: "Personne forcée de fuir son pays en raison d'une guerre, de persécutions ou de catastrophes, reconnue par le droit international.", ex: "Les Syriens fuyant la guerre civile." },
+  { term: "Clandestin", def: "Migrant en situation irrégulière, sans papiers officiels (passeport, carte de séjour).", ex: "Un migrant traversant une frontière sans visa." },
+  { term: "Diaspora", def: "Communauté de personnes de même nationalité ou origine vivant à l'étranger, maintenant des liens avec son pays.", ex: "La diaspora indienne : 30 millions d'Indiens dans le monde." },
+  { term: "Brain drain", def: "Fuite des cerveaux : émigration des personnes les plus qualifiées (médecins, ingénieurs) d'un pays pauvre vers un pays riche.", ex: "Un médecin indien qui part travailler aux États-Unis." },
+  { term: "Flux migratoire", def: "Déplacement de personnes important d'une région vers une autre. Les 3 flux : Sud→Sud (38%), Sud→Nord (34%), Nord→Nord (23%).", ex: "Le flux des Syriens vers l'Europe en 2015." },
+  { term: "Migrant climatique", def: "Personne contrainte de quitter son lieu de vie à cause du changement climatique : montée des eaux, sécheresses, inondations.", ex: "Habitants de Tuvalu qui migrent vers l'Australie." },
+  { term: "CADA", def: "Centre d'Accueil pour Demandeurs d'Asile : héberge temporairement les personnes demandant le statut de réfugié et les aide dans leurs démarches.", ex: "Fatina et ses enfants ont été accueillis dans un CADA près de Lyon." },
+  { term: "Persécution", def: "Agression, torture, mauvais traitements ou discrimination infligés à une personne en raison de sa religion, origine ou opinions.", ex: "Les persécutions contre les Juifs pendant la 2e Guerre Mondiale." },
+  { term: "Décolonisation", def: "Processus par lequel les anciennes colonies obtiennent leur indépendance.", ex: "L'Algérie devient indépendante en 1962 : les Pieds-Noirs rentrent en France." },
+  { term: "PIB", def: "Produit Intérieur Brut : mesure la valeur totale des biens et services produits par un pays en un an.", ex: "Le tourisme représente 9% du PIB mondial." },
+  { term: "Erasmus", def: "Programme européen d'échange permettant aux étudiants de suivre une partie de leurs études dans un autre pays de l'Union Européenne.", ex: "Un étudiant français qui passe 6 mois en Espagne via Erasmus." },
+];
+const grid = document.getElementById('glossaire-grid');
+glossaireData.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'glos-card';
+  card.innerHTML = `<div class="glos-term">📌 ${item.term}</div>
+    <div class="glos-def">${item.def}</div>
+    ${item.ex ? `<div class="glos-ex">💡 Ex : ${item.ex}</div>` : ''}`;
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
