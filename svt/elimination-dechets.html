@@ -234,14 +234,20 @@
   <div class="card vert">
     <div class="badge vert">Introduction</div>
     <div class="card-title">❓ D'où viennent les déchets ?</div>
-    <p>Quand les cellules de notre corps fonctionnent (respirer, bouger, digérer…), elles produisent des <strong>déchets</strong>. Si ces déchets s'accumulent dans le sang, ils deviennent <strong>toxiques</strong> et dangereux pour l'organisme.</p>
+    <p>Quand les cellules de notre corps fonctionnent (respirer, bouger, digérer…), elles produisent des <strong>déchets</strong>. <strong>Lors de leur fonctionnement, les organes rejettent en permanence dans le sang des déchets.</strong> Si ces déchets s'accumulent, ils deviennent <strong>toxiques</strong> et dangereux pour l'organisme.</p>
     <div class="highlight-box hb-vert" style="margin-top:12px;">
-      🔬 Les principaux déchets produits par les cellules :
+      🔬 Les principaux déchets de l'organisme :
       <ul style="margin-top:8px;">
         <li>💨 Le <strong><span class="mk" data-def="Gaz produit par toutes les cellules quand elles utilisent de l'énergie. Sa formule chimique est CO2. En trop grande quantité dans le sang, il devient dangereux.">dioxyde de carbone (CO2)</span></strong> → produit lors de la respiration cellulaire</li>
         <li>🧪 L'<strong><span class="mk" data-def="Déchet azoté produit par le foie lorsqu'il détruit les protéines usées. L'urée est transportée par le sang jusqu'aux reins qui l'éliminent dans l'urine.">urée</span></strong> → produite par le foie quand il détruit les protéines</li>
         <li>💧 L'<strong>eau en excès</strong> → provient des réactions chimiques du corps</li>
+        <li>💩 Les <strong><span class="mk" data-def="Résidus solides qui restent après la digestion des aliments dans l'intestin. Ils ne passent pas dans le sang : ils sont éliminés directement par l'anus sous forme de selles.">résidus solides de la digestion</span></strong> → éliminés par l'<strong>anus</strong></li>
       </ul>
+    </div>
+    <div class="highlight-box hb-amber" style="margin-top:8px;">
+      ⚠️ <strong>Attention, deux types de déchets différents !</strong><br>
+      Les résidus solides (selles) <strong>ne passent jamais par le sang</strong> : ils restent dans l'intestin et sont évacués directement par l'anus.<br>
+      Le CO2 et l'urée, eux, <strong>passent dans le sang</strong> avant d'être éliminés par les poumons et les reins.
     </div>
     <div class="formula">
       Cellules → déchets dans le sang → organes éliminateurs → évacuation
@@ -417,6 +423,7 @@
         <tr><td>🫧 Dioxyde de carbone (CO2)</td><td><strong>🫁 Poumons</strong></td><td>Air expiré (via les alvéoles)</td></tr>
         <tr><td>🧪 Urée</td><td><strong>🫘 Reins</strong></td><td>Urine (via la vessie)</td></tr>
         <tr><td>💧 Eau + sel en excès</td><td><strong>🫘 Reins + 🧴 Peau</strong></td><td>Urine + sueur</td></tr>
+        <tr><td>💩 Résidus solides de la digestion</td><td><strong>🦠 Intestin → Anus</strong></td><td>Selles (ne passent pas par le sang)</td></tr>
       </tbody>
     </table>
   </div>
@@ -736,7 +743,9 @@ renderOrdre();
 
 // GLOSSAIRE
 const glossaireData = [
-  { term: "Déchet", def: "Substance inutile ou toxique produite par les cellules du corps. Elle doit être éliminée pour que l'organisme fonctionne bien.", ex: "CO2, urée, eau en excès." },
+  { term: "Résidus solides", def: "Ce qui reste des aliments après la digestion dans l'intestin. Ces déchets ne passent jamais dans le sang : ils sont évacués directement par l'anus sous forme de selles.", ex: "Les fibres des légumes non digérées deviennent des résidus solides." },
+  { term: "Anus", def: "Orifice situé à l'extrémité du tube digestif par lequel sont éliminés les résidus solides de la digestion (les selles).", ex: "Les selles sont expulsées par l'anus lors de la défécation." },
+  { term: "Déchet", def: "Substance inutile ou toxique produite par les cellules du corps. Elle doit être éliminée pour que l'organisme fonctionne bien.", ex: "CO2, urée, eau en excès, résidus solides." },
   { term: "CO2 (dioxyde de carbone)", def: "Gaz produit par toutes les cellules quand elles fonctionnent. Éliminé par les poumons lors de l'expiration. Dangereux à forte concentration.", ex: "Taux normal dans l'air : 0,04%." },
   { term: "Urée", def: "Déchet azoté produit par le foie lors de la destruction des protéines. Transportée par le sang jusqu'aux reins.", ex: "Éliminée dans l'urine." },
   { term: "Alvéoles pulmonaires", def: "Petits sacs d'air au fond des poumons où se font les échanges gazeux : le CO2 passe du sang vers l'air, l'O2 passe de l'air vers le sang.", ex: "Le sang perd 5 ml de CO2 pour 100 ml à ce niveau." },
