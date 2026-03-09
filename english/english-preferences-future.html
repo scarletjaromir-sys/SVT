@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English 4e – Preferences &amp; Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#1e3a5f; --navy-light:#e8f0fb;
+    --sky:#3b82f6; --sky-light:#dbeafe; --sky-dark:#1d4ed8;
+    --coral:#f43f5e; --coral-light:#ffe4e6;
+    --amber:#f59e0b; --amber-light:#fef3c7;
+    --vert:#10b981; --vert-light:#d1fae5;
+    --violet:#8b5cf6; --violet-light:#ede9fe;
+    --bg:#f0f4ff; --card:#fff;
+    --text:#1e293b; --muted:#64748b;
+    --shadow:0 4px 24px rgba(30,58,95,0.10);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  header{background:linear-gradient(135deg,#1e3a5f 0%,#3b82f6 55%,#f43f5e 100%);padding:26px 20px 18px;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'🇬🇧';position:absolute;right:20px;top:16px;font-size:2.5rem;opacity:0.3;}
+  header::after{content:'🇺🇸';position:absolute;left:20px;bottom:10px;font-size:2rem;opacity:0.25;}
+  .home-btn{position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:none;color:#fff;border-radius:50px;padding:8px 16px;font-family:'Lexend Deca',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;z-index:10;}
+  .home-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-1px);}
+  header h1{font-family:'Lexend Deca',sans-serif;font-size:1.75rem;font-weight:800;color:#fff;text-shadow:2px 2px 10px rgba(0,0,0,0.2);position:relative;}
+  header p{color:rgba(255,255,255,0.88);font-size:0.95rem;margin-top:4px;position:relative;}
+
+  nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:14px 16px 0;position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:3px solid #bfdbfe;}
+  .nav-btn{padding:9px 18px;border:none;border-radius:50px;font-family:'Lexend Deca',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.25s;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+  .nav-btn.active,.nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.16);}
+  .nav-btn[data-tab="cours"]{background:linear-gradient(135deg,var(--navy),var(--sky-dark));color:#fff;}
+  .nav-btn[data-tab="exercices"]{background:linear-gradient(135deg,var(--amber),#d97706);color:#fff;}
+  .nav-btn[data-tab="redaction"]{background:linear-gradient(135deg,var(--coral),#be123c);color:#fff;}
+  .nav-btn[data-tab="glossaire"]{background:linear-gradient(135deg,var(--violet),#7c3aed);color:#fff;}
+
+  section{display:none;padding:22px 16px;max-width:940px;margin:0 auto;}
+  section.active{display:block;animation:fadeIn 0.35s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  .card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);border-left:6px solid;transition:transform 0.2s;}
+  .card:hover{transform:translateY(-2px);}
+  .card.navy{border-color:var(--navy);}
+  .card.sky{border-color:var(--sky);}
+  .card.coral{border-color:var(--coral);}
+  .card.amber{border-color:var(--amber);}
+  .card.vert{border-color:var(--vert);}
+  .card.violet{border-color:var(--violet);}
+  .card-title{font-family:'Lexend Deca',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .badge{display:inline-block;padding:3px 12px;border-radius:20px;font-family:'Lexend Deca',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;color:#fff;}
+  .badge.navy{background:var(--navy);}
+  .badge.sky{background:var(--sky);}
+  .badge.coral{background:var(--coral);}
+  .badge.amber{background:var(--amber);}
+  .badge.vert{background:var(--vert);}
+  .badge.violet{background:var(--violet);}
+
+  table{width:100%;border-collapse:collapse;font-size:0.88rem;}
+  th{background:var(--navy);color:#fff;padding:9px 12px;text-align:left;font-family:'Lexend Deca',sans-serif;}
+  td{padding:9px 12px;border-bottom:1px solid #e2e8f0;}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:#f8faff;}
+
+  .hb{background:var(--navy-light);border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:0.9rem;line-height:1.6;}
+  .hb.amber{background:var(--amber-light);}
+  .hb.vert{background:var(--vert-light);}
+  .hb.coral{background:var(--coral-light);}
+  .hb.violet{background:var(--violet-light);}
+
+  /* EXERCICES */
+  .ex-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:24px;box-shadow:var(--shadow);border-top:5px solid;}
+  .ex-title{font-family:'Lexend Deca',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:14px;}
+
+  .check-btn{background:linear-gradient(135deg,var(--navy),var(--sky-dark));color:#fff;border:none;border-radius:50px;padding:10px 28px;font-family:'Lexend Deca',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:14px;transition:all 0.2s;box-shadow:0 4px 14px rgba(30,58,95,0.25);}
+  .check-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(30,58,95,0.3);}
+  .toggle-ans-btn{background:var(--amber-light);border:2px solid var(--amber);color:#92400e;border-radius:8px;padding:6px 14px;font-family:'Lexend Deca',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .toggle-ans-btn:hover{background:var(--amber);color:#fff;}
+
+  .feedback-msg{display:none;margin-top:12px;padding:10px 16px;border-radius:12px;font-weight:700;font-family:'Lexend Deca',sans-serif;font-size:0.9rem;}
+  .feedback-msg.show{display:block;}
+  .feedback-msg.ok{background:var(--vert-light);color:#065f46;}
+  .feedback-msg.ko{background:var(--coral-light);color:#9f1239;}
+
+  .blank-input{border:2px solid #bfdbfe;border-radius:8px;padding:5px 10px;font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;outline:none;transition:border 0.2s;min-width:100px;}
+  .blank-input:focus{border-color:var(--sky);}
+  .blank-input.ok{border-color:var(--vert);background:var(--vert-light);}
+  .blank-input.ko{border-color:var(--coral);background:var(--coral-light);}
+
+  /* DRAG & DROP */
+  .drag-block{display:inline-flex;align-items:center;gap:4px;background:var(--sky-light);border:2px solid var(--sky);border-radius:8px;padding:6px 12px;font-weight:700;font-size:0.88rem;cursor:grab;user-select:none;transition:all 0.15s;margin:3px;}
+  .drag-block:hover{background:var(--sky);color:#fff;transform:translateY(-1px);}
+  .drag-block.placed-correct{background:var(--vert-light);border-color:var(--vert);color:#065f46;}
+  .drag-block.placed-wrong{background:var(--coral-light);border-color:var(--coral);color:#9f1239;}
+  .blocks-pool{min-height:48px;background:#f8faff;border-radius:12px;border:2px dashed #bfdbfe;padding:8px;display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;transition:background 0.2s;}
+  .blocks-pool.drag-over{background:#dbeafe;}
+  .drop-zone{min-height:42px;background:#f0f9ff;border:2px dashed #93c5fd;border-radius:10px;padding:6px 10px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;transition:all 0.2s;}
+  .drop-zone.drag-over{background:#dbeafe;border-color:var(--sky);}
+  .drop-zone-empty{color:#94a3b8;font-size:0.82rem;font-style:italic;}
+  .slot-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;}
+  .slot-num{width:28px;height:28px;background:var(--navy);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Lexend Deca',sans-serif;font-weight:700;font-size:0.78rem;flex-shrink:0;margin-top:7px;}
+  .slot-col{flex:1;}
+  .handle{color:#94a3b8;font-size:0.75rem;}
+
+  /* CHOICE BUTTONS */
+  .choice-btn{background:#f0f4ff;border:2px solid #bfdbfe;border-radius:10px;padding:8px 16px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;margin:4px;transition:all 0.18s;}
+  .choice-btn:hover:not(:disabled){background:var(--sky-light);border-color:var(--sky);}
+  .choice-btn.correct{background:var(--vert-light);border-color:var(--vert);color:#065f46;}
+  .choice-btn.wrong{background:var(--coral-light);border-color:var(--coral);color:#9f1239;}
+  .choice-btn:disabled{opacity:0.75;cursor:default;}
+
+  /* QCM */
+  .qcm-item{margin-bottom:20px;}
+  .qcm-q{font-weight:700;margin-bottom:8px;}
+  .qcm-opts{display:flex;flex-direction:column;gap:6px;}
+  .qcm-opt{background:#f0f4ff;border:2px solid #bfdbfe;border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;font-size:0.9rem;transition:all 0.18s;text-align:left;}
+  .qcm-opt:hover:not(.disabled){background:var(--sky-light);border-color:var(--sky);}
+  .qcm-opt.correct{background:var(--vert-light);border-color:var(--vert);color:#065f46;}
+  .qcm-opt.wrong{background:var(--coral-light);border-color:var(--coral);color:#9f1239;}
+  .qcm-opt.disabled{cursor:default;opacity:0.85;}
+  .qcm-expl{font-size:0.82rem;margin-top:5px;padding:6px 10px;border-radius:8px;display:none;font-weight:600;}
+  .qcm-expl.show{display:block;}
+
+  /* GLOSSAIRE */
+  .glos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
+  .glos-card{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);border-top:4px solid;}
+  .glos-term{font-family:'Lexend Deca',sans-serif;font-weight:800;font-size:1rem;margin-bottom:6px;}
+  .glos-fr{background:#f0f4ff;border-radius:8px;padding:5px 10px;font-weight:800;font-size:0.95rem;color:var(--navy);margin-bottom:6px;}
+  .glos-type{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;}
+  .glos-ex{font-size:0.82rem;color:var(--muted);font-style:italic;}
+
+  /* ANSWER BOX */
+  .ans-box{display:none;margin-top:10px;background:#fef3c7;border:2px solid var(--amber);border-radius:12px;padding:10px 14px;font-family:'Lexend Deca',sans-serif;font-weight:700;font-size:0.9rem;color:#92400e;line-height:1.7;}
+
+  @media(max-width:600px){
+    header h1{font-size:1.3rem;}
+    .home-btn{font-size:0.75rem;padding:6px 12px;}
+    .glos-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="home-btn">← Accueil</a>
+  <h1>Preferences &amp; Future</h1>
+  <p>English · 4e · Group Work Summary</p>
+</header>
+
+<nav>
+  <button class="nav-btn active" data-tab="cours">📖 Cours</button>
+  <button class="nav-btn" data-tab="exercices">✏️ Exercices</button>
+  <button class="nav-btn" data-tab="redaction">🔥 Entraînement</button>
+  <button class="nav-btn" data-tab="glossaire">📚 Glossaire</button>
+</nav>
+
+<!-- ══════════════════ COURS ══════════════════ -->
+<section id="cours" class="active">
+  <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>📖</span> Cours</div>
+
+  <div class="card navy">
+    <div class="badge navy">Préférences</div>
+    <div class="card-title">❤️ Would prefer to vs Would rather</div>
+    <table>
+      <tr><th>Structure</th><th>Exemple</th><th>⚠️ Attention</th></tr>
+      <tr><td><strong>would prefer to</strong> + verbe</td><td>She <strong>would prefer to go</strong> to the seaside.</td><td>Avec TO</td></tr>
+      <tr><td><strong>would rather</strong> + verbe</td><td>He <strong>would rather visit</strong> a museum.</td><td>SANS TO</td></tr>
+    </table>
+    <div class="hb" style="margin-top:14px;">
+      💡 Les deux veulent dire la même chose : <strong>préférerait</strong>. La seule différence : <strong>would prefer to</strong> prend le TO, <strong>would rather</strong> ne le prend PAS.
+    </div>
+  </div>
+
+  <div class="card sky">
+    <div class="badge sky">Futur</div>
+    <div class="card-title">🔮 Exprimer le futur – 3 façons</div>
+    <table>
+      <tr><th>Forme</th><th>Quand l'utiliser ?</th><th>Exemple</th></tr>
+      <tr><td><strong>will</strong> + verbe</td><td>Décision spontanée, promesse, offre — décidé à l'instant</td><td>It's cold! I <strong>will close</strong> the window.</td></tr>
+      <tr><td><strong>be going to</strong> + verbe</td><td>Plan prévu à l'avance, intention, certitude basée sur un indice visible</td><td>We <strong>are going to visit</strong> London next week.</td></tr>
+      <tr><td><strong>be + Ving</strong></td><td>Planning déjà fixé et organisé (heure, lieu, personnes confirmés)</td><td>They <strong>are meeting</strong> at 9am tomorrow.</td></tr>
+    </table>
+    <div class="hb amber" style="margin-top:14px;">
+      ⚠️ <strong>will</strong> = tu décides <em>maintenant</em> · <strong>be going to</strong> = tu avais déjà décidé · <strong>be+Ving</strong> = tout est organisé
+    </div>
+  </div>
+
+  <div class="card vert">
+    <div class="badge vert">Le document</div>
+    <div class="card-title">🎧 Contexte : Jen, Mark &amp; Tom</div>
+    <p style="line-height:1.8;">Trois amis doivent planifier un voyage ensemble. Ils ont chacun un endroit préféré différent :</p>
+    <ul style="margin:12px 0 0 20px;line-height:2;">
+      <li>🏖️ <strong>Jen</strong> would prefer to go to the seaside — because she loves swimming and relaxing.</li>
+      <li>🏙️ <strong>Mark</strong> would rather visit a big city — because he is interested in museums.</li>
+      <li>🎢 <strong>Tom</strong> would prefer to go to an amusement park — because he loves rollercoasters.</li>
+    </ul>
+    <div class="hb vert" style="margin-top:14px;">
+      📋 Ils ont décidé d'aller dans un parc d'attractions. Ils se retrouvent devant la gare à 9h, achètent leurs billets en ligne et déjeunent au restaurant du parc.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ EXERCICES ══════════════════ -->
+<section id="exercices">
+  <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>✏️</span> Exercices</div>
+
+  <!-- EX 1 : Would rather ou Would prefer to ? -->
+  <div class="ex-card" style="border-color:var(--violet);">
+    <div class="ex-title" style="color:var(--violet);">❤️ Exercice 1 – Would rather ou Would prefer to ?</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Clique sur la bonne structure pour chaque phrase :</p>
+    <div id="choice-items"></div>
+  </div>
+
+  <!-- EX 2 : Futur – texte à trous avec phrase FR -->
+  <div class="ex-card" style="border-color:var(--sky);">
+    <div class="ex-title" style="color:var(--sky-dark);">🔮 Exercice 2 – Complète avec la bonne forme du futur</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">La phrase en 🇫🇷 t'aide à choisir la bonne forme. Écris-la dans la case :</p>
+    <div id="future-items"></div>
+    <button class="check-btn" onclick="checkFuture()">Vérifier ✓</button>
+    <div class="feedback-msg" id="future-feedback"></div>
+  </div>
+
+  <!-- EX 3 : Drag & drop mot dans phrase -->
+  <div class="ex-card" style="border-color:var(--amber);">
+    <div class="ex-title" style="color:#92400e;">🧩 Exercice 3 – Glisse le bon mot dans la phrase</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Pour chaque phrase, glisse le mot qui convient dans le trou :</p>
+    <div id="word-drop-items"></div>
+    <button class="check-btn" style="background:linear-gradient(135deg,var(--amber),#d97706);" onclick="checkWordDrop()">Vérifier ✓</button>
+    <div class="feedback-msg" id="worddrop-feedback"></div>
+  </div>
+</section>
+
+<!-- ══════════════════ ENTRAÎNEMENT ══════════════════ -->
+<section id="redaction">
+  <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>🔥</span> Entraînement</div>
+
+  <!-- BLOC A : Remets les mots dans l'ordre -->
+  <div class="ex-card" style="border-color:var(--sky);">
+    <div class="ex-title" style="color:var(--sky-dark);">🔀 A – Remets les mots dans le bon ordre</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Glisse les mots pour former la phrase correcte. La 🇫🇷 t'aide :</p>
+    <div id="wordorder-items"></div>
+    <button class="check-btn" onclick="checkWordOrder()">Vérifier ✓</button>
+    <div class="feedback-msg" id="wordorder-feedback"></div>
+  </div>
+
+  <!-- BLOC B : Choisir la bonne forme du futur selon situation -->
+  <div class="ex-card" style="border-color:var(--coral);">
+    <div class="ex-title" style="color:var(--coral);">🔮 B – Quelle forme du futur ? Lis la situation !</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Lis attentivement la situation en 🇫🇷, puis clique sur la bonne forme :</p>
+    <div id="futsit-items"></div>
+  </div>
+
+  <!-- BLOC C : Would rather / Would prefer to – compléter -->
+  <div class="ex-card" style="border-color:var(--violet);">
+    <div class="ex-title" style="color:var(--violet);">❤️ C – Would rather ou Would prefer to ? Complète !</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Lis la phrase 🇫🇷. Écris la structure ET le verbe dans les cases :</p>
+    <div id="pref-items"></div>
+    <button class="check-btn" style="background:linear-gradient(135deg,var(--violet),#7c3aed);" onclick="checkPref()">Vérifier ✓</button>
+    <div class="feedback-msg" id="pref-feedback"></div>
+  </div>
+</section>
+
+<!-- ══════════════════ GLOSSAIRE ══════════════════ -->
+<section id="glossaire">
+  <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>📚</span> Glossaire</div>
+  <div class="glos-grid" id="glossaire-grid"></div>
+</section>
+
+<script>
+// ── NAV ──────────────────────────────────────────
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ══════════════════════════════════════════════════
+// EXERCICE 1 – Would rather vs Would prefer to
+// ══════════════════════════════════════════════════
+const choiceData = [
+  { fr: "Jen préférerait aller au bord de la mer. (suivi de TO)", correct: "would prefer to" },
+  { fr: "Mark préférerait visiter un musée. (SANS TO)", correct: "would rather" },
+  { fr: "Tom préférerait aller dans un parc d'attractions. (suivi de TO)", correct: "would prefer to" },
+  { fr: "Ils préféreraient partir tôt. (SANS TO)", correct: "would rather" },
+  { fr: "Elle préférerait prendre le train. (suivi de TO)", correct: "would prefer to" },
+  { fr: "Nous préférerions rester ici. (SANS TO)", correct: "would rather" },
+];
+
+const choiceCont = document.getElementById('choice-items');
+choiceData.forEach(function(item, i) {
+  var d = document.createElement('div');
+  d.style.cssText = 'margin-bottom:14px;padding:13px;background:#f5f3ff;border-radius:13px;border:2px solid #ddd6fe;';
+
+  var frDiv = document.createElement('div');
+  frDiv.style.cssText = 'background:var(--violet-light);border-left:4px solid var(--violet);border-radius:8px;padding:6px 12px;margin-bottom:10px;font-size:0.88rem;font-weight:700;';
+  frDiv.textContent = '🇫🇷 ' + item.fr;
+
+  var btnRow = document.createElement('div');
+  btnRow.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;';
+
+  var btnA = document.createElement('button');
+  btnA.className = 'choice-btn';
+  btnA.id = 'ca' + i;
+  btnA.textContent = 'would prefer to + infinitif';
+  btnA.addEventListener('click', function() { doChoice(i, 'would prefer to'); });
+
+  var btnB = document.createElement('button');
+  btnB.className = 'choice-btn';
+  btnB.id = 'cb' + i;
+  btnB.textContent = 'would rather + base verb';
+  btnB.addEventListener('click', function() { doChoice(i, 'would rather'); });
+
+  var fbDiv = document.createElement('div');
+  fbDiv.id = 'cfb' + i;
+  fbDiv.style.cssText = 'font-size:0.85rem;margin-top:8px;font-weight:700;padding:6px 10px;border-radius:8px;display:none;';
+
+  btnRow.appendChild(btnA);
+  btnRow.appendChild(btnB);
+  d.appendChild(frDiv);
+  d.appendChild(btnRow);
+  d.appendChild(fbDiv);
+  choiceCont.appendChild(d);
+});
+
+function doChoice(i, chosen) {
+  var item = choiceData[i];
+  var ba = document.getElementById('ca' + i);
+  var bb = document.getElementById('cb' + i);
+  ba.classList.remove('correct', 'wrong');
+  bb.classList.remove('correct', 'wrong');
+  ba.disabled = true;
+  bb.disabled = true;
+  var isCorrect = chosen === item.correct;
+  var chosenBtn = chosen === 'would prefer to' ? ba : bb;
+  var correctBtn = item.correct === 'would prefer to' ? ba : bb;
+  chosenBtn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) correctBtn.classList.add('correct');
+  var fb = document.getElementById('cfb' + i);
+  fb.style.display = 'block';
+  if (isCorrect) {
+    fb.style.background = 'var(--vert-light)';
+    fb.style.color = '#065f46';
+    fb.textContent = '✅ Correct !';
+  } else {
+    fb.style.background = 'var(--coral-light)';
+    fb.style.color = '#9f1239';
+    fb.textContent = '❌ Non. La bonne réponse est : ' + item.correct;
+  }
+}
+
+// ══════════════════════════════════════════════════
+// EXERCICE 2 – Futur texte à trous
+// ══════════════════════════════════════════════════
+var futureData = [
+  { fr: "Nous allons visiter la Tour Eiffel. (plan prévu)", before: "We ", key: "are going to", after: " visit the Eiffel Tower." },
+  { fr: "Oh, il fait froid ! Je ferme la fenêtre. (décision à l'instant)", before: "Oh, it's cold! I ", key: "will", after: " close the window." },
+  { fr: "Ils se retrouvent à 15h demain. (planning déjà organisé)", before: "They ", key: "are meeting", after: " at 3pm tomorrow." },
+  { fr: "Elle va voyager à Londres la semaine prochaine. (intention)", before: "She ", key: "is going to", after: " travel to London next week." },
+  { fr: "Je te promets, je t'aide. (promesse)", before: "I promise, I ", key: "will", after: " help you." },
+  { fr: "Regarde ces nuages noirs ! Il va pleuvoir. (certitude visible)", before: "Look at those clouds! It ", key: "is going to", after: " rain." },
+  { fr: "Tom déjeune au restaurant du parc demain à midi. (réservé)", before: "Tom ", key: "is having", after: " lunch at the park restaurant at noon." },
+];
+
+var futureCont = document.getElementById('future-items');
+futureData.forEach(function(item, i) {
+  var d = document.createElement('div');
+  d.style.cssText = 'margin-bottom:14px;padding:14px;background:#f0f4ff;border-radius:12px;border:2px solid #bfdbfe;';
+
+  var frDiv = document.createElement('div');
+  frDiv.style.cssText = 'font-size:0.88rem;font-weight:700;color:var(--navy);background:var(--navy-light);border-radius:8px;padding:6px 12px;margin-bottom:10px;';
+  frDiv.textContent = '🇫🇷 ' + item.fr;
+
+  var sentDiv = document.createElement('div');
+  sentDiv.style.cssText = 'line-height:2.6;font-size:0.96rem;font-weight:600;';
+  sentDiv.textContent = '🇬🇧 ' + item.before;
+
+  var inp = document.createElement('input');
+  inp.className = 'blank-input';
+  inp.id = 'fut' + i;
+  inp.placeholder = '?';
+  inp.addEventListener('input', function() { resetFutLine(i); });
+
+  sentDiv.appendChild(inp);
+  sentDiv.appendChild(document.createTextNode(item.after));
+
+  var btnRow = document.createElement('div');
+  btnRow.style.cssText = 'margin-top:8px;display:flex;align-items:center;gap:8px;';
+
+  var ansBtn = document.createElement('button');
+  ansBtn.className = 'toggle-ans-btn';
+  ansBtn.id = 'toglbtn' + i;
+  ansBtn.textContent = '👁 Voir la réponse';
+  ansBtn.addEventListener('click', function() { toggleAnswer(i); });
+
+  var ansDiv = document.createElement('div');
+  ansDiv.id = 'ans' + i;
+  ansDiv.style.cssText = 'display:none;background:#fef3c7;border:2px solid var(--amber);border-radius:8px;padding:5px 14px;font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.92rem;color:#92400e;';
+  ansDiv.textContent = '✏️ ' + item.key;
+
+  btnRow.appendChild(ansBtn);
+  btnRow.appendChild(ansDiv);
+
+  d.appendChild(frDiv);
+  d.appendChild(sentDiv);
+  d.appendChild(btnRow);
+  futureCont.appendChild(d);
+});
+
+function toggleAnswer(i) {
+  var ans = document.getElementById('ans' + i);
+  var btn = document.getElementById('toglbtn' + i);
+  var visible = ans.style.display !== 'none';
+  ans.style.display = visible ? 'none' : 'block';
+  btn.textContent = visible ? '👁 Voir la réponse' : '🙈 Cacher la réponse';
+}
+
+function resetFutLine(i) {
+  var inp = document.getElementById('fut' + i);
+  inp.classList.remove('ok', 'ko');
+}
+
+function checkFuture() {
+  var sc = 0;
+  futureData.forEach(function(item, i) {
+    var inp = document.getElementById('fut' + i);
+    inp.classList.remove('ok', 'ko');
+    if (inp.value.trim().toLowerCase() === item.key.toLowerCase()) {
+      inp.classList.add('ok'); sc++;
+    } else {
+      inp.classList.add('ko');
+    }
+  });
+  var fb = document.getElementById('future-feedback');
+  fb.className = 'feedback-msg show ' + (sc === futureData.length ? 'ok' : 'ko');
+  fb.textContent = sc + ' / ' + futureData.length + ' ' + (sc === futureData.length ? '✅ Excellent !' : '❌ Utilise "Voir la réponse" si tu bloques, puis efface et réessaie !');
+}
+
+// ══════════════════════════════════════════════════
+// EXERCICE 3 – Drag & drop mot dans phrase
+// ══════════════════════════════════════════════════
+var wdData = [
+  { pool: ["would", "will", "is", "does"], answer: "would", b: "Jen ", a: " prefer to go to the seaside." },
+  { pool: ["are", "will", "would", "have"], answer: "are", b: "They ", a: " going to visit a museum." },
+  { pool: ["stay", "to stay", "staying", "stayed"], answer: "stay", b: "Mark would rather ", a: " in the city." },
+  { pool: ["are going to", "would rather", "has", "did"], answer: "are going to", b: "We ", a: " leave at 9am tomorrow." },
+  { pool: ["will", "are going to", "would"], answer: "will", b: "I promise, I ", a: " help you." },
+];
+
+var wdAnswers = {};
+var wdDrag = null;
+
+var wdCont = document.getElementById('word-drop-items');
+wdData.forEach(function(item, i) {
+  var shuffled = item.pool.slice().sort(function() { return Math.random() - 0.5; });
+  var d = document.createElement('div');
+  d.style.cssText = 'margin-bottom:20px;padding:14px;background:#fffbeb;border-radius:14px;border:2px solid #fde68a;';
+
+  var chips = '';
+  shuffled.forEach(function(w) {
+    var sid = 'wdblk' + i + '_' + w.replace(/ /g, '_');
+    chips += '<div class="drag-block" id="' + sid + '" draggable="true">' + w + '</div>';
+  });
+
+  var sentHtml = '🇬🇧 ' + item.b + '<span class="inline-drop" id="wdslot' + i + '" style="display:inline-block;min-width:90px;min-height:32px;vertical-align:middle;background:#f0f9ff;border:2px dashed #93c5fd;border-radius:8px;padding:3px 8px;font-weight:700;color:var(--muted);font-size:0.85rem;cursor:pointer;"></span>' + item.a;
+
+  d.innerHTML = '<div class="blocks-pool" id="wdpool' + i + '">' + chips + '</div>' +
+    '<div style="font-size:0.96rem;font-weight:600;line-height:2.6;">' + sentHtml + '</div>';
+
+  wdCont.appendChild(d);
+
+  // Add drag events after DOM insertion
+  setTimeout(function(idx) {
+    var pool = document.getElementById('wdpool' + idx);
+    var slot = document.getElementById('wdslot' + idx);
+
+    pool.querySelectorAll('.drag-block').forEach(function(chip) {
+      chip.addEventListener('dragstart', function(e) { wdDrag = chip; });
+    });
+
+    pool.addEventListener('dragover', function(e) { e.preventDefault(); pool.classList.add('drag-over'); });
+    pool.addEventListener('dragleave', function() { pool.classList.remove('drag-over'); });
+    pool.addEventListener('drop', function(e) {
+      e.preventDefault(); pool.classList.remove('drag-over');
+      if (wdDrag) { pool.appendChild(wdDrag); wdAnswers[idx] = null; wdDrag = null; }
+    });
+
+    slot.addEventListener('dragover', function(e) { e.preventDefault(); slot.style.background = '#dbeafe'; });
+    slot.addEventListener('dragleave', function() { slot.style.background = '#f0f9ff'; });
+    slot.addEventListener('drop', function(e) {
+      e.preventDefault(); slot.style.background = '#f0f9ff';
+      if (!wdDrag) return;
+      if (slot.querySelector('.drag-block')) {
+        pool.appendChild(slot.querySelector('.drag-block'));
+      }
+      slot.innerHTML = '';
+      slot.appendChild(wdDrag);
+      wdAnswers[idx] = wdDrag.textContent.trim();
+      wdDrag = null;
+    });
+  }, 0, i);
+});
+
+function checkWordDrop() {
+  var sc = 0;
+  wdData.forEach(function(item, i) {
+    var slot = document.getElementById('wdslot' + i);
+    var chip = slot.querySelector('.drag-block');
+    if (chip) {
+      chip.classList.remove('placed-correct', 'placed-wrong');
+      if ((wdAnswers[i] || '').trim() === item.answer) {
+        chip.classList.add('placed-correct'); sc++;
+      } else {
+        chip.classList.add('placed-wrong');
+      }
+    }
+  });
+  var fb = document.getElementById('worddrop-feedback');
+  fb.className = 'feedback-msg show ' + (sc === wdData.length ? 'ok' : 'ko');
+  fb.textContent = sc + ' / ' + wdData.length + ' ' + (sc === wdData.length ? '✅ Perfect !' : '❌ Les blocs en rouge sont incorrects. Réessaie !');
+}
+
+// ══════════════════════════════════════════════════
+// ENTRAÎNEMENT A – Remets les mots dans l'ordre
+// ══════════════════════════════════════════════════
+var wordOrderData = [
+  { fr: "Jen préférerait aller au bord de la mer.", words: ["Jen","would","prefer","to","go","to","the","seaside","."], answer: "Jen would prefer to go to the seaside ." },
+  { fr: "Mark préférerait visiter un musée.", words: ["Mark","would","rather","visit","a","museum","."], answer: "Mark would rather visit a museum ." },
+  { fr: "Ils vont se retrouver devant la gare.", words: ["They","are","going","to","meet","in","front","of","the","station","."], answer: "They are going to meet in front of the station ." },
+  { fr: "Tom préférerait aller dans un parc d'attractions.", words: ["Tom","would","prefer","to","go","to","an","amusement","park","."], answer: "Tom would prefer to go to an amusement park ." },
+  { fr: "Ils achèteront leurs billets en ligne.", words: ["They","will","buy","their","tickets","online","."], answer: "They will buy their tickets online ." },
+  { fr: "Elle va voyager à Paris la semaine prochaine.", words: ["She","is","going","to","travel","to","Paris","next","week","."], answer: "She is going to travel to Paris next week ." },
+];
+
+var woDrag = null;
+
+function buildWordOrder() {
+  var cont = document.getElementById('wordorder-items');
+  wordOrderData.forEach(function(item, i) {
+    var shuffled = item.words.slice().sort(function() { return Math.random() - 0.5; });
+
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-bottom:20px;padding:14px;background:#f0f4ff;border-radius:14px;border:2px solid #bfdbfe;';
+
+    var frDiv = document.createElement('div');
+    frDiv.style.cssText = 'background:var(--navy-light);border-left:4px solid var(--navy);border-radius:8px;padding:6px 12px;margin-bottom:10px;font-size:0.88rem;font-weight:700;';
+    frDiv.textContent = '🇫🇷 ' + item.fr;
+
+    var lbl1 = document.createElement('div');
+    lbl1.style.cssText = 'font-size:0.78rem;font-weight:700;color:var(--muted);margin-bottom:6px;';
+    lbl1.textContent = '📦 Mots disponibles :';
+
+    var pool = document.createElement('div');
+    pool.className = 'blocks-pool';
+    pool.id = 'wopool' + i;
+    shuffled.forEach(function(w) {
+      var chip = document.createElement('div');
+      chip.className = 'drag-block';
+      chip.textContent = w;
+      chip.draggable = true;
+      chip.addEventListener('dragstart', function() { woDrag = chip; });
+      pool.appendChild(chip);
+    });
+
+    var lbl2 = document.createElement('div');
+    lbl2.style.cssText = 'font-size:0.78rem;font-weight:700;color:var(--muted);margin:10px 0 6px;';
+    lbl2.textContent = '🇬🇧 Ta phrase :';
+
+    var sent = document.createElement('div');
+    sent.className = 'drop-zone';
+    sent.id = 'wosent' + i;
+    sent.style.cssText = 'min-height:46px;flex-wrap:wrap;gap:6px;';
+    sent.innerHTML = '<span class="drop-zone-empty">Glisse les mots ici dans l\'ordre…</span>';
+
+    var ansDiv = document.createElement('div');
+    ansDiv.id = 'woans' + i;
+    ansDiv.className = 'ans-box';
+    ansDiv.textContent = '✏️ ' + item.answer;
+
+    var ansBtn = document.createElement('div');
+    ansBtn.style.marginTop = '8px';
+    var abtn = document.createElement('button');
+    abtn.className = 'toggle-ans-btn';
+    abtn.textContent = '👁 Voir la réponse';
+    abtn.addEventListener('click', function() {
+      var visible = ansDiv.style.display !== 'none';
+      ansDiv.style.display = visible ? 'none' : 'block';
+      abtn.textContent = visible ? '👁 Voir la réponse' : '🙈 Cacher la réponse';
+    });
+    ansBtn.appendChild(abtn);
+
+    // drag events
+    pool.addEventListener('dragover', function(e) { e.preventDefault(); pool.classList.add('drag-over'); });
+    pool.addEventListener('dragleave', function() { pool.classList.remove('drag-over'); });
+    pool.addEventListener('drop', function(e) {
+      e.preventDefault(); pool.classList.remove('drag-over');
+      if (woDrag) { woDrag.classList.remove('placed-correct','placed-wrong'); pool.appendChild(woDrag); woDrag = null; }
+    });
+    sent.addEventListener('dragover', function(e) { e.preventDefault(); sent.classList.add('drag-over'); });
+    sent.addEventListener('dragleave', function() { sent.classList.remove('drag-over'); });
+    sent.addEventListener('drop', function(e) {
+      e.preventDefault(); sent.classList.remove('drag-over');
+      if (!woDrag) return;
+      var empty = sent.querySelector('.drop-zone-empty');
+      if (empty) empty.remove();
+      woDrag.classList.remove('placed-correct','placed-wrong');
+      sent.appendChild(woDrag);
+      woDrag = null;
+    });
+
+    d.appendChild(frDiv); d.appendChild(lbl1); d.appendChild(pool);
+    d.appendChild(lbl2); d.appendChild(sent); d.appendChild(ansDiv); d.appendChild(ansBtn);
+    cont.appendChild(d);
+  });
+}
+buildWordOrder();
+
+function checkWordOrder() {
+  var total = 0, correct = 0;
+  wordOrderData.forEach(function(item, i) {
+    var sent = document.getElementById('wosent' + i);
+    var chips = sent.querySelectorAll('.drag-block');
+    var built = Array.from(chips).map(function(c) { return c.textContent.trim(); }).join(' ');
+    chips.forEach(function(c) { c.classList.remove('placed-correct','placed-wrong'); });
+    total++;
+    if (built === item.answer) { chips.forEach(function(c) { c.classList.add('placed-correct'); }); correct++; }
+    else { chips.forEach(function(c) { c.classList.add('placed-wrong'); }); }
+  });
+  var fb = document.getElementById('wordorder-feedback');
+  fb.className = 'feedback-msg show ' + (correct === total ? 'ok' : 'ko');
+  fb.textContent = correct + ' / ' + total + ' ' + (correct === total ? '✅ Parfait !' : '❌ Les phrases en rouge sont incorrectes. Utilise "Voir la réponse" si tu bloques.');
+}
+
+// ══════════════════════════════════════════════════
+// ENTRAÎNEMENT B – Situation → Forme du futur
+// ══════════════════════════════════════════════════
+var futSitData = [
+  {
+    fr: "📱 Ton ami t'envoie un message : le concert est annulé. Tu décides immédiatement d'aller au cinéma à la place.",
+    en: "OK, I ___ to the cinema instead.",
+    choices: ["will go", "am going to go", "am going"],
+    answer: "will go",
+    expl: "'Will' = décision prise à l'instant, spontanée. Tu ne l'avais pas prévu avant."
+  },
+  {
+    fr: "📅 Jen a réservé ses billets pour le bord de la mer il y a 3 semaines. Son voyage est dans 2 jours.",
+    en: "Jen ___ to the seaside this weekend.",
+    choices: ["will go", "is going to go", "goes"],
+    answer: "is going to go",
+    expl: "'Be going to' = plan décidé et prévu à l'avance."
+  },
+  {
+    fr: "🕙 Mark et Tom se sont mis d'accord hier soir : rendez-vous à 10h pile devant la gare.",
+    en: "Mark and Tom ___ in front of the station at 10am.",
+    choices: ["will meet", "are going to meet", "are meeting"],
+    answer: "are meeting",
+    expl: "'Be + Ving' = planning déjà confirmé. Heure et lieu sont fixés."
+  },
+  {
+    fr: "☁️ Tu regardes par la fenêtre : des nuages noirs arrivent très vite. Tu es sûr à 100% qu'il va pleuvoir.",
+    en: "Look at those clouds! It ___ .",
+    choices: ["will rain", "is going to rain", "rains"],
+    answer: "is going to rain",
+    expl: "'Be going to' = certitude basée sur un indice visible maintenant."
+  },
+  {
+    fr: "🙋 Le prof demande qui peut effacer le tableau. Tu lèves la main sans avoir réfléchi avant.",
+    en: "I ___ the board!",
+    choices: ["will clean", "am going to clean", "am cleaning"],
+    answer: "will clean",
+    expl: "'Will' = offre ou décision spontanée au moment où on parle."
+  },
+  {
+    fr: "✈️ La famille de Tom planifie ses vacances à Londres depuis 3 mois. Tout est réservé.",
+    en: "Tom's family ___ to London for the holidays.",
+    choices: ["will travel", "are going to travel", "are travelling"],
+    answer: "are going to travel",
+    expl: "'Be going to' = intention organisée bien à l'avance."
+  },
+  {
+    fr: "🍕 Tes amis commandent une pizza. Au dernier moment, tu décides d'en prendre une aussi.",
+    en: "Wait for me! I ___ one too!",
+    choices: ["will order", "am going to order", "am ordering"],
+    answer: "will order",
+    expl: "'Will' = décision spontanée prise au dernier moment."
+  },
+  {
+    fr: "📋 Jen et Mark ont réservé une table au restaurant du parc pour midi. C'était prévu.",
+    en: "Jen and Mark ___ at the park restaurant at noon.",
+    choices: ["will eat", "are going to eat", "are eating"],
+    answer: "are eating",
+    expl: "'Be + Ving' = planning confirmé à l'avance avec heure et lieu."
+  },
+  {
+    fr: "⚡ La lumière s'éteint soudainement. Tu dis immédiatement que tu vas chercher des bougies.",
+    en: "Don't worry, I ___ some candles!",
+    choices: ["will find", "am going to find", "am finding"],
+    answer: "will find",
+    expl: "'Will' = réaction spontanée à une situation imprévue."
+  },
+  {
+    fr: "🏋️ Depuis janvier, tu t'es inscrit à la salle de sport. Tu y vas tous les lundis à 18h.",
+    en: "I ___ to the gym every Monday at 6pm.",
+    choices: ["will go", "am going to go", "am going"],
+    answer: "am going",
+    expl: "'Be + Ving' = activité régulière planifiée et confirmée dans le futur."
+  },
+];
+
+function buildFutSit() {
+  var cont = document.getElementById('futsit-items');
+  futSitData.forEach(function(item, i) {
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-bottom:18px;padding:14px;background:#fff5f5;border-radius:14px;border:2px solid #fecaca;';
+
+    var frDiv = document.createElement('div');
+    frDiv.style.cssText = 'background:#ffe4e6;border-left:4px solid var(--coral);border-radius:8px;padding:7px 12px;margin-bottom:10px;font-size:0.88rem;font-weight:700;';
+    frDiv.textContent = item.fr;
+
+    var enDiv = document.createElement('div');
+    enDiv.style.cssText = 'font-size:0.96rem;font-weight:700;margin-bottom:10px;';
+    enDiv.textContent = '🇬🇧 ' + item.en;
+
+    var btnRow = document.createElement('div');
+    btnRow.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;';
+
+    var shuffled = item.choices.slice().sort(function() { return Math.random() - 0.5; });
+    shuffled.forEach(function(c) {
+      var btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.id = 'fsb' + i + '_' + c.replace(/ /g,'_');
+      btn.textContent = c;
+      btn.addEventListener('click', function() { doFutSit(i, c); });
+      btnRow.appendChild(btn);
+    });
+
+    var fbDiv = document.createElement('div');
+    fbDiv.id = 'fsfb' + i;
+    fbDiv.style.cssText = 'margin-top:8px;font-size:0.85rem;font-weight:700;display:none;padding:8px 12px;border-radius:8px;line-height:1.5;';
+
+    d.appendChild(frDiv); d.appendChild(enDiv); d.appendChild(btnRow); d.appendChild(fbDiv);
+    cont.appendChild(d);
+  });
+}
+
+function doFutSit(i, chosen) {
+  var item = futSitData[i];
+  item.choices.forEach(function(c) {
+    var btn = document.getElementById('fsb' + i + '_' + c.replace(/ /g,'_'));
+    if (btn) { btn.classList.remove('correct','wrong'); btn.disabled = true; }
+  });
+  var winBtn = document.getElementById('fsb' + i + '_' + item.answer.replace(/ /g,'_'));
+  var choBtn = document.getElementById('fsb' + i + '_' + chosen.replace(/ /g,'_'));
+  if (winBtn) winBtn.classList.add('correct');
+  if (choBtn && chosen !== item.answer) choBtn.classList.add('wrong');
+  var fb = document.getElementById('fsfb' + i);
+  fb.style.display = 'block';
+  if (chosen === item.answer) {
+    fb.style.background = 'var(--vert-light)'; fb.style.color = '#065f46';
+    fb.textContent = '✅ Correct ! ' + item.expl;
+  } else {
+    fb.style.background = 'var(--coral-light)'; fb.style.color = '#9f1239';
+    fb.textContent = '❌ Non. ' + item.expl;
+  }
+}
+
+buildFutSit();
+
+// ══════════════════════════════════════════════════
+// ENTRAÎNEMENT C – Would rather / Would prefer to
+// ══════════════════════════════════════════════════
+var prefData = [
+  { fr: "Jen préférerait aller à la plage. (avec TO)", structure: "would prefer to", verb: "go", subject: "Jen", after: "to the beach." },
+  { fr: "Mark préférerait rester en ville. (SANS TO)", structure: "would rather", verb: "stay", subject: "Mark", after: "in the city." },
+  { fr: "Tom préférerait visiter un parc d'attractions. (avec TO)", structure: "would prefer to", verb: "visit", subject: "Tom", after: "an amusement park." },
+  { fr: "Ils préféreraient partir tôt. (SANS TO)", structure: "would rather", verb: "leave", subject: "They", after: "early." },
+  { fr: "Elle préférerait prendre le bus. (avec TO)", structure: "would prefer to", verb: "take", subject: "She", after: "the bus." },
+  { fr: "Nous préférerions manger au restaurant. (SANS TO)", structure: "would rather", verb: "eat", subject: "We", after: "at a restaurant." },
+];
+
+function buildPref() {
+  var cont = document.getElementById('pref-items');
+  prefData.forEach(function(item, i) {
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-bottom:14px;padding:14px;background:#f5f3ff;border-radius:13px;border:2px solid #ddd6fe;';
+
+    var frDiv = document.createElement('div');
+    frDiv.style.cssText = 'background:var(--violet-light);border-left:4px solid var(--violet);border-radius:8px;padding:6px 12px;margin-bottom:10px;font-size:0.88rem;font-weight:700;';
+    frDiv.textContent = '🇫🇷 ' + item.fr;
+
+    var sentDiv = document.createElement('div');
+    sentDiv.style.cssText = 'font-size:0.92rem;font-weight:600;line-height:2.8;display:flex;flex-wrap:wrap;align-items:center;gap:6px;';
+
+    var subjectSpan = document.createElement('span');
+    subjectSpan.style.fontWeight = '700';
+    subjectSpan.textContent = '🇬🇧 ' + item.subject;
+
+    var structInp = document.createElement('input');
+    structInp.className = 'blank-input';
+    structInp.id = 'pstruct' + i;
+    structInp.placeholder = 'would … ?';
+    structInp.style.width = '160px';
+
+    var verbInp = document.createElement('input');
+    verbInp.className = 'blank-input';
+    verbInp.id = 'pverb' + i;
+    verbInp.placeholder = 'verb?';
+    verbInp.style.width = '80px';
+
+    var afterSpan = document.createElement('span');
+    afterSpan.textContent = item.after;
+
+    var hintDiv = document.createElement('div');
+    hintDiv.style.cssText = 'font-size:0.78rem;color:var(--muted);margin-top:2px;';
+    hintDiv.textContent = item.structure === 'would prefer to' ? '💡 would prefer to + infinitif (avec TO)' : '💡 would rather + base verb (SANS TO)';
+
+    sentDiv.appendChild(subjectSpan);
+    sentDiv.appendChild(structInp);
+    sentDiv.appendChild(verbInp);
+    sentDiv.appendChild(afterSpan);
+    d.appendChild(frDiv); d.appendChild(sentDiv); d.appendChild(hintDiv);
+    cont.appendChild(d);
+  });
+}
+buildPref();
+
+function checkPref() {
+  var sc = 0;
+  prefData.forEach(function(item, i) {
+    var si = document.getElementById('pstruct' + i);
+    var vi = document.getElementById('pverb' + i);
+    si.classList.remove('ok','ko'); vi.classList.remove('ok','ko');
+    var sok = si.value.trim().toLowerCase() === item.structure.toLowerCase();
+    var vok = vi.value.trim().toLowerCase() === item.verb.toLowerCase();
+    si.classList.add(sok ? 'ok' : 'ko');
+    vi.classList.add(vok ? 'ok' : 'ko');
+    if (!sok) si.placeholder = item.structure;
+    if (!vok) vi.placeholder = item.verb;
+    if (sok && vok) sc++;
+  });
+  var fb = document.getElementById('pref-feedback');
+  fb.className = 'feedback-msg show ' + (sc === prefData.length ? 'ok' : 'ko');
+  fb.textContent = sc + ' / ' + prefData.length + ' ' + (sc === prefData.length ? '✅ Excellent !' : '❌ Les bonnes réponses apparaissent dans les cases rouges.');
+}
+
+// ══════════════════════════════════════════════════
+// GLOSSAIRE
+// ══════════════════════════════════════════════════
+var glossData = [
+  { term: "would prefer to", fr: "préférerait (avec TO)", ex: "I would prefer to go to Paris.", type: "preference" },
+  { term: "would rather", fr: "préférerait (sans TO)", ex: "She would rather stay home.", type: "preference" },
+  { term: "will", fr: "futur – décision spontanée", ex: "I will call you later.", type: "future" },
+  { term: "be going to", fr: "aller + inf. – plan prévu", ex: "We are going to visit London.", type: "future" },
+  { term: "be + Ving", fr: "planning fixé à l'avance", ex: "They are leaving at 9am.", type: "future" },
+  { term: "favourite place", fr: "endroit préféré", ex: "Her favourite place is the seaside.", type: "vocab" },
+  { term: "seaside", fr: "bord de mer", ex: "We are going to the seaside.", type: "vocab" },
+  { term: "amusement park", fr: "parc d'attractions", ex: "Tom loves amusement parks.", type: "vocab" },
+  { term: "museum", fr: "musée", ex: "Mark would rather visit a museum.", type: "vocab" },
+  { term: "to meet", fr: "se retrouver", ex: "They will meet at the station.", type: "vocab" },
+  { term: "because", fr: "parce que", ex: "She loves it because it's relaxing.", type: "vocab" },
+  { term: "all three of them", fr: "tous les trois", ex: "All three of them will go together.", type: "vocab" },
+];
+
+var typeColor = { preference: 'var(--coral)', future: 'var(--sky)', vocab: 'var(--vert)' };
+var typeLabel = { preference: 'Préférence', future: 'Futur', vocab: 'Vocabulaire' };
+var grid = document.getElementById('glossaire-grid');
+glossData.forEach(function(item) {
+  var card = document.createElement('div');
+  card.className = 'glos-card';
+  card.style.borderTopColor = typeColor[item.type];
+
+  var term = document.createElement('div');
+  term.className = 'glos-term';
+  term.textContent = '🇬🇧 ' + item.term;
+
+  var fr = document.createElement('div');
+  fr.className = 'glos-fr';
+  fr.textContent = '🇫🇷 ' + item.fr;
+
+  var type = document.createElement('div');
+  type.className = 'glos-type';
+  type.style.cssText = 'background:' + typeColor[item.type] + '22;color:' + typeColor[item.type] + ';';
+  type.textContent = typeLabel[item.type];
+
+  var ex = document.createElement('div');
+  ex.className = 'glos-ex';
+  ex.textContent = '💬 ' + item.ex;
+
+  card.appendChild(term); card.appendChild(fr); card.appendChild(type); card.appendChild(ex);
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
