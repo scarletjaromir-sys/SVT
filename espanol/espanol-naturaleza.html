@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Español – Naturaleza 🌍</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #27ae60; --green2: #1e8449;
+    --blue: #2980b9; --teal: #16a085;
+    --orange: #e67e22; --red: #e74c3c;
+    --dark: #1a2a1a; --light: #f0faf0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: var(--light); min-height: 100vh; }
+
+  header {
+    background: linear-gradient(135deg, #1e8449, #16a085, #2980b9);
+    padding: 30px 20px; text-align: center; position: relative; overflow: hidden;
+  }
+  header::before {
+    content: '🌿🌊🌳🦋🌎🐘🌿🌊🌳';
+    position: absolute; top: 8px; left: 0; right: 0;
+    font-size: 1.4rem; opacity: 0.18; letter-spacing: 12px;
+  }
+  header .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5);
+    color: #fff; text-decoration: none; border-radius: 20px;
+    padding: 6px 16px; font-size: 0.9rem; font-weight: 700;
+    margin-bottom: 16px; transition: background 0.2s;
+  }
+  header .back-btn:hover { background: rgba(255,255,255,0.35); }
+  header h1 { font-family: 'Baloo 2', cursive; font-size: 2.2rem; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.25); }
+  header p { color: rgba(255,255,255,0.9); margin-top: 6px; font-size: 1.05rem; }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+
+  /* Progress */
+  .progress-wrap { background: #ddd; border-radius: 10px; height: 10px; margin-bottom: 28px; }
+  .progress-fill { height: 10px; border-radius: 10px; background: linear-gradient(90deg, var(--green), var(--blue)); transition: width 0.5s; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
+  .tab-btn {
+    background: #fff; border: 2px solid #cce8cc; border-radius: 20px;
+    padding: 8px 18px; font-family: 'Baloo 2', cursive; font-size: 0.95rem;
+    cursor: pointer; color: #555; transition: all 0.2s;
+  }
+  .tab-btn.active { background: linear-gradient(135deg, var(--green), var(--teal)); color: #fff; border-color: transparent; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Section title */
+  .section-title {
+    font-family: 'Baloo 2', cursive; font-size: 1.35rem; font-weight: 800;
+    margin: 28px 0 14px; display: flex; align-items: center; gap: 10px;
+    color: var(--dark); border-bottom: 3px solid #cce8cc; padding-bottom: 8px;
+  }
+
+  /* Lesson cards */
+  .lesson-card {
+    background: #fff; border-radius: 18px; padding: 22px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07); margin-bottom: 16px;
+  }
+  .lesson-card h3 { font-family: 'Baloo 2', cursive; font-size: 1.1rem; color: var(--dark); margin-bottom: 12px; }
+  .lesson-card p { color: #444; line-height: 1.75; margin-bottom: 8px; }
+
+  /* Vocab grid */
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 10px; }
+  .vocab-item {
+    background: linear-gradient(135deg, #e8f8f0, #d5f0e8);
+    border-radius: 12px; padding: 10px 14px;
+    border-left: 4px solid var(--green);
+  }
+  .vocab-item .es { font-weight: 700; color: var(--green2); font-size: 1rem; }
+  .vocab-item .fr { color: #666; font-size: 0.88rem; margin-top: 2px; }
+
+  .vocab-grid-orange .vocab-item {
+    background: linear-gradient(135deg, #fef5e7, #fdebd0);
+    border-left-color: var(--orange);
+  }
+  .vocab-grid-orange .vocab-item .es { color: var(--orange); }
+
+  .vocab-grid-blue .vocab-item {
+    background: linear-gradient(135deg, #ebf5fb, #d6eaf8);
+    border-left-color: var(--blue);
+  }
+  .vocab-grid-blue .vocab-item .es { color: var(--blue); }
+
+  /* Grammar box */
+  .grammar-box {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px;
+  }
+  .grammar-col {
+    border-radius: 14px; padding: 16px;
+  }
+  .grammar-col.personal { background: linear-gradient(135deg, #fef5e7, #fdebd0); border: 2px solid var(--orange); }
+  .grammar-col.impersonal { background: linear-gradient(135deg, #ebf5fb, #d6eaf8); border: 2px solid var(--blue); }
+  .grammar-col h4 { font-family: 'Baloo 2', cursive; font-size: 1rem; margin-bottom: 10px; }
+  .grammar-col h4.pers { color: var(--orange); }
+  .grammar-col h4.impers { color: var(--blue); }
+  .formula { background: rgba(255,255,255,0.7); border-radius: 8px; padding: 8px 12px; font-weight: 700; margin: 6px 0; font-size: 0.95rem; }
+  .grammar-col table { width: 100%; font-size: 0.88rem; border-collapse: collapse; margin-top: 8px; }
+  .grammar-col td { padding: 3px 6px; }
+  .grammar-col td:first-child { font-weight: 700; color: #555; }
+  .example-sent { background: rgba(255,255,255,0.6); border-radius: 8px; padding: 6px 10px; font-style: italic; margin-top: 8px; font-size: 0.9rem; color: #333; }
+  @media(max-width:600px){ .grammar-box { grid-template-columns: 1fr; } }
+
+  /* Quiz */
+  .quiz-card {
+    background: #fff; border-radius: 18px; padding: 22px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 18px;
+  }
+  .q-num { font-size: 0.82rem; color: #aaa; margin-bottom: 5px; font-family: 'Baloo 2', cursive; }
+  .q-text { font-size: 1.05rem; color: var(--dark); font-weight: 700; margin-bottom: 14px; line-height: 1.5; }
+  .choice-btn {
+    display: block; width: 100%; text-align: left;
+    background: #f7faf7; border: 2px solid #d5ead5;
+    border-radius: 12px; padding: 11px 16px; margin-bottom: 8px;
+    font-family: 'Nunito', sans-serif; font-size: 0.98rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; color: var(--dark);
+  }
+  .choice-btn:hover:not(:disabled) { border-color: var(--green); background: #e8f8f0; }
+  .choice-btn.correct { background: #d5f5e3; border-color: var(--green); color: #1a6b3c; }
+  .choice-btn.wrong { background: #fde8e8; border-color: var(--red); color: #922b21; }
+  .choice-btn:disabled { cursor: not-allowed; }
+  .feedback { margin-top: 10px; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.93rem; display: none; }
+  .feedback.show { display: block; }
+  .feedback.ok { background: #d5f5e3; color: #1a6b3c; }
+  .feedback.ko { background: #fde8e8; color: #922b21; }
+
+  /* Fill input */
+  .fill-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+  .fill-input {
+    border: 2px solid #cce; border-radius: 10px; padding: 7px 14px;
+    font-family: 'Nunito', sans-serif; font-size: 1rem; min-width: 180px;
+    outline: none; transition: border 0.2s;
+  }
+  .fill-input:focus { border-color: var(--green); }
+  .fill-input.correct { border-color: var(--green); background: #d5f5e3; }
+  .fill-input.wrong { border-color: var(--red); background: #fde8e8; }
+
+  /* Buttons */
+  .check-btn {
+    background: linear-gradient(135deg, var(--green), var(--teal));
+    color: #fff; border: none; border-radius: 12px;
+    padding: 10px 22px; font-family: 'Baloo 2', cursive; font-size: 1rem;
+    cursor: pointer; transition: opacity 0.2s; margin-top: 8px;
+  }
+  .check-btn:hover { opacity: 0.85; }
+  .reveal-btn {
+    background: none; border: 2px solid #bbb; border-radius: 12px;
+    color: #888; padding: 8px 16px; font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem; cursor: pointer; transition: all 0.2s; margin-top: 8px; margin-left: 6px;
+  }
+  .reveal-btn:hover { border-color: var(--green); color: var(--green); }
+
+  /* Match game */
+  .match-area { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .match-col { display: flex; flex-direction: column; gap: 8px; }
+  .match-item {
+    background: #f7faf7; border: 2px solid #cce8cc; border-radius: 12px;
+    padding: 10px 14px; cursor: pointer; font-weight: 600; font-size: 0.95rem;
+    transition: all 0.2s; user-select: none; text-align: center;
+  }
+  .match-item:hover { border-color: var(--green); background: #e8f8f0; }
+  .match-item.selected { border-color: var(--orange); background: #fef5e7; }
+  .match-item.matched { border-color: var(--green); background: #d5f5e3; cursor: default; color: var(--green2); }
+  .match-item.wrong-match { border-color: var(--red); background: #fde8e8; }
+  @media(max-width:500px){ .match-area { grid-template-columns: 1fr; } }
+
+  /* Score */
+  .score-box {
+    background: linear-gradient(135deg, var(--green), var(--teal));
+    color: #fff; border-radius: 20px; padding: 28px;
+    text-align: center; margin-top: 28px; display: none;
+  }
+  .score-box.show { display: block; }
+  .score-box h2 { font-family: 'Baloo 2', cursive; font-size: 1.8rem; }
+  .score-box .big { font-family: 'Baloo 2', cursive; font-size: 3.2rem; margin: 8px 0; }
+  .reset-btn {
+    background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.6);
+    color: #fff; border-radius: 14px; padding: 10px 24px;
+    font-family: 'Baloo 2', cursive; font-size: 1rem; cursor: pointer; margin: 8px 4px 0;
+    transition: background 0.2s;
+  }
+  .reset-btn:hover { background: rgba(255,255,255,0.4); }
+
+  .tag {
+    display: inline-block; border-radius: 20px; padding: 2px 12px;
+    font-size: 0.78rem; font-weight: 700; margin-left: 8px; vertical-align: middle;
+  }
+  .tag-green { background: #d5f5e3; color: var(--green2); }
+  .tag-blue { background: #d6eaf8; color: var(--blue); }
+  .tag-orange { background: #fdebd0; color: var(--orange); }
+
+  footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back-btn" href="../index.html">← Accueil</a>
+  <div style="font-size:2rem;margin-bottom:8px;">🌍 🦁 🌿</div>
+  <h1>Naturaleza y Medio Ambiente</h1>
+  <p>Español · 4e – Cambio climático, animales en peligro, drones</p>
+</header>
+
+<div class="container">
+
+  <div style="display:flex;justify-content:space-between;font-size:0.83rem;color:#888;margin-bottom:5px;">
+    <span>Progression</span><span id="prog-label">0 / 30 réponses</span>
+  </div>
+  <div class="progress-wrap"><div class="progress-fill" id="prog-bar" style="width:0%"></div></div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('cours')">📖 Cours & Vocab</button>
+    <button class="tab-btn" onclick="switchTab('grammaire')">📐 Grammaire</button>
+    <button class="tab-btn" onclick="switchTab('ex1')">🌋 Ex.1 – Climat</button>
+    <button class="tab-btn" onclick="switchTab('ex2')">🦁 Ex.2 – Animaux</button>
+    <button class="tab-btn" onclick="switchTab('ex3')">🚁 Ex.3 – Drones</button>
+  </div>
+
+  <!-- ====== COURS ====== -->
+  <div class="tab-panel active" id="tab-cours">
+
+    <div class="section-title">🌋 Vocabulaire – Cambio climático</div>
+    <div class="lesson-card">
+      <h3>Les catastrophes climatiques 🌪️</h3>
+      <div class="vocab-grid">
+        <div class="vocab-item"><div class="es">el calentamiento global</div><div class="fr">le réchauffement climatique</div></div>
+        <div class="vocab-item"><div class="es">los gases de efecto invernadero</div><div class="fr">gaz à effet de serre</div></div>
+        <div class="vocab-item"><div class="es">la capa de ozono</div><div class="fr">la couche d'ozone</div></div>
+        <div class="vocab-item"><div class="es">el nivel del mar</div><div class="fr">le niveau de la mer</div></div>
+        <div class="vocab-item"><div class="es">las sequías</div><div class="fr">les sécheresses</div></div>
+        <div class="vocab-item"><div class="es">las inundaciones</div><div class="fr">les inondations</div></div>
+        <div class="vocab-item"><div class="es">los huracanes</div><div class="fr">les ouragans</div></div>
+        <div class="vocab-item"><div class="es">la contaminación</div><div class="fr">la pollution</div></div>
+        <div class="vocab-item"><div class="es">la temperatura</div><div class="fr">la température</div></div>
+        <div class="vocab-item"><div class="es">las enfermedades</div><div class="fr">les maladies</div></div>
+        <div class="vocab-item"><div class="es">la cosecha</div><div class="fr">la récolte</div></div>
+        <div class="vocab-item"><div class="es">la naturaleza</div><div class="fr">la nature</div></div>
+      </div>
+    </div>
+
+    <div class="lesson-card">
+      <h3>Verbes clés 🔑</h3>
+      <div class="vocab-grid">
+        <div class="vocab-item"><div class="es">derretirse (e→i)</div><div class="fr">fondre</div></div>
+        <div class="vocab-item"><div class="es">aumentar</div><div class="fr">augmenter</div></div>
+        <div class="vocab-item"><div class="es">destruir</div><div class="fr">détruire</div></div>
+        <div class="vocab-item"><div class="es">debilitarse</div><div class="fr">se fragiliser</div></div>
+        <div class="vocab-item"><div class="es">cambiar</div><div class="fr">changer</div></div>
+        <div class="vocab-item"><div class="es">mejorar</div><div class="fr">améliorer</div></div>
+        <div class="vocab-item"><div class="es">cuidar de</div><div class="fr">prendre soin de</div></div>
+        <div class="vocab-item"><div class="es">actuar</div><div class="fr">agir</div></div>
+        <div class="vocab-item"><div class="es">comprometerse</div><div class="fr">s'engager</div></div>
+        <div class="vocab-item"><div class="es">apoyar</div><div class="fr">soutenir</div></div>
+      </div>
+    </div>
+
+    <div class="section-title">🦁 Vocabulaire – Animales en peligro</div>
+    <div class="lesson-card">
+      <h3>Animaux et menaces 🐘</h3>
+      <div class="vocab-grid vocab-grid-orange">
+        <div class="vocab-item"><div class="es">en peligro de extinción</div><div class="fr">en danger d'extinction</div></div>
+        <div class="vocab-item"><div class="es">la amenaza</div><div class="fr">la menace</div></div>
+        <div class="vocab-item"><div class="es">el riesgo</div><div class="fr">le risque</div></div>
+        <div class="vocab-item"><div class="es">cazar / la caza</div><div class="fr">chasser / la chasse</div></div>
+        <div class="vocab-item"><div class="es">pescar / la pesca</div><div class="fr">pêcher / la pêche</div></div>
+        <div class="vocab-item"><div class="es">ilegal / legal</div><div class="fr">illégal / légal</div></div>
+        <div class="vocab-item"><div class="es">el bosque tropical</div><div class="fr">la forêt tropicale</div></div>
+        <div class="vocab-item"><div class="es">el hábitat natural</div><div class="fr">l'habitat naturel</div></div>
+        <div class="vocab-item"><div class="es">enfrentarse a</div><div class="fr">être confronté à</div></div>
+        <div class="vocab-item"><div class="es">estar amenazado/a</div><div class="fr">être menacé(e)</div></div>
+        <div class="vocab-item"><div class="es">la especie endémica</div><div class="fr">l'espèce endémique</div></div>
+        <div class="vocab-item"><div class="es">la destrucción</div><div class="fr">la destruction</div></div>
+      </div>
+    </div>
+
+    <div class="section-title">🚁 Vocabulaire – Tecnología y naturaleza</div>
+    <div class="lesson-card">
+      <h3>Les drones et la conservation 🛸</h3>
+      <div class="vocab-grid vocab-grid-blue">
+        <div class="vocab-item"><div class="es">el monitoreo / el seguimiento</div><div class="fr">le suivi / la surveillance</div></div>
+        <div class="vocab-item"><div class="es">los datos</div><div class="fr">les données / infos</div></div>
+        <div class="vocab-item"><div class="es">la herramienta</div><div class="fr">l'outil</div></div>
+        <div class="vocab-item"><div class="es">el reto</div><div class="fr">le défi</div></div>
+        <div class="vocab-item"><div class="es">la selva</div><div class="fr">la forêt / la jungle</div></div>
+        <div class="vocab-item"><div class="es">costoso</div><div class="fr">coûteux</div></div>
+        <div class="vocab-item"><div class="es">sin embargo</div><div class="fr">cependant / pourtant</div></div>
+        <div class="vocab-item"><div class="es">proporcionar</div><div class="fr">fournir / donner</div></div>
+        <div class="vocab-item"><div class="es">el éxito</div><div class="fr">le succès</div></div>
+        <div class="vocab-item"><div class="es">las áreas protegidas</div><div class="fr">les zones protégées</div></div>
+        <div class="vocab-item"><div class="es">reducir</div><div class="fr">réduire</div></div>
+        <div class="vocab-item"><div class="es">innovador/a</div><div class="fr">innovant(e)</div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="check-btn" onclick="switchTab('grammaire')" style="font-size:1.1rem;padding:14px 34px;">
+        Suite → Grammaire 📐
+      </button>
+    </div>
+  </div>
+
+  <!-- ====== GRAMMAIRE ====== -->
+  <div class="tab-panel" id="tab-grammaire">
+    <div class="section-title">📐 L'obligation en espagnol</div>
+
+    <div class="lesson-card">
+      <h3>Deux structures à connaître par cœur 💡</h3>
+      <p>En espagnol, on distingue <strong>l'obligation personnelle</strong> (« tu dois ») et <strong>l'obligation impersonnelle</strong> (« il faut »).</p>
+      <div class="grammar-box">
+        <div class="grammar-col personal">
+          <h4 class="pers">🧑 Obligation personnelle = TU DOIS</h4>
+          <div class="formula">TENER QUE + infinitif</div>
+          <table>
+            <tr><td>yo</td><td><strong>tengo que</strong></td></tr>
+            <tr><td>tú</td><td><strong>tienes que</strong></td></tr>
+            <tr><td>él/ella</td><td><strong>tiene que</strong></td></tr>
+            <tr><td>nosotros</td><td><strong>tenemos que</strong></td></tr>
+            <tr><td>vosotros</td><td><strong>tenéis que</strong></td></tr>
+            <tr><td>ellos</td><td><strong>tienen que</strong></td></tr>
+          </table>
+          <div class="example-sent">Tengo que reciclar más. → <em>Je dois recycler plus.</em></div>
+          <div class="example-sent">Tenemos que reducir la contaminación. → <em>Nous devons réduire la pollution.</em></div>
+        </div>
+        <div class="grammar-col impersonal">
+          <h4 class="impers">🌐 Obligation impersonnelle = IL FAUT</h4>
+          <div class="formula">HAY QUE + infinitif</div>
+          <p style="font-size:0.88rem;color:#555;margin-top:6px;">Pas de sujet ! HAY ne se conjugue pas.</p>
+          <div class="example-sent" style="margin-top:14px;">Hay que proteger los bosques. → <em>Il faut protéger les forêts.</em></div>
+          <div class="example-sent">Hay que reducir los gases de efecto invernadero. → <em>Il faut réduire les gaz à effet de serre.</em></div>
+          <div class="example-sent">Hay que cuidar de los animales. → <em>Il faut prendre soin des animaux.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">🎯 Mini-quiz – Obligation</div>
+    <div id="grammar-quiz"></div>
+    <div style="text-align:center;">
+      <button class="check-btn" onclick="submitGrammar()">Voir le score 🎯</button>
+    </div>
+    <div class="score-box" id="grammar-score">
+      <h2>Grammaire !</h2>
+      <div class="big" id="grammar-score-val">–</div>
+      <p id="grammar-score-msg"></p>
+      <button class="reset-btn" onclick="resetGrammar()">🔄 Recommencer</button>
+      <button class="reset-btn" onclick="switchTab('ex1')">Ex. 1 →</button>
+    </div>
+  </div>
+
+  <!-- ====== EX 1 : Cambio climático ====== -->
+  <div class="tab-panel" id="tab-ex1">
+    <div class="section-title">🌋 Exercice 1 – Cambio climático</div>
+    <p style="color:#555;margin-bottom:18px;">Complète les phrases avec le bon mot de vocabulaire climatique.</p>
+    <div id="ex1-container"></div>
+    <div style="text-align:center;">
+      <button class="check-btn" onclick="submitEx('ex1')">Voir le score 🎯</button>
+    </div>
+    <div class="score-box" id="ex1-score">
+      <h2>Exercice 1 !</h2>
+      <div class="big" id="ex1-score-val">–</div>
+      <p id="ex1-score-msg"></p>
+      <button class="reset-btn" onclick="resetEx('ex1')">🔄 Recommencer</button>
+      <button class="reset-btn" onclick="switchTab('ex2')">Ex. 2 →</button>
+    </div>
+  </div>
+
+  <!-- ====== EX 2 : Animales ====== -->
+  <div class="tab-panel" id="tab-ex2">
+    <div class="section-title">🦁 Exercice 2 – Animales en peligro</div>
+    <p style="color:#555;margin-bottom:18px;">Associe chaque animal à la bonne cause de vulnérabilité.</p>
+    <div id="ex2-container"></div>
+    <div class="score-box" id="ex2-score">
+      <h2>Exercice 2 !</h2>
+      <div class="big" id="ex2-score-val">–</div>
+      <p id="ex2-score-msg"></p>
+      <button class="reset-btn" onclick="resetEx2Match()">🔄 Recommencer</button>
+      <button class="reset-btn" onclick="switchTab('ex3')">Ex. 3 →</button>
+    </div>
+  </div>
+
+  <!-- ====== EX 3 : Drones ====== -->
+  <div class="tab-panel" id="tab-ex3">
+    <div class="section-title">🚁 Exercice 3 – Drones y fauna</div>
+    <p style="color:#555;margin-bottom:18px;">Réponds aux questions sur le texte <em>Uso de drones</em>.</p>
+    <div id="ex3-container"></div>
+    <div style="text-align:center;">
+      <button class="check-btn" onclick="submitEx('ex3')">Voir le score 🎯</button>
+    </div>
+    <div class="score-box" id="ex3-score">
+      <h2>Ejercicio 3 terminado ! 🎉</h2>
+      <div class="big" id="ex3-score-val">–</div>
+      <p id="ex3-score-msg"></p>
+      <button class="reset-btn" onclick="resetEx('ex3')">🔄 Recommencer</button>
+    </div>
+  </div>
+
+</div>
+<footer>Creado con ❤️ para Noah 🌍</footer>
+
+<script>
+// ---- TABS ----
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
+  });
+}
+
+// ---- PROGRESS ----
+let totalDone = 0;
+const TOTAL = 30;
+function addProgress(n=1) {
+  totalDone = Math.min(TOTAL, totalDone + n);
+  document.getElementById('prog-bar').style.width = Math.round(totalDone/TOTAL*100) + '%';
+  document.getElementById('prog-label').textContent = totalDone + ' / ' + TOTAL + ' réponses';
+}
+
+// ---- GRAMMAR QUIZ ----
+const grammarQ = [
+  { q: "___ reciclar más. (Il faut recycler plus.)", opts: ["Tengo que", "Hay que", "Tienes que"], correct: 1 },
+  { q: "Nosotros ___ proteger los animales. (Nous devons protéger les animaux.)", opts: ["hay que", "tenemos que", "tienen que"], correct: 1 },
+  { q: "___ reducir los gases de efecto invernadero. (Il faut réduire les GES.)", opts: ["Hay que", "Tenéis que", "Tengo que"], correct: 0 },
+  { q: "Tú ___ cuidar de la naturaleza. (Tu dois prendre soin de la nature.)", opts: ["hay que", "tienes que", "tiene que"], correct: 1 },
+  { q: "___ actuar ahora. (Il faut agir maintenant.)", opts: ["Tenemos que", "Hay que", "Tienes que"], correct: 1 },
+  { q: "Ellos ___ cambiar sus hábitos. (Ils doivent changer leurs habitudes.)", opts: ["hay que", "tienen que", "tenemos que"], correct: 1 },
+];
+let gState = Array(grammarQ.length).fill(null);
+let gScore = 0, gDone = false;
+
+function buildGrammar() {
+  const c = document.getElementById('grammar-quiz');
+  c.innerHTML = '';
+  grammarQ.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.className = 'quiz-card';
+    d.innerHTML = `<div class="q-num">Question ${i+1} / ${grammarQ.length}</div>
+    <div class="q-text">${item.q}</div>
+    ${item.opts.map((o,j) => `<button class="choice-btn" id="g-btn-${i}-${j}" onclick="answerGrammar(${i},${j})">${o}</button>`).join('')}
+    <div class="feedback" id="g-fb-${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function answerGrammar(qi, choice) {
+  if (gState[qi] !== null) return;
+  const item = grammarQ[qi];
+  const ok = choice === item.correct;
+  gState[qi] = ok ? 'correct' : 'wrong';
+  if (ok) gScore++;
+  item.opts.forEach((_,j) => {
+    const btn = document.getElementById(`g-btn-${qi}-${j}`);
+    btn.disabled = true;
+    if (j === item.correct) btn.classList.add('correct');
+    else if (j === choice && !ok) btn.classList.add('wrong');
+  });
+  const fb = document.getElementById(`g-fb-${qi}`);
+  fb.className = 'feedback show ' + (ok ? 'ok' : 'ko');
+  fb.textContent = ok ? '✅ ¡Muy bien!' : `❌ Bonne réponse : ${item.opts[item.correct]}`;
+  addProgress();
+}
+function submitGrammar() {
+  if (gDone) return; gDone = true;
+  grammarQ.forEach((item, i) => {
+    if (gState[i] === null) {
+      item.opts.forEach((_,j) => {
+        document.getElementById(`g-btn-${i}-${j}`).disabled = true;
+        if (j === item.correct) document.getElementById(`g-btn-${i}-${j}`).classList.add('correct');
+      });
+    }
+  });
+  const sb = document.getElementById('grammar-score');
+  document.getElementById('grammar-score-val').textContent = gScore + ' / ' + grammarQ.length;
+  document.getElementById('grammar-score-msg').textContent = gScore >= 5 ? '🎉 ¡Perfecto! Tu maîtrises l\'obligation !' : '👍 Relis la leçon et réessaie !';
+  sb.classList.add('show');
+}
+function resetGrammar() {
+  gScore = 0; gDone = false; gState = Array(grammarQ.length).fill(null);
+  document.getElementById('grammar-score').classList.remove('show');
+  buildGrammar();
+}
+
+// ---- EX 1 : Fill-in climat ----
+const ex1Data = [
+  { text: "Los polos se derriten y ___ el nivel del mar.", answer: "aumenta", hint: "augmenter (él/ella)" },
+  { text: "Los ___ son gases que atrapan el calor del sol.", answer: "gases de efecto invernadero", hint: "gaz à effet de serre" },
+  { text: "Las lluvias violentas destruyen ___ .", answer: "las cosechas", hint: "les récoltes" },
+  { text: "La ___ del planeta aumenta a causa del calentamiento global.", answer: "temperatura", hint: "la température" },
+  { text: "Las ___ son períodos largos sin lluvia.", answer: "sequías", hint: "les sécheresses" },
+  { text: "La ___ se está debilitando y los rayos del sol actúan más.", answer: "capa de ozono", hint: "la couche d'ozone" },
+  { text: "Las ___ son catástrofes causadas por demasiada lluvia.", answer: "inundaciones", hint: "les inondations" },
+  { text: "Tenemos que ___ nuestra forma de producir energía.", answer: "cambiar", hint: "changer" },
+];
+let ex1State = {};
+function buildEx(id, data) {
+  const c = document.getElementById(id + '-container');
+  c.innerHTML = '';
+  ex1State[id] = { scores: Array(data.length).fill(null), done: false, score: 0 };
+  data.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.className = 'quiz-card';
+    d.innerHTML = `<div class="q-num">Question ${i+1} / ${data.length}</div>
+    <div class="q-text">${item.text.replace('___', `<input class="fill-input" id="${id}-inp-${i}" placeholder="ta réponse…" autocomplete="off">`)}</div>
+    <div><button class="check-btn" id="${id}-chk-${i}" onclick="checkFill('${id}',${i})" style="font-size:0.9rem;padding:8px 16px;">Vérifier</button>
+    <button class="reveal-btn" id="${id}-rev-${i}" onclick="revealFill('${id}',${i})">Voir la réponse</button></div>
+    <div class="feedback" id="${id}-fb-${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function norm(s) {
+  return s.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/['']/g,"'");
+}
+function checkFill(id, i) {
+  const data = id === 'ex1' ? ex1Data : ex3Data;
+  const st = ex1State[id];
+  if (st.scores[i] !== null) return;
+  const inp = document.getElementById(`${id}-inp-${i}`);
+  const ok = norm(inp.value) === norm(data[i].answer);
+  st.scores[i] = ok ? 'correct' : 'wrong';
+  if (ok) st.score++;
+  inp.classList.add(ok ? 'correct' : 'wrong');
+  inp.disabled = true;
+  document.getElementById(`${id}-chk-${i}`).disabled = true;
+  document.getElementById(`${id}-rev-${i}`).disabled = true;
+  const fb = document.getElementById(`${id}-fb-${i}`);
+  fb.className = 'feedback show ' + (ok ? 'ok' : 'ko');
+  fb.textContent = ok ? '✅ ¡Correcto!' : `❌ Réponse : ${data[i].answer} (${data[i].hint})`;
+  addProgress();
+}
+function revealFill(id, i) {
+  const data = id === 'ex1' ? ex1Data : ex3Data;
+  const st = ex1State[id];
+  if (st.scores[i] !== null) return;
+  st.scores[i] = 'revealed';
+  const inp = document.getElementById(`${id}-inp-${i}`);
+  inp.value = data[i].answer; inp.disabled = true;
+  inp.classList.add('correct');
+  document.getElementById(`${id}-chk-${i}`).disabled = true;
+  document.getElementById(`${id}-rev-${i}`).disabled = true;
+  const fb = document.getElementById(`${id}-fb-${i}`);
+  fb.className = 'feedback show ok';
+  fb.textContent = `👁️ ${data[i].answer} (${data[i].hint})`;
+}
+function submitEx(id) {
+  const data = id === 'ex1' ? ex1Data : ex3Data;
+  const st = ex1State[id];
+  if (st.done) return; st.done = true;
+  data.forEach((_,i) => { if (st.scores[i] === null) revealFill(id, i); });
+  const sb = document.getElementById(id + '-score');
+  const pct = Math.round(st.score / data.length * 100);
+  document.getElementById(id + '-score-val').textContent = st.score + ' / ' + data.length;
+  document.getElementById(id + '-score-msg').textContent = pct >= 80 ? '🎉 ¡Excelente! Vocabulaire maîtrisé !' : pct >= 60 ? '👍 Bien ! Relis les mots manquants.' : '💪 Continue ! Tu vas y arriver.';
+  sb.classList.add('show');
+}
+function resetEx(id) {
+  document.getElementById(id + '-score').classList.remove('show');
+  if (id === 'ex1') buildEx('ex1', ex1Data);
+  else buildEx('ex3', ex3Data);
+}
+
+// ---- EX 2 : Match animaux ----
+const matchData = [
+  { animal: "🦜 El loro", cause: "Comercio ilegal de aves" },
+  { animal: "🐘 El elefante", cause: "Pérdida del hábitat natural" },
+  { animal: "🐢 La tortuga marina", cause: "Ingestión de plásticos en el océano" },
+  { animal: "🦁 El leopardo", cause: "Caza furtiva ilegal" },
+  { animal: "🐋 La ballena", cause: "Pesca no regulada" },
+  { animal: "🦅 El cóndor", cause: "Destrucción de su hábitat" },
+];
+let matchSelected = null;
+let matchDone = {};
+let matchScore = 0;
+
+function buildEx2Match() {
+  matchSelected = null; matchDone = {}; matchScore = 0;
+  const c = document.getElementById('ex2-container');
+  // Shuffle causes
+  const animals = [...matchData];
+  const causes = [...matchData].sort(() => Math.random() - 0.5);
+  c.innerHTML = `<p style="color:#666;margin-bottom:12px;">Clique sur un animal puis sur la cause correspondante 🔗</p>
+  <div class="match-area">
+    <div class="match-col" id="match-animals">
+      ${animals.map((a,i) => `<div class="match-item" id="ma-${i}" onclick="selectMatch('animal',${i})">${a.animal}</div>`).join('')}
+    </div>
+    <div class="match-col" id="match-causes">
+      ${causes.map((c,i) => `<div class="match-item" id="mc-${i}" onclick="selectMatch('cause',${i})" data-cause="${c.cause}">${c.cause}</div>`).join('')}
+    </div>
+  </div>
+  <div id="match-feedback" style="margin-top:14px;font-weight:700;color:#555;"></div>`;
+}
+let matchAnimalIdx = null;
+function selectMatch(type, idx) {
+  if (type === 'animal') {
+    if (matchDone['a'+idx]) return;
+    document.querySelectorAll('[id^="ma-"]').forEach(el => { if(!el.classList.contains('matched')) el.classList.remove('selected'); });
+    document.getElementById('ma-' + idx).classList.add('selected');
+    matchAnimalIdx = idx;
+  } else {
+    if (matchAnimalIdx === null) return;
+    const causeEl = document.getElementById('mc-' + idx);
+    if (causeEl.classList.contains('matched')) return;
+    const cause = causeEl.dataset.cause;
+    const animal = matchData[matchAnimalIdx];
+    const ok = animal.cause === cause;
+    const animalEl = document.getElementById('ma-' + matchAnimalIdx);
+    if (ok) {
+      animalEl.classList.remove('selected'); animalEl.classList.add('matched');
+      causeEl.classList.add('matched');
+      matchDone['a'+matchAnimalIdx] = true;
+      matchScore++;
+      document.getElementById('match-feedback').textContent = '✅ ¡Correcto! ' + animal.animal + ' → ' + cause;
+      document.getElementById('match-feedback').style.color = '#1a6b3c';
+      addProgress();
+      matchAnimalIdx = null;
+      if (matchScore === matchData.length) {
+        setTimeout(() => {
+          const sb = document.getElementById('ex2-score');
+          document.getElementById('ex2-score-val').textContent = matchScore + ' / ' + matchData.length;
+          document.getElementById('ex2-score-msg').textContent = '🎉 Parfait ! Tu connais tous les animaux en danger !';
+          sb.classList.add('show');
+        }, 600);
+      }
+    } else {
+      animalEl.classList.remove('selected');
+      causeEl.classList.add('wrong-match');
+      document.getElementById('match-feedback').textContent = '❌ Pas exactement, réessaie !';
+      document.getElementById('match-feedback').style.color = '#922b21';
+      setTimeout(() => causeEl.classList.remove('wrong-match'), 800);
+      matchAnimalIdx = null;
+    }
+  }
+}
+function resetEx2Match() {
+  document.getElementById('ex2-score').classList.remove('show');
+  buildEx2Match();
+}
+
+// ---- EX 3 : Drones fill ----
+const ex3Data = [
+  { text: "El monitoreo tradicional es una tarea ___.", answer: "ardua", hint: "difficile / ardue" },
+  { text: "Los drones proporcionan datos ___ sin interferir con los animales.", answer: "precisos", hint: "précis" },
+  { text: "Las áreas protegidas suelen abarcar grandes extensiones de ___ difícil acceso.", answer: "terreno de", hint: "terrain de" },
+  { text: "Los drones han sido utilizados en África para monitorear ___ y rinocerontes.", answer: "elefantes", hint: "des éléphants" },
+  { text: "En Sudamérica, los drones estudiaron la migración de aves en la ___.", answer: "Amazonía", hint: "l'Amazonie" },
+  { text: "Los drones han ___ los costos del monitoreo.", answer: "reducido", hint: "réduit" },
+  { text: "Hay que ___ la intervención humana en ecosistemas frágiles.", answer: "minimizar", hint: "minimiser" },
+  { text: "Los drones son una herramienta ___ en proyectos de conservación.", answer: "indispensable", hint: "indispensable" },
+];
+
+// ---- INIT ----
+buildGrammar();
+buildEx('ex1', ex1Data);
+buildEx2Match();
+buildEx('ex3', ex3Data);
+</script>
+</body>
+</html>
