@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Conditionnel 📝 – Cours de Noah</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: #fef9f0; min-height: 100vh; }
+
+  header {
+    background: linear-gradient(135deg, #f39c12, #e74c3c, #8e44ad);
+    padding: 30px 20px; text-align: center;
+  }
+  header .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5);
+    color: #fff; text-decoration: none; border-radius: 20px;
+    padding: 6px 16px; font-size: 0.9rem; font-weight: 700;
+    margin-bottom: 16px; transition: background 0.2s;
+  }
+  header .back-btn:hover { background: rgba(255,255,255,0.35); }
+  header h1 { font-family: 'Baloo 2', cursive; font-size: 2.2rem; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.2); }
+  header p { color: rgba(255,255,255,0.9); margin-top: 6px; font-size: 1.1rem; }
+
+  .container { max-width: 820px; margin: 30px auto; padding: 0 20px 60px; }
+
+  /* Progress bar */
+  .progress-bar-wrap { background: #e0e0e0; border-radius: 10px; height: 10px; margin-bottom: 30px; }
+  .progress-bar { height: 10px; border-radius: 10px; background: linear-gradient(90deg, #f39c12, #e74c3c); transition: width 0.5s ease; }
+
+  /* Section titles */
+  .section-title {
+    font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800;
+    margin: 32px 0 14px; display: flex; align-items: center; gap: 10px;
+    color: #2c3e50; border-bottom: 3px solid #eee; padding-bottom: 8px;
+  }
+
+  /* Lesson card */
+  .lesson-card {
+    background: #fff; border-radius: 18px; padding: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 18px;
+  }
+  .lesson-card h3 {
+    font-family: 'Baloo 2', cursive; font-size: 1.15rem; color: #2c3e50;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .lesson-card p { color: #555; line-height: 1.7; margin-bottom: 10px; }
+  .lesson-card .formula {
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    border-left: 4px solid #e74c3c; border-radius: 10px;
+    padding: 12px 16px; margin: 10px 0; font-weight: 700; color: #c0392b;
+  }
+  .lesson-card .example {
+    background: #f0f4ff; border-left: 4px solid #3498db;
+    border-radius: 10px; padding: 10px 14px; margin: 8px 0;
+    color: #2c3e50; font-style: italic;
+  }
+
+  /* Summary table */
+  .summary-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
+  .summary-table th {
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+    color: #fff; padding: 10px 14px; text-align: left; font-family: 'Baloo 2', cursive;
+  }
+  .summary-table td { padding: 10px 14px; border-bottom: 1px solid #eee; }
+  .summary-table tr:nth-child(even) td { background: #fafafa; }
+
+  /* Quiz styling */
+  .quiz-card {
+    background: #fff; border-radius: 18px; padding: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 20px;
+  }
+  .quiz-card .q-num {
+    font-family: 'Baloo 2', cursive; font-size: 0.85rem; color: #aaa;
+    margin-bottom: 6px;
+  }
+  .quiz-card .q-text {
+    font-size: 1.05rem; color: #2c3e50; font-weight: 700; margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .quiz-card .q-text .blank {
+    display: inline-block; min-width: 120px; border-bottom: 3px solid #e74c3c;
+    font-style: italic; color: #e74c3c;
+  }
+
+  .choice-btn {
+    display: block; width: 100%; text-align: left;
+    background: #f8f9fa; border: 2px solid #e0e0e0;
+    border-radius: 12px; padding: 12px 16px; margin-bottom: 8px;
+    font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; color: #2c3e50;
+  }
+  .choice-btn:hover:not(:disabled) { border-color: #f39c12; background: #fff8ec; }
+  .choice-btn.correct { background: #d5f5e3; border-color: #2ecc71; color: #1a6b3c; }
+  .choice-btn.wrong { background: #fde8e8; border-color: #e74c3c; color: #922b21; }
+  .choice-btn:disabled { cursor: not-allowed; }
+
+  .feedback {
+    margin-top: 10px; padding: 10px 14px; border-radius: 10px;
+    font-weight: 700; font-size: 0.95rem; display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.ok { background: #d5f5e3; color: #1a6b3c; }
+  .feedback.ko { background: #fde8e8; color: #922b21; }
+
+  /* Fill-in-the-blank */
+  .fill-input {
+    border: 2px solid #ddd; border-radius: 10px; padding: 8px 14px;
+    font-family: 'Nunito', sans-serif; font-size: 1rem; width: 200px;
+    transition: border 0.2s; outline: none;
+  }
+  .fill-input:focus { border-color: #f39c12; }
+  .fill-input.correct { border-color: #2ecc71; background: #d5f5e3; }
+  .fill-input.wrong { border-color: #e74c3c; background: #fde8e8; }
+
+  .check-btn {
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+    color: #fff; border: none; border-radius: 12px;
+    padding: 10px 22px; font-family: 'Baloo 2', cursive; font-size: 1rem;
+    cursor: pointer; transition: opacity 0.2s; margin-top: 10px;
+  }
+  .check-btn:hover { opacity: 0.88; }
+
+  .reveal-btn {
+    background: none; border: 2px solid #bbb; border-radius: 12px;
+    color: #888; padding: 8px 18px; font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem; cursor: pointer; margin-top: 8px; transition: all 0.2s;
+  }
+  .reveal-btn:hover { border-color: #f39c12; color: #f39c12; }
+
+  /* Score */
+  .score-box {
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+    color: #fff; border-radius: 20px; padding: 28px;
+    text-align: center; margin-top: 30px; display: none;
+  }
+  .score-box.show { display: block; }
+  .score-box h2 { font-family: 'Baloo 2', cursive; font-size: 2rem; margin-bottom: 8px; }
+  .score-box p { font-size: 1.15rem; opacity: 0.92; }
+  .score-box .big-score { font-family: 'Baloo 2', cursive; font-size: 3.5rem; margin: 10px 0; }
+
+  .reset-btn {
+    background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.6);
+    color: #fff; border-radius: 14px; padding: 10px 26px;
+    font-family: 'Baloo 2', cursive; font-size: 1rem; cursor: pointer;
+    margin-top: 14px; transition: background 0.2s;
+  }
+  .reset-btn:hover { background: rgba(255,255,255,0.4); }
+
+  footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    background: #fff; border: 2px solid #e0e0e0; border-radius: 20px;
+    padding: 8px 20px; font-family: 'Baloo 2', cursive; font-size: 0.95rem;
+    cursor: pointer; color: #888; transition: all 0.2s;
+  }
+  .tab-btn.active {
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+    color: #fff; border-color: transparent;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .badge {
+    display: inline-block; background: linear-gradient(135deg,#f39c12,#e74c3c);
+    color:#fff; border-radius:20px; padding:2px 12px; font-size:0.8rem;
+    font-weight:700; margin-left:8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back-btn" href="../index.html">← Accueil</a>
+  <div style="font-size:2rem;margin-bottom:8px;">✍️ 📝 💬</div>
+  <h1>Le Conditionnel</h1>
+  <p>Français · 4e – Mode, formation et emplois</p>
+</header>
+
+<div class="container">
+
+  <!-- Progress -->
+  <div style="margin:20px 0 6px;display:flex;justify-content:space-between;font-size:0.85rem;color:#aaa;">
+    <span>Progression</span>
+    <span id="progress-label">0 / 20 réponses</span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('cours')">📖 Cours</button>
+    <button class="tab-btn" onclick="switchTab('ex1')">🟠 Exercice 1 – Présent</button>
+    <button class="tab-btn" onclick="switchTab('ex2')">🔴 Exercice 2 – Passé</button>
+  </div>
+
+  <!-- ===== COURS ===== -->
+  <div class="tab-panel active" id="tab-cours">
+
+    <div class="section-title">📖 C'est quoi le conditionnel ?</div>
+    <div class="lesson-card">
+      <h3>🌟 Définition</h3>
+      <p>Le conditionnel est un <strong>mode</strong> (comme l'indicatif ou l'impératif) qui exprime des actions <strong>incertaines, imaginaires, polies</strong> ou <strong>non accomplies</strong>.</p>
+      <p>Il possède <strong>deux temps</strong> :</p>
+      <ul style="margin-left:20px;margin-top:6px;color:#555;line-height:2;">
+        <li>🟠 Le <strong>conditionnel présent</strong></li>
+        <li>🔴 Le <strong>conditionnel passé</strong></li>
+      </ul>
+    </div>
+
+    <div class="section-title">🛠️ Comment se forme-t-il ?</div>
+
+    <div class="lesson-card">
+      <h3>🟠 Conditionnel présent</h3>
+      <div class="formula">Radical du futur + terminaisons de l'imparfait<br>-ais / -ais / -ait / -ions / -iez / -aient</div>
+      <div class="example">
+        Futur → je chanterai<br>
+        Conditionnel présent → je chanterais, tu chanterais, il chanterait…
+      </div>
+      <p>💡 <strong>Astuce :</strong> Tu hésites entre futur et conditionnel à la 1ère personne ? Change de personne ! Si ça finit en <em>-ait</em>, c'est le conditionnel !</p>
+    </div>
+
+    <div class="lesson-card">
+      <h3>🔴 Conditionnel passé</h3>
+      <div class="formula">Auxiliaire (avoir/être) au conditionnel présent + participe passé</div>
+      <div class="example">j'aurais chanté, tu aurais chanté, il aurait chanté…</div>
+      <div class="example">je serais parti(e), tu serais parti(e)…</div>
+    </div>
+
+    <div class="section-title">💡 Quand l'utilise-t-on ?</div>
+
+    <div class="lesson-card">
+      <h3>🟠 Conditionnel présent – 3 emplois</h3>
+      <table class="summary-table">
+        <tr>
+          <th>Emploi</th>
+          <th>Exemple</th>
+        </tr>
+        <tr>
+          <td>Fait incertain / imaginaire</td>
+          <td><em>S'il travaillait, il réussirait.</em></td>
+        </tr>
+        <tr>
+          <td>Souhait / demande polie</td>
+          <td><em>J'aimerais vous aider.</em></td>
+        </tr>
+        <tr>
+          <td>Futur dans le passé</td>
+          <td><em>Je pensais qu'il viendrait.</em></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="lesson-card">
+      <h3>🔴 Conditionnel passé – 2 emplois</h3>
+      <table class="summary-table">
+        <tr>
+          <th>Emploi</th>
+          <th>Exemple</th>
+        </tr>
+        <tr>
+          <td>Demande polie / regret</td>
+          <td><em>J'aurais tant aimé venir hier.</em></td>
+        </tr>
+        <tr>
+          <td>Fait irréel dans le passé</td>
+          <td><em>S'il avait travaillé, il aurait réussi.</em></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="lesson-card" style="background:linear-gradient(135deg,#fff8ec,#fff3e0);border:2px solid #f39c12;">
+      <h3>📋 Résumé en une phrase</h3>
+      <p style="font-size:1.05rem;">Le conditionnel est un mode à deux temps : le <strong>présent</strong> (radical du futur + terminaisons de l'imparfait) et le <strong>passé</strong> (auxiliaire au conditionnel + participe passé). Il exprime l'incertain, l'imaginaire, la politesse, les souhaits et les faits irréels.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="check-btn" onclick="switchTab('ex1')" style="font-size:1.1rem;padding:14px 36px;">
+        C'est parti ! → Exercice 1 🚀
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== EXERCICE 1 : Conditionnel présent ===== -->
+  <div class="tab-panel" id="tab-ex1">
+    <div class="section-title">🟠 Exercice 1 – Conditionnel présent</div>
+    <p style="color:#666;margin-bottom:20px;">Pour chaque phrase, choisis la bonne forme du conditionnel présent entre les deux propositions.</p>
+
+    <div id="ex1-container"></div>
+
+    <div style="text-align:center;margin-top:10px;">
+      <button class="check-btn" id="ex1-submit" onclick="submitEx1()">Voir mon score 🎯</button>
+    </div>
+    <div class="score-box" id="ex1-score">
+      <h2>Exercice 1 terminé !</h2>
+      <div class="big-score" id="ex1-score-val">–</div>
+      <p id="ex1-score-msg"></p>
+      <button class="reset-btn" onclick="resetEx1()">🔄 Recommencer</button>
+      <button class="reset-btn" onclick="switchTab('ex2')" style="margin-left:10px;">Exercice 2 →</button>
+    </div>
+  </div>
+
+  <!-- ===== EXERCICE 2 : Conditionnel passé ===== -->
+  <div class="tab-panel" id="tab-ex2">
+    <div class="section-title">🔴 Exercice 2 – Conditionnel passé</div>
+    <p style="color:#666;margin-bottom:20px;">Conjugue les verbes entre parenthèses au <strong>conditionnel passé</strong> et tape ta réponse.</p>
+
+    <div id="ex2-container"></div>
+
+    <div style="text-align:center;margin-top:10px;">
+      <button class="check-btn" id="ex2-submit" onclick="submitEx2()">Voir mon score 🎯</button>
+    </div>
+    <div class="score-box" id="ex2-score">
+      <h2>Exercice 2 terminé !</h2>
+      <div class="big-score" id="ex2-score-val">–</div>
+      <p id="ex2-score-msg"></p>
+      <button class="reset-btn" onclick="resetEx2()">🔄 Recommencer</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>Créé avec ❤️ pour Noah</footer>
+
+<script>
+// ---- TAB SYSTEM ----
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick').includes(id)) b.classList.add('active');
+  });
+}
+
+// ---- PROGRESS ----
+let totalAnswered = 0;
+const TOTAL = 20;
+function updateProgress() {
+  const pct = Math.round((totalAnswered / TOTAL) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = totalAnswered + ' / ' + TOTAL + ' réponses';
+}
+
+// ---- EXERCISE 1 DATA ----
+// Each item: text (with ___ placeholder), option A, option B, correct (0=A,1=B)
+const ex1Data = [
+  { text: "Il ___ bien devenir une star.", a: "aimerait", b: "aimera", correct: 0 },
+  { text: "Si elles se rencontraient, elles ___ longtemps.", a: "bavarderont", b: "bavarderaient", correct: 1 },
+  { text: "Si j'avais un chien, je le ___ chaque jour.", a: "promènerais", b: "promènerai", correct: 0 },
+  { text: "Si nous étions plus attentifs, nous ___ plus vite nos devoirs.", a: "finirions", b: "finirons", correct: 0 },
+  { text: "Si vous gagniez de l'argent, je parie que vous le ___ trop vite.", a: "dépenserez", b: "dépenseriez", correct: 1 },
+  { text: "Si tu aimais les haricots verts, tu en ___ souvent.", a: "mangeras", b: "mangerais", correct: 1 },
+  { text: "Si mes élèves faisaient du bruit, j'___ pour obtenir le silence.", a: "insisterais", b: "insisterai", correct: 0 },
+  { text: "___ -vous me passer le sel s'il vous plaît ?", a: "Pourrez", b: "Pourriez", correct: 1 },
+  { text: "Il ___ de moi si j'étais plus souvent avec lui.", a: "se souviendrait", b: "se souviendra", correct: 0 },
+  { text: "___ -je avoir le silence s'il vous plaît ?", a: "Pourrai", b: "Pourrais", correct: 1 },
+];
+
+let ex1State = Array(ex1Data.length).fill(null); // null | 'correct' | 'wrong'
+let ex1Score = 0;
+let ex1Done = false;
+
+function buildEx1() {
+  const c = document.getElementById('ex1-container');
+  c.innerHTML = '';
+  ex1Data.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-card';
+    div.innerHTML = `
+      <div class="q-num">Question ${i+1} / ${ex1Data.length}</div>
+      <div class="q-text">${item.text.replace('___', '<span class="blank">___</span>')}</div>
+      <button class="choice-btn" id="ex1-btn-${i}-0" onclick="answerEx1(${i},0)">${item.a}</button>
+      <button class="choice-btn" id="ex1-btn-${i}-1" onclick="answerEx1(${i},1)">${item.b}</button>
+      <div class="feedback" id="ex1-fb-${i}"></div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function answerEx1(qi, choice) {
+  if (ex1State[qi] !== null) return;
+  const item = ex1Data[qi];
+  const isCorrect = choice === item.correct;
+  ex1State[qi] = isCorrect ? 'correct' : 'wrong';
+  if (isCorrect) ex1Score++;
+
+  // Buttons
+  [0, 1].forEach(j => {
+    const btn = document.getElementById(`ex1-btn-${qi}-${j}`);
+    btn.disabled = true;
+    if (j === item.correct) btn.classList.add('correct');
+    else if (j === choice && !isCorrect) btn.classList.add('wrong');
+  });
+
+  // Feedback
+  const fb = document.getElementById(`ex1-fb-${qi}`);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'ko');
+  fb.textContent = isCorrect ? '✅ Bravo !' : `❌ La bonne réponse était : ${item.correct === 0 ? item.a : item.b}`;
+
+  totalAnswered++;
+  updateProgress();
+}
+
+function submitEx1() {
+  if (ex1Done) return;
+  ex1Done = true;
+  // Auto-reveal unanswered
+  ex1Data.forEach((item, i) => {
+    if (ex1State[i] === null) {
+      [0,1].forEach(j => {
+        const btn = document.getElementById(`ex1-btn-${i}-${j}`);
+        btn.disabled = true;
+        if (j === item.correct) btn.classList.add('correct');
+      });
+    }
+  });
+  const total = ex1Data.length;
+  const pct = Math.round((ex1Score / total) * 100);
+  const scoreBox = document.getElementById('ex1-score');
+  document.getElementById('ex1-score-val').textContent = ex1Score + ' / ' + total;
+  document.getElementById('ex1-score-msg').textContent = pct >= 80 ? '🎉 Excellent ! Tu maîtrises le conditionnel présent !' : pct >= 60 ? '👍 Bien joué, mais relis le cours pour les erreurs !' : '💪 Entraîne-toi encore, tu vas y arriver !';
+  scoreBox.classList.add('show');
+}
+
+function resetEx1() {
+  ex1Score = 0; ex1Done = false;
+  ex1State = Array(ex1Data.length).fill(null);
+  totalAnswered = Math.max(0, totalAnswered - ex1Data.length);
+  updateProgress();
+  document.getElementById('ex1-score').classList.remove('show');
+  buildEx1();
+}
+
+// ---- EXERCISE 2 DATA ----
+// conditionnel passé fill-in
+// answers: array of accepted forms (lowercase, trimmed)
+const ex2Data = [
+  { text: "Si Marie était partie plus tôt, elle ___ (arriver) à l'heure.", answers: ["serait arrivée", "serait arrivé"] },
+  { text: "D'après ses dires, il ___ (trouver) un poste intéressant à la clinique de Dijon.", answers: ["aurait trouvé"] },
+  { text: "Il ___ (pouvoir) faire l'effort de venir nous voir dimanche dernier.", answers: ["aurait pu"] },
+  { text: "Nous ___ (préférer) faire notre stage dans une pharmacie.", answers: ["aurions préféré"] },
+  { text: "Si elle était allée aux États-Unis, elle ___ (aller) à New York.", answers: ["serait allée", "serait allé"] },
+  { text: "Si Magalie avait eu le temps, elle ___ (venir) avec plaisir.", answers: ["serait venue", "serait venu"] },
+  { text: "Si tu avais appris ta leçon, tu ___ (savoir) faire ton exercice.", answers: ["aurais su"] },
+  { text: "Tu ___ (pouvoir) me prévenir plus tôt !", answers: ["aurais pu"] },
+  { text: "Si vous aviez pris le temps, vous ___ (boucler) vos valises depuis longtemps.", answers: ["auriez bouclé"] },
+  { text: "Camille ___ (accepter) de t'aider si tu lui avais demandé plus poliment.", answers: ["aurait accepté"] },
+];
+
+let ex2State = Array(ex2Data.length).fill(null);
+let ex2Score = 0;
+let ex2Done = false;
+
+function buildEx2() {
+  const c = document.getElementById('ex2-container');
+  c.innerHTML = '';
+  ex2Data.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-card';
+    const hint = item.answers[0]; // for reveal
+    div.innerHTML = `
+      <div class="q-num">Question ${i+1} / ${ex2Data.length}</div>
+      <div class="q-text" style="margin-bottom:12px;">${item.text.replace('___', `<input class="fill-input" id="ex2-inp-${i}" placeholder="ta réponse…" autocomplete="off">`)}</div>
+      <button class="check-btn" id="ex2-check-${i}" onclick="checkEx2(${i})" style="font-size:0.9rem;padding:8px 18px;">Vérifier</button>
+      <button class="reveal-btn" id="ex2-reveal-${i}" onclick="revealEx2(${i})">Voir la réponse</button>
+      <div class="feedback" id="ex2-fb-${i}"></div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function normalize(s) {
+  return s.trim().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/['']/g, "'");
+}
+
+function checkEx2(i) {
+  if (ex2State[i] !== null) return;
+  const inp = document.getElementById(`ex2-inp-${i}`);
+  const val = normalize(inp.value);
+  const isCorrect = ex2Data[i].answers.some(a => normalize(a) === val);
+  ex2State[i] = isCorrect ? 'correct' : 'wrong';
+  if (isCorrect) ex2Score++;
+
+  inp.classList.add(isCorrect ? 'correct' : 'wrong');
+  inp.disabled = true;
+  document.getElementById(`ex2-check-${i}`).disabled = true;
+  document.getElementById(`ex2-reveal-${i}`).disabled = true;
+
+  const fb = document.getElementById(`ex2-fb-${i}`);
+  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'ko');
+  fb.textContent = isCorrect ? '✅ Bravo !' : `❌ La bonne réponse était : ${ex2Data[i].answers[0]}`;
+
+  totalAnswered++;
+  updateProgress();
+}
+
+function revealEx2(i) {
+  if (ex2State[i] !== null) return;
+  ex2State[i] = 'revealed';
+
+  const inp = document.getElementById(`ex2-inp-${i}`);
+  inp.value = ex2Data[i].answers[0];
+  inp.disabled = true;
+  inp.classList.add('correct');
+  document.getElementById(`ex2-check-${i}`).disabled = true;
+  document.getElementById(`ex2-reveal-${i}`).disabled = true;
+
+  const fb = document.getElementById(`ex2-fb-${i}`);
+  fb.className = 'feedback show ok';
+  fb.textContent = '👁️ Réponse affichée : ' + ex2Data[i].answers[0];
+}
+
+function submitEx2() {
+  if (ex2Done) return;
+  ex2Done = true;
+  ex2Data.forEach((item, i) => { if (ex2State[i] === null) revealEx2(i); });
+  const total = ex2Data.length;
+  const pct = Math.round((ex2Score / total) * 100);
+  const scoreBox = document.getElementById('ex2-score');
+  document.getElementById('ex2-score-val').textContent = ex2Score + ' / ' + total;
+  document.getElementById('ex2-score-msg').textContent = pct >= 80 ? '🎉 Parfait ! Le conditionnel passé n\'a plus de secrets pour toi !' : pct >= 60 ? '👍 Pas mal ! Relis les formes que tu n\'as pas trouvées.' : '💪 Continue à t\'entraîner, c\'est un temps compliqué !';
+  scoreBox.classList.add('show');
+}
+
+function resetEx2() {
+  ex2Score = 0; ex2Done = false;
+  ex2State = Array(ex2Data.length).fill(null);
+  document.getElementById('ex2-score').classList.remove('show');
+  buildEx2();
+}
+
+// ---- INIT ----
+buildEx1();
+buildEx2();
+updateProgress();
+</script>
+</body>
+</html>
