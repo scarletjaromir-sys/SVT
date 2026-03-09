@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVT 4e – Élimination des déchets</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert:#16a34a; --vert-light:#dcfce7; --vert-dark:#14532d;
+    --teal:#0d9488; --teal-light:#ccfbf1; --teal-dark:#0f766e;
+    --bleu:#2563eb; --bleu-light:#dbeafe; --bleu-dark:#1e40af;
+    --cyan:#0891b2; --cyan-light:#cffafe; --cyan-dark:#0e7490;
+    --violet:#7c3aed; --violet-light:#ede9fe;
+    --amber:#d97706; --amber-light:#fef3c7;
+    --rouge:#dc2626; --rouge-light:#fee2e2;
+    --rose:#db2777; --rose-light:#fce7f3;
+    --orange:#ea580c; --orange-light:#ffedd5;
+    --slate:#475569; --slate-light:#f1f5f9;
+    --bg:#f0fdf4; --card:#fff;
+    --text:#1a2e1a; --muted:#6b7280;
+    --shadow:0 4px 20px rgba(22,163,74,0.10);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  header{background:linear-gradient(135deg,#14532d 0%,#16a34a 45%,#0d9488 100%);padding:24px 20px 16px;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;top:-40px;left:-40px;width:200px;height:200px;background:rgba(255,255,255,0.04);border-radius:50%;}
+  header::after{content:'';position:absolute;bottom:-50px;right:-30px;width:180px;height:180px;background:rgba(255,255,255,0.05);border-radius:50%;}
+  .home-btn{position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:none;color:#fff;border-radius:50px;padding:8px 16px;font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:6px;transition:all 0.2s;z-index:10;}
+  .home-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-1px);}
+  header .emoji-row{font-size:1.8rem;margin-bottom:6px;position:relative;}
+  header h1{font-family:'Baloo 2',cursive;font-size:1.85rem;font-weight:800;color:#fff;text-shadow:2px 2px 10px rgba(0,0,0,0.2);position:relative;}
+  header p{color:rgba(255,255,255,0.88);font-size:0.98rem;margin-top:4px;position:relative;}
+
+  nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:14px 16px 0;position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:3px solid #bbf7d0;}
+  .nav-btn{padding:9px 18px;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+  .nav-btn.active,.nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.16);}
+  .nav-btn[data-tab="cours"]{background:linear-gradient(135deg,var(--vert),var(--vert-dark));color:#fff;}
+  .nav-btn[data-tab="synthese"]{background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:#fff;}
+  .nav-btn[data-tab="qcm"]{background:linear-gradient(135deg,var(--bleu),var(--bleu-dark));color:#fff;}
+  .nav-btn[data-tab="exercices"]{background:linear-gradient(135deg,var(--cyan),var(--cyan-dark));color:#fff;}
+  .nav-btn[data-tab="glossaire"]{background:linear-gradient(135deg,var(--violet),#5b21b6);color:#fff;}
+
+  section{display:none;padding:22px 16px;max-width:920px;margin:0 auto;}
+  section.active{display:block;animation:fadeIn 0.35s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  .card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);border-left:6px solid;transition:transform 0.2s;}
+  .card:hover{transform:translateY(-2px);}
+  .card.vert{border-color:var(--vert);}
+  .card.teal{border-color:var(--teal);}
+  .card.bleu{border-color:var(--bleu);}
+  .card.cyan{border-color:var(--cyan);}
+  .card.violet{border-color:var(--violet);}
+  .card.amber{border-color:var(--amber);}
+  .card.rouge{border-color:var(--rouge);}
+  .card-title{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .card.vert .card-title{color:var(--vert-dark);}
+  .card.teal .card-title{color:var(--teal-dark);}
+  .card.bleu .card-title{color:var(--bleu-dark);}
+  .card.cyan .card-title{color:var(--cyan-dark);}
+  .card.violet .card-title{color:var(--violet);}
+  .card.amber .card-title{color:var(--amber);}
+  .card.rouge .card-title{color:var(--rouge);}
+
+  .badge{display:inline-block;padding:3px 12px;border-radius:50px;font-size:0.78rem;font-weight:700;margin-bottom:10px;}
+  .badge.vert{background:var(--vert-light);color:var(--vert-dark);}
+  .badge.teal{background:var(--teal-light);color:var(--teal-dark);}
+  .badge.bleu{background:var(--bleu-light);color:var(--bleu-dark);}
+  .badge.cyan{background:var(--cyan-light);color:var(--cyan-dark);}
+  .badge.amber{background:var(--amber-light);color:var(--amber);}
+
+  p,li{line-height:1.75;font-size:0.97rem;}
+  ul{padding-left:20px;} li{margin-bottom:6px;}
+
+  .highlight-box{border-radius:12px;padding:13px 16px;margin:12px 0;font-weight:600;}
+  .hb-vert{background:var(--vert-light);border-left:4px solid var(--vert);}
+  .hb-teal{background:var(--teal-light);border-left:4px solid var(--teal);}
+  .hb-bleu{background:var(--bleu-light);border-left:4px solid var(--bleu);}
+  .hb-cyan{background:var(--cyan-light);border-left:4px solid var(--cyan);}
+  .hb-amber{background:var(--amber-light);border-left:4px solid var(--amber);}
+  .hb-rouge{background:var(--rouge-light);border-left:4px solid var(--rouge);}
+  .hb-violet{background:var(--violet-light);border-left:4px solid var(--violet);}
+
+  .formula{text-align:center;font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:800;background:linear-gradient(135deg,#14532d,#16a34a);color:#fff;border-radius:14px;padding:14px;margin:14px 0;box-shadow:0 4px 15px rgba(22,163,74,0.25);}
+
+  .section-title{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--vert-dark);}
+  .section-title span{font-size:1.6rem;}
+
+  /* ORGANES GRID */
+  .organe-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0;}
+  .organe-card{border-radius:16px;padding:18px;text-align:center;transition:transform 0.2s;cursor:default;}
+  .organe-card:hover{transform:translateY(-4px);}
+  .organe-card .oc-icon{font-size:2.4rem;margin-bottom:10px;}
+  .organe-card .oc-name{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;margin-bottom:6px;}
+  .organe-card .oc-dechet{font-size:0.82rem;font-weight:700;border-radius:20px;padding:3px 12px;display:inline-block;margin-bottom:8px;}
+  .organe-card .oc-desc{font-size:0.85rem;line-height:1.5;}
+  .oc-poumons{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:2px solid var(--bleu);}
+  .oc-poumons .oc-name{color:var(--bleu-dark);}
+  .oc-poumons .oc-dechet{background:var(--bleu-light);color:var(--bleu-dark);}
+  .oc-reins{background:linear-gradient(135deg,#ccfbf1,#99f6e4);border:2px solid var(--teal);}
+  .oc-reins .oc-name{color:var(--teal-dark);}
+  .oc-reins .oc-dechet{background:var(--teal-light);color:var(--teal-dark);}
+  .oc-peau{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid var(--amber);}
+  .oc-peau .oc-name{color:var(--amber);}
+  .oc-peau .oc-dechet{background:var(--amber-light);color:var(--amber);}
+
+  /* TRAJET CO2 */
+  .trajet{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:14px 0;justify-content:center;}
+  .trajet-step{background:var(--vert-light);border:2px solid var(--vert);border-radius:12px;padding:10px 14px;text-align:center;font-family:'Baloo 2',cursive;font-size:0.88rem;font-weight:700;color:var(--vert-dark);min-width:90px;}
+  .trajet-arrow{font-size:1.4rem;color:var(--vert);flex-shrink:0;}
+
+  /* TABLEAU CO2 */
+  .co2-table{width:100%;border-collapse:collapse;margin:14px 0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .co2-table th{background:linear-gradient(135deg,var(--bleu),var(--bleu-dark));color:#fff;padding:10px 14px;text-align:left;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.9rem;}
+  .co2-table td{padding:9px 14px;border-bottom:1px solid #e0f2fe;font-size:0.88rem;}
+  .co2-table tr:last-child td{border-bottom:none;}
+  .co2-table tr:nth-child(even) td{background:#f0f9ff;}
+  .danger-low{color:var(--vert-dark);font-weight:700;}
+  .danger-med{color:var(--amber);font-weight:700;}
+  .danger-high{color:var(--rouge);font-weight:700;}
+
+  /* ALVEOLE SCHEMA */
+  .alveole-schema{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--vert);border-radius:16px;padding:20px;margin:14px 0;text-align:center;}
+  .alveole-schema svg{max-width:320px;width:100%;}
+
+  /* TOOLTIP */
+  .mk{border-bottom:2px dashed var(--vert);color:var(--vert-dark);font-weight:700;position:relative;cursor:help;}
+  .mk::after{content:attr(data-def);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a2e1a;color:#fff;border-radius:12px;padding:10px 14px;font-size:0.85rem;font-weight:500;line-height:1.5;width:250px;white-space:normal;text-align:left;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.2s ease;box-shadow:0 8px 30px rgba(0,0,0,0.3);}
+  .mk::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a2e1a;opacity:0;transition:opacity 0.2s ease;z-index:9999;}
+  .mk:hover::after,.mk:hover::before{opacity:1;}
+
+  /* QCM */
+  .qcm-progress-bar{height:8px;background:#bbf7d0;border-radius:10px;margin:10px 0 18px;overflow:hidden;}
+  .qcm-progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--vert),var(--teal));transition:width 0.4s;}
+  .question-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;border-top:4px solid var(--vert);}
+  .question-num{font-size:0.85rem;font-weight:700;color:var(--muted);margin-bottom:8px;}
+  .question-text{font-size:1.05rem;font-weight:700;margin-bottom:16px;line-height:1.5;}
+  .options{display:flex;flex-direction:column;gap:10px;}
+  .opt-btn{background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px;padding:12px 16px;text-align:left;font-family:'Nunito',sans-serif;font-size:0.95rem;cursor:pointer;transition:all 0.2s;font-weight:600;}
+  .opt-btn:hover:not(:disabled){background:var(--vert-light);border-color:var(--vert);}
+  .opt-btn.correct{background:#dcfce7;border-color:var(--vert);color:var(--vert-dark);}
+  .opt-btn.wrong{background:var(--rouge-light);border-color:var(--rouge);color:var(--rouge);}
+  .feedback{margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:700;font-size:0.92rem;}
+  .feedback.ok{background:#dcfce7;color:var(--vert-dark);}
+  .feedback.ko{background:var(--rouge-light);color:var(--rouge);}
+  .qcm-score{text-align:center;padding:30px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);}
+  .score-num{font-family:'Baloo 2',cursive;font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--vert),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .btn-retry{background:linear-gradient(135deg,var(--vert),var(--teal));color:#fff;border:none;border-radius:50px;padding:12px 30px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:700;cursor:pointer;margin-top:16px;box-shadow:0 4px 15px rgba(22,163,74,0.3);}
+
+  /* EXERCICES */
+  .ex-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;border-top:4px solid;}
+  .ex-card.ex-vf{border-color:var(--teal);}
+  .ex-card.ex-trou{border-color:var(--bleu);}
+  .ex-card.ex-assoc{border-color:var(--violet);}
+  .ex-card.ex-ordre{border-color:var(--vert);}
+  .ex-title{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .vf-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+  .vf-statement{flex:1;font-size:0.95rem;line-height:1.5;}
+  .vf-btns{display:flex;gap:6px;flex-shrink:0;}
+  .vf-btn{border:none;border-radius:8px;padding:6px 14px;font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .vf-btn.v{background:var(--vert-light);color:var(--vert-dark);}
+  .vf-btn.f{background:var(--rouge-light);color:var(--rouge);}
+  .vf-btn.v:hover{background:var(--vert);color:#fff;}
+  .vf-btn.f:hover{background:var(--rouge);color:#fff;}
+  .vf-btn.correct{background:var(--vert)!important;color:#fff!important;box-shadow:0 0 0 3px rgba(22,163,74,0.3);}
+  .vf-btn.incorrect{background:var(--rouge)!important;color:#fff!important;}
+  .trou-input{border:2px solid #bbf7d0;border-radius:8px;padding:6px 12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;width:130px;text-align:center;outline:none;transition:border-color 0.2s;}
+  .trou-input:focus{border-color:var(--vert);}
+  .trou-input.ok{border-color:var(--vert);background:var(--vert-light);}
+  .trou-input.ko{border-color:var(--rouge);background:var(--rouge-light);}
+  .check-btn{background:linear-gradient(135deg,var(--vert),var(--teal));color:#fff;border:none;border-radius:50px;padding:10px 24px;font-family:'Baloo 2',cursive;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:14px;box-shadow:0 4px 12px rgba(22,163,74,0.25);}
+  .check-btn:hover{transform:translateY(-1px);}
+
+  /* DRAG */
+  .drag-pool-title{font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;color:var(--muted);margin-bottom:10px;}
+  .drag-container{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .drag-pool{flex:1;min-width:160px;background:#f0fdf4;border-radius:12px;padding:14px;min-height:80px;border:2px dashed #bbf7d0;}
+  .drop-zone{flex:1;min-width:160px;}
+  .drop-item{display:flex;align-items:center;gap:8px;background:#f0fdf4;border-radius:10px;padding:10px 12px;margin-bottom:8px;border:2px solid #bbf7d0;}
+  .drop-slot{flex:1;min-height:32px;border:2px dashed #bbf7d0;border-radius:8px;padding:4px 8px;display:flex;align-items:center;font-size:0.85rem;}
+  .drop-slot.filled{border-color:var(--vert);background:var(--vert-light);}
+  .drag-chip{background:var(--vert-light);border:2px solid var(--vert);color:var(--vert-dark);border-radius:8px;padding:5px 12px;font-size:0.85rem;font-weight:700;cursor:grab;user-select:none;display:inline-block;margin:4px;}
+  .drag-chip:active{cursor:grabbing;opacity:0.7;}
+
+  /* SYNTH TABLE */
+  .synth-table{width:100%;border-collapse:collapse;margin:14px 0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .synth-table th{background:linear-gradient(135deg,var(--vert),var(--teal));color:#fff;padding:12px 14px;text-align:left;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.95rem;}
+  .synth-table td{padding:11px 14px;border-bottom:1px solid #dcfce7;font-size:0.92rem;}
+  .synth-table tr:last-child td{border-bottom:none;}
+  .synth-table tr:nth-child(even) td{background:#f0fdf4;}
+
+  /* GLOSSAIRE */
+  .glossaire-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+  .glos-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border-top:4px solid var(--vert);transition:transform 0.2s;}
+  .glos-card:hover{transform:translateY(-2px);}
+  .glos-term{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;color:var(--vert-dark);margin-bottom:8px;}
+  .glos-def{font-size:0.92rem;line-height:1.6;}
+  .glos-ex{font-size:0.82rem;color:var(--muted);margin-top:6px;font-style:italic;}
+
+  @media(max-width:600px){
+    header h1{font-size:1.45rem;}
+    .organe-grid{grid-template-columns:1fr;}
+    .trajet{flex-direction:column;align-items:center;}
+    .trajet-arrow{transform:rotate(90deg);}
+    .drag-container{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="home-btn" href="../index.html">← Accueil</a>
+  <div class="emoji-row">🫁 🩸 💧</div>
+  <h1>Élimination des déchets</h1>
+  <p>SVT · 4e · Chapitre 8</p>
+</header>
+
+<nav>
+  <button class="nav-btn active" data-tab="cours">📖 Cours</button>
+  <button class="nav-btn" data-tab="synthese">📋 Synthèse</button>
+  <button class="nav-btn" data-tab="qcm">🎯 QCM</button>
+  <button class="nav-btn" data-tab="exercices">✏️ Exercices</button>
+  <button class="nav-btn" data-tab="glossaire">📚 Glossaire</button>
+</nav>
+
+<!-- ===== COURS ===== -->
+<section id="cours" class="active">
+
+  <div class="section-title"><span>🗑️</span> Les déchets de l'organisme</div>
+
+  <div class="card vert">
+    <div class="badge vert">Introduction</div>
+    <div class="card-title">❓ D'où viennent les déchets ?</div>
+    <p>Quand les cellules de notre corps fonctionnent (respirer, bouger, digérer…), elles produisent des <strong>déchets</strong>. Si ces déchets s'accumulent dans le sang, ils deviennent <strong>toxiques</strong> et dangereux pour l'organisme.</p>
+    <div class="highlight-box hb-vert" style="margin-top:12px;">
+      🔬 Les principaux déchets produits par les cellules :
+      <ul style="margin-top:8px;">
+        <li>💨 Le <strong><span class="mk" data-def="Gaz produit par toutes les cellules quand elles utilisent de l'énergie. Sa formule chimique est CO2. En trop grande quantité dans le sang, il devient dangereux.">dioxyde de carbone (CO2)</span></strong> → produit lors de la respiration cellulaire</li>
+        <li>🧪 L'<strong><span class="mk" data-def="Déchet azoté produit par le foie lorsqu'il détruit les protéines usées. L'urée est transportée par le sang jusqu'aux reins qui l'éliminent dans l'urine.">urée</span></strong> → produite par le foie quand il détruit les protéines</li>
+        <li>💧 L'<strong>eau en excès</strong> → provient des réactions chimiques du corps</li>
+      </ul>
+    </div>
+    <div class="formula">
+      Cellules → déchets dans le sang → organes éliminateurs → évacuation
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🫁</span> Les 3 organes éliminateurs</div>
+
+  <div class="card teal">
+    <div class="card-title">⚙️ Qui élimine quoi ?</div>
+    <div class="organe-grid">
+      <div class="organe-card oc-poumons">
+        <div class="oc-icon">🫁</div>
+        <div class="oc-name">Les poumons</div>
+        <div class="oc-dechet">Élimine : CO2</div>
+        <div class="oc-desc">Le CO2 du sang passe dans les <span class="mk" data-def="Petits sacs d'air au fond des poumons, entourés de vaisseaux sanguins. C'est ici que se font les échanges entre le sang et l'air : le CO2 passe du sang vers l'air, et l'oxygène passe de l'air vers le sang.">alvéoles pulmonaires</span> et est rejeté lors de l'<strong>expiration</strong>.</div>
+      </div>
+      <div class="organe-card oc-reins">
+        <div class="oc-icon">🫘</div>
+        <div class="oc-name">Les reins</div>
+        <div class="oc-dechet">Élimine : urée + eau</div>
+        <div class="oc-desc">Les reins filtrent le sang et fabriquent l'<strong>urine</strong> qui contient l'urée, l'excès d'eau et de sel.</div>
+      </div>
+      <div class="organe-card oc-peau">
+        <div class="oc-icon">🧴</div>
+        <div class="oc-name">La peau</div>
+        <div class="oc-dechet">Élimine : eau + sel</div>
+        <div class="oc-desc">La peau élimine de l'eau, du sel et un peu d'urée par la <strong>sueur</strong> grâce aux glandes sudoripares.</div>
+      </div>
+    </div>
+    <div class="highlight-box hb-teal" style="margin-top:4px;">
+      📌 Les trois organes éliminateurs travaillent <strong>ensemble</strong> pour maintenir le sang propre en permanence.
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>💨</span> Focus : Le CO2 et les poumons</div>
+
+  <div class="card bleu">
+    <div class="badge bleu">Activité</div>
+    <div class="card-title">⚠️ Pourquoi éliminer le CO2 ?</div>
+    <p>Le CO2 est un gaz produit en permanence par les cellules. S'il s'accumule dans le sang, il devient <strong>toxique</strong>. Voici les effets selon son taux dans l'air inspiré :</p>
+    <table class="co2-table">
+      <thead><tr><th>Taux de CO2</th><th>Effets sur le corps</th></tr></thead>
+      <tbody>
+        <tr><td class="danger-low">0,04%</td><td>Taux normal, pas d'effet 😊</td></tr>
+        <tr><td class="danger-low">1%</td><td>Légère accélération de la respiration</td></tr>
+        <tr><td class="danger-med">2%</td><td>Maux de tête, signes de fatigue 😕</td></tr>
+        <tr><td class="danger-med">3%</td><td>Respiration difficile, maux de tête, accélération du pouls 😣</td></tr>
+        <tr><td class="danger-med">4–5%</td><td>Sentiment d'oppression, malaise 😰</td></tr>
+        <tr><td class="danger-high">5–10%</td><td>Perte de conscience 🚨</td></tr>
+        <tr><td class="danger-high">&gt;10%</td><td>Coma puis mort ☠️</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box hb-rouge" style="margin-top:4px;">
+      🏠 C'est pour ça qu'il faut <strong>aérer les pièces</strong> régulièrement : le CO2 s'accumule quand beaucoup de personnes respirent dans un espace fermé !
+    </div>
+  </div>
+
+  <div class="card bleu">
+    <div class="badge bleu">Mécanisme</div>
+    <div class="card-title">🔄 Le trajet du CO2 dans l'organisme</div>
+    <p>Le CO2 produit par les cellules suit un trajet précis pour être éliminé :</p>
+    <div class="trajet">
+      <div class="trajet-step">🔬<br>Cellules<br><small>produisent CO2</small></div>
+      <div class="trajet-arrow">→</div>
+      <div class="trajet-step">🩸<br>Sang<br><small>transporte CO2</small></div>
+      <div class="trajet-arrow">→</div>
+      <div class="trajet-step">🫁<br>Poumons<br><small>alvéoles</small></div>
+      <div class="trajet-arrow">→</div>
+      <div class="trajet-step">💨<br>Air expiré<br><small>CO2 éliminé</small></div>
+    </div>
+    <div class="highlight-box hb-bleu" style="margin-top:4px;">
+      <p>📊 Au niveau des <span class="mk" data-def="Petits sacs d'air dans les poumons où se font les échanges gazeux entre le sang et l'air. Les poumons humains contiennent environ 300 millions d'alvéoles !">alvéoles</span>, les échanges sont mesurables :<br>
+      → Sang arrivant : <strong>53 ml</strong> de CO2 pour 100 ml de sang<br>
+      → Sang repartant : <strong>48 ml</strong> de CO2 — les alvéoles ont éliminé <strong>5 ml</strong> de CO2 !</p>
+    </div>
+  </div>
+
+  <div class="card bleu">
+    <div class="badge bleu">Schéma</div>
+    <div class="card-title">🫁 Les échanges au niveau d'une alvéole</div>
+    <div class="alveole-schema">
+      <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Alvéole -->
+        <ellipse cx="160" cy="80" rx="70" ry="55" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+        <text x="160" y="72" text-anchor="middle" font-family="Baloo 2, cursive" font-size="12" font-weight="bold" fill="#1e40af">ALVÉOLE</text>
+        <text x="160" y="88" text-anchor="middle" font-family="Nunito, sans-serif" font-size="10" fill="#1e40af">(air : O2 + CO2)</text>
+        <!-- Vaisseau sanguin -->
+        <rect x="30" y="130" width="260" height="36" rx="18" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+        <text x="160" y="150" text-anchor="middle" font-family="Baloo 2, cursive" font-size="11" font-weight="bold" fill="#991b1b">VAISSEAU SANGUIN</text>
+        <text x="160" y="162" text-anchor="middle" font-family="Nunito, sans-serif" font-size="9" fill="#991b1b">(sang : O2 + CO2 + urée…)</text>
+        <!-- Flèche CO2 vers alvéole -->
+        <line x1="130" y1="130" x2="120" y2="108" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arrowRed)"/>
+        <text x="90" y="125" font-family="Nunito, sans-serif" font-size="10" font-weight="bold" fill="#dc2626">CO2 →</text>
+        <!-- Flèche O2 vers sang -->
+        <line x1="190" y1="108" x2="180" y2="130" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+        <text x="195" y="125" font-family="Nunito, sans-serif" font-size="10" font-weight="bold" fill="#16a34a">← O2</text>
+        <!-- Légende -->
+        <text x="160" y="195" text-anchor="middle" font-family="Nunito, sans-serif" font-size="9" fill="#6b7280">Le CO2 passe du sang vers l'alvéole · L'O2 passe de l'alvéole vers le sang</text>
+        <!-- Marqueurs -->
+        <defs>
+          <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#dc2626"/></marker>
+          <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#16a34a"/></marker>
+        </defs>
+      </svg>
+    </div>
+    <p style="font-size:0.9rem;text-align:center;color:var(--muted);">Le sang arrive chargé en CO2, l'échange se fait dans les alvéoles, le sang repart chargé en O2.</p>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🫘</span> Focus : Les reins et l'urine</div>
+
+  <div class="card teal">
+    <div class="badge teal">Mécanisme</div>
+    <div class="card-title">🔄 Comment fonctionnent les reins ?</div>
+    <p>Les reins sont deux organes en forme de haricot situés dans le dos. Ils filtrent en permanence le sang pour en retirer les déchets.</p>
+    <div class="trajet" style="margin:14px 0;">
+      <div class="trajet-step" style="background:var(--rouge-light);border-color:var(--rouge);color:#991b1b;">🩸 Sang<br><small>chargé en urée</small></div>
+      <div class="trajet-arrow" style="color:var(--teal);">→</div>
+      <div class="trajet-step" style="background:var(--teal-light);border-color:var(--teal);color:var(--teal-dark);">🫘 Reins<br><small>filtration</small></div>
+      <div class="trajet-arrow" style="color:var(--teal);">→</div>
+      <div class="trajet-step" style="background:var(--vert-light);border-color:var(--vert);color:var(--vert-dark);">🩸 Sang<br><small>propre</small></div>
+    </div>
+    <div style="text-align:center;font-size:1.5rem;margin:4px 0;">⬇️</div>
+    <div style="background:var(--amber-light);border:2px solid var(--amber);border-radius:12px;padding:12px;text-align:center;">
+      <strong style="font-family:'Baloo 2',cursive;color:var(--amber);">🧪 Urine produite</strong><br>
+      <span style="font-size:0.9rem;">Eau + urée + sel → envoyée dans la vessie → éliminée</span>
+    </div>
+    <div class="highlight-box hb-teal" style="margin-top:12px;">
+      💡 Les reins produisent environ <strong>1,5 litre d'urine par jour</strong>. Ils filtrent environ <strong>180 litres de sang</strong> par jour !
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🧴</span> Focus : La peau et la sueur</div>
+
+  <div class="card amber">
+    <div class="badge amber">La peau</div>
+    <div class="card-title">💧 La peau, organe éliminateur discret</div>
+    <p>La peau contient des millions de <span class="mk" data-def="Petites glandes situées dans la peau qui produisent la sueur. Il y en a environ 2 à 4 millions sur le corps humain. Elles sont plus nombreuses dans les paumes des mains et la plante des pieds.">glandes sudoripares</span> qui produisent la <strong>sueur</strong>.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;">
+      <div style="background:var(--amber-light);border-radius:12px;padding:12px;text-align:center;">
+        <div style="font-size:1.5rem;">🌡️</div>
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;color:var(--amber);margin:4px 0;">Régule la température</div>
+        <div style="font-size:0.82rem;">Quand il fait chaud ou qu'on fait du sport, on transpire pour refroidir le corps</div>
+      </div>
+      <div style="background:#fef3c7;border-radius:12px;padding:12px;text-align:center;">
+        <div style="font-size:1.5rem;">🧪</div>
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;color:var(--amber);margin:4px 0;">Élimine des déchets</div>
+        <div style="font-size:0.82rem;">La sueur contient de l'eau, du sel et un peu d'urée</div>
+      </div>
+    </div>
+    <div class="highlight-box hb-amber">
+      💧 On peut perdre jusqu'à <strong>1 à 2 litres de sueur par heure</strong> lors d'un effort intense. D'où l'importance de bien <strong>boire de l'eau</strong> !
+    </div>
+  </div>
+
+  <div class="card vert">
+    <div class="card-title">📌 En résumé</div>
+    <div class="formula">🫁 CO2 → poumons · 🫘 Urée + eau → reins · 🧴 Eau + sel → peau (sueur)</div>
+    <p>L'organisme produit des déchets en permanence (CO2, urée, eau). Trois organes s'occupent de les éliminer : les <strong>poumons</strong> (CO2 via l'expiration), les <strong>reins</strong> (urée et eau via l'urine), et la <strong>peau</strong> (eau et sel via la sueur). Sans cette élimination, les déchets rendraient le sang <strong>toxique</strong>.</p>
+  </div>
+
+</section>
+
+<!-- ===== SYNTHESE ===== -->
+<section id="synthese">
+  <div class="section-title"><span>📋</span> Fiche de synthèse</div>
+
+  <div class="card vert">
+    <div class="card-title">🗑️ Les 3 déchets et leurs organes éliminateurs</div>
+    <table class="synth-table">
+      <thead><tr><th>Déchet</th><th>Organe éliminateur</th><th>Mode d'élimination</th></tr></thead>
+      <tbody>
+        <tr><td>🫧 Dioxyde de carbone (CO2)</td><td><strong>🫁 Poumons</strong></td><td>Air expiré (via les alvéoles)</td></tr>
+        <tr><td>🧪 Urée</td><td><strong>🫘 Reins</strong></td><td>Urine (via la vessie)</td></tr>
+        <tr><td>💧 Eau + sel en excès</td><td><strong>🫘 Reins + 🧴 Peau</strong></td><td>Urine + sueur</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <div class="card-title">🔑 Les chiffres à retenir</div>
+    <table class="synth-table">
+      <thead><tr><th>Fait</th><th>Chiffre</th></tr></thead>
+      <tbody>
+        <tr><td>CO2 dans le sang arrivant aux alvéoles</td><td><strong>53 ml / 100 ml de sang</strong></td></tr>
+        <tr><td>CO2 dans le sang quittant les alvéoles</td><td><strong>48 ml / 100 ml de sang</strong></td></tr>
+        <tr><td>Urine produite par jour</td><td><strong>~1,5 litre</strong></td></tr>
+        <tr><td>Sang filtré par les reins par jour</td><td><strong>~180 litres</strong></td></tr>
+        <tr><td>Taux normal de CO2 dans l'air</td><td><strong>0,04%</strong></td></tr>
+        <tr><td>Taux de CO2 dangereux (perte de conscience)</td><td><strong>5–10%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card bleu">
+    <div class="card-title">📍 Le trajet du CO2 en 4 étapes</div>
+    <ol style="padding-left:20px;">
+      <li style="margin-bottom:8px;"><strong>Cellules</strong> → produisent du CO2 lors de la respiration cellulaire</li>
+      <li style="margin-bottom:8px;"><strong>Sang</strong> → transporte le CO2 depuis les cellules vers les poumons</li>
+      <li style="margin-bottom:8px;"><strong>Alvéoles pulmonaires</strong> → le CO2 passe du sang vers l'air des alvéoles</li>
+      <li><strong>Expiration</strong> → le CO2 est rejeté dans l'air extérieur</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== QCM ===== -->
+<section id="qcm">
+  <div class="section-title"><span>🎯</span> QCM – 12 questions</div>
+  <div class="qcm-progress-bar"><div class="qcm-progress-fill" id="qcm-progress" style="width:0%"></div></div>
+  <div id="qcm-container"></div>
+  <div id="qcm-score" class="qcm-score" style="display:none"></div>
+</section>
+
+<!-- ===== EXERCICES ===== -->
+<section id="exercices">
+  <div class="section-title"><span>✏️</span> Exercices interactifs</div>
+
+  <div class="ex-card ex-vf">
+    <div class="ex-title" style="color:var(--teal-dark);">🔵 Exercice 1 – Vrai ou Faux ?</div>
+    <div id="vf-items"></div>
+    <button class="check-btn" onclick="checkVF()">Vérifier</button>
+    <div id="vf-feedback" style="margin-top:12px;font-weight:700;"></div>
+  </div>
+
+  <div class="ex-card ex-trou">
+    <div class="ex-title" style="color:var(--bleu-dark);">✏️ Exercice 2 – Texte à compléter</div>
+    <p id="trou-text" style="line-height:2.6;font-size:0.97rem;"></p>
+    <button class="check-btn" onclick="checkTrou()">Vérifier</button>
+    <div id="trou-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+
+  <div class="ex-card ex-assoc">
+    <div class="ex-title" style="color:var(--violet);">🔗 Exercice 3 – Associe déchet et organe</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Glisse chaque déchet vers l'organe qui l'élimine.</p>
+    <div class="drag-container">
+      <div>
+        <div class="drag-pool-title">DÉCHETS :</div>
+        <div id="drag-pool"></div>
+      </div>
+      <div class="drop-zone" id="drop-zone"></div>
+    </div>
+    <button class="check-btn" onclick="checkDrag()">Vérifier</button>
+    <div id="drag-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+
+  <div class="ex-card ex-ordre">
+    <div class="ex-title" style="color:var(--vert-dark);">🔄 Exercice 4 – Remets le trajet du CO2 dans l'ordre</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Du plus petit (les cellules) au rejet final :</p>
+    <div id="ordre-items"></div>
+    <button class="check-btn" onclick="checkOrdre()">Vérifier</button>
+    <div id="ordre-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+</section>
+
+<!-- ===== GLOSSAIRE ===== -->
+<section id="glossaire">
+  <div class="section-title"><span>📚</span> Glossaire</div>
+  <div class="glossaire-grid" id="glossaire-grid"></div>
+</section>
+
+<script>
+// NAV
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// QCM
+const qcmData = [
+  { q: "Quels sont les 3 principaux déchets produits par les cellules ?", opts: ["CO2, glucose, eau", "CO2, urée, eau en excès", "Oxygène, urée, sel", "CO2, protéines, sel"], ans: 1, expl: "Les cellules produisent du CO2 (respiration), de l'urée (destruction des protéines) et de l'eau en excès." },
+  { q: "Quel organe élimine le dioxyde de carbone (CO2) ?", opts: ["Les reins", "La peau", "Les poumons", "Le foie"], ans: 2, expl: "Les poumons éliminent le CO2 : il passe du sang vers les alvéoles pulmonaires et est rejeté lors de l'expiration." },
+  { q: "Quel organe élimine l'urée dans l'urine ?", opts: ["Les poumons", "La peau", "Le foie", "Les reins"], ans: 3, expl: "Les reins filtrent le sang et éliminent l'urée dans l'urine, qui est ensuite stockée dans la vessie." },
+  { q: "Qu'est-ce qu'une alvéole pulmonaire ?", opts: ["Un os des poumons", "Un petit sac d'air où se font les échanges gazeux", "Un muscle respiratoire", "Un vaisseau sanguin"], ans: 1, expl: "Les alvéoles sont de petits sacs d'air au fond des poumons. C'est là que le CO2 du sang passe vers l'air et que l'O2 de l'air passe vers le sang." },
+  { q: "Combien de CO2 contient le sang arrivant aux alvéoles (pour 100 ml de sang) ?", opts: ["48 ml", "53 ml", "60 ml", "5 ml"], ans: 1, expl: "Le sang arrivant aux alvéoles contient 53 ml de CO2 pour 100 ml de sang. Il en repart avec seulement 48 ml : 5 ml ont été éliminés !" },
+  { q: "Qu'est-ce que l'urée ?", opts: ["Un sucre produit par les muscles", "Un gaz éliminé par les poumons", "Un déchet azoté produit par le foie lors de la destruction des protéines", "Un sel minéral"], ans: 2, expl: "L'urée est un déchet produit par le foie quand il détruit les protéines usées. Elle est transportée par le sang jusqu'aux reins." },
+  { q: "Quel taux de CO2 dans l'air provoque une perte de conscience ?", opts: ["1%", "2%", "3%", "5 à 10%"], ans: 3, expl: "Un taux de 5 à 10% de CO2 dans l'air provoque une perte de conscience. Au-delà de 10%, c'est le coma puis la mort." },
+  { q: "Que contient la sueur ?", opts: ["Urée uniquement", "CO2 et eau", "Eau, sel et un peu d'urée", "Glucose et protéines"], ans: 2, expl: "La sueur contient de l'eau, du sel et un peu d'urée. La peau est donc aussi un organe éliminateur, même si c'est le moins important des trois." },
+  { q: "Combien de litres de sang les reins filtrent-ils par jour ?", opts: ["10 litres", "50 litres", "180 litres", "500 litres"], ans: 2, expl: "Les reins filtrent environ 180 litres de sang par jour ! Ils en extraient environ 1,5 litre d'urine." },
+  { q: "Pourquoi faut-il aérer les pièces ?", opts: ["Pour faire entrer de l'O2 uniquement", "Parce que le CO2 s'accumule et devient dangereux à forte concentration", "Pour éliminer l'urée", "Pour refroidir la pièce"], ans: 1, expl: "Quand plusieurs personnes respirent dans une pièce fermée, le CO2 s'accumule. À forte concentration, il provoque des maux de tête, de la fatigue et peut être dangereux." },
+  { q: "Quel est le rôle de la peau dans l'élimination des déchets ?", opts: ["Elle élimine le CO2", "Elle élimine l'urée uniquement", "Elle élimine de l'eau, du sel et un peu d'urée via la sueur", "Elle ne joue aucun rôle"], ans: 2, expl: "La peau élimine eau, sel et un peu d'urée par la sueur. Elle régule aussi la température corporelle." },
+  { q: "Quel est le taux normal de CO2 dans l'air ?", opts: ["0,04%", "1%", "5%", "10%"], ans: 0, expl: "Le taux normal de CO2 dans l'air est de 0,04% (soit 0,4 pour mille). À ce taux, il n'y a aucun effet sur le corps." },
+];
+
+let qcmAnswered = {};
+function renderQCM() {
+  const container = document.getElementById('qcm-container');
+  container.innerHTML = ''; qcmAnswered = {};
+  qcmData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'question-card'; div.id = 'q'+i;
+    div.innerHTML = `<div class="question-num">Question ${i+1} / ${qcmData.length}</div>
+      <div class="question-text">${q.q}</div>
+      <div class="options">${q.opts.map((o,j)=>`<button class="opt-btn" onclick="answerQCM(${i},${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div>
+      <div class="feedback" id="fb${i}" style="display:none"></div>`;
+    container.appendChild(div);
+  });
+  updateQProgress();
+}
+function answerQCM(qi, oi) {
+  if (qcmAnswered[qi] !== undefined) return;
+  qcmAnswered[qi] = oi;
+  const q = qcmData[qi];
+  document.getElementById('q'+qi).querySelectorAll('.opt-btn').forEach((b,j) => {
+    b.disabled = true;
+    if (j === q.ans) b.classList.add('correct');
+    else if (j === oi) b.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb'+qi);
+  fb.style.display = 'block';
+  fb.className = 'feedback '+(oi===q.ans?'ok':'ko');
+  fb.innerHTML = (oi===q.ans?'✅ Bonne réponse ! ':'❌ Non. ')+q.expl;
+  updateQProgress();
+  if (Object.keys(qcmAnswered).length === qcmData.length) setTimeout(showScore, 600);
+}
+function updateQProgress() {
+  document.getElementById('qcm-progress').style.width = (Object.keys(qcmAnswered).length/qcmData.length*100)+'%';
+}
+function showScore() {
+  const correct = Object.entries(qcmAnswered).filter(([qi,oi])=>+oi===qcmData[qi].ans).length;
+  const pct = Math.round(correct/qcmData.length*100);
+  const emoji = pct>=80?'🏆':pct>=60?'👍':'💪';
+  const msg = pct>=80?'Excellent ! Tu maîtrises le chapitre !':pct>=60?'Bien joué, continue !':'Revois le cours et réessaie !';
+  document.getElementById('qcm-score').style.display = 'block';
+  document.getElementById('qcm-score').innerHTML = `<div style="font-size:3rem">${emoji}</div>
+    <div class="score-num">${correct} / ${qcmData.length}</div>
+    <p style="font-size:1.1rem;font-weight:700;margin:8px 0">${msg}</p>
+    <p style="color:var(--muted)">${pct}% de bonnes réponses</p>
+    <button class="btn-retry" onclick="retryQCM()">🔄 Réessayer</button>`;
+  document.getElementById('qcm-score').scrollIntoView({behavior:'smooth'});
+}
+function retryQCM() { document.getElementById('qcm-score').style.display='none'; renderQCM(); }
+renderQCM();
+
+// VRAI/FAUX
+const vfData = [
+  { s: "Le CO2 est produit par les cellules lors de la respiration.", v: true },
+  { s: "Les poumons éliminent l'urée dans l'urine.", v: false },
+  { s: "Le sang arrivant aux alvéoles contient 53 ml de CO2 pour 100 ml de sang.", v: true },
+  { s: "Un taux de CO2 de 10% dans l'air peut provoquer la mort.", v: true },
+  { s: "Les reins filtrent environ 10 litres de sang par jour.", v: false },
+  { s: "La sueur contient de l'eau, du sel et un peu d'urée.", v: true },
+  { s: "Le taux normal de CO2 dans l'air est de 5%.", v: false },
+];
+const vfContainer = document.getElementById('vf-items');
+let vfAnswers = {};
+vfData.forEach((item, i) => {
+  const d = document.createElement('div');
+  d.className = 'vf-item';
+  d.innerHTML = `<div class="vf-statement">${i+1}. ${item.s}</div>
+    <div class="vf-btns">
+      <button class="vf-btn v" id="vf-v-${i}" onclick="selectVF(${i},'v')">VRAI</button>
+      <button class="vf-btn f" id="vf-f-${i}" onclick="selectVF(${i},'f')">FAUX</button>
+    </div>`;
+  vfContainer.appendChild(d);
+});
+function selectVF(i, c) {
+  vfAnswers[i] = c;
+  ['v','f'].forEach(x => document.getElementById(`vf-${x}-${i}`).style.outline = '');
+  document.getElementById(`vf-${c}-${i}`).style.outline = '3px solid var(--vert)';
+}
+function checkVF() {
+  let score = 0;
+  vfData.forEach((item, i) => {
+    const correct = item.v ? 'v' : 'f';
+    ['v','f'].forEach(c => { document.getElementById(`vf-${c}-${i}`).classList.remove('correct','incorrect'); document.getElementById(`vf-${c}-${i}`).style.outline=''; });
+    document.getElementById(`vf-${correct}-${i}`).classList.add('correct');
+    if (vfAnswers[i] && vfAnswers[i] !== correct) document.getElementById(`vf-${vfAnswers[i]}-${i}`).classList.add('incorrect');
+    else if (vfAnswers[i] === correct) score++;
+  });
+  const fb = document.getElementById('vf-feedback');
+  fb.innerHTML = `Score : ${score} / ${vfData.length} ${score >= 5 ? '✅ Excellent !' : '💪 Revois le cours !'}`;
+  fb.style.color = score >= 5 ? 'var(--vert)' : 'var(--rouge)';
+}
+
+// TEXTE À TROUS
+const trouData = [
+  { before: "Les cellules produisent du ", key: "CO2", after: " lors de la respiration." },
+  { before: "Le CO2 est éliminé par les ", key: "poumons", after: " lors de l'expiration." },
+  { before: "L'urée est éliminée par les ", key: "reins", after: " dans l'urine." },
+  { before: "Les alvéoles sont de petits sacs d'air dans les ", key: "poumons", after: " où se font les échanges gazeux." },
+  { before: "La peau élimine eau, sel et urée par la ", key: "sueur", after: "." },
+];
+const trouText = document.getElementById('trou-text');
+trouData.forEach((item, i) => {
+  const span = document.createElement('span');
+  span.innerHTML = `${item.before}<input class="trou-input" id="trou-${i}" placeholder="?" />${item.after} `;
+  trouText.appendChild(span);
+});
+function checkTrou() {
+  let score = 0;
+  trouData.forEach((item, i) => {
+    const inp = document.getElementById('trou-'+i);
+    inp.classList.remove('ok','ko');
+    if (inp.value.trim().toLowerCase() === item.key.toLowerCase()) { inp.classList.add('ok'); score++; }
+    else { inp.classList.add('ko'); inp.placeholder = item.key; }
+  });
+  const fb = document.getElementById('trou-feedback');
+  fb.innerHTML = `${score} / ${trouData.length} ${score===trouData.length?'✅ Parfait !':'❌ Les bonnes réponses apparaissent dans les cases rouges.'}`;
+  fb.style.color = score===trouData.length?'var(--vert)':'var(--rouge)';
+}
+
+// DRAG & DROP
+const dragData = [
+  { word: "CO2", def: "🫁 Poumons (expiration)" },
+  { word: "Urée", def: "🫘 Reins (urine)" },
+  { word: "Eau en excès", def: "🫘 Reins + 🧴 Peau" },
+  { word: "Sel en excès", def: "🧴 Peau (sueur)" },
+];
+const pool = document.getElementById('drag-pool');
+const dropZone = document.getElementById('drop-zone');
+let dragAnswers = {};
+dragData.forEach(item => {
+  const chip = document.createElement('div');
+  chip.className = 'drag-chip'; chip.textContent = item.word;
+  chip.draggable = true; chip.id = 'chip-'+item.word;
+  chip.addEventListener('dragstart', e => e.dataTransfer.setData('text', item.word));
+  chip.addEventListener('touchstart', e => { touchChip = e.target; }, {passive:true});
+  pool.appendChild(chip);
+});
+dragData.forEach((item, i) => {
+  const row = document.createElement('div');
+  row.className = 'drop-item';
+  row.innerHTML = `<div class="drop-slot" id="slot-${i}" ondragover="event.preventDefault()" ondrop="dropChip(event,${i})">${item.def}</div>`;
+  dropZone.appendChild(row);
+});
+let touchChip = null;
+document.querySelectorAll('.drop-slot').forEach(slot => {
+  slot.addEventListener('touchend', () => {
+    if (touchChip) { const i = slot.id.replace('slot-',''); placeChip(touchChip.textContent, slot, i); }
+  });
+});
+function dropChip(e, i) { placeChip(e.dataTransfer.getData('text'), document.getElementById('slot-'+i), i); }
+function placeChip(word, slot, i) {
+  const old = Object.entries(dragAnswers).find(([k,v])=>v===word);
+  if (old) { delete dragAnswers[old[0]]; document.getElementById('slot-'+old[0]).innerHTML = dragData[old[0]].def; }
+  if (dragAnswers[i]) { const c = document.getElementById('chip-'+dragAnswers[i]); if(c) c.style.display='inline-block'; }
+  dragAnswers[i] = word;
+  slot.innerHTML = `<strong>${word}</strong>`; slot.classList.add('filled');
+  const chip = document.getElementById('chip-'+word); if(chip) chip.style.display='none';
+}
+function checkDrag() {
+  let score = 0;
+  dragData.forEach((item, i) => {
+    const slot = document.getElementById('slot-'+i);
+    if (dragAnswers[i] === item.word) { score++; slot.style.background='var(--vert-light)'; slot.style.borderColor='var(--vert)'; }
+    else { slot.style.background='var(--rouge-light)'; slot.style.borderColor='var(--rouge)'; }
+  });
+  const fb = document.getElementById('drag-feedback');
+  fb.innerHTML = `${score} / ${dragData.length} ${score===dragData.length?'✅ Parfait !':'❌ Réessaie !'}`;
+  fb.style.color = score===dragData.length?'var(--vert)':'var(--rouge)';
+}
+
+// ORDRE
+const ordreData = [
+  { event: "Les cellules produisent du CO2", ordre: 1 },
+  { event: "Le CO2 passe dans le sang", ordre: 2 },
+  { event: "Le sang arrive aux poumons", ordre: 3 },
+  { event: "Le CO2 passe dans les alvéoles pulmonaires", ordre: 4 },
+  { event: "Le CO2 est rejeté lors de l'expiration", ordre: 5 },
+];
+let ordreList = [...ordreData].sort(()=>Math.random()-0.5);
+const ordreContainer = document.getElementById('ordre-items');
+function renderOrdre() {
+  ordreContainer.innerHTML = '';
+  ordreList.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:8px;';
+    d.innerHTML = `<div style="flex:1;background:#f0fdf4;border:2px solid #bbf7d0;border-radius:10px;padding:10px 14px;font-size:0.92rem;font-weight:600;">${item.event}</div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <button onclick="moveOrdre(${i},-1)" style="background:var(--vert-light);border:1px solid var(--vert);border-radius:6px;padding:2px 10px;cursor:pointer;font-weight:700;">▲</button>
+        <button onclick="moveOrdre(${i},1)" style="background:var(--vert-light);border:1px solid var(--vert);border-radius:6px;padding:2px 10px;cursor:pointer;font-weight:700;">▼</button>
+      </div>`;
+    ordreContainer.appendChild(d);
+  });
+}
+function moveOrdre(i, dir) {
+  const ni = i+dir; if(ni<0||ni>=ordreList.length) return;
+  [ordreList[i],ordreList[ni]]=[ordreList[ni],ordreList[i]]; renderOrdre();
+}
+function checkOrdre() {
+  let score = 0;
+  ordreList.forEach((item,i)=>{ if(item.ordre===i+1) score++; });
+  const fb = document.getElementById('ordre-feedback');
+  fb.innerHTML = `${score} / ${ordreList.length} ${score===ordreList.length?'✅ Ordre parfait !':'❌ Pas tout à fait. Réessaie !'}`;
+  fb.style.color = score===ordreList.length?'var(--vert)':'var(--rouge)';
+}
+renderOrdre();
+
+// GLOSSAIRE
+const glossaireData = [
+  { term: "Déchet", def: "Substance inutile ou toxique produite par les cellules du corps. Elle doit être éliminée pour que l'organisme fonctionne bien.", ex: "CO2, urée, eau en excès." },
+  { term: "CO2 (dioxyde de carbone)", def: "Gaz produit par toutes les cellules quand elles fonctionnent. Éliminé par les poumons lors de l'expiration. Dangereux à forte concentration.", ex: "Taux normal dans l'air : 0,04%." },
+  { term: "Urée", def: "Déchet azoté produit par le foie lors de la destruction des protéines. Transportée par le sang jusqu'aux reins.", ex: "Éliminée dans l'urine." },
+  { term: "Alvéoles pulmonaires", def: "Petits sacs d'air au fond des poumons où se font les échanges gazeux : le CO2 passe du sang vers l'air, l'O2 passe de l'air vers le sang.", ex: "Le sang perd 5 ml de CO2 pour 100 ml à ce niveau." },
+  { term: "Poumons", def: "Organes respiratoires qui permettent d'absorber l'oxygène et d'éliminer le CO2 produit par les cellules.", ex: "Lors de l'expiration, tu rejettes du CO2 dans l'air." },
+  { term: "Reins", def: "Deux organes en forme de haricot situés dans le dos qui filtrent le sang en permanence et produisent l'urine.", ex: "Filtrent environ 180 litres de sang par jour." },
+  { term: "Urine", def: "Liquide produit par les reins contenant de l'eau, de l'urée et du sel. Stocké dans la vessie avant d'être éliminé.", ex: "On produit environ 1,5 litre d'urine par jour." },
+  { term: "Glandes sudoripares", def: "Petites glandes dans la peau qui produisent la sueur. Elles aident à éliminer des déchets et à réguler la température du corps.", ex: "Il y en a 2 à 4 millions sur le corps humain." },
+  { term: "Sueur", def: "Liquide produit par la peau contenant de l'eau, du sel et un peu d'urée. Élimine des déchets et refroidit le corps.", ex: "On peut perdre 1 à 2 litres de sueur par heure de sport." },
+  { term: "Toxique", def: "Qui est poison, qui est dangereux pour l'organisme. Un déchet non éliminé devient toxique dans le sang.", ex: "Le CO2 à plus de 5% dans l'air est toxique." },
+  { term: "Respiration cellulaire", def: "Processus par lequel les cellules utilisent l'oxygène et le glucose pour produire de l'énergie, et rejettent du CO2 et de l'eau.", ex: "Toutes tes cellules font ça en permanence." },
+  { term: "Expiration", def: "Phase de la respiration où on rejette l'air des poumons vers l'extérieur. Cet air contient plus de CO2 que l'air inspiré.", ex: "Quand tu souffles sur une vitre, tu expires du CO2." },
+];
+const grid = document.getElementById('glossaire-grid');
+glossaireData.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'glos-card';
+  card.innerHTML = `<div class="glos-term">🌿 ${item.term}</div>
+    <div class="glos-def">${item.def}</div>
+    ${item.ex?`<div class="glos-ex">💡 Ex : ${item.ex}</div>`:''}`;
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
