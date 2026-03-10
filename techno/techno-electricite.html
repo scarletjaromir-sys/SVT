@@ -1308,7 +1308,7 @@ const GEN_Y = 30;  // y branche principale (générateur)
 function getSimCanvas(){ return document.getElementById('sim-canvas'); }
 function getSimCtx(){ const c=getSimCanvas();return c?c.getContext('2d'):null; }
 
-// ---- Calcul état: est-ce qu'une branche conduit ? ----
+// ---- Calcul etat: la branche conduit-elle ? ----
 function branchConduits(branch){
   if(!SIM.gen) return false;
   for(const c of branch.comps){
@@ -1357,16 +1357,34 @@ function drawSim(){
   bg.addColorStop(0,'#1a1a2e'); bg.addColorStop(1,'#16213e');
   ctx.fillStyle=bg; ctx.fillRect(0,0,CV_W,CV_H);
 
-  const active = anyBranchOn();
+  const nB = SIM.branches.length;
 
-  // ---- Branche principale (générateur) ----
+  // ---- Fils verticaux principaux (de GEN_Y jusqu'à la dernière branche) ----
+  const lastY = nB > 0 ? branchY(nB-1) : GEN_Y + 40;
   const genColor = SIM.gen ? '#f1c40f' : '#555';
-  // Fil du haut : N1→N2
+
+  // Fil du haut entre N1 et N2 (branche générateur)
   ctx.strokeStyle=genColor; ctx.lineWidth=3; ctx.setLineDash([]);
   ctx.beginPath(); ctx.moveTo(NX1,GEN_Y); ctx.lineTo(NX2,GEN_Y); ctx.stroke();
-  // Fils verticaux gauche et droit (du haut vers NY)
-  ctx.beginPath(); ctx.moveTo(NX1,GEN_Y); ctx.lineTo(NX1,NY); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(NX2,GEN_Y); ctx.lineTo(NX2,NY); ctx.stroke();
+
+  // Fils verticaux gauche et droit (du générateur jusqu'en bas)
+  // On dessine segment par segment pour colorer selon si une branche conduit
+  if(nB === 0){
+    ctx.strokeStyle='#444'; ctx.lineWidth=2.5;
+    ctx.beginPath(); ctx.moveTo(NX1,GEN_Y); ctx.lineTo(NX1,GEN_Y+60); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(NX2,GEN_Y); ctx.lineTo(NX2,GEN_Y+60); ctx.stroke();
+  } else {
+    for(let bIdx=0; bIdx<nB; bIdx++){
+      const y = branchY(bIdx);
+      const prevY = bIdx===0 ? GEN_Y : branchY(bIdx-1);
+      const conducting = branchConduits(SIM.branches[bIdx]);
+      // Fil vertical entre branche précédente et cette branche
+      const vCol = conducting ? '#2ecc71' : '#444';
+      ctx.strokeStyle=vCol; ctx.lineWidth=2.5;
+      ctx.beginPath(); ctx.moveTo(NX1,prevY); ctx.lineTo(NX1,y); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(NX2,prevY); ctx.lineTo(NX2,y); ctx.stroke();
+    }
+  }
 
   // Générateur (pile) au centre du fil haut
   const gx = (NX1+NX2)/2;
@@ -1378,13 +1396,8 @@ function drawSim(){
     const conducting = branchConduits(branch);
     const wireCol = conducting ? '#2ecc71' : '#444';
 
-    // Fil gauche vertical N1→branche
-    ctx.strokeStyle=wireCol; ctx.lineWidth=2.5;
-    ctx.beginPath(); ctx.moveTo(NX1,NY); ctx.lineTo(NX1,y); ctx.stroke();
-    // Fil droit vertical N2→branche
-    ctx.beginPath(); ctx.moveTo(NX2,NY); ctx.lineTo(NX2,y); ctx.stroke();
-
     // Fil horizontal de la branche
+    ctx.strokeStyle=wireCol; ctx.lineWidth=2.5; ctx.setLineDash([]);
     const positions = compPositions(branch, bIdx);
     let prevX = NX1;
     positions.forEach(pos=>{
@@ -1401,14 +1414,30 @@ function drawSim(){
 
     // Bouton supprimer branche
     drawDeleteBtn(ctx, NX2+18, y);
-  });
 
-  // Nœuds N1 et N2
-  [NX1, NX2].forEach((nx,i)=>{
-    ctx.fillStyle='#27ae60';
-    ctx.beginPath(); ctx.arc(nx, NY, 7, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle='#fff'; ctx.font='bold 10px Nunito'; ctx.textAlign='center';
-    ctx.fillText('N'+(i+1), nx, NY+20);
+    // ---- Nœuds aux intersections gauche et droite avec labels ----
+    const nodeCol = conducting ? '#27ae60' : '#555';
+    const nodeBorder = conducting ? '#2ecc71' : '#777';
+    const labelCol = conducting ? '#2ecc71' : '#888';
+    const nodeLabel = 'N' + (bIdx + 1);
+
+    // Nœud gauche
+    ctx.fillStyle=nodeBorder;
+    ctx.beginPath(); ctx.arc(NX1,y,6,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle=nodeCol;
+    ctx.beginPath(); ctx.arc(NX1,y,4,0,Math.PI*2); ctx.fill();
+    // Label gauche
+    ctx.fillStyle=labelCol; ctx.font='bold 10px Nunito'; ctx.textAlign='right';
+    ctx.fillText(nodeLabel, NX1-10, y+4);
+
+    // Nœud droit
+    ctx.fillStyle=nodeBorder;
+    ctx.beginPath(); ctx.arc(NX2,y,6,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle=nodeCol;
+    ctx.beginPath(); ctx.arc(NX2,y,4,0,Math.PI*2); ctx.fill();
+    // Label droit
+    ctx.fillStyle=labelCol; ctx.font='bold 10px Nunito'; ctx.textAlign='left';
+    ctx.fillText(nodeLabel, NX2+10, y+4);
   });
 
   // Particules
@@ -1511,30 +1540,125 @@ function drawSwitchSim(ctx,x,y,comp,conducting){
 
 function drawDiodeSim(ctx,x,y,comp,conducting,isLed){
   const active = conducting && comp.forward;
-  const col = active ? (isLed?'#2ecc71':'#f1c40f') : '#555';
-  // Triangle (flèche)
+  const blocked = conducting && !comp.forward; // courant bloque par la diode
+  const col = active ? (isLed?'#2ecc71':'#f1c40f') : (blocked?'#e74c3c':'#555');
+
+  ctx.save();
+  if(!comp.forward){
+    // Retourner le symbole (courant dans le mauvais sens)
+    ctx.translate(x,y); ctx.scale(-1,1); ctx.translate(-x,-y);
+  }
+
+  // Triangle
   ctx.fillStyle = col;
   ctx.beginPath(); ctx.moveTo(x-12,y-9); ctx.lineTo(x-12,y+9); ctx.lineTo(x+5,y); ctx.closePath(); ctx.fill();
   // Barre
   ctx.strokeStyle=col; ctx.lineWidth=2.5;
   ctx.beginPath(); ctx.moveTo(x+5,y-10); ctx.lineTo(x+5,y+10); ctx.stroke();
+  ctx.restore();
+
   // Rayons si LED active
   if(isLed && active){
     ctx.strokeStyle='#2ecc71'; ctx.lineWidth=1.5;
-    [[x+10,y-8,x+16,y-14],[x+12,y-2,x+20,y-4]].forEach(([x1,y1,x2,y2])=>{
+    [[x+12,y-8,x+20,y-15],[x+14,y-1,x+23,y-3]].forEach(([x1,y1,x2,y2])=>{
       ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
     });
   }
-  // Sens
-  ctx.fillStyle=col; ctx.font='bold 9px Nunito'; ctx.textAlign='center';
-  ctx.fillText(comp.forward?'→':'✕',x,y+20);
+
+  // Si bloquée : croix rouge + label explicatif
+  if(blocked){
+    ctx.strokeStyle='#e74c3c'; ctx.lineWidth=2.5;
+    ctx.beginPath(); ctx.moveTo(x-7,y-7); ctx.lineTo(x+7,y+7);
+    ctx.moveTo(x+7,y-7); ctx.lineTo(x-7,y+7); ctx.stroke();
+    ctx.fillStyle='#e74c3c'; ctx.font='bold 8px Nunito'; ctx.textAlign='center';
+    ctx.fillText('BLOQUÉ',x,y+22);
+    ctx.fillText('⟵ sens inversé',x,y+32);
+  } else {
+    // Flèche de sens
+    ctx.fillStyle=col; ctx.font='bold 9px Nunito'; ctx.textAlign='center';
+    ctx.fillText(comp.forward ? (active?'→ passe':'→'):'← inversé', x, y+22);
+  }
 }
 
-function drawDeleteBtn(ctx, x, y){
-  ctx.fillStyle='rgba(231,76,60,0.7)';
+// ---- Moteur animé ----
+function drawMotorSim(ctx,x,y,comp,conducting){
+  const on = conducting;
+  const speed = on ? (comp.speed||1) : 0;
+  const angle = comp.angle||0;
+  const r=14;
+
+  // Halo si actif
+  if(on){
+    ctx.fillStyle='rgba(52,152,219,0.18)';
+    ctx.beginPath(); ctx.arc(x,y,r+12,0,Math.PI*2); ctx.fill();
+  }
+
+  // Cercle moteur
+  ctx.fillStyle=on?'#0d2137':'#1a1a2e';
+  ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle=on?'#3498db':'#444'; ctx.lineWidth=2.5;
+  ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.stroke();
+
+  // Lettre M
+  ctx.fillStyle=on?'#3498db':'#555'; ctx.font='bold 11px Nunito'; ctx.textAlign='center';
+  ctx.fillText('M',x,y+4);
+
+  // Roue dentée animée autour du moteur
+  const rOuter=r+10, rInner=r+6, teeth=8;
+  ctx.strokeStyle=on?'#3498db':'#333'; ctx.lineWidth=2;
+  ctx.beginPath();
+  for(let i=0;i<teeth*2;i++){
+    const a = angle + (i*Math.PI/teeth);
+    const rr = i%2===0 ? rOuter : rInner;
+    const px2=x+Math.cos(a)*rr, py2=y+Math.sin(a)*rr;
+    i===0 ? ctx.moveTo(px2,py2) : ctx.lineTo(px2,py2);
+  }
+  ctx.closePath(); ctx.stroke();
+
+  // Flèche de sens de rotation
+  if(on){
+    const arrowR = rOuter+7;
+    const dir = comp.clockwise !== false ? 1 : -1; // true=horaire
+    ctx.strokeStyle='#2ecc71'; ctx.lineWidth=2;
+    ctx.beginPath();
+    ctx.arc(x,y,arrowR, dir===1?0.3:-1.8, dir===1?1.8:-0.3, dir===-1);
+    ctx.stroke();
+    // Pointe de flèche
+    const aEnd = dir===1 ? 1.8 : -0.3;
+    const ax=x+Math.cos(aEnd)*arrowR, ay=y+Math.sin(aEnd)*arrowR;
+    const aTan = aEnd + dir*Math.PI/2;
+    ctx.fillStyle='#2ecc71';
+    ctx.beginPath();
+    ctx.moveTo(ax,ay);
+    ctx.lineTo(ax+Math.cos(aTan-0.5)*7, ay+Math.sin(aTan-0.5)*7);
+    ctx.lineTo(ax+Math.cos(aTan+0.5)*7, ay+Math.sin(aTan+0.5)*7);
+    ctx.closePath(); ctx.fill();
+    // Label sens
+    ctx.fillStyle='#2ecc71'; ctx.font='bold 8px Nunito'; ctx.textAlign='center';
+    ctx.fillText(comp.clockwise!==false?'↻ horaire':'↺ anti-h.', x, y+rOuter+22);
+  } else {
+    ctx.fillStyle='#555'; ctx.font='8px Nunito'; ctx.textAlign='center';
+    ctx.fillText('⏹ arrêt',x,y+rOuter+16);
+  }
+}
+
+function drawComp(ctx, x, y, comp, conducting){
+  ctx.save();
+  switch(comp.type){
+    case 'lamp':   drawLampSim(ctx,x,y,comp,conducting); break;
+    case 'switch': drawSwitchSim(ctx,x,y,comp,conducting); break;
+    case 'diode':  drawDiodeSim(ctx,x,y,comp,conducting,false); break;
+    case 'led':    drawDiodeSim(ctx,x,y,comp,conducting,true); break;
+    case 'motor':  drawMotorSim(ctx,x,y,comp,conducting); break;
+  }
+  ctx.restore();
+}
+
+function drawDeleteBtn(ctx,x,y){
+  ctx.fillStyle='rgba(231,76,60,0.75)';
   ctx.beginPath(); ctx.arc(x,y,9,0,Math.PI*2); ctx.fill();
-  ctx.fillStyle='#fff'; ctx.font='bold 12px sans-serif'; ctx.textAlign='center';
-  ctx.fillText('×',x,y+4);
+  ctx.fillStyle='#fff'; ctx.font='bold 13px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('x',x,y+5);
 }
 
 // ---- Chemins pour les particules ----
@@ -1564,6 +1688,13 @@ function rebuildParticles(){
   if(typeof simRefresh==='function') simRefresh();
 }
 
+function drawDeleteBtn(ctx,x,y){
+  ctx.fillStyle='rgba(231,76,60,0.75)';
+  ctx.beginPath();ctx.arc(x,y,9,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#fff';ctx.font='bold 13px sans-serif';ctx.textAlign='center';
+  ctx.fillText('×',x,y+5);
+}
+
 function animSimLoop(){
   const ctx=getSimCtx(); if(!ctx) return;
   if(SIM.animOn){
@@ -1572,6 +1703,18 @@ function animSimLoop(){
       const[x,y]=p.path[p.idx]; p.x=x; p.y=y;
     });
   }
+  // Animer les moteurs (roue tourne si la branche conduit)
+  SIM.branches.forEach(b=>{
+    const on = branchConduits(b);
+    b.comps.forEach(comp=>{
+      if(comp.type==='motor'){
+        if(on){
+          const dir = comp.clockwise!==false ? 1 : -1;
+          comp.angle = ((comp.angle||0) + dir*0.04) % (Math.PI*2);
+        }
+      }
+    });
+  });
   drawSim();
   SIM.raf = requestAnimationFrame(animSimLoop);
 }
@@ -1634,6 +1777,8 @@ function buildSimControls(){
     <button class="sbtn" onclick="simAddBranch(['led'])">🟢 DEL</button>
     <button class="sbtn" onclick="simAddBranch(['diode'])">▶| Diode</button>
     <button class="sbtn" onclick="simAddBranch(['lamp','led'])">💡+🟢 Lampe+DEL</button>
+    <button class="sbtn" onclick="simAddBranch(['motor'])">⚙️ Moteur</button>
+    <button class="sbtn" onclick="simAddBranch(['motor','switch'])">⚙️+🔘 Moteur+Inter.</button>
     <button class="sbtn sbtn-r" onclick="simReset()">🔄 Réinitialiser</button>
   `;
   cont.appendChild(addDiv);
@@ -1667,9 +1812,9 @@ function buildSimControls(){
       } else if(c.type==='diode'){
         icon='▶|'; state=c.forward?'passante':'bloquante';
         cls=c.forward?'scomp scomp-ok':'scomp scomp-off';
-      } else if(c.type==='led'){
-        icon='🟢'; state=c.forward?'allumée':'bloquée';
-        cls=c.forward?'scomp scomp-ok':'scomp scomp-off';
+      } else if(c.type==='motor'){
+        icon='⚙️'; state=c.clockwise!==false?'↻ horaire':'↺ anti-horaire';
+        cls='scomp scomp-ok';
       }
       html+=`<button class="${cls}" onclick="simToggleComp(${bIdx},${cIdx})" title="Cliquer pour basculer">${icon} <span style="font-size:.78rem">${state}</span></button>`;
     });
@@ -1679,6 +1824,7 @@ function buildSimControls(){
       <button class="sbtn sbtn-sm" onclick="simAddCompToBranch(${bIdx},'switch')">+🔘</button>
       <button class="sbtn sbtn-sm" onclick="simAddCompToBranch(${bIdx},'diode')">+▶|</button>
       <button class="sbtn sbtn-sm" onclick="simAddCompToBranch(${bIdx},'led')">+🟢</button>
+      <button class="sbtn sbtn-sm" onclick="simAddCompToBranch(${bIdx},'motor')">+⚙️</button>
       <button class="sbtn sbtn-sm sbtn-r" onclick="simRemoveLastComp(${bIdx})" title="Retirer dernier composant">−&nbsp;Retirer</button>
       <button class="sbtn sbtn-sm sbtn-r" onclick="simRemoveBranch(${bIdx})">🗑 Suppr. branche</button>
     </div>`;
@@ -1692,6 +1838,7 @@ function simToggleComp(bIdx, cIdx){
   if(c.type==='lamp')   c.broken=!c.broken;
   if(c.type==='switch') c.closed=!c.closed;
   if(c.type==='diode'||c.type==='led') c.forward=!c.forward;
+  if(c.type==='motor')  c.clockwise=!(c.clockwise!==false);
   simRefresh();
 }
 
@@ -1725,6 +1872,7 @@ window.simAddBranch=function(types){
     if(t==='switch') return {type:'switch',closed:true};
     if(t==='diode')  return {type:'diode',forward:true};
     if(t==='led')    return {type:'led',forward:true};
+    if(t==='motor')  return {type:'motor',clockwise:true,angle:0};
     return {type:'lamp',broken:false};
   });
   SIM.branches.push({id:SIM.nextBranchId++,comps});
@@ -1733,7 +1881,7 @@ window.simAddBranch=function(types){
 window.simAddCompToBranch=function(bIdx,type){
   const b=SIM.branches[bIdx];
   if(!b||b.comps.length>=4)return;
-  const map={lamp:{type:'lamp',broken:false},switch:{type:'switch',closed:true},diode:{type:'diode',forward:true},led:{type:'led',forward:true}};
+  const map={lamp:{type:'lamp',broken:false},switch:{type:'switch',closed:true},diode:{type:'diode',forward:true},led:{type:'led',forward:true},motor:{type:'motor',clockwise:true,angle:0}};
   if(map[type]) b.comps.push(map[type]);
   simRefresh();
 };
