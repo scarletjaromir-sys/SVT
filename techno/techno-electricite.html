@@ -6,1000 +6,1239 @@
 <title>Électricité ⚡ – Cours de Noah</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --yellow: #f1c40f; --orange: #e67e22; --red: #e74c3c;
-  --blue: #3498db; --dark: #1a1a2e; --light: #fefdf5;
-  --green: #2ecc71; --purple: #8e44ad;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Nunito', sans-serif; background: var(--light); min-height: 100vh; }
-
-header {
-  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-  padding: 30px 20px; text-align: center; position: relative;
-}
-header .back-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.4);
-  color: #fff; text-decoration: none; border-radius: 20px;
-  padding: 6px 16px; font-size: 0.9rem; font-weight: 700;
-  transition: background 0.2s; position: absolute; top: 20px; left: 20px;
-}
-header .back-btn:hover { background: rgba(255,255,255,0.28); }
-header h1 { font-family: 'Baloo 2', cursive; font-size: 2.2rem; color: #fff; text-shadow: 0 0 20px rgba(241,196,15,0.5); }
-header p { color: rgba(255,255,255,0.8); margin-top: 6px; font-size: 1.05rem; }
-.lightning { color: var(--yellow); }
-
-.container { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
-
-/* Progress */
-.progress-wrap { background: #ddd; border-radius: 10px; height: 10px; margin-bottom: 28px; }
-.progress-fill { height: 10px; border-radius: 10px; background: linear-gradient(90deg, var(--yellow), var(--orange)); transition: width 0.5s; }
-
-/* Tabs */
-.tabs { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
-.tab-btn {
-  background: #fff; border: 2px solid #e0d080; border-radius: 20px;
-  padding: 8px 16px; font-family: 'Baloo 2', cursive; font-size: 0.92rem;
-  cursor: pointer; color: #888; transition: all 0.2s;
-}
-.tab-btn.active { background: linear-gradient(135deg, #f1c40f, #e67e22); color: #fff; border-color: transparent; }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
-
-/* Section title */
-.section-title {
-  font-family: 'Baloo 2', cursive; font-size: 1.35rem; font-weight: 800;
-  margin: 28px 0 14px; display: flex; align-items: center; gap: 10px;
-  color: var(--dark); border-bottom: 3px solid #f1c40f44; padding-bottom: 8px;
-}
-
-/* Lesson card */
-.lesson-card {
-  background: #fff; border-radius: 18px; padding: 22px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08); margin-bottom: 16px;
-}
-.lesson-card h3 { font-family: 'Baloo 2', cursive; font-size: 1.1rem; color: var(--dark); margin-bottom: 12px; }
-.lesson-card p { color: #444; line-height: 1.75; margin-bottom: 8px; }
-.formula {
-  background: linear-gradient(135deg, #fff9e0, #fff3b0);
-  border-left: 4px solid var(--yellow); border-radius: 10px;
-  padding: 12px 16px; margin: 10px 0; font-weight: 700; color: #7d6608;
-}
-.tip {
-  background: #e8f8f0; border-left: 4px solid var(--green);
-  border-radius: 10px; padding: 10px 14px; margin: 8px 0; color: #1a6b3c;
-}
-.warn {
-  background: #fde8e8; border-left: 4px solid var(--red);
-  border-radius: 10px; padding: 10px 14px; margin: 8px 0; color: #922b21; font-weight: 700;
-}
-
-/* ===== SYMBOLES GRID ===== */
-.symbols-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px; margin-top: 12px;
-}
-.symbol-card {
-  background: #f8f9fa; border: 2px solid #e0e0e0; border-radius: 14px;
-  padding: 14px 10px; text-align: center; transition: all 0.2s; cursor: default;
-}
-.symbol-card:hover { border-color: var(--yellow); box-shadow: 0 4px 12px rgba(241,196,15,0.2); transform: translateY(-2px); }
-.symbol-card svg { display: block; margin: 0 auto 8px; }
-.symbol-card .sym-name { font-weight: 700; font-size: 0.88rem; color: var(--dark); }
-.symbol-card .sym-type { font-size: 0.75rem; color: #aaa; margin-top: 2px; }
-.polarise { border-color: #f39c12; background: #fff9f0; }
-.polarise .sym-type { color: var(--orange); font-weight: 700; }
-
-/* ===== ANIMATED CIRCUITS ===== */
-.circuit-container {
-  background: #1a1a2e; border-radius: 18px; padding: 20px;
-  margin: 16px 0; position: relative;
-}
-.circuit-container h4 {
-  font-family: 'Baloo 2', cursive; color: #fff; font-size: 1rem;
-  margin-bottom: 14px; text-align: center;
-}
-.circuit-wrap { display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; }
-
-canvas.circuit { border-radius: 12px; background: #fff; }
-
-.circuit-legend {
-  background: rgba(255,255,255,0.1); border-radius: 12px; padding: 12px 16px;
-  color: #fff; font-size: 0.88rem; min-width: 180px;
-}
-.circuit-legend li { margin: 6px 0; list-style: none; display: flex; align-items: center; gap: 8px; }
-.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-
-.circuit-controls { text-align: center; margin-top: 12px; }
-.ctrl-btn {
-  background: linear-gradient(135deg, var(--yellow), var(--orange));
-  border: none; border-radius: 12px; color: #fff; padding: 8px 20px;
-  font-family: 'Baloo 2', cursive; font-size: 0.95rem; cursor: pointer;
-  margin: 4px; transition: opacity 0.2s;
-}
-.ctrl-btn:hover { opacity: 0.85; }
-.ctrl-btn.off { background: #555; }
-
-/* ===== QUIZ ===== */
-.quiz-card {
-  background: #fff; border-radius: 18px; padding: 22px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 18px;
-}
-.q-num { font-size: 0.82rem; color: #aaa; margin-bottom: 5px; font-family: 'Baloo 2', cursive; }
-.q-text { font-size: 1.05rem; color: var(--dark); font-weight: 700; margin-bottom: 14px; line-height: 1.5; }
-.choice-btn {
-  display: block; width: 100%; text-align: left;
-  background: #f8f9fa; border: 2px solid #e0e0e0;
-  border-radius: 12px; padding: 11px 16px; margin-bottom: 8px;
-  font-family: 'Nunito', sans-serif; font-size: 0.98rem; font-weight: 600;
-  cursor: pointer; transition: all 0.2s; color: var(--dark);
-}
-.choice-btn:hover:not(:disabled) { border-color: var(--yellow); background: #fffbe6; }
-.choice-btn.correct { background: #d5f5e3; border-color: var(--green); color: #1a6b3c; }
-.choice-btn.wrong { background: #fde8e8; border-color: var(--red); color: #922b21; }
-.choice-btn:disabled { cursor: not-allowed; }
-.feedback { margin-top: 10px; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.93rem; display: none; }
-.feedback.show { display: block; }
-.feedback.ok { background: #d5f5e3; color: #1a6b3c; }
-.feedback.ko { background: #fde8e8; color: #922b21; }
-
-/* Score */
-.score-box {
-  background: linear-gradient(135deg, #f1c40f, #e67e22);
-  color: #fff; border-radius: 20px; padding: 28px;
-  text-align: center; margin-top: 28px; display: none;
-}
-.score-box.show { display: block; }
-.score-box h2 { font-family: 'Baloo 2', cursive; font-size: 1.8rem; }
-.score-box .big { font-family: 'Baloo 2', cursive; font-size: 3.2rem; margin: 8px 0; }
-.reset-btn {
-  background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.6);
-  color: #fff; border-radius: 14px; padding: 10px 24px;
-  font-family: 'Baloo 2', cursive; font-size: 1rem; cursor: pointer; margin: 8px 4px 0;
-}
-.reset-btn:hover { background: rgba(255,255,255,0.4); }
-
-/* Match */
-.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
-.match-col { display: flex; flex-direction: column; gap: 8px; }
-.match-item {
-  background: #f8f9fa; border: 2px solid #e0e0e0; border-radius: 12px;
-  padding: 10px 14px; cursor: pointer; font-weight: 600; font-size: 0.93rem;
-  transition: all 0.2s; user-select: none; text-align: center;
-}
-.match-item:hover { border-color: var(--yellow); background: #fffbe6; }
-.match-item.selected { border-color: var(--orange); background: #fff3cd; }
-.match-item.matched { border-color: var(--green); background: #d5f5e3; cursor: default; color: #1a6b3c; }
-.match-item.wrong-match { border-color: var(--red); background: #fde8e8; }
-@media(max-width:500px){ .match-grid { grid-template-columns: 1fr; } }
-
-/* Danger quiz */
-.danger-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
-.danger-card {
-  background: #f8f9fa; border: 3px solid #e0e0e0; border-radius: 14px;
-  padding: 16px; text-align: center; cursor: pointer; transition: all 0.2s;
-}
-.danger-card:hover { border-color: var(--yellow); }
-.danger-card.correct { border-color: var(--green); background: #d5f5e3; }
-.danger-card.wrong { border-color: var(--red); background: #fde8e8; }
-.danger-card svg { display: block; margin: 0 auto 10px; }
-.danger-card p { font-size: 0.85rem; font-weight: 700; }
-@media(max-width:500px){ .danger-grid { grid-template-columns: 1fr; } }
-
-footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; }
+:root{--y:#f1c40f;--o:#e67e22;--r:#e74c3c;--b:#3498db;--dk:#1a1a2e;--li:#fefdf5;--g:#2ecc71;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--li);min-height:100vh;}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:30px 20px;text-align:center;position:relative;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.4);color:#fff;text-decoration:none;border-radius:20px;padding:6px 16px;font-size:.9rem;font-weight:700;position:absolute;top:20px;left:20px;}
+.back-btn:hover{background:rgba(255,255,255,.28);}
+header h1{font-family:'Baloo 2',cursive;font-size:2.2rem;color:#f1c40f;}
+header p{color:rgba(255,255,255,.8);margin-top:6px;font-size:1.05rem;}
+.container{max-width:880px;margin:0 auto;padding:28px 20px 60px;}
+.pw{background:#ddd;border-radius:10px;height:10px;margin-bottom:28px;}
+.pf{height:10px;border-radius:10px;background:linear-gradient(90deg,var(--y),var(--o));transition:width .5s;}
+.tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
+.tab-btn{background:#fff;border:2px solid #e0d080;border-radius:20px;padding:8px 16px;font-family:'Baloo 2',cursive;font-size:.92rem;cursor:pointer;color:#888;transition:all .2s;}
+.tab-btn.active{background:linear-gradient(135deg,var(--y),var(--o));color:#fff;border-color:transparent;}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.stitle{font-family:'Baloo 2',cursive;font-size:1.35rem;font-weight:800;margin:28px 0 14px;display:flex;align-items:center;gap:10px;color:var(--dk);border-bottom:3px solid #f1c40f44;padding-bottom:8px;}
+.lcard{background:#fff;border-radius:18px;padding:22px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin-bottom:16px;}
+.lcard h3{font-family:'Baloo 2',cursive;font-size:1.1rem;color:var(--dk);margin-bottom:12px;}
+.lcard p{color:#444;line-height:1.75;margin-bottom:8px;}
+.formula{background:linear-gradient(135deg,#fff9e0,#fff3b0);border-left:4px solid var(--y);border-radius:10px;padding:12px 16px;margin:10px 0;font-weight:700;color:#7d6608;}
+.tip{background:#e8f8f0;border-left:4px solid var(--g);border-radius:10px;padding:10px 14px;margin:8px 0;color:#1a6b3c;}
+.warn{background:#fde8e8;border-left:4px solid var(--r);border-radius:10px;padding:10px 14px;margin:8px 0;color:#922b21;font-weight:700;}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px;}
+.scard{background:#f8f9fa;border:2px solid #e0e0e0;border-radius:14px;padding:14px 10px;text-align:center;transition:all .2s;}
+.scard:hover{border-color:var(--y);box-shadow:0 4px 12px rgba(241,196,15,.2);transform:translateY(-2px);}
+.scard svg{display:block;margin:0 auto 8px;}
+.sn{font-weight:700;font-size:.88rem;color:var(--dk);}
+.st{font-size:.75rem;margin-top:2px;}
+.cbox{background:#1a1a2e;border-radius:18px;padding:20px;margin:16px 0;}
+.cbox h4{font-family:'Baloo 2',cursive;color:#fff;font-size:1rem;margin-bottom:14px;text-align:center;}
+.cwrap{display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;}
+canvas.cv{border-radius:12px;background:#fff;}
+.cleg{background:rgba(255,255,255,.1);border-radius:12px;padding:12px 16px;color:#fff;font-size:.84rem;width:220px;}
+.cleg li{margin:6px 0;list-style:none;display:block;line-height:1.5;}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex-shrink:0;margin-top:2px;}
+.cbtn2{background:linear-gradient(135deg,var(--y),var(--o));border:none;border-radius:12px;color:#fff;padding:8px 20px;font-family:'Baloo 2',cursive;font-size:.95rem;cursor:pointer;margin:4px;transition:opacity .2s;}
+.cbtn2:hover{opacity:.85;}.cbtn2.off{background:#555;}
+.qcard{background:#fff;border-radius:18px;padding:22px;box-shadow:0 4px 16px rgba(0,0,0,.08);margin-bottom:18px;}
+.qnum{font-size:.82rem;color:#aaa;margin-bottom:5px;font-family:'Baloo 2',cursive;}
+.qtext{font-size:1.05rem;color:var(--dk);font-weight:700;margin-bottom:14px;line-height:1.5;}
+.qbtn{display:block;width:100%;text-align:left;background:#f8f9fa;border:2px solid #e0e0e0;border-radius:12px;padding:11px 16px;margin-bottom:8px;font-family:'Nunito',sans-serif;font-size:.98rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--dk);}
+.qbtn:hover:not(:disabled){border-color:var(--y);background:#fffbe6;}
+.qbtn.correct{background:#d5f5e3;border-color:var(--g);color:#1a6b3c;}
+.qbtn.wrong{background:#fde8e8;border-color:var(--r);color:#922b21;}
+.qbtn:disabled{cursor:not-allowed;}
+.fb{margin-top:10px;padding:10px 14px;border-radius:10px;font-weight:700;font-size:.93rem;display:none;}
+.fb.show{display:block;}.fb.ok{background:#d5f5e3;color:#1a6b3c;}.fb.ko{background:#fde8e8;color:#922b21;}
+.sbox{background:linear-gradient(135deg,var(--y),var(--o));color:#fff;border-radius:20px;padding:28px;text-align:center;margin-top:28px;display:none;}
+.sbox.show{display:block;}
+.sbox h2{font-family:'Baloo 2',cursive;font-size:1.8rem;}
+.sbox .big{font-family:'Baloo 2',cursive;font-size:3.2rem;margin:8px 0;}
+.rbtn{background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.6);color:#fff;border-radius:14px;padding:10px 24px;font-family:'Baloo 2',cursive;font-size:1rem;cursor:pointer;margin:8px 4px 0;}
+.rbtn:hover{background:rgba(255,255,255,.4);}
+/* Drag & Drop */
+.ddbank{display:flex;flex-wrap:wrap;gap:10px;min-height:54px;padding:10px;background:#fff;border:2px dashed #ccc;border-radius:12px;margin-bottom:18px;}
+.ddsym{background:#fff;border:2px solid #3498db;border-radius:10px;padding:8px 14px;cursor:grab;font-weight:700;font-size:.87rem;color:#2980b9;user-select:none;transition:all .2s;}
+.ddsym:active{cursor:grabbing;opacity:.7;}
+.ddsym.placed{opacity:.35;cursor:not-allowed;pointer-events:none;}
+.ddgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;}
+.ddtgt{background:#fff;border:2px dashed #ccc;border-radius:12px;padding:12px;min-height:90px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .2s;}
+.ddtgt.dov{border-color:var(--b);background:#e8f4fd;}
+.ddtgt.dok{border-color:var(--g);background:#d5f5e3;}
+.ddtgt.derr{border-color:var(--r);background:#fde8e8;}
+.ddlbl{font-weight:700;font-size:.82rem;padding:4px 10px;border-radius:8px;background:#dbeafe;color:#1e40af;margin-top:2px;}
+footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
 </style>
 </head>
 <body>
-
 <header>
   <a class="back-btn" href="../index.html">← Accueil</a>
-  <div style="font-size:2rem;margin-bottom:8px;">⚡ 🔌 💡</div>
-  <h1><span class="lightning">Électricité</span> – Circuits</h1>
+  <div style="font-size:2rem;margin-bottom:8px;">⚡🔌💡</div>
+  <h1>Électricité – Circuits</h1>
   <p>Technologie · 4e – Dipôles, sens du courant, circuits</p>
 </header>
-
 <div class="container">
-  <div style="display:flex;justify-content:space-between;font-size:0.83rem;color:#888;margin-bottom:5px;">
-    <span>Progression</span><span id="prog-label">0 / 20 réponses</span>
+  <div style="display:flex;justify-content:space-between;font-size:.83rem;color:#888;margin-bottom:5px;">
+    <span>Progression</span><span id="plbl">0 / 25 réponses</span>
   </div>
-  <div class="progress-wrap"><div class="progress-fill" id="prog-bar" style="width:0%"></div></div>
-
+  <div class="pw"><div class="pf" id="pbar" style="width:0%"></div></div>
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('dipoles')">🔧 Dipôles</button>
-    <button class="tab-btn" onclick="switchTab('courant')">⚡ Sens du courant</button>
-    <button class="tab-btn" onclick="switchTab('circuits')">🔁 Série vs Dérivation</button>
-    <button class="tab-btn" onclick="switchTab('dangers')">⚠️ Dangers</button>
-    <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+    <button class="tab-btn active" onclick="sw('dipoles')">🔧 Dipôles</button>
+    <button class="tab-btn" onclick="sw('courant')">⚡ Sens du courant</button>
+    <button class="tab-btn" onclick="sw('circuits')">🔁 Série / Dérivation</button>
+    <button class="tab-btn" onclick="sw('dangers')">⚠️ Dangers</button>
+    <button class="tab-btn" onclick="sw('quiz')">🎯 Quiz</button>
   </div>
 
-  <!-- ===== DIPÔLES ===== -->
+  <!-- DIPOLES -->
   <div class="tab-panel active" id="tab-dipoles">
-    <div class="section-title">🔧 Les dipôles – c'est quoi ?</div>
-    <div class="lesson-card">
+    <div class="stitle">🔧 Les dipôles</div>
+    <div class="lcard">
       <h3>📖 Définition</h3>
-      <p>Un <strong>dipôle</strong> est un composant électrique qui possède <strong>2 bornes</strong> (d'où « di » = deux). On les relie par des fils dans un circuit.</p>
-      <div class="formula">⚡ Un circuit = au moins 1 générateur + 1 récepteur + des fils + 1 boucle fermée</div>
-      <p>Il existe 3 familles de dipôles :</p>
+      <p>Un <strong>dipôle</strong> est un composant électrique avec <strong>2 bornes</strong>. Il en existe 3 familles :</p>
+      <div class="formula">Circuit = au moins 1 générateur + 1 récepteur + des fils + 1 boucle fermée</div>
     </div>
-
-    <div class="lesson-card">
-      <h3>🔋 Générateurs — ils <em>produisent</em> l'énergie électrique</h3>
-      <div class="symbols-grid">
-        <div class="symbol-card">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="30" y2="20" stroke="#333" stroke-width="2"/>
-            <line x1="30" y1="10" x2="30" y2="30" stroke="#333" stroke-width="3"/>
-            <line x1="35" y1="14" x2="35" y2="26" stroke="#333" stroke-width="1.5"/>
-            <line x1="35" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
-            <text x="26" y="8" font-size="9" fill="#e74c3c">+</text>
-            <text x="37" y="8" font-size="9" fill="#333">−</text>
+    <div class="lcard">
+      <h3>🔋 Générateurs</h3>
+      <p style="color:#555;font-size:.9rem;margin-bottom:10px">Un <strong>générateur</strong> produit de l'énergie électrique. Il en existe plusieurs types :</p>
+      <div class="sgrid">
+        <div class="scard">
+          <svg width="100" height="52" viewBox="0 0 100 52">
+            <line x1="5" y1="26" x2="30" y2="26" stroke="#333" stroke-width="2"/>
+            <line x1="30" y1="10" x2="30" y2="42" stroke="#e74c3c" stroke-width="4"/>
+            <line x1="38" y1="16" x2="38" y2="36" stroke="#3498db" stroke-width="2"/>
+            <line x1="38" y1="26" x2="95" y2="26" stroke="#333" stroke-width="2"/>
+            <text x="20" y="8" font-size="13" fill="#e74c3c" font-weight="bold">+</text>
+            <text x="40" y="8" font-size="13" fill="#3498db" font-weight="bold">−</text>
           </svg>
-          <div class="sym-name">Pile</div>
-          <div class="sym-type">Générateur</div>
+          <div class="sn">Pile</div><div class="st" style="color:#888">Réaction chimique</div>
         </div>
-        <div class="symbol-card">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="25" y2="20" stroke="#333" stroke-width="2"/>
-            <circle cx="40" cy="20" r="14" fill="none" stroke="#333" stroke-width="2"/>
-            <text x="36" y="25" font-size="11" fill="#333" font-weight="bold">G</text>
-            <text x="52" y="13" font-size="9" fill="#e74c3c">+</text>
-            <line x1="54" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
+        <div class="scard">
+          <div style="font-size:1.6rem;margin:4px 0">🌀</div>
+          <div class="sn">Dynamo</div><div class="st" style="color:#888">Rotation mécanique</div>
+        </div>
+        <div class="scard">
+          <div style="font-size:1.6rem;margin:4px 0">☀️</div>
+          <div class="sn">Panneau solaire</div><div class="st" style="color:#888">Énergie lumineuse</div>
+        </div>
+        <div class="scard">
+          <div style="font-size:1.6rem;margin:4px 0">🔌</div>
+          <div class="sn">Prise secteur</div><div class="st" style="color:#888">Réseau électrique</div>
+        </div>
+      </div>
+      <div class="tip" style="margin-top:10px">💡 La <strong>pile</strong> est un type de générateur — mais tous les générateurs ne sont pas des piles !</div>
+    </div>
+    <div class="lcard">
+      <h3>💡 Récepteurs</h3>
+      <div class="sgrid">
+        <div class="scard">
+          <svg width="100" height="52" viewBox="0 0 100 52">
+            <line x1="5" y1="26" x2="21" y2="26" stroke="#333" stroke-width="2"/>
+            <circle cx="39" cy="26" r="15" fill="none" stroke="#333" stroke-width="2"/>
+            <line x1="28" y1="15" x2="50" y2="37" stroke="#333" stroke-width="2"/>
+            <line x1="50" y1="15" x2="28" y2="37" stroke="#333" stroke-width="2"/>
+            <line x1="54" y1="26" x2="95" y2="26" stroke="#333" stroke-width="2"/>
           </svg>
-          <div class="sym-name">Générateur</div>
-          <div class="sym-type">Générateur</div>
+          <div class="sn">Lampe</div><div class="st" style="color:#2ecc71;font-weight:700">Non polarisé ✅</div>
+        </div>
+        <div class="scard">
+          <svg width="100" height="52" viewBox="0 0 100 52">
+            <line x1="5" y1="26" x2="21" y2="26" stroke="#333" stroke-width="2"/>
+            <circle cx="39" cy="26" r="15" fill="none" stroke="#333" stroke-width="2"/>
+            <text x="32" y="31" font-size="13" fill="#333" font-weight="bold">M</text>
+            <line x1="54" y1="26" x2="95" y2="26" stroke="#333" stroke-width="2"/>
+          </svg>
+          <div class="sn">Moteur</div><div class="st" style="color:#e67e22;font-weight:700">Polarisé ⚠️*</div>
+        </div>
+        <div class="scard" style="border-color:#e67e22;background:#fff9f0">
+          <svg width="100" height="52" viewBox="0 0 100 52">
+            <line x1="5" y1="26" x2="26" y2="26" stroke="#333" stroke-width="2"/>
+            <polygon points="26,14 26,38 48,26" fill="#333"/>
+            <line x1="48" y1="13" x2="48" y2="39" stroke="#333" stroke-width="2.5"/>
+            <line x1="48" y1="26" x2="95" y2="26" stroke="#333" stroke-width="2"/>
+          </svg>
+          <div class="sn">Diode</div><div class="st" style="color:#e74c3c;font-weight:700">Polarisé ⚠️</div>
+        </div>
+        <div class="scard" style="border-color:#e67e22;background:#fff9f0">
+          <svg width="100" height="52" viewBox="0 0 100 52">
+            <line x1="5" y1="26" x2="24" y2="26" stroke="#333" stroke-width="2"/>
+            <polygon points="24,14 24,38 44,26" fill="#333"/>
+            <line x1="44" y1="13" x2="44" y2="39" stroke="#333" stroke-width="2.5"/>
+            <line x1="44" y1="14" x2="53" y2="6" stroke="#666" stroke-width="1.5"/>
+            <line x1="48" y1="17" x2="57" y2="9" stroke="#666" stroke-width="1.5"/>
+            <line x1="44" y1="26" x2="95" y2="26" stroke="#333" stroke-width="2"/>
+          </svg>
+          <div class="sn">DEL / LED</div><div class="st" style="color:#e74c3c;font-weight:700">Polarisé ⚠️</div>
+        </div>
+        <div class="scard">
+          <svg width="100" height="52" viewBox="0 0 100 52">
+            <line x1="5" y1="26" x2="18" y2="26" stroke="#333" stroke-width="2"/>
+            <rect x="18" y="16" width="64" height="20" fill="none" stroke="#333" stroke-width="2"/>
+            <line x1="82" y1="26" x2="95" y2="26" stroke="#333" stroke-width="2"/>
+          </svg>
+          <div class="sn">Résistance</div><div class="st" style="color:#2ecc71;font-weight:700">Non polarisé ✅</div>
         </div>
       </div>
     </div>
-
-    <div class="lesson-card">
-      <h3>💡 Récepteurs — ils <em>consomment</em> l'énergie électrique</h3>
-      <div class="symbols-grid">
-        <div class="symbol-card">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="22" y2="20" stroke="#333" stroke-width="2"/>
-            <circle cx="40" cy="20" r="12" fill="none" stroke="#333" stroke-width="2"/>
-            <line x1="31" y1="11" x2="49" y2="29" stroke="#333" stroke-width="2"/>
-            <line x1="31" y1="29" x2="49" y2="11" stroke="#333" stroke-width="2"/>
-            <line x1="52" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
-          </svg>
-          <div class="sym-name">Lampe</div>
-          <div class="sym-type">Non polarisé</div>
+    <div class="lcard" style="border:2px solid #e67e22">
+      <h3>🔍 Diode vs DEL : quelle différence ?</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px">
+        <div style="background:#fff3e0;border-radius:12px;padding:14px">
+          <div style="font-size:1.4rem;text-align:center;margin-bottom:8px">▶|</div>
+          <strong style="color:#e67e22">Diode simple</strong>
+          <p style="font-size:.87rem;margin-top:6px;color:#555">Laisse passer le courant dans un sens. <strong>N'émet aucune lumière.</strong> Sert à protéger les circuits.</p>
         </div>
-        <div class="symbol-card">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="22" y2="20" stroke="#333" stroke-width="2"/>
-            <circle cx="40" cy="20" r="12" fill="none" stroke="#333" stroke-width="2"/>
-            <text x="35" y="25" font-size="12" fill="#333" font-weight="bold">M</text>
-            <line x1="52" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
-          </svg>
-          <div class="sym-name">Moteur</div>
-          <div class="sym-type polarise" style="color:var(--orange);font-weight:700;">⚠️ Polarisé</div>
-        </div>
-        <div class="symbol-card polarise">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="28" y2="20" stroke="#333" stroke-width="2"/>
-            <polygon points="28,12 28,28 44,20" fill="#333"/>
-            <line x1="44" y1="12" x2="44" y2="28" stroke="#333" stroke-width="2.5"/>
-            <line x1="44" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
-          </svg>
-          <div class="sym-name">Diode</div>
-          <div class="sym-type" style="color:var(--orange);font-weight:700;">⚠️ Polarisé</div>
-        </div>
-        <div class="symbol-card polarise">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="22" y2="20" stroke="#333" stroke-width="2"/>
-            <polygon points="22,12 22,28 36,20" fill="#333"/>
-            <line x1="36" y1="12" x2="36" y2="28" stroke="#333" stroke-width="2.5"/>
-            <line x1="36" y1="14" x2="42" y2="8" stroke="#333" stroke-width="1.5"/>
-            <line x1="38" y1="16" x2="44" y2="10" stroke="#333" stroke-width="1.5"/>
-            <line x1="36" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
-          </svg>
-          <div class="sym-name">DEL / LED</div>
-          <div class="sym-type" style="color:var(--orange);font-weight:700;">⚠️ Polarisé</div>
-        </div>
-        <div class="symbol-card">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="20" y2="20" stroke="#333" stroke-width="2"/>
-            <rect x="20" y="13" width="40" height="14" fill="none" stroke="#333" stroke-width="2"/>
-            <line x1="60" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
-          </svg>
-          <div class="sym-name">Résistance</div>
-          <div class="sym-type">Non polarisé</div>
+        <div style="background:#fffde7;border-radius:12px;padding:14px">
+          <div style="font-size:1.4rem;text-align:center;margin-bottom:8px">💡▶|</div>
+          <strong style="color:#e6b800">DEL / LED</strong>
+          <p style="font-size:.87rem;margin-top:6px;color:#555">Même principe que la diode, mais <strong>émet de la lumière</strong> quand le courant passe. C'est ce qu'il y a dans les ampoules LED !</p>
         </div>
       </div>
+      <div class="warn" style="margin-top:10px">⚠️ Toutes les deux polarisées : branchées à l'envers → elles bloquent tout le courant.</div>
     </div>
-
-    <div class="lesson-card">
-      <h3>🔀 Interrupteurs — ils <em>commandent</em> le circuit</h3>
-      <div class="symbols-grid">
-        <div class="symbol-card">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="25" y2="20" stroke="#333" stroke-width="2"/>
-            <circle cx="25" cy="20" r="3" fill="#333"/>
-            <line x1="27" y1="20" x2="53" y2="20" stroke="#333" stroke-width="2"/>
-            <circle cx="55" cy="20" r="3" fill="#333"/>
-            <line x1="55" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
-          </svg>
-          <div class="sym-name">Interrupteur fermé</div>
-          <div class="sym-type" style="color:var(--green);font-weight:700;">Courant circule ✅</div>
-        </div>
-        <div class="symbol-card">
-          <svg width="80" height="40" viewBox="0 0 80 40">
-            <line x1="5" y1="20" x2="25" y2="20" stroke="#333" stroke-width="2"/>
-            <circle cx="25" cy="20" r="3" fill="#333"/>
-            <line x1="27" y1="20" x2="50" y2="12" stroke="#333" stroke-width="2"/>
-            <circle cx="55" cy="20" r="3" fill="#333"/>
-            <line x1="55" y1="20" x2="75" y2="20" stroke="#333" stroke-width="2"/>
-          </svg>
-          <div class="sym-name">Interrupteur ouvert</div>
-          <div class="sym-type" style="color:var(--red);font-weight:700;">Courant bloqué ❌</div>
-        </div>
+    <div class="lcard" style="border:2px solid #3498db">
+      <h3>⚙️ Le moteur — cas particulier !</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px">
+        <div style="background:#e8f4fd;border-radius:12px;padding:14px;text-align:center"><div style="font-size:2rem">🔄</div><strong style="color:#2980b9">Sens 1</strong><p style="font-size:.84rem;color:#555;margin-top:4px">Tourne dans le sens <strong>horaire</strong> →</p></div>
+        <div style="background:#eaf0fb;border-radius:12px;padding:14px;text-align:center"><div style="font-size:2rem">🔃</div><strong style="color:#2980b9">Sens 2 (inversé)</strong><p style="font-size:.84rem;color:#555;margin-top:4px">Tourne dans le sens <strong>anti-horaire</strong> ←</p></div>
       </div>
+      <div class="tip" style="margin-top:10px">💡 Le moteur <strong>fonctionne dans les deux sens</strong> — il ne casse pas. Mais le sens de branchement change le sens de rotation → classé comme <strong>polarisé</strong>.</div>
     </div>
-
-    <div class="lesson-card" style="background:linear-gradient(135deg,#fff9e0,#fffbe6);border:2px solid var(--yellow);">
-      <h3>⚠️ Dipôles polarisés — le sens de branchement compte !</h3>
-      <p>Certains dipôles <strong>ne fonctionnent que dans un sens</strong> : la <strong>diode</strong>, la <strong>DEL</strong> et le <strong>moteur</strong>. Si tu les branches à l'envers, ça ne marche pas (ou ça casse !).</p>
-      <p>On les appelle <strong>dipôles polarisés</strong>. Les autres (lampe, résistance) peuvent être branchés dans les deux sens : ce sont des <strong>dipôles non polarisés</strong>.</p>
+    <div class="lcard" style="border:2px solid var(--y)">
+      <h3>📋 Résumé polarisation</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:.92rem;margin-top:8px">
+        <tr style="background:linear-gradient(135deg,#f1c40f,#e67e22);color:#fff"><th style="padding:9px 12px;text-align:left">Dipôle</th><th style="padding:9px 12px">Polarisé ?</th><th style="padding:9px 12px">Si inversé…</th></tr>
+        <tr style="background:#fff"><td style="padding:8px 12px">Lampe</td><td style="text-align:center;color:#2ecc71;font-weight:700">NON</td><td style="padding:8px 12px;color:#555">Ça marche pareil</td></tr>
+        <tr style="background:#fafafa"><td style="padding:8px 12px">Résistance</td><td style="text-align:center;color:#2ecc71;font-weight:700">NON</td><td style="padding:8px 12px;color:#555">Ça marche pareil</td></tr>
+        <tr style="background:#fff"><td style="padding:8px 12px">Moteur</td><td style="text-align:center;color:#e67e22;font-weight:700">OUI *</td><td style="padding:8px 12px;color:#555">Tourne dans l'autre sens</td></tr>
+        <tr style="background:#fafafa"><td style="padding:8px 12px">Diode</td><td style="text-align:center;color:#e74c3c;font-weight:700">OUI</td><td style="padding:8px 12px;color:#555">Bloque le courant</td></tr>
+        <tr style="background:#fff"><td style="padding:8px 12px">DEL</td><td style="text-align:center;color:#e74c3c;font-weight:700">OUI</td><td style="padding:8px 12px;color:#555">Ne s'allume pas</td></tr>
+      </table>
     </div>
-
-    <div style="text-align:center;margin-top:20px;">
-      <button class="ctrl-btn" onclick="switchTab('courant')">Suite → Sens du courant ⚡</button>
+    <!-- DRAG AND DROP -->
+    <div class="lcard" style="border:2px solid #8e44ad">
+      <h3>🎮 Exercice : glisse chaque nom sur le bon symbole !</h3>
+      <p style="color:#666;font-size:.9rem;margin-bottom:14px">Fais glisser les étiquettes bleues vers le schéma électrique correspondant.</p>
+      <div class="ddbank" id="ddbank"></div>
+      <div class="ddgrid" id="ddgrid"></div>
+      <div style="text-align:center;margin-top:14px">
+        <button style="background:linear-gradient(135deg,#8e44ad,#6c3483);border:none;border-radius:12px;color:#fff;padding:10px 24px;font-family:'Baloo 2',cursive;font-size:1rem;cursor:pointer;" onclick="checkDD()">Vérifier ✔</button>
+        <button class="cbtn2" style="background:#888;margin-left:8px" onclick="resetDD()">🔄 Recommencer</button>
+      </div>
+      <div id="ddres" style="display:none;margin-top:12px;padding:12px;border-radius:10px;font-weight:700;text-align:center"></div>
     </div>
+    <div style="text-align:center;margin-top:20px"><button class="cbtn2" onclick="sw('courant')">Suite → Sens du courant ⚡</button></div>
   </div>
 
-  <!-- ===== SENS DU COURANT ===== -->
+  <!-- COURANT -->
   <div class="tab-panel" id="tab-courant">
-    <div class="section-title">⚡ Le sens du courant électrique</div>
+    <div class="stitle">⚡ Le courant électrique &amp; les circuits</div>
 
-    <div class="lesson-card">
-      <h3>📖 La convention</h3>
-      <div class="formula">Par convention : le courant circule de la borne <span style="color:#e74c3c">+</span> vers la borne <span style="color:#3498db">−</span> du générateur (dans le circuit extérieur).</div>
-      <p>On le représente par des <strong>flèches sur les fils</strong>. Le courant fait le tour du circuit <strong>toujours dans le même sens</strong>.</p>
-      <div class="tip">💡 Astuce : imagine une rivière qui coule depuis la source (+) jusqu'à la mer (−). Elle ne remonte jamais !</div>
+    <!-- 1. Qu'est-ce que le courant -->
+    <div class="lcard">
+      <h3>📖 1. Qu'est-ce que le courant électrique ?</h3>
+      <p>Le <strong style="color:#3498db">courant électrique</strong> correspond au <strong style="color:#3498db">déplacement de particules chargées</strong> à l'intérieur d'un conducteur. Ce déplacement est imposé par le <strong>générateur</strong>.</p>
+      <div class="formula">À l'extérieur du générateur : courant circule de la borne <span style="color:#e74c3c">+</span> vers la borne <span style="color:#3498db">−</span></div>
+      <div class="tip">💡 <strong style="color:#e74c3c">+</strong> = départ &nbsp;|&nbsp; <strong style="color:#3498db">−</strong> = retour &nbsp;|&nbsp; Le courant tourne <strong>toujours dans le même sens</strong></div>
     </div>
 
-    <!-- CIRCUIT SÉRIE ANIMÉ -->
-    <div class="circuit-container">
-      <h4>⚡ Circuit en SÉRIE – animation du courant</h4>
-      <div class="circuit-wrap">
-        <canvas id="canvas-serie" class="circuit" width="280" height="220"></canvas>
-        <div class="circuit-legend">
-          <ul>
-            <li><span class="dot" style="background:#f1c40f"></span> Points animés = courant électrique</li>
-            <li><span class="dot" style="background:#e74c3c"></span> Borne + (rouge)</li>
-            <li><span class="dot" style="background:#3498db"></span> Borne − (bleu)</li>
-            <li style="margin-top:10px;opacity:0.8;">Le courant sort du <strong style="color:#f1c40f">+</strong>, passe par tous les composants, et revient au <strong style="color:#aad4f5">−</strong></li>
-          </ul>
+    <!-- Animation courant -->
+    <div class="cbox">
+      <h4>⚡ Circuit simple — sens du courant</h4>
+      <div class="cwrap">
+        <canvas id="cv-courant" class="cv" width="280" height="220"></canvas>
+        <div class="cleg"><ul>
+          <li><span class="dot" style="background:#f1c40f;display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px"></span>Points jaunes = courant</li>
+          <li style="margin-top:6px"><strong style="color:#e74c3c">+</strong> Borne + = départ du courant</li>
+          <li><strong style="color:#3498db">−</strong> Borne − = retour du courant</li>
+          <li style="margin-top:8px;color:#ddd;font-size:.83rem">Le courant tourne <strong>toujours dans le même sens</strong></li>
+        </ul></div>
+      </div>
+      <div style="text-align:center;margin-top:10px"><button class="cbtn2" id="btn-courant" onclick="tgl('courant')">⏸ Pause</button></div>
+    </div>
+
+    <!-- Schéma conventionnel avec flèches -->
+    <div class="lcard" style="border:2px solid #e74c3c">
+      <h3>📐 2. Comment représenter le sens du courant sur un schéma ?</h3>
+      <p style="color:#555;margin-bottom:12px">On utilise des <strong>flèches</strong> sur les fils pour indiquer le sens de circulation du courant. Les symboles des dipôles se placent <strong>sur les segments</strong> (jamais dans les angles !)</p>
+      <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;align-items:flex-start">
+        <!-- Schéma correct avec flèches -->
+        <div style="text-align:center">
+          <svg width="220" height="200" viewBox="0 0 220 200">
+            <!-- Fils du circuit -->
+            <rect x="30" y="30" width="160" height="140" fill="none" stroke="#333" stroke-width="2.5" rx="4"/>
+            <!-- Pile en haut (segments, pas dans angles) -->
+            <line x1="72" y1="30" x2="82" y2="30" stroke="#333" stroke-width="3"/>
+            <line x1="82" y1="18" x2="82" y2="42" stroke="#e74c3c" stroke-width="4"/>
+            <line x1="90" y1="22" x2="90" y2="38" stroke="#3498db" stroke-width="2.5"/>
+            <line x1="90" y1="30" x2="100" y2="30" stroke="#333" stroke-width="3"/>
+            <text x="68" y="16" font-size="11" fill="#e74c3c" font-weight="bold">+</text>
+            <text x="92" y="16" font-size="11" fill="#3498db" font-weight="bold">−</text>
+            <!-- Lampe à droite -->
+            <circle cx="190" cy="100" r="14" fill="none" stroke="#333" stroke-width="2"/>
+            <line x1="180" y1="90" x2="200" y2="110" stroke="#333" stroke-width="2"/>
+            <line x1="200" y1="90" x2="180" y2="110" stroke="#333" stroke-width="2"/>
+            <!-- Flèches sens du courant (rouge) : sort du + (x=82,y=30) → va GAUCHE → descend gauche → bas vers droite → monte droite → revient au − (x=90,y=30) -->
+            <!-- haut : sort du + vers la GAUCHE (pointe vers la gauche) -->
+            <polygon points="56,24 48,30 56,36" fill="#e74c3c"/>
+            <!-- gauche : descend (pointe vers le BAS) -->
+            <polygon points="24,120 30,130 36,120" fill="#e74c3c"/>
+            <!-- bas : va vers la DROITE (pointe vers la droite) -->
+            <polygon points="134,164 142,170 134,176" fill="#e74c3c"/>
+            <!-- droite : remonte vers le − (pointe vers le HAUT) -->
+            <polygon points="196,80 190,70 184,80" fill="#e74c3c"/>
+            <text x="50" y="195" font-size="11" fill="#27ae60" font-weight="bold" text-anchor="middle">✅ Schéma correct</text>
+          </svg>
+          <div style="font-size:.82rem;color:#1a6b3c;background:#d5f5e3;border-radius:8px;padding:6px 10px;margin-top:4px">✅ Flèches rouges sur les fils<br>Symboles sur les segments<br>Pas de symbole dans les angles</div>
+        </div>
+        <!-- Schéma incorrect -->
+        <div style="text-align:center">
+          <svg width="220" height="200" viewBox="0 0 220 200">
+            <rect x="30" y="30" width="160" height="140" fill="none" stroke="#aaa" stroke-width="2" rx="4"/>
+            <!-- Croix rouges aux angles -->
+            <circle cx="30" cy="30" r="14" fill="#e74c3c"/>
+            <text x="24" y="35" font-size="14" fill="white" font-weight="bold">✕</text>
+            <circle cx="190" cy="30" r="14" fill="#e74c3c"/>
+            <text x="184" y="35" font-size="14" fill="white" font-weight="bold">✕</text>
+            <circle cx="30" cy="170" r="14" fill="#e74c3c"/>
+            <text x="24" y="175" font-size="14" fill="white" font-weight="bold">✕</text>
+            <circle cx="190" cy="170" r="14" fill="#e74c3c"/>
+            <text x="184" y="175" font-size="14" fill="white" font-weight="bold">✕</text>
+            <!-- Pile mal placée (dans angle) -->
+            <text x="28" y="24" font-size="9" fill="#e74c3c">pile ici ❌</text>
+            <text x="50" y="195" font-size="11" fill="#e74c3c" font-weight="bold" text-anchor="middle">❌ Symboles aux angles</text>
+          </svg>
+          <div style="font-size:.82rem;color:#922b21;background:#fde8e8;border-radius:8px;padding:6px 10px;margin-top:4px">❌ Ne jamais mettre un symbole<br>dans un angle du schéma<br>Utiliser crayon + règle</div>
         </div>
       </div>
-      <div class="circuit-controls">
-        <button class="ctrl-btn" id="btn-serie" onclick="toggleCircuit('serie')">⏸ Pause</button>
+    </div>
+
+    <!-- 2. Vocabulaire nœud/branche/maille -->
+    <div class="lcard" style="border:2px solid #3498db">
+      <h3>💙 3. Vocabulaire du circuit</h3>
+
+      <!-- Nœud -->
+      <div style="margin-bottom:18px">
+        <div class="formula">→ Un <strong>nœud</strong> (●), c'est <span style="color:#3498db">un point du circuit</span> où se rejoignent <span style="color:#3498db">au moins trois fils électriques</span>.</div>
+        <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-top:10px">
+          <svg width="210" height="170" viewBox="0 0 210 170">
+            <!-- Circuit complet en gris (fond) -->
+            <rect x="20" y="10" width="170" height="150" fill="none" stroke="#ccc" stroke-width="2" rx="3"/>
+            <!-- Fil central horizontal entier (gris fond) -->
+            <line x1="20" y1="85" x2="190" y2="85" stroke="#ccc" stroke-width="2"/>
+
+            <!-- FIL 1 : Générateur→Nœud1 (côté haut gauche, BLEU) -->
+            <line x1="20" y1="10" x2="20" y2="85" stroke="#3498db" stroke-width="4"/>
+            <!-- FIL 2 : Nœud1→Moteur (côté bas gauche, ORANGE) -->
+            <line x1="20" y1="85" x2="20" y2="160" stroke="#e67e22" stroke-width="4"/>
+            <!-- FIL 3 : Nœud1→Lampe L1 (branche centrale, VERT) -->
+            <line x1="20" y1="85" x2="190" y2="85" stroke="#27ae60" stroke-width="4"/>
+
+            <!-- Générateur G en haut -->
+            <circle cx="105" cy="10" r="13" fill="white" stroke="#3498db" stroke-width="2"/>
+            <text x="101" y="15" font-size="11" fill="#3498db" font-weight="bold">G</text>
+            <text x="82" y="8" font-size="10" fill="#e74c3c" font-weight="bold">+</text>
+            <text x="121" y="8" font-size="10" fill="#3498db" font-weight="bold">−</text>
+
+            <!-- Lampe L1 branche centrale -->
+            <circle cx="105" cy="85" r="13" fill="white" stroke="#27ae60" stroke-width="2"/>
+            <line x1="97" y1="77" x2="113" y2="93" stroke="#27ae60" stroke-width="2"/>
+            <line x1="113" y1="77" x2="97" y2="93" stroke="#27ae60" stroke-width="2"/>
+
+            <!-- Moteur M en bas -->
+            <circle cx="105" cy="160" r="13" fill="white" stroke="#e67e22" stroke-width="2"/>
+            <text x="101" y="165" font-size="11" fill="#e67e22" font-weight="bold">M</text>
+
+            <!-- NŒUD 1 -->
+            <circle cx="20" cy="85" r="8" fill="#27ae60" stroke="white" stroke-width="2"/>
+            <text x="26" y="99" font-size="10" fill="#27ae60" font-weight="bold">N1</text>
+
+            <!-- NŒUD 2 -->
+            <circle cx="190" cy="85" r="8" fill="#27ae60" stroke="white" stroke-width="2"/>
+            <text x="175" y="99" font-size="10" fill="#27ae60" font-weight="bold">N2</text>
+          </svg>
+          <div style="font-size:.88rem;color:#444;flex:1;min-width:160px">
+            <em>Exemple :</em> <strong>2 nœuds</strong> (N1 et N2) dans ce circuit.<br><br>
+            Au <strong>Nœud 1</strong>, <strong>3 fils</strong> se rejoignent :<br>
+            <span style="color:#3498db">●</span> <strong style="color:#3498db">Fil bleu</strong> : vient du générateur G<br>
+            <span style="color:#e67e22">●</span> <strong style="color:#e67e22">Fil orange</strong> : va vers le moteur M<br>
+            <span style="color:#27ae60">●</span> <strong style="color:#27ae60">Fil vert</strong> : va vers la lampe L1<br><br>
+            → <strong>3 fils = nœud</strong> ✅
+          </div>
+        </div>
+      </div>
+
+      <!-- Branche -->
+      <div style="margin-bottom:18px;padding-top:12px;border-top:1px solid #eee">
+        <div class="formula">→ Une <strong>branche</strong>, c'est une partie du circuit <span style="color:#3498db">située entre deux nœuds consécutifs</span>. Plus simplement : c'est un <strong style="color:#3498db">chemin que peut emprunter le courant</strong>. La branche principale contient toujours le générateur.</div>
+        <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-top:10px">
+          <svg width="210" height="170" viewBox="0 0 210 170">
+            <!-- Nœuds -->
+            <circle cx="20" cy="85" r="7" fill="#27ae60" stroke="white" stroke-width="1.5"/>
+            <circle cx="190" cy="85" r="7" fill="#27ae60" stroke="white" stroke-width="1.5"/>
+            <text x="2" y="80" font-size="9" fill="#27ae60" font-weight="bold">N1</text>
+            <text x="193" y="80" font-size="9" fill="#27ae60" font-weight="bold">N2</text>
+
+            <!-- BRANCHE PRINCIPALE (bleu clair) : haut du circuit avec le générateur G -->
+            <line x1="20" y1="85" x2="20" y2="10" stroke="#00aaff" stroke-width="4"/>
+            <line x1="20" y1="10" x2="190" y2="10" stroke="#00aaff" stroke-width="4"/>
+            <line x1="190" y1="10" x2="190" y2="85" stroke="#00aaff" stroke-width="4"/>
+            <circle cx="105" cy="10" r="13" fill="white" stroke="#00aaff" stroke-width="2.5"/>
+            <text x="101" y="15" font-size="11" fill="#00aaff" font-weight="bold">G</text>
+            <text x="82" y="8" font-size="10" fill="#e74c3c" font-weight="bold">+</text>
+            <text x="121" y="8" font-size="10" fill="#3498db" font-weight="bold">−</text>
+
+            <!-- BRANCHE L1 (jaune/orange) : lampe, branche centrale horizontale -->
+            <line x1="20" y1="85" x2="190" y2="85" stroke="#e67e22" stroke-width="4"/>
+            <circle cx="105" cy="85" r="13" fill="white" stroke="#e67e22" stroke-width="2.5"/>
+            <line x1="97" y1="77" x2="113" y2="93" stroke="#e67e22" stroke-width="2"/>
+            <line x1="113" y1="77" x2="97" y2="93" stroke="#e67e22" stroke-width="2"/>
+            <text x="118" y="81" font-size="9" fill="#e67e22" font-weight="bold">L1</text>
+
+            <!-- BRANCHE L2 (rose/violet) : moteur, branche basse -->
+            <line x1="20" y1="85" x2="20" y2="160" stroke="#e91e8c" stroke-width="4"/>
+            <line x1="20" y1="160" x2="190" y2="160" stroke="#e91e8c" stroke-width="4"/>
+            <line x1="190" y1="160" x2="190" y2="85" stroke="#e91e8c" stroke-width="4"/>
+            <circle cx="105" cy="160" r="13" fill="white" stroke="#e91e8c" stroke-width="2.5"/>
+            <text x="101" y="165" font-size="11" fill="#e91e8c" font-weight="bold">M</text>
+
+            <!-- Légende -->
+            <line x1="28" y1="44" x2="40" y2="44" stroke="#00aaff" stroke-width="3"/>
+            <text x="43" y="48" font-size="8" fill="#00aaff" font-weight="bold">Branche principale (G)</text>
+            <line x1="28" y1="90" x2="40" y2="90" stroke="#e67e22" stroke-width="3"/>
+            <text x="43" y="94" font-size="8" fill="#e67e22" font-weight="bold">Branche dérivée L1</text>
+            <line x1="28" y1="130" x2="40" y2="130" stroke="#e91e8c" stroke-width="3"/>
+            <text x="43" y="134" font-size="8" fill="#e91e8c" font-weight="bold">Branche dérivée L2 (M)</text>
+          </svg>
+          <div style="font-size:.88rem;color:#444;flex:1;min-width:160px">
+            Ce circuit a <strong>3 branches</strong> entre N1 et N2 :<br><br>
+            <span style="color:#00aaff">■</span> <strong style="color:#00aaff">Branche principale</strong> (haut) : contient le générateur G<br><br>
+            <span style="color:#e67e22">■</span> <strong style="color:#e67e22">Branche dérivée L1</strong> (milieu) : contient la lampe<br><br>
+            <span style="color:#e91e8c">■</span> <strong style="color:#e91e8c">Branche dérivée L2</strong> (bas) : contient le moteur M<br><br>
+            <div class="tip" style="font-size:.82rem;margin-top:6px">💡 La branche principale contient le générateur. Les autres sont les branches dérivées.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maille -->
+      <div style="padding-top:12px;border-top:1px solid #eee">
+        <div class="formula">→ Une <strong>maille</strong>, c'est une <span style="color:#3498db">boucle fermée</span> dans le circuit (qui ne contient pas forcément le générateur).</div>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:10px">
+          <svg width="200" height="160" viewBox="0 0 200 160">
+            <rect x="20" y="10" width="160" height="140" fill="none" stroke="#888" stroke-width="1.5" rx="3"/>
+            <line x1="20" y1="80" x2="180" y2="80" stroke="#333" stroke-width="1.5"/>
+            <circle cx="110" cy="10" r="13" fill="none" stroke="#888" stroke-width="2"/>
+            <text x="106" y="15" font-size="11" fill="#888" font-weight="bold">G</text>
+            <circle cx="110" cy="80" r="13" fill="none" stroke="#333" stroke-width="2"/>
+            <line x1="101" y1="71" x2="119" y2="89" stroke="#333" stroke-width="2"/>
+            <line x1="119" y1="71" x2="101" y2="89" stroke="#333" stroke-width="2"/>
+            <circle cx="110" cy="150" r="13" fill="none" stroke="#888" stroke-width="2"/>
+            <text x="106" y="155" font-size="11" fill="#888" font-weight="bold">M</text>
+            <circle cx="20" cy="80" r="6" fill="#27ae60"/>
+            <circle cx="180" cy="80" r="6" fill="#27ae60"/>
+            <!-- Maille 1 (rouge, haut) -->
+            <rect x="22" y="12" width="156" height="66" fill="rgba(231,76,60,0.15)" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,3" rx="4"/>
+            <text x="38" y="50" font-size="10" fill="#e74c3c" font-weight="bold">Maille 1</text>
+            <!-- Maille 2 (vert, milieu/bas) -->
+            <rect x="22" y="82" width="156" height="66" fill="rgba(39,174,96,0.15)" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,3" rx="4"/>
+            <text x="38" y="120" font-size="10" fill="#27ae60" font-weight="bold">Maille 2</text>
+            <!-- Maille 3 (bleu, tout) -->
+            <rect x="10" y="4" width="180" height="150" fill="none" stroke="#3498db" stroke-width="2" stroke-dasharray="8,4" rx="6"/>
+            <text x="108" y="96" font-size="9" fill="#3498db" font-weight="bold">Maille 3</text>
+          </svg>
+          <div style="font-size:.88rem;color:#444;flex:1;min-width:160px">
+            <em>Exemple :</em> il y a <strong>3 mailles</strong> dans ce circuit :<br>
+            <span style="color:#e74c3c">■</span> Maille 1 (haut, avec G)<br>
+            <span style="color:#27ae60">■</span> Maille 2 (bas, avec M)<br>
+            <span style="color:#3498db">■</span> Maille 3 (tout le circuit)
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="lesson-card">
-      <h3>🔀 La diode – dipôle polarisé</h3>
-      <p>La diode laisse passer le courant <strong>uniquement si le sens du courant correspond au sens de la flèche</strong> dans son symbole.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;">
-        <div style="background:#d5f5e3;border-radius:12px;padding:14px;text-align:center;">
-          <div style="font-size:1.5rem;margin-bottom:6px;">✅</div>
-          <strong style="color:#1a6b3c">Diode passante</strong>
-          <p style="font-size:0.85rem;margin-top:6px;color:#1a6b3c;">Le courant va dans le sens de la flèche → la lampe s'allume</p>
-        </div>
-        <div style="background:#fde8e8;border-radius:12px;padding:14px;text-align:center;">
-          <div style="font-size:1.5rem;margin-bottom:6px;">❌</div>
-          <strong style="color:#922b21">Diode bloquante</strong>
-          <p style="font-size:0.85rem;margin-top:6px;color:#922b21;">Le courant va à l'opposé → la lampe ne s'allume pas</p>
-        </div>
+    <!-- Diode -->
+    <div class="lcard">
+      <h3>🔀 4. La diode et le sens du courant</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
+        <div style="background:#d5f5e3;border-radius:12px;padding:14px;text-align:center"><div style="font-size:2rem">✅</div><strong style="color:#1a6b3c;display:block;margin:6px 0">Diode passante</strong><p style="font-size:.84rem;color:#1a6b3c">Courant dans le sens de la flèche → lampe allumée</p></div>
+        <div style="background:#fde8e8;border-radius:12px;padding:14px;text-align:center"><div style="font-size:2rem">❌</div><strong style="color:#922b21;display:block;margin:6px 0">Diode bloquante</strong><p style="font-size:.84rem;color:#922b21">Courant à l'envers → bloqué, lampe éteinte</p></div>
       </div>
     </div>
-
-    <div style="text-align:center;margin-top:20px;">
-      <button class="ctrl-btn" onclick="switchTab('circuits')">Suite → Série vs Dérivation 🔁</button>
-    </div>
+    <div style="text-align:center;margin-top:20px"><button class="cbtn2" onclick="sw('circuits')">Suite → Série vs Dérivation 🔁</button></div>
   </div>
 
-  <!-- ===== CIRCUITS ===== -->
+  <!-- CIRCUITS -->
   <div class="tab-panel" id="tab-circuits">
-    <div class="section-title">🔁 Circuit en série vs circuit en dérivation</div>
+    <div class="stitle">🔁 Circuit en série vs circuit en dérivation</div>
 
-    <div class="lesson-card">
-      <h3>📖 Les deux types de circuits</h3>
-      <p>Il existe deux façons de brancher plusieurs composants dans un circuit :</p>
-    </div>
-
-    <!-- CIRCUIT SÉRIE -->
-    <div class="circuit-container">
-      <h4>🔗 Circuit EN SÉRIE – une seule boucle</h4>
-      <div class="circuit-wrap">
-        <canvas id="canvas-serie2" class="circuit" width="280" height="220"></canvas>
-        <div class="circuit-legend">
-          <ul>
-            <li><span class="dot" style="background:#f1c40f"></span> Courant électrique</li>
-            <li style="margin-top:8px;color:#fff;font-size:0.82rem;">✅ <strong>Une seule boucle</strong></li>
-            <li style="color:#aaa;font-size:0.82rem;">→ Le courant passe par <em>tous</em> les composants un à un</li>
-            <li style="color:#aaa;font-size:0.82rem;">→ L'ordre des dipôles n'a pas d'importance</li>
-            <li style="color:#fde8e8;font-size:0.82rem;">⚠️ Si un composant est cassé → tout s'éteint !</li>
-          </ul>
+    <!-- Série -->
+    <div class="lcard">
+      <h3>🔗 Circuit en série</h3>
+      <p>Dans un circuit en série, <strong>tous les composants sont sur une seule et même boucle</strong>. Le courant passe par chaque dipôle l'un après l'autre.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0">
+        <!-- Avec fil fermé -->
+        <div style="background:#d5f5e3;border-radius:12px;padding:14px;text-align:center">
+          <svg width="160" height="130" viewBox="0 0 160 130">
+            <!-- Circuit simple fermé -->
+            <rect x="15" y="15" width="130" height="100" fill="none" stroke="#27ae60" stroke-width="2.5" rx="4"/>
+            <!-- Pile en haut -->
+            <line x1="52" y1="15" x2="62" y2="15" stroke="#27ae60" stroke-width="3"/>
+            <line x1="62" y1="5" x2="62" y2="25" stroke="#e74c3c" stroke-width="4"/>
+            <line x1="70" y1="9" x2="70" y2="21" stroke="#3498db" stroke-width="2.5"/>
+            <line x1="70" y1="15" x2="80" y2="15" stroke="#27ae60" stroke-width="3"/>
+            <text x="51" y="10" font-size="9" fill="#e74c3c" font-weight="bold">+</text>
+            <text x="72" y="10" font-size="9" fill="#3498db" font-weight="bold">−</text>
+            <!-- Lampe en bas -->
+            <circle cx="80" cy="115" r="11" fill="rgba(255,220,0,0.3)" stroke="#333" stroke-width="2"/>
+            <line x1="73" y1="108" x2="87" y2="122" stroke="#333" stroke-width="1.5"/>
+            <line x1="87" y1="108" x2="73" y2="122" stroke="#333" stroke-width="1.5"/>
+            <!-- Flèches courant -->
+            <polygon points="26,70 15,63 15,77" fill="#f1c40f"/>
+            <polygon points="134,70 145,77 145,63" fill="#f1c40f"/>
+          </svg>
+          <div style="font-size:.82rem;color:#1a6b3c;font-weight:700;margin-top:4px">✅ Circuit fermé<br>→ le courant circule<br>→ la lampe s'allume</div>
+        </div>
+        <!-- Circuit ouvert (pas de courant) -->
+        <div style="background:#fde8e8;border-radius:12px;padding:14px;text-align:center">
+          <svg width="160" height="130" viewBox="0 0 160 130">
+            <!-- Circuit avec coupure -->
+            <line x1="15" y1="15" x2="145" y2="15" stroke="#bbb" stroke-width="2.5"/>
+            <line x1="145" y1="15" x2="145" y2="115" stroke="#bbb" stroke-width="2.5"/>
+            <line x1="145" y1="115" x2="15" y2="115" stroke="#bbb" stroke-width="2.5"/>
+            <line x1="15" y1="115" x2="15" y2="80" stroke="#bbb" stroke-width="2.5"/>
+            <!-- Interrupteur ouvert (coupure) -->
+            <circle cx="15" cy="55" r="3" fill="#bbb"/>
+            <line x1="18" y1="55" x2="30" y2="38" stroke="#bbb" stroke-width="2.5"/>
+            <circle cx="15" cy="38" r="3" fill="#bbb"/>
+            <!-- Espace = circuit ouvert -->
+            <line x1="15" y1="15" x2="15" y2="32" stroke="#bbb" stroke-width="2.5"/>
+            <!-- Pile en haut -->
+            <line x1="52" y1="15" x2="62" y2="15" stroke="#bbb" stroke-width="3"/>
+            <line x1="62" y1="5" x2="62" y2="25" stroke="#e74c3c" stroke-width="4"/>
+            <line x1="70" y1="9" x2="70" y2="21" stroke="#3498db" stroke-width="2.5"/>
+            <line x1="70" y1="15" x2="80" y2="15" stroke="#bbb" stroke-width="3"/>
+            <!-- Lampe éteinte -->
+            <circle cx="80" cy="115" r="11" fill="none" stroke="#aaa" stroke-width="2"/>
+            <line x1="73" y1="108" x2="87" y2="122" stroke="#aaa" stroke-width="1.5"/>
+            <line x1="87" y1="108" x2="73" y2="122" stroke="#aaa" stroke-width="1.5"/>
+            <!-- Texte interrupteur -->
+            <text x="28" y="52" font-size="9" fill="#e74c3c" font-weight="bold">ouvert</text>
+          </svg>
+          <div style="font-size:.82rem;color:#922b21;font-weight:700;margin-top:4px">❌ Circuit ouvert<br>→ le courant ne circule pas<br>→ la lampe s'éteint</div>
         </div>
       </div>
-      <div class="circuit-controls">
-        <button class="ctrl-btn" id="btn-serie2" onclick="toggleCircuit('serie2')">⏸ Pause</button>
-      </div>
     </div>
 
-    <!-- CIRCUIT DÉRIVATION -->
-    <div class="circuit-container">
-      <h4>🔀 Circuit EN DÉRIVATION – plusieurs boucles</h4>
-      <div class="circuit-wrap">
-        <canvas id="canvas-deriv" class="circuit" width="320" height="240"></canvas>
-        <div class="circuit-legend">
-          <ul>
-            <li><span class="dot" style="background:#f1c40f"></span> Courant électrique</li>
-            <li style="margin-top:8px;color:#fff;font-size:0.82rem;">✅ <strong>Plusieurs boucles</strong></li>
-            <li style="color:#aaa;font-size:0.82rem;">→ Le courant <strong style="color:#f1c40f">se divise</strong> aux nœuds</li>
-            <li style="color:#aaa;font-size:0.82rem;">→ Chaque branche reçoit du courant</li>
-            <li style="color:#d5f5e3;font-size:0.82rem;">✅ Si une lampe casse → les autres restent allumées !</li>
-            <li style="color:#aaa;font-size:0.82rem;margin-top:4px;">💡 C'est comme ça que sont branchées les lumières chez toi !</li>
-          </ul>
-        </div>
+    <div class="cbox">
+      <h4>🔗 Circuit EN SÉRIE — une seule boucle, 2 lampes</h4>
+      <div class="cwrap">
+        <canvas id="cv-serie" class="cv" width="300" height="230"></canvas>
+        <div class="cleg"><ul>
+          <li><span class="dot" style="background:#f1c40f;display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px"></span>Courant — 1 seule boucle</li>
+          <li style="margin-top:6px">→ Le courant passe par L1 puis L2</li>
+          <li>→ L'ordre des dipôles n'a pas d'importance</li>
+          <li style="color:#ffd6d6;margin-top:6px">⚠️ Si L1 grille → tout s'éteint !</li>
+        </ul></div>
       </div>
-      <div class="circuit-controls">
-        <button class="ctrl-btn" id="btn-deriv" onclick="toggleCircuit('deriv')">⏸ Pause</button>
-      </div>
+      <div style="text-align:center;margin-top:10px"><button class="cbtn2" id="btn-serie" onclick="tgl('serie')">⏸ Pause</button></div>
     </div>
 
-    <div class="lesson-card" style="background:linear-gradient(135deg,#e8f4fd,#d6eaf8);border:2px solid var(--blue);">
-      <h3 style="color:var(--blue);">🏠 La dérivation dans la vraie vie</h3>
-      <p>Dans ta maison, <strong>toutes les prises et lampes sont en dérivation</strong>. C'est pour ça que si tu éteins une lampe, les autres restent allumées ! Le courant emprunte <strong>chaque branche indépendamment</strong>.</p>
+    <!-- Dérivation -->
+    <div class="lcard" style="margin-top:16px">
+      <h3>🔀 Circuit en dérivation</h3>
+      <p>Dans un circuit en dérivation, les composants sont placés sur <strong>des branches différentes entre deux nœuds</strong>. Chaque branche a son propre chemin pour le courant.</p>
     </div>
 
-    <div style="text-align:center;margin-top:20px;">
-      <button class="ctrl-btn" onclick="switchTab('dangers')">Suite → Les dangers ⚠️</button>
+    <div class="cbox">
+      <h4>🔀 Circuit EN DÉRIVATION — branche principale + branches dérivées</h4>
+      <div class="cwrap">
+        <canvas id="cv-deriv" class="cv" width="340" height="260"></canvas>
+        <div class="cleg"><ul>
+          <li><span style="display:inline-block;width:10px;height:10px;background:#f1c40f;border-radius:50%;margin-right:6px"></span><strong>Jaune</strong> = boucle L1</li>
+          <li style="margin-top:6px"><span style="display:inline-block;width:10px;height:10px;background:#00e5ff;border-radius:50%;margin-right:6px"></span><strong>Cyan</strong> = boucle L2</li>
+          <li style="margin-top:8px;color:#d5f5e3">✅ Si L1 grille → L2 reste allumée !</li>
+          <li style="color:#aaa;font-size:.8rem;margin-top:4px">🏠 Comme les lampes chez toi !</li>
+        </ul></div>
+      </div>
+      <div style="text-align:center;margin-top:10px"><button class="cbtn2" id="btn-deriv" onclick="tgl('deriv')">⏸ Pause</button></div>
     </div>
+    <div style="text-align:center;margin-top:20px"><button class="cbtn2" onclick="sw('dangers')">Suite → Les dangers ⚠️</button></div>
   </div>
 
-  <!-- ===== DANGERS ===== -->
+  <!-- DANGERS -->
   <div class="tab-panel" id="tab-dangers">
-    <div class="section-title">⚠️ Les dangers de l'électricité</div>
-
-    <div class="lesson-card">
+    <div class="stitle">⚠️ Les dangers de l'électricité</div>
+    <div class="lcard">
       <h3>😱 Deux types de dangers</h3>
-      <div class="warn">⚡ L'électrocution : le courant passe dans le corps humain → danger de mort !</div>
-      <p><strong>Le court-circuit</strong> : quand le courant prend un chemin trop court (sans résistance), il chauffe énormément → détérioration du matériel + risque d'incendie.</p>
-      <div class="tip">🛡️ Protection : <strong>fusibles</strong> et <strong>disjoncteurs</strong> coupent automatiquement le courant en cas de surcharge.</div>
+      <div class="warn">⚡ Électrocution : le courant passe dans le corps humain → danger de mort !</div>
+      <p style="margin-top:10px"><strong>Court-circuit</strong> : un fil relie directement les deux bornes du générateur sans passer par aucun récepteur.</p>
+      <div class="tip">🛡️ Protections : <strong>fusibles</strong> et <strong>disjoncteurs</strong> coupent le courant automatiquement.</div>
     </div>
-
-    <div class="lesson-card">
-      <h3>🔍 Repère les courts-circuits !</h3>
-      <p style="margin-bottom:14px;">Un court-circuit arrive quand un fil relie directement les deux bornes du générateur <strong>sans passer par un récepteur</strong>. Le courant prend le chemin le plus facile (sans résistance).</p>
-      <div id="danger-quiz-container"></div>
-      <div id="danger-feedback" style="margin-top:12px;font-weight:700;font-size:0.95rem;"></div>
+    <!-- CC ANIMÉ -->
+    <div class="cbox">
+      <h4>⚡ Court-circuit — animation : le courant prend le chemin le plus facile</h4>
+      <div class="cwrap">
+        <canvas id="cv-cc" class="cv" width="320" height="240"></canvas>
+        <div class="cleg"><ul>
+          <li><span class="dot" style="background:#f1c40f"></span>Courant normal (par la lampe)</li>
+          <li><span class="dot" style="background:#e74c3c"></span>Courant court-circuit (fil direct)</li>
+          <li style="margin-top:8px;color:#fff;font-size:.83rem">Le courant, comme l'eau, prend <strong>toujours le chemin le plus facile</strong> : celui avec le moins de résistance.</li>
+          <li style="color:#ffd6d6;font-size:.83rem;margin-top:4px">Fil sans résistance = autoroute pour le courant → il y passe en totalité.</li>
+          <li style="color:#ffd6d6;font-size:.83rem;margin-top:4px">Lampe = résistance élevée = chemin difficile → le courant l'évite.</li>
+          <li style="color:#ff6b6b;font-weight:700;margin-top:6px">→ Fil surchauffe 🔥 Lampe éteinte !</li>
+        </ul></div>
+      </div>
+      <div style="text-align:center;margin-top:10px">
+        <button class="cbtn2" id="btn-cc-n" onclick="setCC(false)">✅ Circuit normal</button>
+        <button class="cbtn2 off" id="btn-cc-c" onclick="setCC(true)">⚠️ Activer court-circuit</button>
+      </div>
     </div>
-
-    <div style="text-align:center;margin-top:20px;">
-      <button class="ctrl-btn" onclick="switchTab('quiz')">Suite → Quiz final 🎯</button>
+    <div class="lcard">
+      <h3>🔍 Exercice — danger ou pas danger ?</h3>
+      <p style="color:#666;font-size:.9rem;margin-bottom:14px">Analyse chaque circuit. Les schémas sont différents des exemples du cours !</p>
+      <div id="dgrcont"></div>
     </div>
+    <div style="text-align:center;margin-top:20px"><button class="cbtn2" onclick="sw('quiz')">Suite → Quiz final 🎯</button></div>
   </div>
 
-  <!-- ===== QUIZ ===== -->
+  <!-- QUIZ -->
   <div class="tab-panel" id="tab-quiz">
-    <div class="section-title">🎯 Quiz – Tout réviser !</div>
-    <p style="color:#555;margin-bottom:18px;">20 questions pour tester toutes tes connaissances sur l'électricité !</p>
-    <div id="quiz-container"></div>
-    <div style="text-align:center;margin-top:14px;">
-      <button class="ctrl-btn" onclick="submitQuiz()">Voir mon score 🎯</button>
-    </div>
-    <div class="score-box" id="quiz-score">
+    <div class="stitle">🎯 Quiz — Tout réviser !</div>
+    <p style="color:#555;margin-bottom:18px">15 questions pour tester toutes tes connaissances !</p>
+    <div id="qcont"></div>
+    <div style="text-align:center;margin-top:14px"><button class="cbtn2" onclick="subQ()">Voir mon score 🎯</button></div>
+    <div class="sbox" id="qsbox">
       <h2>Quiz terminé ! ⚡</h2>
-      <div class="big" id="quiz-score-val">–</div>
-      <p id="quiz-score-msg"></p>
-      <button class="reset-btn" onclick="resetQuiz()">🔄 Recommencer</button>
+      <div class="big" id="qsval">–</div>
+      <p id="qsmsg"></p>
+      <button class="rbtn" onclick="rstQ()">🔄 Recommencer</button>
     </div>
   </div>
 </div>
-
 <footer>Créé avec ❤️ pour Noah ⚡</footer>
-
 <script>
-// ---- TABS ----
-function switchTab(id) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b => {
-    if (b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
-  });
+// TABS
+function sw(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>{if(b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active');});
+}
+// PROGRESS
+let prog=0;const PT=25;
+function ap(n=1){prog=Math.min(PT,prog+n);document.getElementById('pbar').style.width=Math.round(prog/PT*100)+'%';document.getElementById('plbl').textContent=prog+' / '+PT+' réponses';}
+
+// DRAW HELPERS
+// ============================================================
+// DRAW HELPERS
+// ============================================================
+function dPile(ctx,cx,y1,y2){
+  // pile verticale : y1=bas du fil, y2=haut du fil (borne + en haut)
+  const mid=(y1+y2)/2;
+  ctx.strokeStyle='#333';ctx.lineWidth=2.5;
+  ctx.beginPath();ctx.moveTo(cx,y1);ctx.lineTo(cx,mid+8);ctx.stroke();
+  // barre − (bleue, petite, côté y1)
+  ctx.strokeStyle='#3498db';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(cx-6,mid+8);ctx.lineTo(cx+6,mid+8);ctx.stroke();
+  // barre + (rouge, grande, côté y2)
+  ctx.strokeStyle='#e74c3c';ctx.lineWidth=4;
+  ctx.beginPath();ctx.moveTo(cx-11,mid-4);ctx.lineTo(cx+11,mid-4);ctx.stroke();
+  ctx.strokeStyle='#333';ctx.lineWidth=2.5;
+  ctx.beginPath();ctx.moveTo(cx,mid-4);ctx.lineTo(cx,y2);ctx.stroke();
+  ctx.font='bold 13px Nunito';
+  ctx.fillStyle='#e74c3c';ctx.fillText('+',cx+14,mid-1);
+  ctx.fillStyle='#3498db';ctx.fillText('−',cx+14,mid+12);
 }
 
-// ---- PROGRESS ----
-let totalDone = 0;
-const TOTAL = 20;
-function addProgress(n=1) {
-  totalDone = Math.min(TOTAL, totalDone + n);
-  document.getElementById('prog-bar').style.width = Math.round(totalDone/TOTAL*100) + '%';
-  document.getElementById('prog-label').textContent = totalDone + ' / ' + TOTAL + ' réponses';
+function dLamp(ctx,x,y,r,on){
+  r=r||14;
+  if(on){
+    ctx.fillStyle='rgba(255,220,0,0.25)';
+    ctx.beginPath();ctx.arc(x,y,r+10,0,Math.PI*2);ctx.fill();
+  }
+  ctx.strokeStyle='#333';ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x-r*.7,y-r*.7);ctx.lineTo(x+r*.7,y+r*.7);
+  ctx.moveTo(x+r*.7,y-r*.7);ctx.lineTo(x-r*.7,y+r*.7);
+  ctx.stroke();
+}
+
+// Particle: just a solid dot, no gradient, no hex alpha tricks
+function pt(ctx,x,y,col,alpha){
+  alpha=alpha===undefined?1:alpha;
+  ctx.globalAlpha=alpha;
+  ctx.fillStyle=col;
+  ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();
+  ctx.globalAlpha=1;
+}
+
+function mkPath(pts,step){
+  step=step||3;const r=[];
+  for(let i=0;i<pts.length-1;i++){
+    const[x1,y1]=pts[i],[x2,y2]=pts[i+1];
+    const dx=x2-x1,dy=y2-y1,n=Math.ceil(Math.sqrt(dx*dx+dy*dy)/step);
+    for(let s=0;s<n;s++) r.push([x1+dx*s/n,y1+dy*s/n]);
+  }
+  return r;
+}
+
+function mkParts(path,n,col){
+  return Array.from({length:n},(_,i)=>({idx:Math.floor(i/n*path.length),col:col||'#f1c40f'}));
 }
 
 // ============================================================
-// ANIMATED CIRCUITS
+// MAIN ANIMATIONS
 // ============================================================
-const circuitStates = { serie: true, serie2: true, deriv: true };
-const particles = { serie: [], serie2: [], deriv: [] };
-let animFrames = {};
+const aOn={courant:true,serie:true,deriv:true};
+const aP={};let rafs={};
 
-// PATH definitions (series of [x,y] waypoints)
-const SERIE_PATH = [
-  [50,180],[50,40],[230,40],[230,180],[50,180]
-];
-const SERIE2_PATH = [
-  [50,180],[50,40],[230,40],[230,180],[50,180]
-];
-
-function buildPathPoints(waypoints, count) {
-  // interpolate along path
-  const pts = [];
-  for (let i = 0; i < waypoints.length - 1; i++) {
-    const [x1,y1] = waypoints[i];
-    const [x2,y2] = waypoints[i+1];
-    const dx = x2-x1, dy = y2-y1;
-    const len = Math.sqrt(dx*dx+dy*dy);
-    const steps = Math.ceil(len / 3);
-    for (let s = 0; s < steps; s++) {
-      pts.push([x1 + dx*s/steps, y1 + dy*s/steps]);
-    }
+function animCourant(){
+  const cv=document.getElementById('cv-courant');if(!cv)return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  // Pile à gauche, + en HAUT (y2=H-68), − en bas (y1=H-30)
+  // Sens conventionnel : sort du + → monte côté gauche → lampe → descend côté droit → revient par le bas → pile−
+  // MAIS la pile est à gauche sur le fil gauche. Son + est en HAUT.
+  // Donc le courant sort du + en haut gauche → va vers la droite en haut → descend côté droit → revient en bas → remonte côté gauche jusqu'au − 
+  // En Canvas: les coordonnées y augmentent vers le BAS. Pile à x=40, + vers y petit (haut écran).
+  // Fil du haut : y=30. Fil du bas : y=H-30.
+  // + de la pile est à y≈H-68 sur x=40, ce qui est plus HAUT que le bas mais plus BAS que le fil du haut.
+  // Simplifié : le courant part du + (haut de la pile = vers y=30 sur x=40) → 
+  //   → va droite sur y=30 → descend à x=W-40 → revient bas sur y=H-30 → remonte x=40 jusqu'au −
+  // Sens dans le path: [40,30] → [W-40,30] → [W-40,H-30] → [40,H-30] → [40,30]
+  const path=mkPath([[40,30],[W-40,30],[W-40,H-30],[40,H-30],[40,30]]);
+  if(!aP.courant) aP.courant=mkParts(path,7,'#f1c40f');
+  function fr(){
+    if(aOn.courant) aP.courant.forEach(p=>{p.idx=(p.idx+1)%path.length;});
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='#333';ctx.lineWidth=2.5;ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(40,30);ctx.lineTo(W-40,30);ctx.lineTo(W-40,H-30);ctx.lineTo(40,H-30);ctx.lineTo(40,30);ctx.stroke();
+    dPile(ctx,40,H-30,H-68); // y1=bas(−), y2=haut(+) — le + est en haut vers y=30
+    dLamp(ctx,W/2,30,14,true);
+    ctx.fillStyle='#555';ctx.font='bold 11px Nunito';ctx.fillText('Lampe',W/2-16,16);
+    aP.courant.forEach(p=>{const[x,y]=path[p.idx];pt(ctx,x,y,'#f1c40f');});
+    rafs.courant=requestAnimationFrame(fr);
   }
-  return pts;
+  if(rafs.courant)cancelAnimationFrame(rafs.courant);fr();
 }
 
-function createParticles(pathPts, count) {
-  const arr = [];
-  for (let i = 0; i < count; i++) {
-    arr.push({ idx: Math.floor((i/count)*pathPts.length), speed: 1 });
+function animSerie(){
+  const cv=document.getElementById('cv-serie');if(!cv)return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  // Même sens: part du + (haut gauche) → droite → bas → gauche → retour −
+  const path=mkPath([[40,30],[W-40,30],[W-40,H-30],[40,H-30],[40,30]]);
+  if(!aP.serie) aP.serie=mkParts(path,7,'#f1c40f');
+  function fr(){
+    if(aOn.serie) aP.serie.forEach(p=>{p.idx=(p.idx+1)%path.length;});
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='#333';ctx.lineWidth=2.5;ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(40,30);ctx.lineTo(W-40,30);ctx.lineTo(W-40,H-30);ctx.lineTo(40,H-30);ctx.lineTo(40,30);ctx.stroke();
+    dPile(ctx,40,H-30,H-68);
+    dLamp(ctx,W/2-42,30,13,true);
+    dLamp(ctx,W/2+42,30,13,true);
+    ctx.fillStyle='#555';ctx.font='bold 11px Nunito';
+    ctx.fillText('L1',W/2-50,16);ctx.fillText('L2',W/2+34,16);
+    aP.serie.forEach(p=>{const[x,y]=path[p.idx];pt(ctx,x,y,'#f1c40f');});
+    rafs.serie=requestAnimationFrame(fr);
   }
-  return arr;
+  if(rafs.serie)cancelAnimationFrame(rafs.serie);fr();
 }
 
-// ---- DRAW SERIE ----
-function drawSerie(canvasId, pathPts, parts, withSecondLamp) {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  ctx.clearRect(0,0,W,H);
+function animDeriv(){
+  // TOPOLOGIE EXACTE (images du cours) :
+  // Pile EN HAUT au centre, + à gauche, − à droite
+  // Nœud 1 (N1) = gauche milieu, Nœud 2 (N2) = droite milieu
+  // Branche principale (haut) : N2 → R,T → pile → L,T → N1
+  // Branche dérivée L1 : N1 → L1 → N2  (horizontale au milieu)
+  // Branche dérivée L2 : N1 → L,B → L2 → R,B → N2  (boucle en bas)
+  //
+  // W=340, H=260, L=35, R=305, T=40, MY=135, B=225
+  // Pile centrée en haut entre PL=155 et PR=185
 
-  // Wires
-  ctx.strokeStyle = '#333'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
-  ctx.beginPath();
-  ctx.moveTo(50,180);
-  ctx.lineTo(50,40);
-  ctx.lineTo(W-50,40);
-  ctx.lineTo(W-50,180);
-  ctx.lineTo(50,180);
-  ctx.stroke();
+  const cv=document.getElementById('cv-deriv');if(!cv)return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  const L=35,R=305,T=40,MY=135,B=225,PL=155,PR=185;
 
-  // Generator (pile) at bottom left
-  drawPile(ctx, 50, 180, 50, 160);
+  // Sens du courant : sort du + (PL,T) → L,T → N1(L,MY)
+  //   → branche L1 → N2(R,MY) → R,T → PR,T → pile−  [boucle jaune]
+  //   → branche L2 → L,B → R,B → N2(R,MY) → R,T → PR,T → pile−  [boucle cyan]
 
-  // Lamp 1 at top middle-left
-  if (withSecondLamp) {
-    drawLamp(ctx, 100, 40);
-    drawLamp(ctx, 180, 40);
-  } else {
-    drawLamp(ctx, 140, 40);
-  }
+  const pL1=mkPath([[PL,T],[L,T],[L,MY],[R,MY],[R,T],[PR,T],[PL,T]]);
+  const pL2=mkPath([[PL,T],[L,T],[L,MY],[L,B],[R,B],[R,MY],[R,T],[PR,T],[PL,T]]);
 
-  // Motor at right
-  drawMotor(ctx, W-50, 110);
-
-  // Labels
-  ctx.fillStyle = '#e74c3c'; ctx.font = 'bold 11px Nunito'; ctx.fillText('+', 38, 158);
-  ctx.fillStyle = '#3498db'; ctx.fillText('−', 38, 195);
-
-  // Particles
-  ctx.fillStyle = '#f1c40f';
-  parts.forEach(p => {
-    const pt = pathPts[p.idx % pathPts.length];
-    ctx.beginPath(); ctx.arc(pt[0], pt[1], 5, 0, Math.PI*2); ctx.fill();
-    // glow
-    const grad = ctx.createRadialGradient(pt[0],pt[1],2,pt[0],pt[1],8);
-    grad.addColorStop(0,'rgba(241,196,15,0.6)');
-    grad.addColorStop(1,'rgba(241,196,15,0)');
-    ctx.fillStyle = grad;
-    ctx.beginPath(); ctx.arc(pt[0],pt[1],8,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle = '#f1c40f';
-  });
-}
-
-function drawPile(ctx, x, y, xt, yt) {
-  // small battery symbol
-  ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(xt,y-10); ctx.lineTo(xt,y+10); ctx.stroke();
-  ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.moveTo(xt+5,y-6); ctx.lineTo(xt+5,y+6); ctx.stroke();
-  ctx.fillStyle = '#e74c3c'; ctx.font = '10px Nunito';
-  ctx.fillText('+', xt-10, y-2);
-  ctx.fillStyle = '#3498db';
-  ctx.fillText('−', xt+8, y+6);
-}
-
-function drawLamp(ctx, x, y) {
-  ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.arc(x, y, 12, 0, Math.PI*2); ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(x-8, y-8); ctx.lineTo(x+8, y+8);
-  ctx.moveTo(x+8, y-8); ctx.lineTo(x-8, y+8);
-  ctx.stroke();
-}
-
-function drawMotor(ctx, x, y) {
-  ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI*2); ctx.stroke();
-  ctx.fillStyle = '#333'; ctx.font = 'bold 12px Nunito';
-  ctx.fillText('M', x-6, y+5);
-}
-
-// ---- DRAW DERIVATION ----
-const DERIV_PATH_A = [
-  [50,200],[50,40],[270,40],[270,200],[160,200],[160,120],[270,120]
-];
-
-function drawDerivation(parts) {
-  const canvas = document.getElementById('canvas-deriv');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  ctx.clearRect(0,0,W,H);
-
-  // Main rectangle
-  ctx.strokeStyle = '#333'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
-  ctx.beginPath();
-  ctx.moveTo(50,200); ctx.lineTo(50,40); ctx.lineTo(270,40);
-  ctx.lineTo(270,200); ctx.lineTo(50,200);
-  ctx.stroke();
-
-  // Branch wire (horizontal, creating derivation)
-  ctx.beginPath();
-  ctx.moveTo(160,200); ctx.lineTo(160,40);
-  ctx.stroke();
-
-  // Junction dots
-  ctx.fillStyle = '#333';
-  ctx.beginPath(); ctx.arc(160,40,4,0,Math.PI*2); ctx.fill();
-  ctx.beginPath(); ctx.arc(160,200,4,0,Math.PI*2); ctx.fill();
-
-  // Generator bottom left
-  ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(50,185); ctx.lineTo(50,215); ctx.stroke();
-  ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.moveTo(55,190); ctx.lineTo(55,210); ctx.stroke();
-  ctx.fillStyle = '#e74c3c'; ctx.font = '10px Nunito'; ctx.fillText('+', 38, 188);
-  ctx.fillStyle = '#3498db'; ctx.fillText('−', 57, 212);
-
-  // Lamp 1 (left branch, top)
-  drawLamp(ctx, 105, 40);
-  // Lamp 2 (right branch, top)
-  drawLamp(ctx, 215, 40);
-
-  // Labels
-  ctx.fillStyle = '#888'; ctx.font = '11px Nunito';
-  ctx.fillText('L₁', 95, 28);
-  ctx.fillText('L₂', 205, 28);
-  ctx.fillText('Nœud A', 162, 30);
-  ctx.fillText('Nœud B', 162, 218);
-
-  // Particles - two streams
-  const pathA = buildPathPoints([[50,200],[50,40],[160,40],[160,200],[50,200]], 1);
-  const pathB = buildPathPoints([[160,40],[270,40],[270,200],[160,200],[160,40]], 1);
-
-  // Draw particles for both branches
-  ctx.fillStyle = '#f1c40f';
-  parts.forEach((p, i) => {
-    const usePath = i % 2 === 0 ? pathA : pathB;
-    const pt = usePath[p.idx % usePath.length];
-    ctx.beginPath(); ctx.arc(pt[0], pt[1], 5, 0, Math.PI*2); ctx.fill();
-    const grad = ctx.createRadialGradient(pt[0],pt[1],2,pt[0],pt[1],8);
-    grad.addColorStop(0,'rgba(241,196,15,0.6)');
-    grad.addColorStop(1,'rgba(241,196,15,0)');
-    ctx.fillStyle = grad;
-    ctx.beginPath(); ctx.arc(pt[0],pt[1],8,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle = '#f1c40f';
-  });
-
-  // Arrow indicators
-  drawArrow(ctx, 50, 150, 50, 80, '#f1c40f');
-  drawArrow(ctx, 105, 55, 160, 55, '#f1c40f');
-  drawArrow(ctx, 215, 55, 270, 55, '#f1c40f');
-}
-
-function drawArrow(ctx, x1, y1, x2, y2, color) {
-  const mx = (x1+x2)/2, my = (y1+y2)/2;
-  const dx = x2-x1, dy = y2-y1;
-  const len = Math.sqrt(dx*dx+dy*dy);
-  const ux = dx/len, uy = dy/len;
-  ctx.strokeStyle = color; ctx.lineWidth = 1.5;
-  ctx.beginPath();
-  ctx.moveTo(mx - ux*6 - uy*4, my - uy*6 + ux*4);
-  ctx.lineTo(mx + ux*6, my + uy*6);
-  ctx.lineTo(mx - ux*6 + uy*4, my - uy*6 - ux*4);
-  ctx.stroke();
-}
-
-// ---- ANIMATE ----
-function animateCircuit(id) {
-  const canvas = document.getElementById('canvas-' + id);
-  if (!canvas) return;
-
-  let pathPts;
-  if (id === 'deriv') {
-    pathPts = buildPathPoints([[50,200],[50,40],[160,40],[160,200],[50,200]], 1);
-  } else {
-    pathPts = buildPathPoints(SERIE_PATH, 1);
+  if(!aP.deriv){
+    aP.deriv=[
+      ...Array.from({length:5},(_,i)=>({idx:Math.floor(i/5*pL1.length),path:pL1,col:'#f1c40f'})),
+      ...Array.from({length:5},(_,i)=>({idx:Math.floor(i/5*pL2.length),path:pL2,col:'#00e5ff'})),
+    ];
   }
 
-  if (particles[id].length === 0) {
-    if (id === 'deriv') {
-      // 8 particles split between two branches
-      const pA = buildPathPoints([[50,200],[50,40],[160,40],[160,200],[50,200]], 1);
-      const pB = buildPathPoints([[160,40],[270,40],[270,200],[160,200],[160,40]], 1);
-      for (let i = 0; i < 4; i++) particles[id].push({ idx: Math.floor((i/4)*pA.length), branch: 'A' });
-      for (let i = 0; i < 4; i++) particles[id].push({ idx: Math.floor((i/4)*pB.length), branch: 'B' });
+  function fr(){
+    if(aOn.deriv) aP.deriv.forEach(p=>{p.idx=(p.idx+1)%p.path.length;});
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='#333';ctx.lineWidth=2.5;ctx.lineJoin='round';
+
+    // Fils extérieurs
+    ctx.beginPath();ctx.moveTo(L,T);ctx.lineTo(L,B);ctx.stroke();   // côté gauche
+    ctx.beginPath();ctx.moveTo(R,T);ctx.lineTo(R,B);ctx.stroke();   // côté droit
+    ctx.beginPath();ctx.moveTo(L,B);ctx.lineTo(R,B);ctx.stroke();   // bas
+    ctx.beginPath();ctx.moveTo(L,T);ctx.lineTo(PL-2,T);ctx.stroke(); // haut gauche (vers pile+)
+    ctx.beginPath();ctx.moveTo(PR+2,T);ctx.lineTo(R,T);ctx.stroke(); // haut droit (vers pile−)
+    // Branche L1 horizontale (N1 → N2)
+    ctx.beginPath();ctx.moveTo(L,MY);ctx.lineTo(R,MY);ctx.stroke();
+
+    // Nœuds (points verts comme dans le cours)
+    ctx.fillStyle='#27ae60';
+    ctx.beginPath();ctx.arc(L,MY,7,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(R,MY,7,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font='bold 8px Nunito';
+    ctx.textAlign='center';
+    ctx.fillText('N1',L,MY+16);ctx.fillText('N2',R,MY+16);
+    ctx.textAlign='left';
+
+    // Pile horizontale en haut (+ à gauche = PL, − à droite = PR)
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(PL,T-13);ctx.lineTo(PL,T+13);ctx.stroke();
+    ctx.strokeStyle='#3498db';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(PR,T-8);ctx.lineTo(PR,T+8);ctx.stroke();
+    ctx.font='bold 12px Nunito';
+    ctx.fillStyle='#e74c3c';ctx.fillText('+',PL-20,T+4);
+    ctx.fillStyle='#3498db';ctx.fillText('−',PR+6,T+4);
+
+    // Lampe L1 (milieu)
+    dLamp(ctx,(L+R)/2,MY,14,true);
+    ctx.fillStyle='#e6a000';ctx.font='bold 11px Nunito';
+    ctx.fillText('L1',(L+R)/2+20,MY-4);
+
+    // Lampe L2 (bas)
+    dLamp(ctx,(L+R)/2,B,14,true);
+    ctx.fillStyle='#00aacc';ctx.font='bold 11px Nunito';
+    ctx.fillText('L2',(L+R)/2+20,B-4);
+
+    // Légende branches
+    ctx.font='bold 9px Nunito';
+    ctx.fillStyle='rgba(255,255,255,0.75)';
+    ctx.fillText('Branche principale',L+8,T-16);
+    ctx.fillStyle='rgba(241,196,15,0.95)';
+    ctx.fillText('Branche dérivée L1',L+8,MY-18);
+    ctx.fillStyle='rgba(0,229,255,0.95)';
+    ctx.fillText('Branche dérivée L2',L+8,B-18);
+
+    // Particules
+    aP.deriv.forEach(p=>{const[x,y]=p.path[p.idx];pt(ctx,x,y,p.col);});
+    rafs.deriv=requestAnimationFrame(fr);
+  }
+  if(rafs.deriv)cancelAnimationFrame(rafs.deriv);fr();
+}
+
+function tgl(id){
+  aOn[id]=!aOn[id];
+  const btn=document.getElementById('btn-'+id);
+  btn.textContent=aOn[id]?'⏸ Pause':'▶ Reprendre';
+  btn.classList.toggle('off',!aOn[id]);
+}
+
+// ============================================================
+// COURT-CIRCUIT ANIMÉ
+// ============================================================
+// Circuit: pile à gauche, lampe en haut, fil CC horizontal au milieu
+// L=40, R=280, T=30, B=210, CCY=130
+// Normal: courant sort du + (L,T) → lampe → (R,T) → descend → (R,B) → revient (L,B) → pile
+// CC: courant sort du + → monte (L,T) → mais le fil CC à y=CCY est plus facile
+//     → descend le côté gauche jusqu'à CCY → traverse → remonte côté droit → revient en bas
+// En réalité: avec le CC, le courant fait L,B→L,CCY→R,CCY→R,B→L,B (court-circuit horizontal)
+// La lampe (en haut) ne reçoit quasiment rien
+
+let ccMode=false;
+let ccPathN=null,ccPathS=null,ccPartsN=null,ccPartsS=null,rafCC=null;
+
+function setCC(on){
+  ccMode=on;
+  document.getElementById('btn-cc-n').classList.toggle('off',on);
+  document.getElementById('btn-cc-c').classList.toggle('off',!on);
+}
+
+function animCC(){
+  const cv=document.getElementById('cv-cc');if(!cv)return;
+  const ctx=cv.getContext('2d'),W=cv.width,H=cv.height;
+  const L=40,R=280,T=30,B=210,CCY=130;
+  // chemin normal: + pile (L,haut) → lampe → retour pile
+  ccPathN=ccPathN||mkPath([[L,B],[L,T],[R,T],[R,B],[L,B]]);
+  // chemin CC: court-circuit par le fil horizontal
+  ccPathS=ccPathS||mkPath([[L,B],[L,CCY],[R,CCY],[R,B],[L,B]]);
+  ccPartsN=ccPartsN||mkParts(ccPathN,6,'#f1c40f');
+  ccPartsS=ccPartsS||mkParts(ccPathS,6,'#e74c3c');
+
+  function fr(){
+    ctx.clearRect(0,0,W,H);
+    // fils principaux
+    ctx.strokeStyle='#333';ctx.lineWidth=2.5;ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(L,B);ctx.lineTo(L,T);ctx.lineTo(R,T);ctx.lineTo(R,B);ctx.lineTo(L,B);ctx.stroke();
+    // fil CC (horizontal)
+    ctx.strokeStyle=ccMode?'#e74c3c':'#bbb';
+    ctx.lineWidth=ccMode?3:1.5;
+    if(!ccMode){ctx.setLineDash([5,4]);}
+    ctx.beginPath();ctx.moveTo(L,CCY);ctx.lineTo(R,CCY);ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle=ccMode?'#e74c3c':'#bbb';
+    ctx.beginPath();ctx.arc(L,CCY,4,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(R,CCY,4,0,Math.PI*2);ctx.fill();
+    // pile
+    dPile(ctx,L,B,B-55);
+    // lampe
+    dLamp(ctx,(L+R)/2,T,14,!ccMode);
+    // textes
+    ctx.fillStyle='#444';ctx.font='bold 10px Nunito';
+    ctx.fillText('Lampe',(L+R)/2-16,T-16);
+    if(ccMode){
+      ctx.fillStyle='#e74c3c';ctx.font='bold 10px Nunito';
+      ctx.fillText('⚠ Fil CC — surchauffe !',L+6,CCY-8);
+      ctx.fillStyle='#999';ctx.font='9px Nunito';
+      ctx.fillText('éteinte',(L+R)/2-12,T+26);
     } else {
-      for (let i = 0; i < 6; i++) particles[id].push({ idx: Math.floor((i/6)*pathPts.length) });
+      ctx.fillStyle='#aaa';ctx.font='9px Nunito';
+      ctx.fillText('fil CC (inactif)',L+6,CCY-8);
     }
+    // particules
+    if(ccMode){
+      ccPartsS.forEach(p=>{p.idx=(p.idx+1)%ccPathS.length;const[x,y]=ccPathS[p.idx];pt(ctx,x,y,'#e74c3c');});
+      ccPartsN.forEach(p=>{const[x,y]=ccPathN[p.idx];pt(ctx,x,y,'#f1c40f',0.15);});
+    } else {
+      ccPartsN.forEach(p=>{p.idx=(p.idx+1)%ccPathN.length;const[x,y]=ccPathN[p.idx];pt(ctx,x,y,'#f1c40f');});
+    }
+    rafCC=requestAnimationFrame(fr);
   }
+  if(rafCC)cancelAnimationFrame(rafCC);fr();
+}
 
-  function frame() {
-    if (circuitStates[id]) {
-      if (id === 'deriv') {
-        const pA = buildPathPoints([[50,200],[50,40],[160,40],[160,200],[50,200]], 1);
-        const pB = buildPathPoints([[160,40],[270,40],[270,200],[160,200],[160,40]], 1);
-        particles[id].forEach(p => {
-          const usePath = p.branch === 'A' ? pA : pB;
-          p.idx = (p.idx + 1) % usePath.length;
-        });
-        drawDerivation(particles[id]);
-      } else {
-        particles[id].forEach(p => { p.idx = (p.idx + 1) % pathPts.length; });
-        drawSerie(id === 'serie' ? 'canvas-serie' : 'canvas-serie2', pathPts, particles[id], id === 'serie2');
+// DANGER QUIZ — circuits tirés de l'image fournie, avec animations
+const dgrAnims={}; // stores per-circuit anim state
+const dgrParts={}; // particles per circuit
+
+// ============================================================
+// DANGER QUIZ — draw functions
+// Canvas = 180x150, pile à gauche verticale
+// L=20, R=160, T=20, B=130, MX=90
+// ============================================================
+
+function drawDgr0(ctx,W,H,parts){ // Circuit 1: interrupteur ouvert → PAS de courant
+  ctx.clearRect(0,0,W,H);
+  const L=20,R=160,T=20,B=130;
+  ctx.strokeStyle='#333';ctx.lineWidth=2;ctx.lineJoin='round';
+  ctx.beginPath();ctx.moveTo(L,B);ctx.lineTo(L,T);ctx.lineTo(R,T);ctx.lineTo(R,B);ctx.lineTo(L,B);ctx.stroke();
+  dPile(ctx,L,B,B-50);
+  // interrupteur ouvert en haut
+  ctx.fillStyle='#333';ctx.beginPath();ctx.arc(55,T,3,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#333';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(58,T);ctx.lineTo(78,T-10);ctx.stroke();
+  ctx.beginPath();ctx.arc(82,T,3,0,Math.PI*2);ctx.fill();
+  dLamp(ctx,130,T,12,false);
+  ctx.fillStyle='#888';ctx.font='bold 9px Nunito';ctx.fillText('ouvert',52,T+14);
+  // Pas de particules — circuit ouvert
+}
+
+function drawDgr1(ctx,W,H,parts){ // Circuit 2: dérivation normale → pas danger
+  // L=20, R=160, T=20, B=130, MX=90
+  ctx.clearRect(0,0,W,H);
+  const L=20,R=160,T=20,B=130,MX=90;
+  ctx.strokeStyle='#333';ctx.lineWidth=2;ctx.lineJoin='round';
+  ctx.beginPath();ctx.moveTo(L,B);ctx.lineTo(L,T);ctx.lineTo(R,T);ctx.lineTo(R,B);ctx.lineTo(L,B);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(MX,T);ctx.lineTo(MX,B);ctx.stroke();
+  ctx.fillStyle='#333';ctx.beginPath();ctx.arc(MX,T,4,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(MX,B,4,0,Math.PI*2);ctx.fill();
+  dPile(ctx,L,B,B-50);
+  dLamp(ctx,(L+MX)/2,T,11,true);
+  dLamp(ctx,(MX+R)/2,T,11,true);
+  ctx.fillStyle='#555';ctx.font='bold 9px Nunito';
+  ctx.fillText('L1',(L+MX)/2-7,T-13);
+  ctx.fillText('L2',(MX+R)/2-7,T-13);
+  // Particules: boucle L1 jaune (L,T→MX,T→MX,B→L,B→L,T) + boucle L2 cyan (MX,T→R,T→R,B→MX,B→MX,T)
+  if(parts) parts.forEach(p=>pt(ctx,p.x,p.y,p.col));
+}
+
+function drawDgr2(ctx,W,H,parts){ // Circuit 3: fil CC autour de L1 → DANGER
+  ctx.clearRect(0,0,W,H);
+  const L=20,R=160,T=20,B=130,MX=90;
+  ctx.strokeStyle='#333';ctx.lineWidth=2;ctx.lineJoin='round';
+  ctx.beginPath();ctx.moveTo(L,B);ctx.lineTo(L,T);ctx.lineTo(R,T);ctx.lineTo(R,B);ctx.lineTo(L,B);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(MX,T);ctx.lineTo(MX,B);ctx.stroke();
+  ctx.fillStyle='#333';ctx.beginPath();ctx.arc(MX,T,4,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(MX,B,4,0,Math.PI*2);ctx.fill();
+  dPile(ctx,L,B,B-50);
+  dLamp(ctx,(L+MX)/2,T,11,false); // L1 éteinte (court-circuitée)
+  dLamp(ctx,(MX+R)/2,T,11,false);  // L2 éteinte aussi (plus de courant dans cette branche)
+  ctx.fillStyle='#555';ctx.font='bold 9px Nunito';
+  ctx.fillText('L1',(L+MX)/2-7,T-13);
+  ctx.fillText('L2',(MX+R)/2-7,T-13);
+  // Fil CC rouge entre L et MX sur le fil du haut (légèrement décalé vers le bas)
+  const CCY=T+20;
+  ctx.strokeStyle='#e74c3c';ctx.lineWidth=2.5;
+  ctx.beginPath();ctx.moveTo(L,CCY);ctx.lineTo(MX,CCY);ctx.stroke();
+  ctx.fillStyle='#e74c3c';
+  ctx.beginPath();ctx.arc(L,CCY,3,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(MX,CCY,3,0,Math.PI*2);ctx.fill();
+  ctx.font='bold 8px Nunito';ctx.fillText('🔥CC',L+4,CCY+12);
+  ctx.fillStyle='#999';ctx.font='8px Nunito';ctx.fillText('éteinte',(L+MX)/2-10,T+12);
+  // Particules: courant rouge passe par le CC (L,B→L,CCY→MX,CCY→MX,B→L,B) - contourne L1
+  // + courant normal L2 (MX,T→R,T→R,B→MX,B→MX,T)
+  if(parts) parts.forEach(p=>pt(ctx,p.x,p.y,p.col));
+}
+
+function drawDgr3(ctx,W,H,parts){ // Circuit 4: fil entre A et B → DANGER
+  ctx.clearRect(0,0,W,H);
+  const L=20,R=160,T=20,B=130,MX=90;
+  ctx.strokeStyle='#333';ctx.lineWidth=2;ctx.lineJoin='round';
+  ctx.beginPath();ctx.moveTo(L,B);ctx.lineTo(L,T);ctx.lineTo(R,T);ctx.lineTo(R,B);ctx.lineTo(L,B);ctx.stroke();
+  dPile(ctx,L,B,B-50);
+  dLamp(ctx,R-10,(T+B)/2,12,false); // lampe côté droit, éteinte
+  // Nœuds A (haut milieu) et B (bas milieu)
+  ctx.fillStyle='#333';ctx.beginPath();ctx.arc(MX,T,4,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(MX,B,4,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#555';ctx.font='bold 9px Nunito';
+  ctx.fillText('A',MX+6,T+3);ctx.fillText('B',MX+6,B+3);
+  // Fil CC rouge vertical entre A et B
+  ctx.strokeStyle='#e74c3c';ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(MX,T);ctx.lineTo(MX,B);ctx.stroke();
+  ctx.fillStyle='#e74c3c';ctx.font='bold 8px Nunito';
+  ctx.fillText('🔥 CC',MX+6,(T+B)/2);
+  // Particules: le courant fait L,B→L,T→MX,T→MX,B→L,B (court-circuit) ET aussi passe par la lampe à droite (L,T→R,T→R,B→L,B) mais avec beaucoup moins
+  // On montre juste le CC dominant: L,T→MX,T→MX,B→L,B→L,T
+  if(parts) parts.forEach(p=>pt(ctx,p.x,p.y,p.col));
+}
+
+const dangers=[
+  {
+    label:'Circuit 1 : Pile + interrupteur ouvert + lampe',
+    desc:'Observe l\'interrupteur. Est-ce dangereux ?',
+    ans:'safe',
+    expl:'✅ Pas de danger : l\'interrupteur ouvert coupe la boucle. Aucun courant ne peut circuler.',
+    drawFn:drawDgr0,
+    paths:[]
+  },
+  {
+    label:'Circuit 2 : Pile + L1 et L2 en dérivation',
+    desc:'Deux lampes en dérivation. Est-ce dangereux ?',
+    ans:'safe',
+    expl:'✅ Pas de danger : circuit en dérivation normal. Le courant fait le tour complet ET une boucle supplémentaire par L1.',
+    drawFn:drawDgr1,
+    paths:[
+      // Boucle principale (jaune) : tour COMPLET extérieur — sort du + pile → L1 → L2 → retour pile
+      // Sens: part du + (L,T) → droite vers R → descend → bas → remonte vers pile−
+      {pts:[[20,20],[160,20],[160,130],[20,130],[20,20]], col:'#f1c40f'},
+      // Boucle L1 (cyan) : boucle interne gauche — sort du + → L1 → fil central → bas → retour pile
+      {pts:[[20,20],[90,20],[90,130],[20,130],[20,20]], col:'#00e5ff'},
+    ]
+  },
+  {
+    label:'Circuit 3 : Même circuit + fil CC autour de L1',
+    desc:'Un fil relie directement les deux bornes de L1. Qu\'est-ce qui change ?',
+    ans:'danger',
+    expl:'⚠️ DANGER ! Le fil CC a zéro résistance = chemin le plus facile. Tout le courant y passe → L1 éteinte, L2 ne reçoit plus rien. Le fil surchauffe 🔥',
+    drawFn:drawDgr2,
+    paths:[
+      {pts:[[20,130],[20,40],[90,40],[90,130],[20,130]], col:'#e74c3c'},
+    ]
+  },
+  {
+    label:'Circuit 4 : Pile + lampe + fil entre nœud A et B',
+    desc:'Un fil relie directement le point A (haut) au point B (bas). Danger ?',
+    ans:'danger',
+    expl:'⚠️ DANGER TOTAL ! Le fil A→B court-circuite la branche lampe. Résistance nulle → courant maximum → surchauffe immédiate 🔥 La lampe reçoit zéro courant.',
+    drawFn:drawDgr3,
+    paths:[
+      {pts:[[20,130],[20,20],[90,20],[90,130],[20,130]], col:'#e74c3c'},
+    ]
+  },
+];
+
+const dgrRAFs={};
+let dgrD={};
+const dgrShowCurrent={};
+
+function buildDgr(){
+  const c=document.getElementById('dgrcont');c.innerHTML='';dgrD={};
+  Object.values(dgrRAFs).forEach(r=>cancelAnimationFrame(r));
+
+  dangers.forEach((d,i)=>{
+    dgrShowCurrent[i]=false;
+    const partsArr=[];
+    (d.paths||[]).forEach(pd=>{
+      const path=mkPath(pd.pts);
+      for(let k=0;k<5;k++){
+        const startIdx=Math.floor(k/5*path.length);
+        const [sx,sy]=path[startIdx];
+        partsArr.push({idx:startIdx, path, col:pd.col, x:sx, y:sy});
       }
-    }
-    animFrames[id] = requestAnimationFrame(frame);
-  }
-  if (animFrames[id]) cancelAnimationFrame(animFrames[id]);
-  frame();
-}
+    });
 
-function toggleCircuit(id) {
-  circuitStates[id] = !circuitStates[id];
-  const btn = document.getElementById('btn-' + id);
-  btn.textContent = circuitStates[id] ? '⏸ Pause' : '▶ Reprendre';
-  btn.classList.toggle('off', !circuitStates[id]);
-}
-
-// ---- DANGER QUIZ ----
-const dangerCases = [
-  {
-    label: "Circuit 1 : pile + interrupteur ouvert + lampe",
-    svg: `<svg width="120" height="100" viewBox="0 0 120 100">
-      <rect x="10" y="10" width="100" height="80" fill="none" stroke="#ccc" stroke-width="1" rx="6"/>
-      <line x1="10" y1="50" x2="10" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="10" y1="10" x2="110" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="110" y1="10" x2="110" y2="90" stroke="#333" stroke-width="2"/>
-      <line x1="110" y1="90" x2="10" y2="90" stroke="#333" stroke-width="2"/>
-      <line x1="10" y1="90" x2="10" y2="65" stroke="#333" stroke-width="2"/>
-      <!-- pile -->
-      <line x1="7" y1="55" x2="13" y2="55" stroke="#333" stroke-width="2.5"/>
-      <line x1="8" y1="62" x2="12" y2="62" stroke="#333" stroke-width="1.5"/>
-      <!-- interrupteur ouvert -->
-      <circle cx="40" cy="10" r="2.5" fill="#333"/>
-      <line x1="42" y1="10" x2="60" y2="4" stroke="#333" stroke-width="2"/>
-      <circle cx="62" cy="10" r="2.5" fill="#333"/>
-      <!-- lampe -->
-      <circle cx="90" cy="10" r="10" fill="none" stroke="#333" stroke-width="2"/>
-      <line x1="83" y1="3" x2="97" y2="17" stroke="#333" stroke-width="1.5"/>
-      <line x1="97" y1="3" x2="83" y2="17" stroke="#333" stroke-width="1.5"/>
-    </svg>`,
-    answer: 'safe',
-    explanation: "✅ Pas de danger : l'interrupteur est ouvert, le courant ne circule pas."
-  },
-  {
-    label: "Circuit 2 : pile + lampe + fil direct entre les bornes",
-    svg: `<svg width="120" height="100" viewBox="0 0 120 100">
-      <rect x="10" y="10" width="100" height="80" fill="none" stroke="#ccc" stroke-width="1" rx="6"/>
-      <line x1="10" y1="50" x2="10" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="10" y1="10" x2="110" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="110" y1="10" x2="110" y2="90" stroke="#333" stroke-width="2"/>
-      <line x1="110" y1="90" x2="10" y2="90" stroke="#333" stroke-width="2"/>
-      <line x1="10" y1="90" x2="10" y2="65" stroke="#333" stroke-width="2"/>
-      <!-- pile -->
-      <line x1="7" y1="55" x2="13" y2="55" stroke="#333" stroke-width="2.5"/>
-      <line x1="8" y1="62" x2="12" y2="62" stroke="#333" stroke-width="1.5"/>
-      <!-- lampe -->
-      <circle cx="60" cy="10" r="10" fill="none" stroke="#333" stroke-width="2"/>
-      <line x1="53" y1="3" x2="67" y2="17" stroke="#333" stroke-width="1.5"/>
-      <line x1="67" y1="3" x2="53" y2="17" stroke="#333" stroke-width="1.5"/>
-      <!-- fil court-circuit -->
-      <line x1="10" y1="72" x2="110" y2="72" stroke="#e74c3c" stroke-width="2.5" stroke-dasharray="4,3"/>
-    </svg>`,
-    answer: 'danger',
-    explanation: "⚠️ DANGER ! Le fil rouge relie directement les deux bornes : court-circuit ! Le courant prend le chemin le plus facile (le fil sans résistance) → surchauffe."
-  },
-  {
-    label: "Circuit 3 : pile + interrupteur fermé + 2 lampes en série",
-    svg: `<svg width="120" height="100" viewBox="0 0 120 100">
-      <line x1="10" y1="50" x2="10" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="10" y1="10" x2="110" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="110" y1="10" x2="110" y2="90" stroke="#333" stroke-width="2"/>
-      <line x1="110" y1="90" x2="10" y2="90" stroke="#333" stroke-width="2"/>
-      <line x1="10" y1="90" x2="10" y2="65" stroke="#333" stroke-width="2"/>
-      <line x1="7" y1="55" x2="13" y2="55" stroke="#333" stroke-width="2.5"/>
-      <line x1="8" y1="62" x2="12" y2="62" stroke="#333" stroke-width="1.5"/>
-      <!-- interrupteur fermé -->
-      <circle cx="35" cy="10" r="2.5" fill="#333"/>
-      <line x1="37" y1="10" x2="50" y2="10" stroke="#333" stroke-width="2"/>
-      <circle cx="52" cy="10" r="2.5" fill="#333"/>
-      <!-- lampe 1 -->
-      <circle cx="75" cy="10" r="9" fill="none" stroke="#333" stroke-width="2"/>
-      <line x1="69" y1="4" x2="81" y2="16" stroke="#333" stroke-width="1.5"/>
-      <line x1="81" y1="4" x2="69" y2="16" stroke="#333" stroke-width="1.5"/>
-      <!-- lampe 2 -->
-      <circle cx="100" cy="50" r="9" fill="none" stroke="#333" stroke-width="2"/>
-      <line x1="94" y1="44" x2="106" y2="56" stroke="#333" stroke-width="1.5"/>
-      <line x1="106" y1="44" x2="94" y2="56" stroke="#333" stroke-width="1.5"/>
-    </svg>`,
-    answer: 'safe',
-    explanation: "✅ Pas de danger : circuit normal en série avec 2 lampes et un interrupteur fermé."
-  },
-  {
-    label: "Circuit 4 : pile + fil direct (sans récepteur)",
-    svg: `<svg width="120" height="100" viewBox="0 0 120 100">
-      <line x1="10" y1="50" x2="10" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="10" y1="10" x2="110" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="110" y1="10" x2="110" y2="90" stroke="#333" stroke-width="2"/>
-      <line x1="110" y1="90" x2="10" y2="90" stroke="#333" stroke-width="2"/>
-      <line x1="10" y1="90" x2="10" y2="65" stroke="#333" stroke-width="2"/>
-      <line x1="7" y1="55" x2="13" y2="55" stroke="#e74c3c" stroke-width="2.5"/>
-      <line x1="8" y1="62" x2="12" y2="62" stroke="#e74c3c" stroke-width="1.5"/>
-    </svg>`,
-    answer: 'danger',
-    explanation: "⚠️ DANGER ! Aucun récepteur = court-circuit total. Le courant n'a aucune résistance → surchauffe et risque d'incendie."
-  }
-];
-
-let dangerAnswered = {};
-function buildDangerQuiz() {
-  const c = document.getElementById('danger-quiz-container');
-  c.innerHTML = '';
-  dangerAnswered = {};
-  dangerCases.forEach((dc, i) => {
-    const div = document.createElement('div');
-    div.style.cssText = 'background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,0.07);';
-    div.innerHTML = `
-      <p style="font-weight:700;color:#333;margin-bottom:10px;font-size:0.95rem;">${dc.label}</p>
-      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-        <div>${dc.svg}</div>
-        <div style="display:flex;gap:10px;">
-          <button onclick="answerDanger(${i},'safe')" id="d-safe-${i}"
-            style="background:#d5f5e3;border:2px solid #2ecc71;border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer;font-size:0.9rem;color:#1a6b3c;">
-            ✅ Pas danger
-          </button>
-          <button onclick="answerDanger(${i},'danger')" id="d-danger-${i}"
-            style="background:#fde8e8;border:2px solid #e74c3c;border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer;font-size:0.9rem;color:#922b21;">
-            ⚠️ Danger !
-          </button>
-        </div>
+    const div=document.createElement('div');
+    div.style.cssText='background:#f8f9fa;border-radius:14px;padding:16px;margin-bottom:14px;border:2px solid #e0e0e0';
+    div.innerHTML=`<p style="font-weight:700;color:#333;font-size:.95rem;margin-bottom:3px">${d.label}</p>
+    <p style="color:#666;font-size:.85rem;margin-bottom:10px">${d.desc}</p>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0">
+        <canvas id="dcv${i}" width="180" height="150" style="border-radius:10px;background:#fff;border:2px solid #ddd"></canvas>
+        ${d.paths.length>0?`<button id="dbcur${i}" onclick="tglDgrCurrent(${i})" style="background:#1a1a2e;border:2px solid #555;border-radius:8px;color:#aaa;padding:5px 12px;font-size:.8rem;font-weight:700;cursor:pointer;width:100%">👁 Voir le courant</button>`:`<div style="height:28px;font-size:.78rem;color:#e74c3c;font-weight:700;text-align:center;padding-top:6px">⛔ Pas de courant</div>`}
       </div>
-      <div id="d-fb-${i}" style="margin-top:8px;display:none;"></div>
-    `;
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <button onclick="aDgr(${i},'safe')" id="dbs${i}" style="background:#d5f5e3;border:2px solid #2ecc71;border-radius:10px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:.92rem;color:#1a6b3c">✅ Pas danger</button>
+        <button onclick="aDgr(${i},'danger')" id="dbd${i}" style="background:#fde8e8;border:2px solid #e74c3c;border-radius:10px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:.92rem;color:#922b21">⚠️ Danger !</button>
+      </div>
+    </div>
+    <div id="dfb${i}" style="display:none;margin-top:10px;padding:10px 14px;border-radius:10px;font-weight:700;font-size:.87rem"></div>`;
     c.appendChild(div);
+
+    setTimeout(()=>{
+      const cv=document.getElementById('dcv'+i);if(!cv)return;
+      const ctx=cv.getContext('2d');
+      function fr(){
+        if(dgrShowCurrent[i]){
+          partsArr.forEach(p=>{p.idx=(p.idx+1)%p.path.length;const[x,y]=p.path[p.idx];p.x=x;p.y=y;});
+        }
+        d.drawFn(ctx,180,150,dgrShowCurrent[i]?partsArr:null);
+        dgrRAFs[i]=requestAnimationFrame(fr);
+      }
+      fr();
+    },200+i*50);
   });
 }
 
-function answerDanger(i, ans) {
-  if (dangerAnswered[i]) return;
-  dangerAnswered[i] = true;
-  const dc = dangerCases[i];
-  const ok = ans === dc.answer;
-  ['safe','danger'].forEach(a => {
-    document.getElementById(`d-${a}-${i}`).disabled = true;
-  });
-  const fb = document.getElementById(`d-fb-${i}`);
-  fb.style.display = 'block';
-  fb.style.cssText = `display:block;padding:8px 12px;border-radius:8px;font-weight:700;font-size:0.88rem;background:${ok?'#d5f5e3':'#fde8e8'};color:${ok?'#1a6b3c':'#922b21'};margin-top:8px;`;
-  fb.textContent = (ok ? '✅ ' : '❌ ') + dc.explanation;
-  addProgress();
+function tglDgrCurrent(i){
+  dgrShowCurrent[i]=!dgrShowCurrent[i];
+  const btn=document.getElementById('dbcur'+i);
+  if(dgrShowCurrent[i]){
+    btn.style.background='#27ae60';btn.style.borderColor='#2ecc71';btn.style.color='#fff';
+    btn.textContent='⏸ Cacher le courant';
+  } else {
+    btn.style.background='#1a1a2e';btn.style.borderColor='#555';btn.style.color='#aaa';
+    btn.textContent='👁 Voir le courant';
+  }
 }
 
-// ---- QUIZ DATA ----
-const quizData = [
-  { q: "Par convention, le courant électrique circule…", opts: ["De la borne − vers la borne + du générateur", "De la borne + vers la borne − du générateur", "Dans les deux sens en même temps"], correct: 1 },
-  { q: "Un dipôle polarisé c'est…", opts: ["Un composant avec 3 bornes", "Un composant dont le sens de branchement a de l'importance", "Un composant qui peut se brancher dans les deux sens"], correct: 1 },
-  { q: "Laquelle de ces affirmations sur la diode est correcte ?", opts: ["Elle laisse passer le courant dans les deux sens", "Elle laisse passer le courant uniquement dans le sens de sa flèche", "Elle produit de l'électricité"], correct: 1 },
-  { q: "Dans un circuit en série…", opts: ["Il y a plusieurs boucles", "Il y a une seule boucle et le courant passe par tous les composants", "Si une lampe grille, les autres restent allumées"], correct: 1 },
-  { q: "Dans un circuit en dérivation…", opts: ["Il y a une seule boucle fermée", "Le courant ne se divise jamais", "Si une lampe grille, les autres restent allumées"], correct: 2 },
-  { q: "Un court-circuit c'est…", opts: ["Un circuit très petit", "Quand le courant prend un chemin sans résistance entre les bornes", "Un circuit avec beaucoup de lampes"], correct: 1 },
-  { q: "Parmi ces dipôles, lequel est non polarisé ?", opts: ["La diode", "Le moteur", "La lampe"], correct: 2 },
-  { q: "L'interrupteur ouvert…", opts: ["Laisse passer le courant", "Bloque le courant", "Inverse le sens du courant"], correct: 1 },
-  { q: "Comment sont branchées les prises électriques dans une maison ?", opts: ["En série", "En dérivation (parallèle)", "Elles ne sont pas dans un circuit"], correct: 1 },
-  { q: "Quel est le rôle d'un fusible ?", opts: ["Augmenter l'intensité du courant", "Couper le courant en cas de surcharge pour protéger", "Changer le sens du courant"], correct: 1 },
-  { q: "Un générateur…", opts: ["Consomme de l'énergie électrique", "Produit de l'énergie électrique", "Bloque le courant"], correct: 1 },
-  { q: "La DEL (diode électroluminescente) est…", opts: ["Un générateur non polarisé", "Un récepteur polarisé qui émet de la lumière", "Un interrupteur"], correct: 1 },
-  { q: "Pour qu'un circuit soit fermé et que le courant circule, il faut…", opts: ["Un court-circuit", "Une boucle complète et fermée", "Uniquement un générateur"], correct: 1 },
-  { q: "Si une lampe grille dans un circuit en série…", opts: ["Seule cette lampe s'éteint", "Toutes les lampes s'éteignent", "Rien ne se passe"], correct: 1 },
-  { q: "Le symbole de la résistance est…", opts: ["Un cercle avec une croix", "Un rectangle", "Un triangle"], correct: 1 },
+function aDgr(i,ans){
+  if(dgrD[i])return;dgrD[i]=true;
+  const d=dangers[i],ok=ans===d.ans;
+  ['dbs'+i,'dbd'+i].forEach(id=>{document.getElementById(id).disabled=true;});
+  const fb=document.getElementById('dfb'+i);fb.style.display='block';
+  fb.style.background=ok?'#d5f5e3':'#fde8e8';fb.style.color=ok?'#1a6b3c':'#922b21';
+  fb.textContent=(ok?'✅ ':'❌ ')+d.expl;ap();
+}
+
+// DRAG & DROP
+const ddData=[
+  {val:'lampe',lbl:'💡 Lampe',svg:`<svg width="72" height="50" viewBox="0 0 72 50"><line x1="3" y1="25" x2="17" y2="25" stroke="#333" stroke-width="2"/><circle cx="35" cy="25" r="14" fill="none" stroke="#333" stroke-width="2"/><line x1="24" y1="14" x2="46" y2="36" stroke="#333" stroke-width="2"/><line x1="46" y1="14" x2="24" y2="36" stroke="#333" stroke-width="2"/><line x1="50" y1="25" x2="69" y2="25" stroke="#333" stroke-width="2"/></svg>`},
+  {val:'pile',lbl:'🔋 Pile',svg:`<svg width="72" height="50" viewBox="0 0 72 50"><line x1="3" y1="25" x2="22" y2="25" stroke="#333" stroke-width="2"/><line x1="22" y1="11" x2="22" y2="39" stroke="#e74c3c" stroke-width="4"/><line x1="30" y1="17" x2="30" y2="33" stroke="#3498db" stroke-width="2"/><line x1="30" y1="25" x2="69" y2="25" stroke="#333" stroke-width="2"/><text x="11" y="9" font-size="11" fill="#e74c3c" font-weight="bold">+</text><text x="32" y="9" font-size="11" fill="#3498db" font-weight="bold">−</text></svg>`},
+  {val:'moteur',lbl:'⚙️ Moteur',svg:`<svg width="72" height="50" viewBox="0 0 72 50"><line x1="3" y1="25" x2="17" y2="25" stroke="#333" stroke-width="2"/><circle cx="35" cy="25" r="14" fill="none" stroke="#333" stroke-width="2"/><text x="28" y="30" font-size="13" fill="#333" font-weight="bold">M</text><line x1="50" y1="25" x2="69" y2="25" stroke="#333" stroke-width="2"/></svg>`},
+  {val:'diode',lbl:'▶| Diode',svg:`<svg width="72" height="50" viewBox="0 0 72 50"><line x1="3" y1="25" x2="22" y2="25" stroke="#333" stroke-width="2"/><polygon points="22,13 22,37 42,25" fill="#333"/><line x1="42" y1="12" x2="42" y2="38" stroke="#333" stroke-width="2.5"/><line x1="42" y1="25" x2="69" y2="25" stroke="#333" stroke-width="2"/></svg>`},
+  {val:'del',lbl:'💡▶| DEL',svg:`<svg width="72" height="50" viewBox="0 0 72 50"><line x1="3" y1="25" x2="20" y2="25" stroke="#333" stroke-width="2"/><polygon points="20,13 20,37 39,25" fill="#333"/><line x1="39" y1="12" x2="39" y2="38" stroke="#333" stroke-width="2.5"/><line x1="39" y1="14" x2="48" y2="6" stroke="#666" stroke-width="1.5"/><line x1="43" y1="17" x2="52" y2="9" stroke="#666" stroke-width="1.5"/><line x1="39" y1="25" x2="69" y2="25" stroke="#333" stroke-width="2"/></svg>`},
+  {val:'resistance',lbl:'▭ Résistance',svg:`<svg width="72" height="50" viewBox="0 0 72 50"><line x1="3" y1="25" x2="14" y2="25" stroke="#333" stroke-width="2"/><rect x="14" y="15" width="44" height="20" fill="none" stroke="#333" stroke-width="2"/><line x1="58" y1="25" x2="69" y2="25" stroke="#333" stroke-width="2"/></svg>`},
+  {val:'interr-f',lbl:'— Interrupteur fermé',svg:`<svg width="72" height="50" viewBox="0 0 72 50"><line x1="3" y1="25" x2="20" y2="25" stroke="#333" stroke-width="2"/><circle cx="20" cy="25" r="3" fill="#333"/><line x1="23" y1="25" x2="47" y2="25" stroke="#333" stroke-width="2"/><circle cx="50" cy="25" r="3" fill="#333"/><line x1="53" y1="25" x2="69" y2="25" stroke="#333" stroke-width="2"/></svg>`},
+  {val:'interr-o',lbl:'/ Interrupteur ouvert',svg:`<svg width="72" height="50" viewBox="0 0 72 50"><line x1="3" y1="25" x2="20" y2="25" stroke="#333" stroke-width="2"/><circle cx="20" cy="25" r="3" fill="#333"/><line x1="23" y1="25" x2="44" y2="15" stroke="#333" stroke-width="2"/><circle cx="50" cy="25" r="3" fill="#333"/><line x1="53" y1="25" x2="69" y2="25" stroke="#333" stroke-width="2"/></svg>`},
 ];
 
-let quizState = Array(quizData.length).fill(null);
-let quizScore = 0, quizDone = false;
+let ddPlaced={};let ddDrag=null;
+function buildDD(){
+  ddPlaced={};
+  const bank=document.getElementById('ddbank');
+  bank.innerHTML='';
+  // Mélange les étiquettes de la banque (ordre différent des cibles)
+  const shuffled=[...ddData].sort(()=>Math.random()-.5);
+  shuffled.forEach(d=>{
+    const s=document.createElement('div');s.className='ddsym';s.id='dds-'+d.val;s.draggable=true;s.dataset.val=d.val;s.textContent=d.lbl;
+    s.addEventListener('dragstart',()=>{ddDrag=d.val;});
+    s.addEventListener('dragend',()=>{if(ddDrag)ddDrag=null;});
+    bank.appendChild(s);
+  });
+  const grid=document.getElementById('ddgrid');grid.innerHTML='';
+  ddData.forEach(d=>{
+    const div=document.createElement('div');div.className='ddtgt';div.dataset.tgt=d.val;
+    div.innerHTML=d.svg;
+    div.addEventListener('dragover',e=>{e.preventDefault();div.classList.add('dov');});
+    div.addEventListener('dragleave',()=>div.classList.remove('dov'));
+    div.addEventListener('drop',e=>{
+      e.preventDefault();div.classList.remove('dov');if(!ddDrag)return;
+      const prev=ddPlaced[d.val];
+      if(prev){const os=document.getElementById('dds-'+prev);if(os)os.classList.remove('placed');}
+      const prevLbl=div.querySelector('.ddlbl');if(prevLbl)prevLbl.remove();
+      ddPlaced[d.val]=ddDrag;
+      const src=document.getElementById('dds-'+ddDrag);if(src)src.classList.add('placed');
+      const lbl=document.createElement('div');lbl.className='ddlbl';lbl.textContent=src?src.textContent:ddDrag;div.appendChild(lbl);
+      ddDrag=null;
+    });
+    grid.appendChild(div);
+  });
+  document.getElementById('ddres').style.display='none';
+}
+function checkDD(){
+  let ok=0;
+  ddData.forEach(d=>{
+    const div=document.querySelector('.ddtgt[data-tgt="'+d.val+'"]');
+    if(!div)return;
+    div.classList.remove('dok','derr');
+    if(ddPlaced[d.val]===d.val){div.classList.add('dok');ok++;}
+    else if(ddPlaced[d.val]){div.classList.add('derr');}
+  });
+  const res=document.getElementById('ddres');res.style.display='block';
+  const p=Math.round(ok/ddData.length*100);
+  res.style.background=p===100?'#d5f5e3':p>=60?'#fff9e0':'#fde8e8';
+  res.style.color=p===100?'#1a6b3c':p>=60?'#7d6608':'#922b21';
+  res.textContent=ok+'/'+ddData.length+' corrects — '+(p===100?'🎉 Parfait !':p>=60?'👍 Bien ! Regarde les rouges.':'💪 Relis le cours et réessaie !');
+  ap(Math.min(ok,3));
+}
+function resetDD(){buildDD();}
 
-function buildQuiz() {
-  const c = document.getElementById('quiz-container');
-  c.innerHTML = '';
-  quizData.forEach((item, i) => {
-    const d = document.createElement('div');
-    d.className = 'quiz-card';
-    d.innerHTML = `<div class="q-num">Question ${i+1} / ${quizData.length}</div>
-    <div class="q-text">${item.q}</div>
-    ${item.opts.map((o,j) => `<button class="choice-btn" id="q-btn-${i}-${j}" onclick="answerQuiz(${i},${j})">${o}</button>`).join('')}
-    <div class="feedback" id="q-fb-${i}"></div>`;
+// QUIZ
+const Qs=[
+  {q:'Par convention, le courant circule…',o:['De − vers + dans le circuit extérieur','De + vers − dans le circuit extérieur','Dans les deux sens'],c:1},
+  {q:'Un dipôle polarisé, c\'est un composant…',o:['Avec 3 bornes','Dont le sens de branchement a de l\'importance','Qui fonctionne sans générateur'],c:1},
+  {q:'La différence entre diode et DEL ?',o:['La DEL est non polarisée','La DEL émet de la lumière en plus','La diode produit du courant'],c:1},
+  {q:'Si on inverse un moteur…',o:['Il ne fonctionne plus du tout','Il tourne dans le sens opposé','Il émet de la lumière'],c:1},
+  {q:'En série, si une lampe grille…',o:['Seule cette lampe s\'éteint','Toutes les lampes s\'éteignent','Rien ne change'],c:1},
+  {q:'En dérivation, chaque boucle…',o:['Tourne seule sans passer par la pile','Repart de la pile et y revient','Ne passe pas par le générateur'],c:1},
+  {q:'Un court-circuit se produit quand…',o:['Il y a trop de lampes','Un fil relie directement les bornes sans récepteur','L\'interrupteur est ouvert'],c:1},
+  {q:'Pourquoi le courant préfère le fil de court-circuit ?',o:['Le fil est plus long','Le fil a moins de résistance = chemin plus facile','La lampe est polarisée'],c:1},
+  {q:'Parmi ces dipôles, lequel est NON polarisé ?',o:['La diode','Le moteur','La lampe'],c:2},
+  {q:'Les lampes d\'une maison sont branchées…',o:['En série','En dérivation (parallèle)','Elles ne sont pas dans un circuit'],c:1},
+  {q:'Quel composant protège contre les surcharges ?',o:['La résistance','La DEL','Le fusible ou disjoncteur'],c:2},
+  {q:'L\'interrupteur ouvert…',o:['Laisse passer le courant','Bloque le courant','Inverse le sens du courant'],c:1},
+  {q:'Pour qu\'un circuit fonctionne, il faut…',o:['Un court-circuit','Une boucle complète et fermée avec un générateur','Uniquement un interrupteur'],c:1},
+  {q:'La DEL laisse passer le courant…',o:['Dans les deux sens','Uniquement dans le sens de sa flèche','Si l\'interrupteur est ouvert'],c:1},
+  {q:'Si L1 grille dans un circuit en dérivation…',o:['Tout s\'éteint','L2 reste allumée, les boucles sont indépendantes','Les deux lampes clignotent'],c:1},
+];
+let qSt=Array(Qs.length).fill(null),qSc=0,qDn=false;
+function buildQ(){
+  const c=document.getElementById('qcont');c.innerHTML='';
+  Qs.forEach((item,i)=>{
+    const d=document.createElement('div');d.className='qcard';
+    d.innerHTML=`<div class="qnum">Question ${i+1} / ${Qs.length}</div><div class="qtext">${item.q}</div>`+
+    item.o.map((o,j)=>`<button class="qbtn" id="qb${i}-${j}" onclick="aQ(${i},${j})">${o}</button>`).join('')+
+    `<div class="fb" id="qfb${i}"></div>`;
     c.appendChild(d);
   });
 }
-
-function answerQuiz(qi, choice) {
-  if (quizState[qi] !== null) return;
-  const item = quizData[qi];
-  const ok = choice === item.correct;
-  quizState[qi] = ok ? 'correct' : 'wrong';
-  if (ok) quizScore++;
-  item.opts.forEach((_,j) => {
-    const btn = document.getElementById(`q-btn-${qi}-${j}`);
-    btn.disabled = true;
-    if (j === item.correct) btn.classList.add('correct');
-    else if (j === choice && !ok) btn.classList.add('wrong');
-  });
-  const fb = document.getElementById(`q-fb-${qi}`);
-  fb.className = 'feedback show ' + (ok ? 'ok' : 'ko');
-  fb.textContent = ok ? '✅ Bravo !' : `❌ Bonne réponse : ${item.opts[item.correct]}`;
-  addProgress();
+function aQ(qi,ch){
+  if(qSt[qi]!==null)return;
+  const item=Qs[qi],ok=ch===item.c;qSt[qi]=ok?1:0;if(ok)qSc++;
+  item.o.forEach((_,j)=>{const b=document.getElementById('qb'+qi+'-'+j);b.disabled=true;if(j===item.c)b.classList.add('correct');else if(j===ch&&!ok)b.classList.add('wrong');});
+  const fb=document.getElementById('qfb'+qi);fb.className='fb show '+(ok?'ok':'ko');
+  fb.textContent=ok?'✅ Bravo !':'❌ Bonne réponse : '+item.o[item.c];ap();
 }
-
-function submitQuiz() {
-  if (quizDone) return; quizDone = true;
-  quizData.forEach((item, i) => {
-    if (quizState[i] === null) {
-      item.opts.forEach((_,j) => {
-        document.getElementById(`q-btn-${i}-${j}`).disabled = true;
-        if (j === item.correct) document.getElementById(`q-btn-${i}-${j}`).classList.add('correct');
-      });
-    }
-  });
-  const pct = Math.round(quizScore / quizData.length * 100);
-  document.getElementById('quiz-score-val').textContent = quizScore + ' / ' + quizData.length;
-  document.getElementById('quiz-score-msg').textContent = pct >= 80 ? '🎉 Excellent ! Tu maîtrises les circuits électriques !' : pct >= 60 ? '👍 Bien ! Relis les notions que tu n\'as pas trouvées.' : '💪 Continue à réviser, tu vas y arriver !';
-  document.getElementById('quiz-score').classList.add('show');
+function subQ(){
+  if(qDn)return;qDn=true;
+  Qs.forEach((item,i)=>{if(qSt[i]===null){item.o.forEach((_,j)=>{document.getElementById('qb'+i+'-'+j).disabled=true;if(j===item.c)document.getElementById('qb'+i+'-'+j).classList.add('correct');});}});
+  const p=Math.round(qSc/Qs.length*100);
+  document.getElementById('qsval').textContent=qSc+' / '+Qs.length;
+  document.getElementById('qsmsg').textContent=p>=80?'🎉 Excellent ! Tu maîtrises l\'électricité !':p>=60?'👍 Bien ! Relis ce que tu n\'as pas trouvé.':'💪 Continue à réviser, tu vas y arriver !';
+  document.getElementById('qsbox').classList.add('show');
 }
+function rstQ(){qSc=0;qDn=false;qSt=Array(Qs.length).fill(null);document.getElementById('qsbox').classList.remove('show');buildQ();}
 
-function resetQuiz() {
-  quizScore = 0; quizDone = false;
-  quizState = Array(quizData.length).fill(null);
-  document.getElementById('quiz-score').classList.remove('show');
-  buildQuiz();
-}
-
-// ---- INIT ----
-buildDangerQuiz();
-buildQuiz();
-
-// Start animations after a short delay to let DOM render
-setTimeout(() => {
-  animateCircuit('serie');
-  animateCircuit('serie2');
-  animateCircuit('deriv');
-}, 300);
+// INIT
+buildDD();buildDgr();buildQ();
+setTimeout(()=>{animCourant();animSerie();animDeriv();animCC();},400);
 </script>
 </body>
 </html>
