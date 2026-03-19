@@ -3,545 +3,604 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Conditionnel 📝 – Cours de Noah</title>
+<title>Français 4e – Conditionnel & Subordonnées</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Nunito', sans-serif; background: #fef9f0; min-height: 100vh; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: #fef9f0; min-height: 100vh; }
 
-  header {
-    background: linear-gradient(135deg, #f39c12, #e74c3c, #8e44ad);
-    padding: 30px 20px; text-align: center;
-  }
-  header .back-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5);
-    color: #fff; text-decoration: none; border-radius: 20px;
-    padding: 6px 16px; font-size: 0.9rem; font-weight: 700;
-    margin-bottom: 16px; transition: background 0.2s;
-    position: absolute; top: 20px; left: 20px;
-  }
-  header .back-btn:hover { background: rgba(255,255,255,0.35); }
-  header h1 { font-family: 'Baloo 2', cursive; font-size: 2.2rem; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.2); }
-  header p { color: rgba(255,255,255,0.9); margin-top: 6px; font-size: 1.1rem; }
+header {
+  background: linear-gradient(135deg, #f39c12, #e74c3c, #8e44ad);
+  padding: 30px 20px; text-align: center; position: relative;
+}
+header .back-btn {
+  position: absolute; top: 20px; left: 20px;
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5);
+  color: #fff; text-decoration: none; border-radius: 20px;
+  padding: 6px 16px; font-size: 0.9rem; font-weight: 700; transition: background 0.2s;
+}
+header .back-btn:hover { background: rgba(255,255,255,0.35); }
+header h1 { font-family: 'Baloo 2', cursive; font-size: 2rem; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.2); }
+header p { color: rgba(255,255,255,0.9); margin-top: 6px; font-size: 1rem; }
 
-  .container { max-width: 820px; margin: 30px auto; padding: 0 20px 60px; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 20px 60px; }
 
-  /* Progress bar */
-  .progress-bar-wrap { background: #e0e0e0; border-radius: 10px; height: 10px; margin-bottom: 30px; }
-  .progress-bar { height: 10px; border-radius: 10px; background: linear-gradient(90deg, #f39c12, #e74c3c); transition: width 0.5s ease; }
+/* TABS */
+.tabs { display: flex; gap: 8px; padding: 16px 0 0; flex-wrap: wrap; justify-content: center; border-bottom: 2px solid #f0e68c; background: #fff; }
+.tab-btn {
+  background: #fff; border: 2px solid #e0d080; border-radius: 20px;
+  padding: 8px 16px; font-family: 'Baloo 2', cursive; font-size: 0.88rem;
+  cursor: pointer; color: #888; transition: all 0.2s; margin-bottom: 8px;
+}
+.tab-btn.active { background: linear-gradient(135deg, #f39c12, #e74c3c); color: #fff; border-color: transparent; }
+.tab-panel { display: none; padding-top: 24px; }
+.tab-panel.active { display: block; }
 
-  /* Section titles */
-  .section-title {
-    font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800;
-    margin: 32px 0 14px; display: flex; align-items: center; gap: 10px;
-    color: #2c3e50; border-bottom: 3px solid #eee; padding-bottom: 8px;
-  }
+/* SECTION TITLES */
+.stitle {
+  font-family: 'Baloo 2', cursive; font-size: 1.3rem; font-weight: 800;
+  margin: 28px 0 14px; display: flex; align-items: center; gap: 10px;
+  color: #2c3e50; border-bottom: 3px solid #f0e68c; padding-bottom: 8px;
+}
 
-  /* Lesson card */
-  .lesson-card {
-    background: #fff; border-radius: 18px; padding: 24px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 18px;
-  }
-  .lesson-card h3 {
-    font-family: 'Baloo 2', cursive; font-size: 1.15rem; color: #2c3e50;
-    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
-  }
-  .lesson-card p { color: #555; line-height: 1.7; margin-bottom: 10px; }
-  .lesson-card .formula {
-    background: linear-gradient(135deg, #ffecd2, #fcb69f);
-    border-left: 4px solid #e74c3c; border-radius: 10px;
-    padding: 12px 16px; margin: 10px 0; font-weight: 700; color: #c0392b;
-  }
-  .lesson-card .example {
-    background: #f0f4ff; border-left: 4px solid #3498db;
-    border-radius: 10px; padding: 10px 14px; margin: 8px 0;
-    color: #2c3e50; font-style: italic;
-  }
+/* CARDS */
+.lcard {
+  background: #fff; border-radius: 16px; padding: 20px 22px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07); margin-bottom: 16px;
+}
+.lcard h3 { font-family: 'Baloo 2', cursive; font-size: 1.1rem; color: #2c3e50; margin-bottom: 10px; }
+.lcard p { color: #555; line-height: 1.7; margin-bottom: 8px; font-size: 0.96rem; }
+.formula {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  border-left: 4px solid #e74c3c; border-radius: 10px;
+  padding: 11px 16px; margin: 10px 0; font-weight: 700; color: #c0392b; font-size: 0.95rem;
+}
+.example {
+  background: #f0f4ff; border-left: 4px solid #3498db;
+  border-radius: 10px; padding: 9px 14px; margin: 7px 0;
+  color: #2c3e50; font-style: italic; font-size: 0.93rem;
+}
+.tip {
+  background: #fffbea; border-left: 4px solid #f1c40f;
+  border-radius: 10px; padding: 10px 14px; margin: 10px 0; font-size: 0.92rem; color: #555;
+}
+.tip strong { color: #e67e22; }
 
-  /* Summary table */
-  .summary-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
-  .summary-table th {
-    background: linear-gradient(135deg, #f39c12, #e74c3c);
-    color: #fff; padding: 10px 14px; text-align: left; font-family: 'Baloo 2', cursive;
-  }
-  .summary-table td { padding: 10px 14px; border-bottom: 1px solid #eee; }
-  .summary-table tr:nth-child(even) td { background: #fafafa; }
+/* TYPE BADGES pour les subordonnées */
+.type-tag {
+  display: inline-block; border-radius: 10px; padding: 3px 12px;
+  font-size: 0.8rem; font-weight: 700; margin-right: 6px; margin-bottom: 4px;
+}
+.tag-rel { background: #d6eaf8; color: #1a5276; }
+.tag-conj { background: #d5f5e3; color: #1a5c36; }
+.tag-int { background: #f4ecf7; color: #6c3483; }
 
-  /* Quiz styling */
-  .quiz-card {
-    background: #fff; border-radius: 18px; padding: 24px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 20px;
-  }
-  .quiz-card .q-num {
-    font-family: 'Baloo 2', cursive; font-size: 0.85rem; color: #aaa;
-    margin-bottom: 6px;
-  }
-  .quiz-card .q-text {
-    font-size: 1.05rem; color: #2c3e50; font-weight: 700; margin-bottom: 14px;
-    line-height: 1.5;
-  }
-  .quiz-card .q-text .blank {
-    display: inline-block; min-width: 120px; border-bottom: 3px solid #e74c3c;
-    font-style: italic; color: #e74c3c;
-  }
+/* TABLES */
+.gtable { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.92rem; }
+.gtable th { background: linear-gradient(135deg, #f39c12, #e74c3c); color: #fff; padding: 9px 12px; text-align: left; font-family: 'Baloo 2', cursive; }
+.gtable td { padding: 9px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
+.gtable tr:nth-child(even) td { background: #fafafa; }
 
-  .choice-btn {
-    display: block; width: 100%; text-align: left;
-    background: #f8f9fa; border: 2px solid #e0e0e0;
-    border-radius: 12px; padding: 12px 16px; margin-bottom: 8px;
-    font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 600;
-    cursor: pointer; transition: all 0.2s; color: #2c3e50;
-  }
-  .choice-btn:hover:not(:disabled) { border-color: #f39c12; background: #fff8ec; }
-  .choice-btn.correct { background: #d5f5e3; border-color: #2ecc71; color: #1a6b3c; }
-  .choice-btn.wrong { background: #fde8e8; border-color: #e74c3c; color: #922b21; }
-  .choice-btn:disabled { cursor: not-allowed; }
+/* QUIZ */
+.qcard { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); margin-bottom: 18px; }
+.qnum { font-family: 'Baloo 2', cursive; font-size: 0.82rem; color: #aaa; margin-bottom: 5px; }
+.qtxt { font-size: 1rem; color: #2c3e50; font-weight: 700; margin-bottom: 12px; line-height: 1.5; }
+.qtxt .prop { color: #e74c3c; font-style: italic; }
+.choice-btn {
+  display: block; width: 100%; text-align: left;
+  background: #f8f9fa; border: 2px solid #e0e0e0;
+  border-radius: 12px; padding: 10px 15px; margin-bottom: 7px;
+  font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; color: #2c3e50;
+}
+.choice-btn:hover:not(:disabled) { border-color: #f39c12; background: #fff8ec; }
+.choice-btn.correct { background: #d5f5e3; border-color: #2ecc71; color: #1a6b3c; }
+.choice-btn.wrong { background: #fde8e8; border-color: #e74c3c; color: #922b21; }
+.choice-btn:disabled { cursor: not-allowed; }
+.feedback { margin-top: 8px; padding: 9px 13px; border-radius: 10px; font-size: 0.9rem; display: none; }
+.feedback.show { display: block; }
+.feedback.ok { background: #d5f5e3; color: #1a6b3c; font-weight: 700; }
+.feedback.ko { background: #fde8e8; color: #922b21; font-weight: 700; }
 
-  .feedback {
-    margin-top: 10px; padding: 10px 14px; border-radius: 10px;
-    font-weight: 700; font-size: 0.95rem; display: none;
-  }
-  .feedback.show { display: block; }
-  .feedback.ok { background: #d5f5e3; color: #1a6b3c; }
-  .feedback.ko { background: #fde8e8; color: #922b21; }
+/* Fill input */
+.fill-input {
+  border: 2px solid #ddd; border-radius: 10px; padding: 7px 12px;
+  font-family: 'Nunito', sans-serif; font-size: 0.95rem; width: 220px;
+  transition: border 0.2s; outline: none;
+}
+.fill-input:focus { border-color: #f39c12; }
+.fill-input.correct { border-color: #2ecc71; background: #d5f5e3; }
+.fill-input.wrong { border-color: #e74c3c; background: #fde8e8; }
 
-  /* Fill-in-the-blank */
-  .fill-input {
-    border: 2px solid #ddd; border-radius: 10px; padding: 8px 14px;
-    font-family: 'Nunito', sans-serif; font-size: 1rem; width: 200px;
-    transition: border 0.2s; outline: none;
-  }
-  .fill-input:focus { border-color: #f39c12; }
-  .fill-input.correct { border-color: #2ecc71; background: #d5f5e3; }
-  .fill-input.wrong { border-color: #e74c3c; background: #fde8e8; }
+/* SELECT */
+.type-select {
+  border: 2px solid #ddd; border-radius: 10px; padding: 7px 10px;
+  font-family: 'Nunito', sans-serif; font-size: 0.9rem;
+  background: #fff; cursor: pointer; outline: none; transition: border 0.2s;
+}
+.type-select:focus { border-color: #8e44ad; }
+.type-select.correct { border-color: #2ecc71; background: #d5f5e3; }
+.type-select.wrong { border-color: #e74c3c; background: #fde8e8; }
 
-  .check-btn {
-    background: linear-gradient(135deg, #f39c12, #e74c3c);
-    color: #fff; border: none; border-radius: 12px;
-    padding: 10px 22px; font-family: 'Baloo 2', cursive; font-size: 1rem;
-    cursor: pointer; transition: opacity 0.2s; margin-top: 10px;
-  }
-  .check-btn:hover { opacity: 0.88; }
+.check-btn {
+  background: linear-gradient(135deg, #f39c12, #e74c3c);
+  color: #fff; border: none; border-radius: 12px;
+  padding: 9px 20px; font-family: 'Baloo 2', cursive; font-size: 0.95rem;
+  cursor: pointer; transition: opacity 0.2s; margin-top: 8px;
+}
+.check-btn:hover { opacity: 0.88; }
+.reveal-btn {
+  background: none; border: 2px solid #bbb; border-radius: 12px;
+  color: #888; padding: 7px 16px; font-family: 'Nunito', sans-serif;
+  font-size: 0.88rem; cursor: pointer; margin-top: 6px; transition: all 0.2s; margin-left: 6px;
+}
+.reveal-btn:hover { border-color: #f39c12; color: #f39c12; }
 
-  .reveal-btn {
-    background: none; border: 2px solid #bbb; border-radius: 12px;
-    color: #888; padding: 8px 18px; font-family: 'Nunito', sans-serif;
-    font-size: 0.9rem; cursor: pointer; margin-top: 8px; transition: all 0.2s;
-  }
-  .reveal-btn:hover { border-color: #f39c12; color: #f39c12; }
+/* SCORE */
+.score-box {
+  background: linear-gradient(135deg, #f39c12, #e74c3c);
+  color: #fff; border-radius: 20px; padding: 28px;
+  text-align: center; margin-top: 24px; display: none;
+}
+.score-box.show { display: block; }
+.score-box h2 { font-family: 'Baloo 2', cursive; font-size: 1.8rem; }
+.score-box .big { font-family: 'Baloo 2', cursive; font-size: 3.2rem; margin: 8px 0; }
+.rbtn {
+  background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.6);
+  color: #fff; border-radius: 14px; padding: 10px 22px;
+  font-family: 'Baloo 2', cursive; font-size: 0.95rem; cursor: pointer; margin: 6px 4px 0;
+}
+.rbtn:hover { background: rgba(255,255,255,0.4); }
 
-  /* Score */
-  .score-box {
-    background: linear-gradient(135deg, #f39c12, #e74c3c);
-    color: #fff; border-radius: 20px; padding: 28px;
-    text-align: center; margin-top: 30px; display: none;
-  }
-  .score-box.show { display: block; }
-  .score-box h2 { font-family: 'Baloo 2', cursive; font-size: 2rem; margin-bottom: 8px; }
-  .score-box p { font-size: 1.15rem; opacity: 0.92; }
-  .score-box .big-score { font-family: 'Baloo 2', cursive; font-size: 3.5rem; margin: 10px 0; }
+/* MOYEN MNEMOTECHNIQUE */
+.mnemo {
+  background: linear-gradient(135deg, #fff0f6, #fce4ec);
+  border: 2px solid #e91e63; border-radius: 16px; padding: 18px 20px; margin: 16px 0;
+}
+.mnemo h4 { font-family: 'Baloo 2', cursive; color: #c2185b; margin-bottom: 10px; font-size: 1.05rem; }
+.mnemo p { font-size: 0.93rem; color: #444; line-height: 1.6; }
+.mnemo .trick { font-family: 'Baloo 2', cursive; font-size: 1.15rem; color: #c2185b; text-align: center; margin: 10px 0; }
 
-  .reset-btn {
-    background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.6);
-    color: #fff; border-radius: 14px; padding: 10px 26px;
-    font-family: 'Baloo 2', cursive; font-size: 1rem; cursor: pointer;
-    margin-top: 14px; transition: background 0.2s;
-  }
-  .reset-btn:hover { background: rgba(255,255,255,0.4); }
-
-  footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; }
-
-  /* Tabs */
-  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-  .tab-btn {
-    background: #fff; border: 2px solid #e0e0e0; border-radius: 20px;
-    padding: 8px 20px; font-family: 'Baloo 2', cursive; font-size: 0.95rem;
-    cursor: pointer; color: #888; transition: all 0.2s;
-  }
-  .tab-btn.active {
-    background: linear-gradient(135deg, #f39c12, #e74c3c);
-    color: #fff; border-color: transparent;
-  }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-
-  .badge {
-    display: inline-block; background: linear-gradient(135deg,#f39c12,#e74c3c);
-    color:#fff; border-radius:20px; padding:2px 12px; font-size:0.8rem;
-    font-weight:700; margin-left:8px;
-  }
+footer { text-align: center; padding: 30px; color: #aaa; font-size: 0.85rem; }
 </style>
 </head>
 <body>
-
-<header style="position:relative;">
+<header>
   <a class="back-btn" href="../index.html">← Accueil</a>
-  <div style="font-size:2rem;margin-bottom:8px;">✍️ 📝 💬</div>
-  <h1>Le Conditionnel</h1>
-  <p>Français · 4e – Mode, formation et emplois</p>
+  <div style="font-size:2rem;margin-bottom:6px;">✍️ 📝</div>
+  <h1>Conditionnel &amp; Subordonnées</h1>
+  <p>Français · 4e · Révisions + préparation évaluation</p>
 </header>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="sw('cond')">📖 Conditionnel</button>
+  <button class="tab-btn" onclick="sw('sub')">🔗 Subordonnées</button>
+  <button class="tab-btn" onclick="sw('ex-cond')">🟠 Exo – Conditionnel</button>
+  <button class="tab-btn" onclick="sw('ex-comp')">🟣 Exo – Complétives</button>
+  <button class="tab-btn" onclick="sw('ex-id')">🎯 Exo – Identifier</button>
+</div>
 
 <div class="container">
 
-  <!-- Progress -->
-  <div style="margin:20px 0 6px;display:flex;justify-content:space-between;font-size:0.85rem;color:#aaa;">
-    <span>Progression</span>
-    <span id="progress-label">0 / 20 réponses</span>
-  </div>
-  <div class="progress-bar-wrap">
-    <div class="progress-bar" id="progress-bar" style="width:0%"></div>
-  </div>
+<!-- ==================== COURS CONDITIONNEL ==================== -->
+<div class="tab-panel active" id="tab-cond">
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('cours')">📖 Cours</button>
-    <button class="tab-btn" onclick="switchTab('ex1')">🟠 Exercice 1 – Présent</button>
-    <button class="tab-btn" onclick="switchTab('ex2')">🔴 Exercice 2 – Passé</button>
+  <div class="stitle">📖 Le Conditionnel — Rappel</div>
+  <div class="lcard">
+    <h3>⏱️ 2 temps : présent et passé</h3>
+    <div class="formula">Conditionnel présent = radical du futur + terminaisons de l'imparfait<br>-ais / -ais / -ait / -ions / -iez / -aient</div>
+    <div class="example">Futur : je chanterai → Conditionnel : je chanterais, tu chanterais, il chanterait…</div>
+    <div class="formula">Conditionnel passé = auxiliaire (avoir/être) au conditionnel présent + participe passé</div>
+    <div class="example">j'aurais chanté · nous serions partis</div>
   </div>
 
-  <!-- ===== COURS ===== -->
-  <div class="tab-panel active" id="tab-cours">
-
-    <div class="section-title">📖 C'est quoi le conditionnel ?</div>
-    <div class="lesson-card">
-      <h3>🌟 Définition</h3>
-      <p>Le conditionnel est un <strong>mode</strong> (comme l'indicatif ou l'impératif) qui exprime des actions <strong>incertaines, imaginaires, polies</strong> ou <strong>non accomplies</strong>.</p>
-      <p>Il possède <strong>deux temps</strong> :</p>
-      <ul style="margin-left:20px;margin-top:6px;color:#555;line-height:2;">
-        <li>🟠 Le <strong>conditionnel présent</strong></li>
-        <li>🔴 Le <strong>conditionnel passé</strong></li>
-      </ul>
-    </div>
-
-    <div class="section-title">🛠️ Comment se forme-t-il ?</div>
-
-    <div class="lesson-card">
-      <h3>🟠 Conditionnel présent</h3>
-      <div class="formula">Radical du futur + terminaisons de l'imparfait<br>-ais / -ais / -ait / -ions / -iez / -aient</div>
-      <div class="example">
-        Futur → je chanterai<br>
-        Conditionnel présent → je chanterais, tu chanterais, il chanterait…
-      </div>
-      <p>💡 <strong>Astuce :</strong> Tu hésites entre futur et conditionnel à la 1ère personne ? Change de personne ! Si ça finit en <em>-ait</em>, c'est le conditionnel !</p>
-    </div>
-
-    <div class="lesson-card">
-      <h3>🔴 Conditionnel passé</h3>
-      <div class="formula">Auxiliaire (avoir/être) au conditionnel présent + participe passé</div>
-      <div class="example">j'aurais chanté, tu aurais chanté, il aurait chanté…</div>
-      <div class="example">je serais parti(e), tu serais parti(e)…</div>
-    </div>
-
-    <div class="section-title">💡 Quand l'utilise-t-on ?</div>
-
-    <div class="lesson-card">
-      <h3>🟠 Conditionnel présent – 3 emplois</h3>
-      <table class="summary-table">
-        <tr>
-          <th>Emploi</th>
-          <th>Exemple</th>
-        </tr>
-        <tr>
-          <td>Fait incertain / imaginaire</td>
-          <td><em>S'il travaillait, il réussirait.</em></td>
-        </tr>
-        <tr>
-          <td>Souhait / demande polie</td>
-          <td><em>J'aimerais vous aider.</em></td>
-        </tr>
-        <tr>
-          <td>Futur dans le passé</td>
-          <td><em>Je pensais qu'il viendrait.</em></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="lesson-card">
-      <h3>🔴 Conditionnel passé – 2 emplois</h3>
-      <table class="summary-table">
-        <tr>
-          <th>Emploi</th>
-          <th>Exemple</th>
-        </tr>
-        <tr>
-          <td>Demande polie / regret</td>
-          <td><em>J'aurais tant aimé venir hier.</em></td>
-        </tr>
-        <tr>
-          <td>Fait irréel dans le passé</td>
-          <td><em>S'il avait travaillé, il aurait réussi.</em></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="lesson-card" style="background:linear-gradient(135deg,#fff8ec,#fff3e0);border:2px solid #f39c12;">
-      <h3>📋 Résumé en une phrase</h3>
-      <p style="font-size:1.05rem;">Le conditionnel est un mode à deux temps : le <strong>présent</strong> (radical du futur + terminaisons de l'imparfait) et le <strong>passé</strong> (auxiliaire au conditionnel + participe passé). Il exprime l'incertain, l'imaginaire, la politesse, les souhaits et les faits irréels.</p>
-    </div>
-
-    <div style="text-align:center;margin-top:24px;">
-      <button class="check-btn" onclick="switchTab('ex1')" style="font-size:1.1rem;padding:14px 36px;">
-        C'est parti ! → Exercice 1 🚀
-      </button>
-    </div>
+  <div class="mnemo">
+    <h4>🧠 Astuce pour ne pas confondre futur et conditionnel</h4>
+    <p>À la 1ère personne du singulier, <strong>je chanterai</strong> (futur) et <strong>je chanterais</strong> (conditionnel) se ressemblent beaucoup à l'oral.</p>
+    <div class="trick">✨ Change de personne : "il chanter<strong>ait</strong>" → conditionnel / "il chanter<strong>a</strong>" → futur</div>
+    <p>Si la 3ème personne se termine en <strong>-ait</strong> → c'est le conditionnel. Si elle se termine en <strong>-a</strong> → c'est le futur.</p>
   </div>
 
-  <!-- ===== EXERCICE 1 : Conditionnel présent ===== -->
-  <div class="tab-panel" id="tab-ex1">
-    <div class="section-title">🟠 Exercice 1 – Conditionnel présent</div>
-    <p style="color:#666;margin-bottom:20px;">Pour chaque phrase, choisis la bonne forme du conditionnel présent entre les deux propositions.</p>
-
-    <div id="ex1-container"></div>
-
-    <div style="text-align:center;margin-top:10px;">
-      <button class="check-btn" id="ex1-submit" onclick="submitEx1()">Voir mon score 🎯</button>
-    </div>
-    <div class="score-box" id="ex1-score">
-      <h2>Exercice 1 terminé !</h2>
-      <div class="big-score" id="ex1-score-val">–</div>
-      <p id="ex1-score-msg"></p>
-      <button class="reset-btn" onclick="resetEx1()">🔄 Recommencer</button>
-      <button class="reset-btn" onclick="switchTab('ex2')" style="margin-left:10px;">Exercice 2 →</button>
-    </div>
+  <div class="lcard">
+    <h3>💡 Emplois du conditionnel présent</h3>
+    <table class="gtable">
+      <tr><th>Emploi</th><th>Exemple</th></tr>
+      <tr><td>Fait incertain / imaginaire</td><td><em>S'il travaillait, il réussirait.</em></td></tr>
+      <tr><td>Souhait / demande polie</td><td><em>J'aimerais vous aider.</em></td></tr>
+      <tr><td>Futur dans le passé</td><td><em>Je pensais qu'il viendrait.</em></td></tr>
+    </table>
   </div>
 
-  <!-- ===== EXERCICE 2 : Conditionnel passé ===== -->
-  <div class="tab-panel" id="tab-ex2">
-    <div class="section-title">🔴 Exercice 2 – Conditionnel passé</div>
-    <p style="color:#666;margin-bottom:20px;">Conjugue les verbes entre parenthèses au <strong>conditionnel passé</strong> et tape ta réponse.</p>
-
-    <div id="ex2-container"></div>
-
-    <div style="text-align:center;margin-top:10px;">
-      <button class="check-btn" id="ex2-submit" onclick="submitEx2()">Voir mon score 🎯</button>
-    </div>
-    <div class="score-box" id="ex2-score">
-      <h2>Exercice 2 terminé !</h2>
-      <div class="big-score" id="ex2-score-val">–</div>
-      <p id="ex2-score-msg"></p>
-      <button class="reset-btn" onclick="resetEx2()">🔄 Recommencer</button>
-    </div>
+  <div class="lcard">
+    <h3>💡 Emplois du conditionnel passé</h3>
+    <table class="gtable">
+      <tr><th>Emploi</th><th>Exemple</th></tr>
+      <tr><td>Regret / demande polie</td><td><em>J'aurais tant aimé venir.</em></td></tr>
+      <tr><td>Fait irréel dans le passé</td><td><em>S'il avait travaillé, il aurait réussi.</em></td></tr>
+    </table>
   </div>
-
 </div>
 
+<!-- ==================== COURS SUBORDONNÉES ==================== -->
+<div class="tab-panel" id="tab-sub">
+
+  <div class="stitle">🔗 Les Propositions Subordonnées</div>
+
+  <div class="tip"><strong>💡 C'est quoi une subordonnée ?</strong> C'est une proposition qui dépend d'une autre (la principale). Elle est introduite par un mot subordonnant et ne peut pas exister seule.</div>
+
+  <div class="mnemo">
+    <h4>🧠 Technique simple pour identifier une subordonnée</h4>
+    <p><strong>Étape 1</strong> — Repère le verbe de la subordonnée (souvent au subjonctif ou à l'indicatif)<br>
+    <strong>Étape 2</strong> — Demande-toi : <em>par quel mot est-elle introduite ?</em><br>
+    <strong>Étape 3</strong> — Demande-toi : <em>quelle est sa fonction dans la phrase ?</em></p>
+    <div class="trick">Qui ? → relative · Que/Si/… + verbe conjugué → complétive · Question indirecte → interrogative indirecte</div>
+  </div>
+
+  <!-- RELATIVE -->
+  <div class="stitle">🔵 1. La Relative</div>
+  <div class="lcard">
+    <h3>🔵 Subordonnée relative</h3>
+    <p><strong>Introduite par :</strong> <em>qui, que, dont, où, lequel, laquelle…</em> (pronoms relatifs)</p>
+    <p><strong>Rôle :</strong> Elle complète un nom (son antécédent). Elle fonctionne comme une <strong>expansion du nom</strong>.</p>
+    <p><strong>Fonction :</strong> Épithète ou apposition du nom antécédent.</p>
+    <div class="example">Le livre <strong>que tu m'as prêté</strong> est excellent. → "que tu m'as prêté" complète "livre"</div>
+    <div class="example">La ville <strong>où il est né</strong> est magnifique. → "où il est né" complète "ville"</div>
+    <div class="tip"><strong>Astuce :</strong> La relative peut souvent être remplacée par un adjectif. <em>"que j'aime"</em> → <em>"aimé"</em>. Si ça marche, c'est une relative !</div>
+  </div>
+
+  <!-- CONJONCTIVE -->
+  <div class="stitle">🟢 2. La Complétive conjonctive en "que"</div>
+  <div class="lcard">
+    <h3>🟢 Subordonnée complétive conjonctive</h3>
+    <p><strong>Introduite par :</strong> la conjonction <em>que</em> (ou <em>à ce que, de ce que</em>)</p>
+    <p><strong>Rôle :</strong> Elle complète le verbe de la principale. Elle est un argument du verbe.</p>
+    <p><strong>Fonctions possibles :</strong></p>
+    <table class="gtable">
+      <tr><th>Fonction</th><th>Contexte</th><th>Exemple</th></tr>
+      <tr><td><span class="type-tag tag-conj">COD</span></td><td>Verbe d'opinion, de volonté, de sentiment (savoir, croire, penser, vouloir…)</td><td><em>Je <strong>sais</strong> qu'il viendra.</em></td></tr>
+      <tr><td><span class="type-tag tag-conj">Sujet réel</span></td><td>Verbe impersonnel (il faut, il est indispensable…)</td><td><em>Il est indispensable <strong>que tu travailles</strong>.</em></td></tr>
+      <tr><td><span class="type-tag tag-conj">Sujet</span></td><td>La subordonnée est en tête de phrase</td><td><em><strong>Que Jean vienne</strong> ne fait aucun doute.</em></td></tr>
+    </table>
+    <div class="tip"><strong>Astuce :</strong> Remplace la subordonnée par "cela". <em>Je sais cela.</em> → COD ✓. Si "cela" est sujet → sujet réel ou sujet.</div>
+  </div>
+
+  <!-- INTERROGATIVE INDIRECTE -->
+  <div class="stitle">🟣 3. L'Interrogative indirecte</div>
+  <div class="lcard">
+    <h3>🟣 Subordonnée interrogative indirecte</h3>
+    <p><strong>Introduite par :</strong> <em>si, ce que, ce qui, comment, pourquoi, quand, où, quel(le)…</em></p>
+    <p><strong>Rôle :</strong> Elle exprime une question posée de façon indirecte, sans point d'interrogation.</p>
+    <p><strong>Fonction :</strong> Toujours <strong>COD</strong> d'un verbe de demande ou de réflexion (demander, savoir, ignorer, se demander, chercher à savoir…)</p>
+    <div class="example">Je me demande <strong>s'il viendra</strong>. (= Est-ce qu'il viendra ?)</div>
+    <div class="example">Je ne sais pas <strong>quelle est la solution</strong>. (= Quelle est la solution ?)</div>
+    <div class="example">La mère se demande <strong>quand son fils arrivera</strong>.</div>
+    <div class="tip"><strong>Astuce :</strong> Si tu peux transformer en question directe avec "?", c'est une interrogative indirecte. <br><em>Je me demande <strong>si</strong> tu viens</em> → <em>Viens-tu ?</em> ✓</div>
+  </div>
+
+  <!-- TABLEAU COMPARATIF -->
+  <div class="stitle">📊 Tableau comparatif</div>
+  <table class="gtable">
+    <tr><th>Type</th><th>Mot introducteur</th><th>Fonction</th><th>Test rapide</th></tr>
+    <tr>
+      <td><span class="type-tag tag-rel">Relative</span></td>
+      <td>qui, que, dont, où, lequel…</td>
+      <td>Épithète du nom</td>
+      <td>Complète un <strong>nom</strong></td>
+    </tr>
+    <tr>
+      <td><span class="type-tag tag-conj">Complétive COD</span></td>
+      <td>que</td>
+      <td>COD du verbe principal</td>
+      <td>Remplaçable par "cela"</td>
+    </tr>
+    <tr>
+      <td><span class="type-tag tag-conj">Complétive sujet</span></td>
+      <td>que</td>
+      <td>Sujet du verbe principal</td>
+      <td>En tête de phrase</td>
+    </tr>
+    <tr>
+      <td><span class="type-tag tag-conj">Complétive sujet réel</span></td>
+      <td>que</td>
+      <td>Sujet réel (verbe impers.)</td>
+      <td>Après "il est… que"</td>
+    </tr>
+    <tr>
+      <td><span class="type-tag tag-int">Interrogative ind.</span></td>
+      <td>si, comment, quand, où, quel…</td>
+      <td>COD du verbe de demande</td>
+      <td>Transformable en question "?"</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ==================== EXERCICE CONDITIONNEL ==================== -->
+<div class="tab-panel" id="tab-ex-cond">
+  <div class="stitle">🟠 Exercice – Conditionnel présent</div>
+  <p style="color:#666;margin-bottom:18px">Choisis la bonne forme entre les deux propositions.</p>
+  <div id="ex-cond-container"></div>
+  <div style="text-align:center;margin-top:12px">
+    <button class="check-btn" onclick="submitExCond()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="ex-cond-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="ex-cond-val">–</div>
+    <p id="ex-cond-msg"></p>
+    <button class="rbtn" onclick="resetExCond()">🔄 Recommencer</button>
+    <button class="rbtn" onclick="sw('ex-comp')">Exercice suivant →</button>
+  </div>
+</div>
+
+<!-- ==================== EXERCICE COMPLETIVES ==================== -->
+<div class="tab-panel" id="tab-ex-comp">
+  <div class="stitle">🟣 Exercice – Identifier le type de complétive</div>
+  <p style="color:#666;margin-bottom:4px">Pour chaque phrase, identifie le type de la proposition soulignée.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+    <span class="type-tag tag-conj" style="padding:5px 12px">complétive conjonctive COD</span>
+    <span class="type-tag tag-conj" style="padding:5px 12px">complétive conjonctive sujet</span>
+    <span class="type-tag tag-conj" style="padding:5px 12px">complétive conjonctive sujet réel</span>
+    <span class="type-tag tag-int" style="padding:5px 12px">complétive interrogative indirecte COD</span>
+  </div>
+  <div id="ex-comp-container"></div>
+  <div style="text-align:center;margin-top:12px">
+    <button class="check-btn" onclick="submitExComp()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="ex-comp-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="ex-comp-val">–</div>
+    <p id="ex-comp-msg"></p>
+    <button class="rbtn" onclick="resetExComp()">🔄 Recommencer</button>
+    <button class="rbtn" onclick="sw('ex-id')">Exercice suivant →</button>
+  </div>
+</div>
+
+<!-- ==================== EXERCICE IDENTIFIER ==================== -->
+<div class="tab-panel" id="tab-ex-id">
+  <div class="stitle">🎯 Exercice – Identifier parmi les 3 types</div>
+  <p style="color:#666;margin-bottom:18px">Relative, complétive ou interrogative indirecte ? Choisis le bon type pour la proposition en orange.</p>
+  <div id="ex-id-container"></div>
+  <div style="text-align:center;margin-top:12px">
+    <button class="check-btn" onclick="submitExId()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="ex-id-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="ex-id-val">–</div>
+    <p id="ex-id-msg"></p>
+    <button class="rbtn" onclick="resetExId()">🔄 Recommencer</button>
+  </div>
+</div>
+
+</div><!-- /container -->
 <footer>Créé avec ❤️ pour Noah</footer>
 
 <script>
-// ---- TAB SYSTEM ----
-function switchTab(id) {
+// TABS
+function sw(id) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b => {
-    if (b.getAttribute('onclick').includes(id)) b.classList.add('active');
-  });
+  event.target.classList.add('active');
 }
 
-// ---- PROGRESS ----
-let totalAnswered = 0;
-const TOTAL = 20;
-function updateProgress() {
-  const pct = Math.round((totalAnswered / TOTAL) * 100);
-  document.getElementById('progress-bar').style.width = pct + '%';
-  document.getElementById('progress-label').textContent = totalAnswered + ' / ' + TOTAL + ' réponses';
-}
-
-// ---- EXERCISE 1 DATA ----
-// Each item: text (with ___ placeholder), option A, option B, correct (0=A,1=B)
-const ex1Data = [
-  { text: "Il ___ bien devenir une star.", a: "aimerait", b: "aimera", correct: 0 },
-  { text: "Si elles se rencontraient, elles ___ longtemps.", a: "bavarderont", b: "bavarderaient", correct: 1 },
-  { text: "Si j'avais un chien, je le ___ chaque jour.", a: "promènerais", b: "promènerai", correct: 0 },
-  { text: "Si nous étions plus attentifs, nous ___ plus vite nos devoirs.", a: "finirions", b: "finirons", correct: 0 },
-  { text: "Si vous gagniez de l'argent, je parie que vous le ___ trop vite.", a: "dépenserez", b: "dépenseriez", correct: 1 },
-  { text: "Si tu aimais les haricots verts, tu en ___ souvent.", a: "mangeras", b: "mangerais", correct: 1 },
-  { text: "Si mes élèves faisaient du bruit, j'___ pour obtenir le silence.", a: "insisterais", b: "insisterai", correct: 0 },
-  { text: "___ -vous me passer le sel s'il vous plaît ?", a: "Pourrez", b: "Pourriez", correct: 1 },
-  { text: "Il ___ de moi si j'étais plus souvent avec lui.", a: "se souviendrait", b: "se souviendra", correct: 0 },
-  { text: "___ -je avoir le silence s'il vous plaît ?", a: "Pourrai", b: "Pourrais", correct: 1 },
+// ============================================================
+// EXERCICE CONDITIONNEL — QCM choisir entre 2 formes
+// ============================================================
+const condData = [
+  { text: "Il ___ bien devenir une star.", a:"aimerait", b:"aimera", ans:0 },
+  { text: "Si elles se rencontraient au supermarché, elles ___ longtemps.", a:"bavarderont", b:"bavarderaient", ans:1 },
+  { text: "Si j'avais un chien, je le ___ chaque jour.", a:"promènerais", b:"promènerai", ans:0 },
+  { text: "Si nous étions plus attentifs en cours, nous ___ plus vite nos devoirs.", a:"finirions", b:"finirons", ans:0 },
+  { text: "Si vous gagniez de l'argent, je parie que vous le ___ trop vite.", a:"dépenserez", b:"dépenseriez", ans:1 },
+  { text: "Si tu aimais les haricots verts, tu en ___ souvent.", a:"mangeras", b:"mangerais", ans:1 },
+  { text: "Si mes élèves faisaient du bruit, j'___ pour obtenir le silence.", a:"insisterais", b:"insisterai", ans:0 },
+  { text: "___ -vous me passer le sel s'il vous plaît ?", a:"Pourrez", b:"Pourriez", ans:1 },
+  { text: "Il ___ de moi si j'étais plus souvent avec lui.", a:"se souviendrait", b:"se souviendra", ans:0 },
+  { text: "___ -je avoir le silence s'il vous plaît ?", a:"Pourrai", b:"Pourrais", ans:1 },
+  { text: "Elle ___ te voir si elle n'était pas si occupée.", a:"aimerait", b:"aimera", ans:0 },
+  { text: "Si vous preniez le train, vous ___ plus tôt.", a:"arriviez", b:"arriveriez", ans:1 },
 ];
+let condState = Array(condData.length).fill(null), condScore = 0, condDone = false;
 
-let ex1State = Array(ex1Data.length).fill(null); // null | 'correct' | 'wrong'
-let ex1Score = 0;
-let ex1Done = false;
-
-function buildEx1() {
-  const c = document.getElementById('ex1-container');
-  c.innerHTML = '';
-  ex1Data.forEach((item, i) => {
-    const div = document.createElement('div');
-    div.className = 'quiz-card';
-    div.innerHTML = `
-      <div class="q-num">Question ${i+1} / ${ex1Data.length}</div>
-      <div class="q-text">${item.text.replace('___', '<span class="blank">___</span>')}</div>
-      <button class="choice-btn" id="ex1-btn-${i}-0" onclick="answerEx1(${i},0)">${item.a}</button>
-      <button class="choice-btn" id="ex1-btn-${i}-1" onclick="answerEx1(${i},1)">${item.b}</button>
-      <div class="feedback" id="ex1-fb-${i}"></div>
-    `;
-    c.appendChild(div);
+function buildExCond() {
+  const c = document.getElementById('ex-cond-container'); c.innerHTML = '';
+  condData.forEach((item, i) => {
+    const d = document.createElement('div'); d.className = 'qcard';
+    d.innerHTML = `<div class="qnum">Question ${i+1} / ${condData.length}</div>
+      <div class="qtxt">${item.text.replace('___','<span class="prop">___</span>')}</div>
+      <button class="choice-btn" id="cb-${i}-0" onclick="ansC(${i},0)">${item.a}</button>
+      <button class="choice-btn" id="cb-${i}-1" onclick="ansC(${i},1)">${item.b}</button>
+      <div class="feedback" id="cfb-${i}"></div>`;
+    c.appendChild(d);
   });
 }
-
-function answerEx1(qi, choice) {
-  if (ex1State[qi] !== null) return;
-  const item = ex1Data[qi];
-  const isCorrect = choice === item.correct;
-  ex1State[qi] = isCorrect ? 'correct' : 'wrong';
-  if (isCorrect) ex1Score++;
-
-  // Buttons
-  [0, 1].forEach(j => {
-    const btn = document.getElementById(`ex1-btn-${qi}-${j}`);
-    btn.disabled = true;
-    if (j === item.correct) btn.classList.add('correct');
-    else if (j === choice && !isCorrect) btn.classList.add('wrong');
+function ansC(qi, ch) {
+  if (condState[qi] !== null) return;
+  const ok = ch === condData[qi].ans;
+  condState[qi] = ok;
+  if (ok) condScore++;
+  [0,1].forEach(j => {
+    const b = document.getElementById(`cb-${qi}-${j}`); b.disabled = true;
+    if (j === condData[qi].ans) b.classList.add('correct');
+    else if (j === ch && !ok) b.classList.add('wrong');
   });
-
-  // Feedback
-  const fb = document.getElementById(`ex1-fb-${qi}`);
-  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'ko');
-  fb.textContent = isCorrect ? '✅ Bravo !' : `❌ La bonne réponse était : ${item.correct === 0 ? item.a : item.b}`;
-
-  totalAnswered++;
-  updateProgress();
+  const fb = document.getElementById(`cfb-${qi}`);
+  fb.className = 'feedback show ' + (ok?'ok':'ko');
+  fb.textContent = ok ? '✅ Bravo !' : `❌ La bonne réponse : ${condData[qi].ans===0?condData[qi].a:condData[qi].b}`;
 }
-
-function submitEx1() {
-  if (ex1Done) return;
-  ex1Done = true;
-  // Auto-reveal unanswered
-  ex1Data.forEach((item, i) => {
-    if (ex1State[i] === null) {
-      [0,1].forEach(j => {
-        const btn = document.getElementById(`ex1-btn-${i}-${j}`);
-        btn.disabled = true;
-        if (j === item.correct) btn.classList.add('correct');
-      });
-    }
-  });
-  const total = ex1Data.length;
-  const pct = Math.round((ex1Score / total) * 100);
-  const scoreBox = document.getElementById('ex1-score');
-  document.getElementById('ex1-score-val').textContent = ex1Score + ' / ' + total;
-  document.getElementById('ex1-score-msg').textContent = pct >= 80 ? '🎉 Excellent ! Tu maîtrises le conditionnel présent !' : pct >= 60 ? '👍 Bien joué, mais relis le cours pour les erreurs !' : '💪 Entraîne-toi encore, tu vas y arriver !';
-  scoreBox.classList.add('show');
+function submitExCond() {
+  if (condDone) return; condDone = true;
+  condData.forEach((item,i) => { if (condState[i]===null) { [0,1].forEach(j=>{const b=document.getElementById(`cb-${i}-${j}`);b.disabled=true;if(j===item.ans)b.classList.add('correct');}); } });
+  const pct = Math.round(condScore/condData.length*100);
+  document.getElementById('ex-cond-val').textContent = condScore + ' / ' + condData.length;
+  document.getElementById('ex-cond-msg').textContent = pct>=80?'🎉 Excellent !':pct>=60?'👍 Bien, continue !':'💪 Relis le cours et réessaie.';
+  document.getElementById('ex-cond-score').classList.add('show');
 }
+function resetExCond() { condScore=0; condDone=false; condState=Array(condData.length).fill(null); document.getElementById('ex-cond-score').classList.remove('show'); buildExCond(); }
 
-function resetEx1() {
-  ex1Score = 0; ex1Done = false;
-  ex1State = Array(ex1Data.length).fill(null);
-  totalAnswered = Math.max(0, totalAnswered - ex1Data.length);
-  updateProgress();
-  document.getElementById('ex1-score').classList.remove('show');
-  buildEx1();
-}
-
-// ---- EXERCISE 2 DATA ----
-// conditionnel passé fill-in
-// answers: array of accepted forms (lowercase, trimmed)
-const ex2Data = [
-  { text: "Si Marie était partie plus tôt, elle ___ (arriver) à l'heure.", answers: ["serait arrivée", "serait arrivé"] },
-  { text: "D'après ses dires, il ___ (trouver) un poste intéressant à la clinique de Dijon.", answers: ["aurait trouvé"] },
-  { text: "Il ___ (pouvoir) faire l'effort de venir nous voir dimanche dernier.", answers: ["aurait pu"] },
-  { text: "Nous ___ (préférer) faire notre stage dans une pharmacie.", answers: ["aurions préféré"] },
-  { text: "Si elle était allée aux États-Unis, elle ___ (aller) à New York.", answers: ["serait allée", "serait allé"] },
-  { text: "Si Magalie avait eu le temps, elle ___ (venir) avec plaisir.", answers: ["serait venue", "serait venu"] },
-  { text: "Si tu avais appris ta leçon, tu ___ (savoir) faire ton exercice.", answers: ["aurais su"] },
-  { text: "Tu ___ (pouvoir) me prévenir plus tôt !", answers: ["aurais pu"] },
-  { text: "Si vous aviez pris le temps, vous ___ (boucler) vos valises depuis longtemps.", answers: ["auriez bouclé"] },
-  { text: "Camille ___ (accepter) de t'aider si tu lui avais demandé plus poliment.", answers: ["aurait accepté"] },
+// ============================================================
+// EXERCICE COMPLETIVES — choisir le type (corrigé du devoir)
+// ============================================================
+const compTypes = [
+  'complétive conjonctive COD',
+  'complétive conjonctive sujet',
+  'complétive conjonctive sujet réel',
+  'complétive interrogative indirecte COD',
+  'Je ne sais pas'
 ];
+const compData = [
+  { phrase:"Christian promet", prop:"qu'il fera des efforts à l'école", ans:"complétive conjonctive COD",
+    exp:"Verbe de parole (promettre) + que → COD. Test : 'Christian promet cela.' ✓" },
+  { phrase:"Paul se demande", prop:"s'il arrivera à temps", ans:"complétive interrogative indirecte COD",
+    exp:"'se demander' + 'si' = question indirecte. Test : 'Arrivera-t-il à temps ?' ✓" },
+  { phrase:"Je sais", prop:"qu'il a pris le train de 8 heures", ans:"complétive conjonctive COD",
+    exp:"Verbe de connaissance (savoir) + que → COD. Test : 'Je sais cela.' ✓" },
+  { phrase:"Il est indispensable", prop:"que tu fasses des efforts pour t'améliorer", ans:"complétive conjonctive sujet réel",
+    exp:"Verbe impersonnel 'il est indispensable' → la subordonnée est le sujet réel du verbe impersonnel." },
+  { phrase:"", prop:"Que Jean vienne demain", suite:"ne fait aucun doute.", ans:"complétive conjonctive sujet",
+    exp:"La subordonnée est en tête de phrase et c'est elle qui fait l'action → sujet du verbe 'fait'." },
+  { phrase:"Je me demande", prop:"quelle est la solution", ans:"complétive interrogative indirecte COD",
+    exp:"'se demander' + mot interrogatif → interrogative indirecte. Test : 'Quelle est la solution ?' ✓" },
+  { phrase:"Il fut décidé", prop:"qu'on partirait à 20 heures", ans:"complétive conjonctive sujet réel",
+    exp:"Verbe impersonnel passif (il fut décidé) → sujet réel. C'est 'qu'on partirait' qui est décidé." },
+  { phrase:"Nous savons", prop:"que travailler est indispensable pour réussir", ans:"complétive conjonctive COD",
+    exp:"Verbe de connaissance (savoir) + que → COD. Test : 'Nous savons cela.' ✓" },
+  { phrase:"", prop:"Que les enfants soient rentrés pour minuit", suite:"est indispensable.", ans:"complétive conjonctive sujet",
+    exp:"La subordonnée est en tête de phrase → elle est sujet de 'est indispensable'." },
+  { phrase:"La mère attend et se demande", prop:"quand son fils arrivera", ans:"complétive interrogative indirecte COD",
+    exp:"'se demander' + 'quand' = question indirecte. Test : 'Quand son fils arrivera-t-il ?' ✓" },
+];
+let compState = Array(compData.length).fill(null), compScore = 0, compDone = false;
 
-let ex2State = Array(ex2Data.length).fill(null);
-let ex2Score = 0;
-let ex2Done = false;
-
-function buildEx2() {
-  const c = document.getElementById('ex2-container');
-  c.innerHTML = '';
-  ex2Data.forEach((item, i) => {
-    const div = document.createElement('div');
-    div.className = 'quiz-card';
-    const hint = item.answers[0]; // for reveal
-    div.innerHTML = `
-      <div class="q-num">Question ${i+1} / ${ex2Data.length}</div>
-      <div class="q-text" style="margin-bottom:12px;">${item.text.replace('___', `<input class="fill-input" id="ex2-inp-${i}" placeholder="ta réponse…" autocomplete="off">`)}</div>
-      <button class="check-btn" id="ex2-check-${i}" onclick="checkEx2(${i})" style="font-size:0.9rem;padding:8px 18px;">Vérifier</button>
-      <button class="reveal-btn" id="ex2-reveal-${i}" onclick="revealEx2(${i})">Voir la réponse</button>
-      <div class="feedback" id="ex2-fb-${i}"></div>
-    `;
-    c.appendChild(div);
+function buildExComp() {
+  const c = document.getElementById('ex-comp-container'); c.innerHTML = '';
+  compData.forEach((item, i) => {
+    const d = document.createElement('div'); d.className = 'qcard';
+    const phrase = item.suite
+      ? `<span class="prop">${item.prop}</span> ${item.suite}`
+      : `${item.phrase} <span class="prop">${item.prop}</span>.`;
+    const opts = compTypes.map(t =>
+      `<option value="${t}">${t}</option>`
+    ).join('');
+    d.innerHTML = `<div class="qnum">Phrase ${i+1} / ${compData.length}</div>
+      <div class="qtxt" style="font-weight:normal;font-size:.96rem;margin-bottom:12px">${phrase}</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-weight:700;color:#555;font-size:.92rem">Type :</span>
+        <select class="type-select" id="cs-${i}"><option value="">-- choisis --</option>${opts}</select>
+        <button class="check-btn" style="padding:7px 16px;font-size:.88rem" onclick="checkComp(${i})">✓ Vérifier</button>
+        <button class="reveal-btn" onclick="revealComp(${i})">Voir réponse</button>
+      </div>
+      <div class="feedback" id="cfb2-${i}"></div>`;
+    c.appendChild(d);
   });
 }
-
-function normalize(s) {
-  return s.trim().toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/['']/g, "'");
+function checkComp(i) {
+  if (compState[i] !== null) return;
+  const sel = document.getElementById(`cs-${i}`);
+  const val = sel.value;
+  if (!val) return;
+  const ok = val === compData[i].ans;
+  compState[i] = ok;
+  if (ok) compScore++;
+  sel.disabled = true; sel.classList.add(ok?'correct':'wrong');
+  const fb = document.getElementById(`cfb2-${i}`);
+  fb.className = 'feedback show ' + (ok?'ok':'ko');
+  fb.innerHTML = (ok?'✅ ':'❌ ') + compData[i].exp;
 }
-
-function checkEx2(i) {
-  if (ex2State[i] !== null) return;
-  const inp = document.getElementById(`ex2-inp-${i}`);
-  const val = normalize(inp.value);
-  const isCorrect = ex2Data[i].answers.some(a => normalize(a) === val);
-  ex2State[i] = isCorrect ? 'correct' : 'wrong';
-  if (isCorrect) ex2Score++;
-
-  inp.classList.add(isCorrect ? 'correct' : 'wrong');
-  inp.disabled = true;
-  document.getElementById(`ex2-check-${i}`).disabled = true;
-  document.getElementById(`ex2-reveal-${i}`).disabled = true;
-
-  const fb = document.getElementById(`ex2-fb-${i}`);
-  fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'ko');
-  fb.textContent = isCorrect ? '✅ Bravo !' : `❌ La bonne réponse était : ${ex2Data[i].answers[0]}`;
-
-  totalAnswered++;
-  updateProgress();
-}
-
-function revealEx2(i) {
-  if (ex2State[i] !== null) return;
-  ex2State[i] = 'revealed';
-
-  const inp = document.getElementById(`ex2-inp-${i}`);
-  inp.value = ex2Data[i].answers[0];
-  inp.disabled = true;
-  inp.classList.add('correct');
-  document.getElementById(`ex2-check-${i}`).disabled = true;
-  document.getElementById(`ex2-reveal-${i}`).disabled = true;
-
-  const fb = document.getElementById(`ex2-fb-${i}`);
+function revealComp(i) {
+  if (compState[i] !== null) return;
+  compState[i] = false;
+  const sel = document.getElementById(`cs-${i}`);
+  sel.value = compData[i].ans; sel.disabled = true; sel.classList.add('correct');
+  const fb = document.getElementById(`cfb2-${i}`);
   fb.className = 'feedback show ok';
-  fb.textContent = '👁️ Réponse affichée : ' + ex2Data[i].answers[0];
+  fb.innerHTML = '👁️ Réponse : <strong>' + compData[i].ans + '</strong> — ' + compData[i].exp;
 }
-
-function submitEx2() {
-  if (ex2Done) return;
-  ex2Done = true;
-  ex2Data.forEach((item, i) => { if (ex2State[i] === null) revealEx2(i); });
-  const total = ex2Data.length;
-  const pct = Math.round((ex2Score / total) * 100);
-  const scoreBox = document.getElementById('ex2-score');
-  document.getElementById('ex2-score-val').textContent = ex2Score + ' / ' + total;
-  document.getElementById('ex2-score-msg').textContent = pct >= 80 ? '🎉 Parfait ! Le conditionnel passé n\'a plus de secrets pour toi !' : pct >= 60 ? '👍 Pas mal ! Relis les formes que tu n\'as pas trouvées.' : '💪 Continue à t\'entraîner, c\'est un temps compliqué !';
-  scoreBox.classList.add('show');
+function submitExComp() {
+  if (compDone) return; compDone = true;
+  compData.forEach((_,i) => { if (compState[i]===null) revealComp(i); });
+  const pct = Math.round(compScore/compData.length*100);
+  document.getElementById('ex-comp-val').textContent = compScore + ' / ' + compData.length;
+  document.getElementById('ex-comp-msg').textContent = pct>=80?'🎉 Excellent ! Tu maîtrises les complétives !':pct>=60?'👍 Bien ! Relis les explications des erreurs.':'💪 Lis bien les astuces dans le cours et recommence.';
+  document.getElementById('ex-comp-score').classList.add('show');
 }
+function resetExComp() { compScore=0; compDone=false; compState=Array(compData.length).fill(null); document.getElementById('ex-comp-score').classList.remove('show'); buildExComp(); }
 
-function resetEx2() {
-  ex2Score = 0; ex2Done = false;
-  ex2State = Array(ex2Data.length).fill(null);
-  document.getElementById('ex2-score').classList.remove('show');
-  buildEx2();
+// ============================================================
+// EXERCICE IDENTIFIER — relative / complétive / int. indirecte
+// ============================================================
+const idTypes = ['subordonnée relative','subordonnée complétive','subordonnée interrogative indirecte'];
+const idData = [
+  { av:"Je connais la fille", prop:"qui chante si bien", ap:".", ans:"subordonnée relative",
+    exp:"Introduite par 'qui' → pronom relatif → complète le nom 'fille'." },
+  { av:"Il dit", prop:"qu'il reviendra demain", ap:".", ans:"subordonnée complétive",
+    exp:"Introduite par 'que' + COD de 'dit' → complétive conjonctive COD." },
+  { av:"Elle ne sait pas", prop:"comment tu as réussi cet examen", ap:".", ans:"subordonnée interrogative indirecte",
+    exp:"'savoir' + 'comment' → question indirecte (Comment as-tu réussi ?)." },
+  { av:"Le film", prop:"que nous avons regardé hier", ap:"était passionnant.", ans:"subordonnée relative",
+    exp:"Introduite par 'que' pronom relatif → complète le nom 'film'. Test : 'le film regardé hier' ✓" },
+  { av:"Il est important", prop:"que tu sois à l'heure", ap:".", ans:"subordonnée complétive",
+    exp:"Verbe impersonnel + que → complétive conjonctive sujet réel." },
+  { av:"Je me demande", prop:"où ils sont partis en vacances", ap:".", ans:"subordonnée interrogative indirecte",
+    exp:"'se demander' + 'où' → interrogative indirecte (Où sont-ils partis ?)." },
+  { av:"La maison", prop:"dont je t'ai parlé", ap:"est à vendre.", ans:"subordonnée relative",
+    exp:"Introduite par 'dont' → pronom relatif → complète le nom 'maison'." },
+  { av:"Je pense", prop:"qu'il a raison", ap:".", ans:"subordonnée complétive",
+    exp:"Verbe d'opinion (penser) + que → complétive conjonctive COD." },
+  { av:"Personne ne sait", prop:"pourquoi il est parti si vite", ap:".", ans:"subordonnée interrogative indirecte",
+    exp:"'savoir' + 'pourquoi' → interrogative indirecte (Pourquoi est-il parti ?)." },
+  { av:"", prop:"Qu'il soit absent", ap:"m'inquiète.", ans:"subordonnée complétive",
+    exp:"Subordonnée en tête de phrase → complétive conjonctive sujet du verbe 'm'inquiète'." },
+  { av:"Les élèves", prop:"qui n'ont pas révisé", ap:"ont eu de mauvaises notes.", ans:"subordonnée relative",
+    exp:"Introduite par 'qui' → pronom relatif → complète 'élèves'." },
+  { av:"Il cherche à savoir", prop:"si tu seras là demain", ap:".", ans:"subordonnée interrogative indirecte",
+    exp:"'chercher à savoir' + 'si' → interrogative indirecte (Seras-tu là demain ?)." },
+];
+let idState = Array(idData.length).fill(null), idScore = 0, idDone = false;
+
+function buildExId() {
+  const c = document.getElementById('ex-id-container'); c.innerHTML = '';
+  idData.forEach((item, i) => {
+    const d = document.createElement('div'); d.className = 'qcard';
+    const phrase = item.av
+      ? `${item.av} <span class="prop">${item.prop}</span>${item.ap}`
+      : `<span class="prop">${item.prop}</span>${item.ap}`;
+    d.innerHTML = `<div class="qnum">Phrase ${i+1} / ${idData.length}</div>
+      <div class="qtxt" style="font-weight:normal;font-size:.96rem;margin-bottom:12px">${phrase}</div>
+      ${idTypes.map(t => `<button class="choice-btn" id="ib-${i}-${t.replace(/ /g,'_')}" onclick="ansId(${i},'${t}')">${t}</button>`).join('')}
+      <div class="feedback" id="ifb-${i}"></div>`;
+    c.appendChild(d);
+  });
 }
+function ansId(qi, ch) {
+  if (idState[qi] !== null) return;
+  const ok = ch === idData[qi].ans;
+  idState[qi] = ok;
+  if (ok) idScore++;
+  idTypes.forEach(t => {
+    const b = document.getElementById(`ib-${qi}-${t.replace(/ /g,'_')}`);
+    b.disabled = true;
+    if (t === idData[qi].ans) b.classList.add('correct');
+    else if (t === ch && !ok) b.classList.add('wrong');
+  });
+  const fb = document.getElementById(`ifb-${qi}`);
+  fb.className = 'feedback show ' + (ok?'ok':'ko');
+  fb.innerHTML = (ok?'✅ ':'❌ ') + idData[qi].exp;
+}
+function submitExId() {
+  if (idDone) return; idDone = true;
+  idData.forEach((item,i)=>{ if(idState[i]===null){ idTypes.forEach(t=>{const b=document.getElementById(`ib-${i}-${t.replace(/ /g,'_')}`);b.disabled=true;if(t===item.ans)b.classList.add('correct');}); } });
+  const pct = Math.round(idScore/idData.length*100);
+  document.getElementById('ex-id-val').textContent = idScore + ' / ' + idData.length;
+  document.getElementById('ex-id-msg').textContent = pct>=80?'🏆 Parfait ! Tu es prêt pour l\'éval !':pct>=60?'👍 Bien ! Revois les cas où tu as hésité.':'📚 Relis le cours et utilise les astuces, tu vas y arriver !';
+  document.getElementById('ex-id-score').classList.add('show');
+}
+function resetExId() { idScore=0; idDone=false; idState=Array(idData.length).fill(null); document.getElementById('ex-id-score').classList.remove('show'); buildExId(); }
 
-// ---- INIT ----
-buildEx1();
-buildEx2();
-updateProgress();
+// INIT
+buildExCond();
+buildExComp();
+buildExId();
 </script>
 </body>
 </html>
