@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVT 4e – Système sanguin & approvisionnement des organes</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rouge:#dc2626; --rouge-light:#fee2e2; --rouge-dark:#991b1b;
+    --rose:#e11d48; --rose-light:#ffe4e6;
+    --orange:#ea580c; --orange-light:#ffedd5; --orange-dark:#9a3412;
+    --amber:#d97706; --amber-light:#fef3c7;
+    --vert:#16a34a; --vert-light:#dcfce7; --vert-dark:#14532d;
+    --bleu:#2563eb; --bleu-light:#dbeafe; --bleu-dark:#1e40af;
+    --violet:#7c3aed; --violet-light:#ede9fe;
+    --cyan:#0891b2; --cyan-light:#cffafe; --cyan-dark:#0e7490;
+    --slate:#475569; --slate-light:#f1f5f9;
+    --bg:#fff5f5; --card:#fff;
+    --text:#1a0a0a; --muted:#6b7280;
+    --shadow:0 4px 20px rgba(220,38,38,0.10);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  header{background:linear-gradient(135deg,#7f1d1d 0%,#dc2626 45%,#e11d48 100%);padding:24px 20px 16px;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;top:-40px;left:-40px;width:200px;height:200px;background:rgba(255,255,255,0.04);border-radius:50%;}
+  header::after{content:'';position:absolute;bottom:-50px;right:-30px;width:180px;height:180px;background:rgba(255,255,255,0.05);border-radius:50%;}
+  .home-btn{position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:none;color:#fff;border-radius:50px;padding:8px 16px;font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:6px;transition:all 0.2s;z-index:10;}
+  .home-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-1px);}
+  header .emoji-row{font-size:1.8rem;margin-bottom:6px;position:relative;}
+  header h1{font-family:'Baloo 2',cursive;font-size:1.85rem;font-weight:800;color:#fff;text-shadow:2px 2px 10px rgba(0,0,0,0.2);position:relative;}
+  header p{color:rgba(255,255,255,0.88);font-size:0.98rem;margin-top:4px;position:relative;}
+
+  nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:14px 16px 0;position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:3px solid #fecaca;}
+  .nav-btn{padding:9px 18px;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+  .nav-btn.active,.nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.16);}
+  .nav-btn[data-tab="cours"]{background:linear-gradient(135deg,var(--rouge),var(--rouge-dark));color:#fff;}
+  .nav-btn[data-tab="synthese"]{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;}
+  .nav-btn[data-tab="qcm"]{background:linear-gradient(135deg,var(--bleu),var(--bleu-dark));color:#fff;}
+  .nav-btn[data-tab="exercices"]{background:linear-gradient(135deg,var(--violet),#5b21b6);color:#fff;}
+  .nav-btn[data-tab="glossaire"]{background:linear-gradient(135deg,var(--cyan),var(--cyan-dark));color:#fff;}
+
+  section{display:none;padding:22px 16px;max-width:920px;margin:0 auto;}
+  section.active{display:block;animation:fadeIn 0.35s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  .card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);border-left:6px solid;transition:transform 0.2s;}
+  .card:hover{transform:translateY(-2px);}
+  .card.rouge{border-color:var(--rouge);}
+  .card.orange{border-color:var(--orange);}
+  .card.bleu{border-color:var(--bleu);}
+  .card.vert{border-color:var(--vert);}
+  .card.violet{border-color:var(--violet);}
+  .card.amber{border-color:var(--amber);}
+  .card.cyan{border-color:var(--cyan);}
+  .card-title{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .card.rouge .card-title{color:var(--rouge-dark);}
+  .card.orange .card-title{color:var(--orange-dark);}
+  .card.bleu .card-title{color:var(--bleu-dark);}
+  .card.vert .card-title{color:var(--vert-dark);}
+  .card.violet .card-title{color:var(--violet);}
+  .card.amber .card-title{color:var(--amber);}
+  .card.cyan .card-title{color:var(--cyan-dark);}
+
+  .badge{display:inline-block;padding:3px 12px;border-radius:50px;font-size:0.78rem;font-weight:700;margin-bottom:10px;}
+  .badge.rouge{background:var(--rouge-light);color:var(--rouge-dark);}
+  .badge.orange{background:var(--orange-light);color:var(--orange-dark);}
+  .badge.bleu{background:var(--bleu-light);color:var(--bleu-dark);}
+  .badge.vert{background:var(--vert-light);color:var(--vert-dark);}
+  .badge.amber{background:var(--amber-light);color:var(--amber);}
+  .badge.cyan{background:var(--cyan-light);color:var(--cyan-dark);}
+
+  p,li{line-height:1.75;font-size:0.97rem;}
+  ul{padding-left:20px;} li{margin-bottom:6px;}
+
+  .highlight-box{border-radius:12px;padding:13px 16px;margin:12px 0;font-weight:600;}
+  .hb-rouge{background:var(--rouge-light);border-left:4px solid var(--rouge);}
+  .hb-orange{background:var(--orange-light);border-left:4px solid var(--orange);}
+  .hb-bleu{background:var(--bleu-light);border-left:4px solid var(--bleu);}
+  .hb-vert{background:var(--vert-light);border-left:4px solid var(--vert);}
+  .hb-amber{background:var(--amber-light);border-left:4px solid var(--amber);}
+  .hb-violet{background:var(--violet-light);border-left:4px solid var(--violet);}
+  .hb-cyan{background:var(--cyan-light);border-left:4px solid var(--cyan);}
+
+  .formula{text-align:center;font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:800;background:linear-gradient(135deg,#7f1d1d,#dc2626);color:#fff;border-radius:14px;padding:14px;margin:14px 0;box-shadow:0 4px 15px rgba(220,38,38,0.25);}
+
+  .section-title{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--rouge-dark);}
+  .section-title span{font-size:1.6rem;}
+
+  /* TRAJET */
+  .trajet{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:14px 0;justify-content:center;}
+  .trajet-step{background:var(--rouge-light);border:2px solid var(--rouge);border-radius:12px;padding:10px 14px;text-align:center;font-family:'Baloo 2',cursive;font-size:0.88rem;font-weight:700;color:var(--rouge-dark);min-width:90px;}
+  .trajet-arrow{font-size:1.4rem;color:var(--rouge);flex-shrink:0;}
+
+  /* VAISSEAUX GRID */
+  .vaisseau-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0;}
+  .vaisseau-card{border-radius:16px;padding:18px;text-align:center;transition:transform 0.2s;cursor:default;}
+  .vaisseau-card:hover{transform:translateY(-4px);}
+  .vaisseau-card .vc-icon{font-size:2.4rem;margin-bottom:10px;}
+  .vaisseau-card .vc-name{font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:800;margin-bottom:6px;}
+  .vaisseau-card .vc-desc{font-size:0.85rem;line-height:1.5;}
+  .vc-artere{background:linear-gradient(135deg,#fee2e2,#fecaca);border:2px solid var(--rouge);}
+  .vc-artere .vc-name{color:var(--rouge-dark);}
+  .vc-veine{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:2px solid var(--bleu);}
+  .vc-veine .vc-name{color:var(--bleu-dark);}
+  .vc-capillaire{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border:2px solid var(--violet);}
+  .vc-capillaire .vc-name{color:var(--violet);}
+
+  /* TABLEAU */
+  .data-table{width:100%;border-collapse:collapse;margin:14px 0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .data-table th{background:linear-gradient(135deg,var(--rouge),var(--rouge-dark));color:#fff;padding:10px 14px;text-align:left;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.9rem;}
+  .data-table td{padding:9px 14px;border-bottom:1px solid #fee2e2;font-size:0.88rem;}
+  .data-table tr:last-child td{border-bottom:none;}
+  .data-table tr:nth-child(even) td{background:#fff5f5;}
+
+  /* SYNTH TABLE */
+  .synth-table{width:100%;border-collapse:collapse;margin:14px 0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .synth-table th{background:linear-gradient(135deg,var(--rouge),var(--orange));color:#fff;padding:12px 14px;text-align:left;font-family:'Baloo 2',cursive;font-weight:700;font-size:0.95rem;}
+  .synth-table td{padding:11px 14px;border-bottom:1px solid #fee2e2;font-size:0.92rem;}
+  .synth-table tr:last-child td{border-bottom:none;}
+  .synth-table tr:nth-child(even) td{background:#fff5f5;}
+
+  /* TOOLTIP */
+  .mk{border-bottom:2px dashed var(--rouge);color:var(--rouge-dark);font-weight:700;position:relative;cursor:help;}
+  .mk::after{content:attr(data-def);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a0a0a;color:#fff;border-radius:12px;padding:10px 14px;font-size:0.85rem;font-weight:500;line-height:1.5;width:250px;white-space:normal;text-align:left;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.2s ease;box-shadow:0 8px 30px rgba(0,0,0,0.3);}
+  .mk::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a0a0a;opacity:0;transition:opacity 0.2s ease;z-index:9999;}
+  .mk:hover::after,.mk:hover::before{opacity:1;}
+
+  /* QCM */
+  .qcm-progress-bar{height:8px;background:#fecaca;border-radius:10px;margin:10px 0 18px;overflow:hidden;}
+  .qcm-progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--rouge),var(--orange));transition:width 0.4s;}
+  .question-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;border-top:4px solid var(--rouge);}
+  .question-num{font-size:0.85rem;font-weight:700;color:var(--muted);margin-bottom:8px;}
+  .question-text{font-size:1.05rem;font-weight:700;margin-bottom:16px;line-height:1.5;}
+  .options{display:flex;flex-direction:column;gap:10px;}
+  .opt-btn{background:#fff5f5;border:2px solid #fecaca;border-radius:12px;padding:12px 16px;text-align:left;font-family:'Nunito',sans-serif;font-size:0.95rem;cursor:pointer;transition:all 0.2s;font-weight:600;}
+  .opt-btn:hover:not(:disabled){background:var(--rouge-light);border-color:var(--rouge);}
+  .opt-btn.correct{background:#dcfce7;border-color:var(--vert);color:var(--vert-dark);}
+  .opt-btn.wrong{background:var(--rouge-light);border-color:var(--rouge);color:var(--rouge);}
+  .feedback{margin-top:12px;padding:10px 14px;border-radius:10px;font-weight:700;font-size:0.92rem;}
+  .feedback.ok{background:#dcfce7;color:var(--vert-dark);}
+  .feedback.ko{background:var(--rouge-light);color:var(--rouge);}
+  .qcm-score{text-align:center;padding:30px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);}
+  .score-num{font-family:'Baloo 2',cursive;font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--rouge),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .btn-retry{background:linear-gradient(135deg,var(--rouge),var(--orange));color:#fff;border:none;border-radius:50px;padding:12px 30px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:700;cursor:pointer;margin-top:16px;box-shadow:0 4px 15px rgba(220,38,38,0.3);}
+
+  /* EXERCICES */
+  .ex-card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:20px;border-top:4px solid;}
+  .ex-card.ex-vf{border-color:var(--orange);}
+  .ex-card.ex-trou{border-color:var(--bleu);}
+  .ex-card.ex-assoc{border-color:var(--violet);}
+  .ex-card.ex-ordre{border-color:var(--rouge);}
+  .ex-title{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .vf-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+  .vf-statement{flex:1;font-size:0.95rem;line-height:1.5;}
+  .vf-btns{display:flex;gap:6px;flex-shrink:0;}
+  .vf-btn{border:none;border-radius:8px;padding:6px 14px;font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .vf-btn.v{background:var(--vert-light);color:var(--vert-dark);}
+  .vf-btn.f{background:var(--rouge-light);color:var(--rouge);}
+  .vf-btn.v:hover{background:var(--vert);color:#fff;}
+  .vf-btn.f:hover{background:var(--rouge);color:#fff;}
+  .vf-btn.correct{background:var(--vert)!important;color:#fff!important;box-shadow:0 0 0 3px rgba(22,163,74,0.3);}
+  .vf-btn.incorrect{background:var(--rouge)!important;color:#fff!important;}
+  .trou-input{border:2px solid #fecaca;border-radius:8px;padding:6px 12px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;width:140px;text-align:center;outline:none;transition:border-color 0.2s;}
+  .trou-input:focus{border-color:var(--rouge);}
+  .trou-input.ok{border-color:var(--vert);background:var(--vert-light);}
+  .trou-input.ko{border-color:var(--rouge);background:var(--rouge-light);}
+  .check-btn{background:linear-gradient(135deg,var(--rouge),var(--orange));color:#fff;border:none;border-radius:50px;padding:10px 24px;font-family:'Baloo 2',cursive;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:14px;box-shadow:0 4px 12px rgba(220,38,38,0.25);}
+  .check-btn:hover{transform:translateY(-1px);}
+
+  /* DRAG */
+  .drag-pool-title{font-family:'Baloo 2',cursive;font-size:0.85rem;font-weight:700;color:var(--muted);margin-bottom:10px;}
+  .drag-container{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .drag-pool{flex:1;min-width:160px;background:#fff5f5;border-radius:12px;padding:14px;min-height:80px;border:2px dashed #fecaca;}
+  .drop-zone{flex:1;min-width:160px;}
+  .drop-item{display:flex;align-items:center;gap:8px;background:#fff5f5;border-radius:10px;padding:10px 12px;margin-bottom:8px;border:2px solid #fecaca;}
+  .drop-slot{flex:1;min-height:32px;border:2px dashed #fecaca;border-radius:8px;padding:4px 8px;display:flex;align-items:center;font-size:0.85rem;}
+  .drop-slot.filled{border-color:var(--rouge);background:var(--rouge-light);}
+  .drag-chip{background:var(--rouge-light);border:2px solid var(--rouge);color:var(--rouge-dark);border-radius:8px;padding:5px 12px;font-size:0.85rem;font-weight:700;cursor:grab;user-select:none;display:inline-block;margin:4px;}
+  .drag-chip:active{cursor:grabbing;opacity:0.7;}
+
+  /* GLOSSAIRE */
+  .glossaire-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+  .glos-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border-top:4px solid var(--rouge);transition:transform 0.2s;}
+  .glos-card:hover{transform:translateY(-2px);}
+  .glos-term{font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;color:var(--rouge-dark);margin-bottom:8px;}
+  .glos-def{font-size:0.92rem;line-height:1.6;}
+  .glos-ex{font-size:0.82rem;color:var(--muted);margin-top:6px;font-style:italic;}
+
+  /* SCHEMA REIN */
+  .schema-box{background:linear-gradient(135deg,#fff5f5,#fee2e2);border:2px solid var(--rouge);border-radius:16px;padding:20px;margin:14px 0;text-align:center;}
+  .schema-box svg{max-width:400px;width:100%;}
+  .schema-legende{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;}
+  .leg-item{display:flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;}
+  .leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+
+  /* CIRCULATION SCHEMA */
+  .circ-schema{background:linear-gradient(135deg,#fff5f5,#fce7f3);border:2px solid var(--rose);border-radius:16px;padding:20px;margin:14px 0;text-align:center;}
+  .circ-schema svg{max-width:380px;width:100%;}
+
+  @media(max-width:600px){
+    header h1{font-size:1.45rem;}
+    .vaisseau-grid{grid-template-columns:1fr;}
+    .trajet{flex-direction:column;align-items:center;}
+    .trajet-arrow{transform:rotate(90deg);}
+    .drag-container{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="home-btn" href="../index.html">← Accueil</a>
+  <div class="emoji-row">❤️ 🩸 🫀</div>
+  <h1>Système sanguin & approvisionnement</h1>
+  <p>SVT · 4e · Le corps humain et la santé</p>
+</header>
+
+<nav>
+  <button class="nav-btn active" data-tab="cours">📖 Cours</button>
+  <button class="nav-btn" data-tab="synthese">📋 Synthèse</button>
+  <button class="nav-btn" data-tab="qcm">🎯 QCM</button>
+  <button class="nav-btn" data-tab="exercices">✏️ Exercices</button>
+  <button class="nav-btn" data-tab="glossaire">📚 Glossaire</button>
+</nav>
+
+<!-- ===== COURS ===== -->
+<section id="cours" class="active">
+
+  <div class="section-title"><span>❓</span> Problématique du chapitre</div>
+
+  <div class="card rouge">
+    <div class="badge rouge">Introduction</div>
+    <div class="card-title">🔍 Comment les organes sont-ils approvisionnés ?</div>
+    <p>Les cellules de nos organes ont besoin en permanence de :</p>
+    <div class="highlight-box hb-rouge" style="margin-top:10px;">
+      <ul>
+        <li>🍬 Des <strong>nutriments</strong> (glucose, acides aminés…) → viennent de la digestion</li>
+        <li>💨 Du <strong>dioxygène (O2)</strong> → vient des poumons</li>
+        <li>🗑️ Leurs <strong>déchets doivent être évacués</strong> → CO2, urée…</li>
+      </ul>
+    </div>
+    <div class="formula">Le sang est le moyen de transport de tout l'organisme !</div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🩸</span> La composition du sang</div>
+
+  <div class="card rouge">
+    <div class="badge rouge">Le sang</div>
+    <div class="card-title">🧪 Qu'y a-t-il dans le sang ?</div>
+    <p>Le sang est un liquide rouge qui circule dans tout le corps. Il est composé de :</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0;">
+      <div style="background:var(--rouge-light);border:2px solid var(--rouge);border-radius:14px;padding:14px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:6px;">🔴</div>
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--rouge-dark);margin-bottom:6px;">Globules rouges</div>
+        <div style="font-size:0.82rem;">Transportent le <strong>dioxygène (O2)</strong> grâce à l'hémoglobine</div>
+      </div>
+      <div style="background:#fff7ed;border:2px solid var(--orange);border-radius:14px;padding:14px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:6px;">⚪</div>
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--orange-dark);margin-bottom:6px;">Globules blancs</div>
+        <div style="font-size:0.82rem;">Défendent le corps contre les <strong>microbes</strong> (immunité)</div>
+      </div>
+      <div style="background:#fffbeb;border:2px solid var(--amber);border-radius:14px;padding:14px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:6px;">🟡</div>
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--amber);margin-bottom:6px;">Plaquettes</div>
+        <div style="font-size:0.82rem;">Permettent la <strong>coagulation</strong> du sang en cas de blessure</div>
+      </div>
+      <div style="background:var(--bleu-light);border:2px solid var(--bleu);border-radius:14px;padding:14px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:6px;">💧</div>
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--bleu-dark);margin-bottom:6px;">Plasma</div>
+        <div style="font-size:0.82rem;">Liquide qui <strong>transporte</strong> les nutriments, les déchets, les hormones…</div>
+      </div>
+    </div>
+    <div class="highlight-box hb-rouge">
+      🔑 Le sang transporte <strong>à la fois</strong> les nutriments, l'O2, les déchets (CO2, urée) et bien d'autres substances.
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🫀</span> Le cœur, moteur de la circulation</div>
+
+  <div class="card orange">
+    <div class="badge orange">Le cœur</div>
+    <div class="card-title">💓 Comment fonctionne le cœur ?</div>
+    <p>Le <span class="mk" data-def="Muscle creux situé entre les deux poumons, légèrement à gauche. Il bat en moyenne 60 à 80 fois par minute au repos et propulse le sang dans tout le corps.">cœur</span> est un muscle creux qui bat en permanence. Il joue le rôle d'une <strong>pompe</strong> qui propulse le sang dans tout le corps.</p>
+    <div class="highlight-box hb-orange" style="margin-top:12px;">
+      ❤️ <strong>Chiffres à connaître :</strong>
+      <ul style="margin-top:8px;">
+        <li>Environ <strong>60 à 80 battements par minute</strong> au repos</li>
+        <li>Jusqu'à <strong>200 battements par minute</strong> à l'effort</li>
+        <li>Le cœur pompe environ <strong>5 litres de sang par minute</strong> au repos</li>
+        <li>En une vie, le cœur bat environ <strong>3 milliards de fois</strong> !</li>
+      </ul>
+    </div>
+    <div class="highlight-box hb-amber" style="margin-top:8px;">
+      ⚠️ Le cœur est divisé en <strong>deux parties séparées</strong> (gauche et droite). Chaque partie reçoit et envoie du sang dans un circuit différent.
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🔄</span> La double circulation</div>
+
+  <div class="card rouge">
+    <div class="badge rouge">Circulation</div>
+    <div class="card-title">🔄 Pourquoi deux circuits ?</div>
+
+    <p>Le cœur est divisé en <strong>deux moitiés séparées</strong> : le cœur gauche et le cœur droit. Chaque moitié pompe le sang dans un circuit différent.</p>
+
+    <div class="highlight-box hb-bleu" style="margin:10px 0;">
+      🫁 <strong>Petite circulation</strong> = circuit court cœur ↔ poumons.<br>
+      Le sang va aux poumons pour <strong>larguer le CO2 et prendre de l'O2</strong>, puis revient au cœur gauche.
+    </div>
+    <div class="highlight-box hb-rouge" style="margin:10px 0 16px;">
+      💪 <strong>Grande circulation</strong> = circuit long cœur ↔ tous les organes.<br>
+      Le sang livre l'<strong>O2 et les nutriments</strong> à chaque organe et récupère le CO2 produit.
+    </div>
+
+    <!-- SCHÉMA fidèle au dessin manuscrit : Poumons en haut, Cœur au milieu, Organes en bas -->
+    <div style="background:linear-gradient(135deg,#fff5f5,#fce7f3);border:2px solid #e11d48;border-radius:16px;padding:24px 20px;overflow-x:auto;">
+      <div style="max-width:420px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0;">
+
+        <!-- POUMONS (haut, centré) -->
+        <div style="background:#dbeafe;border:2.5px solid #2563eb;border-radius:12px;padding:12px 32px;text-align:center;width:220px;">
+          <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;color:#1e40af;">🫁 POUMONS</div>
+          <div style="font-size:0.82rem;color:#1e40af;margin-top:2px;">échange CO2 → O2</div>
+        </div>
+
+        <!-- FLÈCHES entre Poumons et Cœur -->
+        <div style="display:flex;width:220px;justify-content:space-around;padding:4px 0;">
+
+          <!-- Gauche : Poumons → Cœur gauche (sang chargé O2, flèche vers le bas) -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
+            <div style="font-size:0.78rem;font-weight:700;color:#991b1b;text-align:center;background:#fee2e2;border:1.5px solid #dc2626;border-radius:6px;padding:3px 6px;line-height:1.3;">sang chargé<br>en O2</div>
+            <div style="width:3px;height:38px;background:#dc2626;position:relative;">
+              <div style="position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:12px solid #dc2626;"></div>
+            </div>
+          </div>
+
+          <!-- Droite : Cœur droit → Poumons (sang chargé CO2, flèche vers le haut) -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
+            <div style="font-size:0.78rem;font-weight:700;color:#1e40af;text-align:center;background:#dbeafe;border:1.5px solid #2563eb;border-radius:6px;padding:3px 6px;line-height:1.3;">sang chargé<br>en CO2</div>
+            <div style="width:3px;height:38px;background:#1d4ed8;position:relative;">
+              <div style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:12px solid #1d4ed8;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CŒUR (centre, divisé gauche/droit) -->
+        <div style="display:flex;border:2.5px solid #dc2626;border-radius:12px;overflow:hidden;width:220px;">
+          <div style="flex:1;background:#fee2e2;padding:12px 8px;text-align:center;border-right:2px dashed #dc2626;">
+            <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;color:#991b1b;">Cœur<br>gauche</div>
+            <div style="font-size:0.72rem;color:#991b1b;margin-top:3px;">reçoit O2<br>envoie aux organes</div>
+          </div>
+          <div style="flex:1;background:#fee2e2;padding:12px 8px;text-align:center;">
+            <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;color:#991b1b;">Cœur<br>droit</div>
+            <div style="font-size:0.72rem;color:#991b1b;margin-top:3px;">reçoit CO2<br>envoie aux poumons</div>
+          </div>
+        </div>
+
+        <!-- FLÈCHES entre Cœur et Organes -->
+        <div style="display:flex;width:220px;justify-content:space-around;padding:4px 0;">
+
+          <!-- Gauche : Cœur gauche → Organes (sang chargé O2 + nutriments, flèche vers le bas) -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
+            <div style="width:3px;height:38px;background:#dc2626;position:relative;">
+              <div style="position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:12px solid #dc2626;"></div>
+            </div>
+            <div style="font-size:0.78rem;font-weight:700;color:#991b1b;text-align:center;background:#fee2e2;border:1.5px solid #dc2626;border-radius:6px;padding:3px 6px;line-height:1.3;">sang chargé O2<br>+ nutriments</div>
+          </div>
+
+          <!-- Droite : Organes → Cœur droit (sang chargé CO2, flèche vers le haut) -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
+            <div style="width:3px;height:38px;background:#1d4ed8;position:relative;">
+              <div style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:12px solid #1d4ed8;"></div>
+            </div>
+            <div style="font-size:0.78rem;font-weight:700;color:#1e40af;text-align:center;background:#dbeafe;border:1.5px solid #2563eb;border-radius:6px;padding:3px 6px;line-height:1.3;">sang chargé<br>en CO2</div>
+          </div>
+        </div>
+
+        <!-- ORGANES (bas, centré) -->
+        <div style="background:#dcfce7;border:2.5px solid #16a34a;border-radius:12px;padding:12px 32px;text-align:center;width:220px;">
+          <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;color:#14532d;">💪 ORGANES</div>
+          <div style="font-size:0.82rem;color:#14532d;margin-top:2px;">utilisent O2 + nutriments<br>rejettent CO2</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="highlight-box hb-rouge" style="margin-top:14px;">
+      🔑 <strong>Résumé :</strong> Cœur gauche → sang O2 → organes → sang CO2 → cœur droit → poumons → sang O2 → cœur gauche… et ainsi de suite en permanence.
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🚇</span> Les vaisseaux sanguins</div>
+
+  <div class="card bleu">
+    <div class="badge bleu">Vaisseaux</div>
+    <div class="card-title">🚇 Les trois types de vaisseaux</div>
+    <p>Le sang circule dans un réseau de <strong>vaisseaux sanguins</strong>. Il en existe trois types :</p>
+    <div class="vaisseau-grid">
+      <div class="vaisseau-card vc-artere">
+        <div class="vc-icon">🔴</div>
+        <div class="vc-name">Les artères</div>
+        <div class="vc-desc">Partent du cœur, transportent le sang <strong>vers les organes</strong>. Parois épaisses et élastiques pour résister à la pression. Transportent le sang riche en O2 (sauf l'artère pulmonaire).</div>
+      </div>
+      <div class="vaisseau-card vc-veine">
+        <div class="vc-icon">🔵</div>
+        <div class="vc-name">Les veines</div>
+        <div class="vc-desc">Ramènent le sang <strong>vers le cœur</strong>. Parois plus fines que les artères. Transportent le sang pauvre en O2 (sauf les veines pulmonaires). Contiennent des valvules pour éviter le reflux.</div>
+      </div>
+      <div class="vaisseau-card vc-capillaire">
+        <div class="vc-icon">🟣</div>
+        <div class="vc-name">Les capillaires</div>
+        <div class="vc-desc">Très fins vaisseaux qui relient artères et veines. C'est là que se font les <strong>échanges</strong> entre le sang et les cellules (O2, nutriments, déchets).</div>
+      </div>
+    </div>
+    <div class="highlight-box hb-bleu">
+      📌 Moyen mémo : <strong>A</strong>rtère = <strong>A</strong>rt du cœur (part du cœur) · <strong>V</strong>eine = <strong>V</strong>ient vers le cœur
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🔬</span> Les échanges dans les capillaires</div>
+
+  <div class="card violet">
+    <div class="badge violet">Capillaires</div>
+    <div class="card-title">🔬 Comment l'O2 passe-t-il du sang aux cellules ?</div>
+    <p>L'artère amène le sang riche en O2 depuis le cœur. Le sang traverse ensuite les <strong>capillaires</strong> — des vaisseaux si fins que les échanges se font avec les cellules voisines. Le sang repart appauvri par la veine vers le cœur.</p>
+
+    <div style="background:#faf5ff;border:2px solid var(--violet);border-radius:14px;padding:20px 12px;margin:14px 0;overflow-x:auto;">
+      <svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;display:block;margin:0 auto;">
+
+        <!-- ===== LABELS HAUT ===== -->
+        <!-- Gauche : Débit depuis le cœur -->
+        <text x="90" y="22" text-anchor="middle" font-family="Baloo 2, cursive" font-size="13" font-weight="800" fill="#dc2626">Débit sanguin</text>
+        <text x="90" y="38" text-anchor="middle" font-family="Baloo 2, cursive" font-size="13" font-weight="800" fill="#dc2626">depuis le cœur</text>
+        <!-- Droite : Débit vers le cœur -->
+        <text x="410" y="22" text-anchor="middle" font-family="Baloo 2, cursive" font-size="13" font-weight="800" fill="#1d4ed8">Débit sanguin</text>
+        <text x="410" y="38" text-anchor="middle" font-family="Baloo 2, cursive" font-size="13" font-weight="800" fill="#1d4ed8">vers le cœur</text>
+
+        <!-- ===== FLÈCHE ENTRANT ARTÈRE (rouge, vers le bas) ===== -->
+        <polygon points="75,44 105,44 90,58" fill="#b91c1c"/>
+
+        <!-- ===== CYLINDRE ARTÈRE (rouge, gauche) ===== -->
+        <!-- Ellipse haut -->
+        <ellipse cx="90" cy="68" rx="34" ry="12" fill="#dc2626" stroke="#b91c1c" stroke-width="1.5"/>
+        <!-- Corps cylindre -->
+        <rect x="56" y="68" width="68" height="160" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5"/>
+        <!-- Ellipse bas -->
+        <ellipse cx="90" cy="228" rx="34" ry="12" fill="#dc2626" stroke="#b91c1c" stroke-width="1.5"/>
+        <!-- Reflet lumineux -->
+        <rect x="62" y="75" width="14" height="140" rx="7" fill="rgba(255,255,255,0.25)"/>
+        <!-- Label ARTÈRE -->
+        <text x="90" y="268" text-anchor="middle" font-family="Baloo 2, cursive" font-size="15" font-weight="800" fill="#dc2626">ARTÈRE</text>
+
+        <!-- ===== FLÈCHE ARTÉRIOLE (oblique rouge-orange vers capillaires) ===== -->
+        <line x1="124" y1="240" x2="188" y2="290" stroke="#ea580c" stroke-width="3.5" stroke-linecap="round"/>
+        <polygon points="181,284 196,284 188,298" fill="#ea580c" transform="rotate(35,188,290)"/>
+        <text x="148" y="275" font-family="Nunito, sans-serif" font-size="11.5" font-weight="700" fill="#92400e" transform="rotate(30,148,275)">artériole</text>
+
+        <!-- ===== CAPILLAIRES (réseau emmêlé au centre bas) ===== -->
+        <!-- Fond ovale -->
+        <ellipse cx="250" cy="310" rx="80" ry="42" fill="none" stroke="#7c3aed" stroke-width="0"/>
+        <!-- Lignes emmêlées rouges→bleues -->
+        <path d="M178,295 C195,280 215,325 235,300 C250,282 265,325 285,300 C305,278 320,320 335,295" stroke="#dc2626" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M178,308 C200,292 218,335 240,310 C255,293 268,335 290,312 C308,295 322,330 340,308" stroke="#9333ea" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M182,320 C202,305 220,345 245,318 C260,303 273,342 295,322 C312,308 325,338 340,320" stroke="#1d4ed8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Label capillaires -->
+        <text x="250" y="372" text-anchor="middle" font-family="Baloo 2, cursive" font-size="14" font-weight="800" fill="#6d28d9">capillaires</text>
+
+        <!-- ===== FLÈCHE VEINULE (oblique bleu depuis capillaires vers veine) ===== -->
+        <line x1="340" y1="290" x2="376" y2="240" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+        <polygon points="368,234 382,244 376,254" fill="#3b82f6" transform="rotate(-35,376,244)"/>
+        <text x="368" y="270" font-family="Nunito, sans-serif" font-size="11.5" font-weight="700" fill="#1e40af" transform="rotate(-30,368,270)">veinule</text>
+
+        <!-- ===== CYLINDRE VEINE (bleu, droite) ===== -->
+        <!-- Ellipse haut -->
+        <ellipse cx="410" cy="68" rx="34" ry="12" fill="#1d4ed8" stroke="#1e40af" stroke-width="1.5"/>
+        <!-- Corps cylindre -->
+        <rect x="376" y="68" width="68" height="160" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+        <!-- Ellipse bas -->
+        <ellipse cx="410" cy="228" rx="34" ry="12" fill="#1d4ed8" stroke="#1e40af" stroke-width="1.5"/>
+        <!-- Reflet lumineux -->
+        <rect x="382" y="75" width="14" height="140" rx="7" fill="rgba(255,255,255,0.25)"/>
+        <!-- Label VEINE -->
+        <text x="410" y="268" text-anchor="middle" font-family="Baloo 2, cursive" font-size="15" font-weight="800" fill="#1d4ed8">VEINE</text>
+
+        <!-- ===== FLÈCHE SORTANT VEINE (bleu, vers le haut) ===== -->
+        <polygon points="395,44 425,44 410,30" fill="#1d4ed8"/>
+
+        <!-- ===== FLÈCHES ÉCHANGES CENTRE ===== -->
+        <!-- Flèches rouges ↑ : O2 et nutriments vers les cellules -->
+        <line x1="220" y1="260" x2="220" y2="150" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="212,152 228,152 220,138" fill="#dc2626"/>
+        <line x1="242" y1="255" x2="242" y2="145" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="234,147 250,147 242,133" fill="#dc2626"/>
+        <text x="180" y="120" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#dc2626" text-anchor="middle">oxygène et</text>
+        <text x="180" y="135" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#dc2626" text-anchor="middle">nutriments</text>
+        <text x="180" y="150" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#dc2626" text-anchor="middle">vers les cellules</text>
+
+        <!-- Flèches bleues ↓ : CO2 depuis les cellules -->
+        <line x1="268" y1="145" x2="268" y2="255" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="260,253 276,253 268,267" fill="#1d4ed8"/>
+        <line x1="290" y1="140" x2="290" y2="250" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round"/>
+        <polygon points="282,248 298,248 290,262" fill="#1d4ed8"/>
+        <text x="325" y="120" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">déchets de</text>
+        <text x="325" y="135" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">dioxyde de carbone</text>
+        <text x="325" y="150" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">depuis les cellules</text>
+
+      </svg>
+    </div>
+
+    <div class="highlight-box hb-violet">
+      📌 <strong>À retenir :</strong> L'artère amène le sang chargé en O2 (rouge). Dans les capillaires, O2 et nutriments passent vers les cellules, et le CO2 passe des cellules vers le sang. La veine repart avec le sang chargé en CO2 (bleu) vers le cœur.
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:10px;"><span>🫘</span> Focus : Le rein et la filtration du sang</div>
+
+  <!-- INTRO REIN -->
+  <div class="card rouge">
+    <div class="badge rouge">Le rein</div>
+    <div class="card-title">🔬 Comment fonctionne le rein ?</div>
+    <p>Les reins filtrent le sang en permanence. Le sang arrive <strong>chargé en déchets</strong> (urée, eau en excès…). Les millions de <strong>néphrons</strong> filtrent, et deux choses sortent du rein :</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;">
+      <div style="background:var(--bleu-light);border:2px solid var(--bleu);border-radius:14px;padding:16px;text-align:center;">
+        <div style="font-size:2rem;">🔵</div>
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--bleu-dark);margin:6px 0;font-size:1rem;">Sang épuré</div>
+        <div style="font-size:0.9rem;line-height:1.6;">Repart dans la <strong>veine rénale</strong> vers le cœur.<br>Globules rouges, glucose et protéines sont <strong>conservés</strong>.</div>
+      </div>
+      <div style="background:var(--amber-light);border:2px solid var(--amber);border-radius:14px;padding:16px;text-align:center;">
+        <div style="font-size:2rem;">🟡</div>
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:var(--amber);margin:6px 0;font-size:1rem;">Urine</div>
+        <div style="font-size:0.9rem;line-height:1.6;">Part dans l'<strong>uretère</strong> vers la vessie.<br>Contient l'urée, l'excès d'eau et de sel.</div>
+      </div>
+    </div>
+    <div class="highlight-box hb-rouge">
+      📊 Les reins filtrent <strong>180 litres de sang par jour</strong> (les 5 L du corps passent 36 fois !) mais produisent seulement <strong>1,5 L d'urine</strong> : l'eau et le glucose utiles sont réabsorbés.
+    </div>
+  </div>
+
+  <!-- SCHEMA 1 : REIN EN COUPE (redesign lisible) -->
+  <div class="card rouge">
+    <div class="badge rouge">Schéma 1 – À connaître</div>
+    <div class="card-title">🫘 Le rein en coupe</div>
+
+    <div class="schema-box" style="padding:20px 8px;overflow-x:auto;">
+      <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto;">
+        <defs>
+          <marker id="ar1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#dc2626"/></marker>
+          <marker id="ab1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#1d4ed8"/></marker>
+          <marker id="ay1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L0,8 L9,4 z" fill="#d97706"/></marker>
+        </defs>
+
+        <!-- ===== REIN FORME HARICOT ===== -->
+        <!-- Corps rose clair (cortex) -->
+        <path d="M340,22 C445,22 520,78 520,210 C520,342 445,398 340,398
+                 C278,398 244,366 228,328 C208,288 208,250 224,210
+                 C208,170 208,132 228,92 C244,54 278,22 340,22 Z"
+              fill="#fca5a5" stroke="#b91c1c" stroke-width="3"/>
+
+        <!-- Lobes médullaires (pyramides sombres) – 7 lobes visibles -->
+        <ellipse cx="315" cy="78"  rx="44" ry="30" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5" transform="rotate(-25,315,78)"/>
+        <ellipse cx="390" cy="65"  rx="44" ry="30" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5" transform="rotate(-5,390,65)"/>
+        <ellipse cx="455" cy="108" rx="44" ry="28" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5" transform="rotate(25,455,108)"/>
+        <ellipse cx="478" cy="195" rx="44" ry="28" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5" transform="rotate(45,478,195)"/>
+        <ellipse cx="455" cy="285" rx="44" ry="28" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5" transform="rotate(65,455,285)"/>
+        <ellipse cx="382" cy="348" rx="44" ry="28" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5" transform="rotate(85,382,348)"/>
+        <ellipse cx="305" cy="348" rx="40" ry="26" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5" transform="rotate(110,305,348)"/>
+
+        <!-- Flèches jaunes filtration (une par lobe, vers le bassinet) -->
+        <text x="315" y="82"  text-anchor="middle" font-size="18" fill="#d97706" font-weight="bold">↙</text>
+        <text x="390" y="68"  text-anchor="middle" font-size="18" fill="#d97706" font-weight="bold">↙</text>
+        <text x="455" y="112" text-anchor="middle" font-size="18" fill="#d97706" font-weight="bold">←</text>
+        <text x="475" y="198" text-anchor="middle" font-size="18" fill="#d97706" font-weight="bold">←</text>
+        <text x="452" y="288" text-anchor="middle" font-size="18" fill="#d97706" font-weight="bold">↖</text>
+        <text x="378" y="351" text-anchor="middle" font-size="18" fill="#d97706" font-weight="bold">↖</text>
+        <text x="304" y="350" text-anchor="middle" font-size="18" fill="#d97706" font-weight="bold">↑</text>
+
+        <!-- Bassinet (cavité centrale beige) -->
+        <path d="M228,140 C244,115 270,108 292,114 C314,120 325,145 330,175
+                 C335,202 330,234 318,252 C304,272 278,276 258,266
+                 C238,256 228,234 226,208 C224,184 225,164 228,140 Z"
+              fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+        <text x="276" y="198" text-anchor="middle" font-family="Baloo 2, cursive" font-size="14" font-weight="bold" fill="#92400e">BASSINET</text>
+        <text x="276" y="215" text-anchor="middle" font-family="Nunito, sans-serif" font-size="11" fill="#92400e">collecte l'urine</text>
+
+        <!-- Labels CORTEX -->
+        <text x="430" y="200" text-anchor="middle" font-family="Baloo 2, cursive" font-size="13" font-weight="bold" fill="#991b1b" opacity="0.5">CORTEX</text>
+        <text x="430" y="218" text-anchor="middle" font-family="Nunito, sans-serif" font-size="10" fill="#991b1b" opacity="0.5">néphrons ici</text>
+
+        <!-- ===== ARTÈRE RÉNALE – sang entrant (rouge) ===== -->
+        <!-- Tronc épais de gauche -->
+        <line x1="30" y1="180" x2="224" y2="180" stroke="#dc2626" stroke-width="14" stroke-linecap="round"/>
+        <polygon points="224,170 224,190 244,180" fill="#dc2626"/>
+
+        <!-- Étiquette artère -->
+        <rect x="22" y="110" width="188" height="56" rx="10" fill="white" stroke="#dc2626" stroke-width="2"/>
+        <circle cx="35" cy="124" r="7" fill="#dc2626"/>
+        <text x="50" y="127" font-family="Baloo 2, cursive" font-size="14" font-weight="bold" fill="#991b1b">Artère rénale</text>
+        <text x="32" y="143" font-family="Nunito, sans-serif" font-size="11.5" fill="#991b1b">Sang entrant</text>
+        <text x="32" y="158" font-family="Nunito, sans-serif" font-size="11.5" fill="#991b1b">(chargé en déchets)</text>
+        <!-- Ligne connectrice étiquette → tronc -->
+        <line x1="110" y1="166" x2="110" y2="178" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+        <!-- ===== VEINE RÉNALE – sang sortant (bleue) ===== -->
+        <line x1="30" y1="240" x2="224" y2="240" stroke="#1d4ed8" stroke-width="14" stroke-linecap="round"/>
+        <polygon points="64,230 64,250 30,240" fill="#1d4ed8"/>
+
+        <!-- Étiquette veine -->
+        <rect x="22" y="258" width="188" height="56" rx="10" fill="white" stroke="#1d4ed8" stroke-width="2"/>
+        <circle cx="35" cy="272" r="7" fill="#1d4ed8"/>
+        <text x="50" y="275" font-family="Baloo 2, cursive" font-size="14" font-weight="bold" fill="#1e40af">Veine rénale</text>
+        <text x="32" y="293" font-family="Nunito, sans-serif" font-size="11.5" fill="#1e40af">Sang sortant</text>
+        <text x="32" y="308" font-family="Nunito, sans-serif" font-size="11.5" fill="#1e40af">(épuré)</text>
+        <line x1="110" y1="258" x2="110" y2="242" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+        <!-- ===== URETÈRE – urine sortante (jaune-brun) ===== -->
+        <path d="M265,276 C262,310 264,345 267,390" stroke="#d97706" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <polygon points="257,385 277,385 267,410" fill="#d97706"/>
+
+        <!-- Étiquette uretère -->
+        <rect x="290" y="330" width="175" height="56" rx="10" fill="white" stroke="#d97706" stroke-width="2"/>
+        <circle cx="303" cy="344" r="7" fill="#d97706"/>
+        <text x="318" y="347" font-family="Baloo 2, cursive" font-size="14" font-weight="bold" fill="#92400e">Uretère</text>
+        <text x="300" y="365" font-family="Nunito, sans-serif" font-size="11.5" fill="#92400e">Conduit l'urine</text>
+        <text x="300" y="380" font-family="Nunito, sans-serif" font-size="11.5" fill="#92400e">vers la vessie</text>
+        <line x1="288" y1="358" x2="274" y2="358" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+        <!-- ===== ETIQUETTE NEPHRON ===== -->
+        <rect x="530" y="82" width="145" height="56" rx="10" fill="white" stroke="#7c3aed" stroke-width="2"/>
+        <circle cx="543" cy="96" r="7" fill="#7c3aed"/>
+        <text x="558" y="99" font-family="Baloo 2, cursive" font-size="14" font-weight="bold" fill="#6d28d9">Néphron</text>
+        <text x="540" y="116" font-family="Nunito, sans-serif" font-size="11.5" fill="#6d28d9">Unité de filtration</text>
+        <text x="540" y="131" font-family="Nunito, sans-serif" font-size="11.5" fill="#6d28d9">(&gt; 1 million / rein)</text>
+        <!-- Ligne vers lobe -->
+        <line x1="530" y1="110" x2="499" y2="110" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <circle cx="499" cy="110" r="4" fill="#7c3aed"/>
+
+        <!-- LÉGENDE FLÈCHE JAUNE -->
+        <rect x="530" y="175" width="145" height="42" rx="10" fill="white" stroke="#d97706" stroke-width="2"/>
+        <text x="575" y="192" text-anchor="middle" font-family="Nunito, sans-serif" font-size="20" fill="#d97706" font-weight="bold">↙</text>
+        <text x="601" y="188" font-family="Nunito, sans-serif" font-size="11.5" fill="#92400e">Filtration</text>
+        <text x="601" y="203" font-family="Nunito, sans-serif" font-size="11.5" fill="#92400e">→ bassinet</text>
+      </svg>
+    </div>
+
+    <!-- Légende texte simple -->
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+      <div style="display:flex;align-items:center;gap:8px;background:#fee2e2;border-radius:10px;padding:8px 14px;font-size:0.9rem;font-weight:700;color:#991b1b;">
+        <div style="width:24px;height:10px;background:#dc2626;border-radius:5px;flex-shrink:0;"></div>
+        Artère rénale = sang entrant (chargé en déchets)
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;background:#dbeafe;border-radius:10px;padding:8px 14px;font-size:0.9rem;font-weight:700;color:#1e40af;">
+        <div style="width:24px;height:10px;background:#1d4ed8;border-radius:5px;flex-shrink:0;"></div>
+        Veine rénale = sang sortant (épuré)
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;background:#fef3c7;border-radius:10px;padding:8px 14px;font-size:0.9rem;font-weight:700;color:#92400e;">
+        <div style="width:24px;height:10px;background:#d97706;border-radius:5px;flex-shrink:0;"></div>
+        Uretère = conduit l'urine vers la vessie
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;background:#ede9fe;border-radius:10px;padding:8px 14px;font-size:0.9rem;font-weight:700;color:#6d28d9;">
+        <div style="width:24px;height:10px;background:#7c3aed;border-radius:5px;flex-shrink:0;"></div>
+        Néphrons = unités de filtration dans la médullaire
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEMA 2 : CIRCUIT URINAIRE INTERACTIF v4 -->
+  <div class="card orange">
+    <div class="badge orange">Schéma 2 – À connaître</div>
+    <div class="card-title">🚰 La filtration rénale : que devient le sang ?</div>
+    <p style="font-size:0.92rem;margin-bottom:6px;">Clique sur <strong>▶ Animer</strong> pour suivre le trajet étape par étape.</p>
+    <p style="font-size:0.85rem;color:#6b7280;margin-bottom:14px;">💬 Passe la souris sur les termes <span style="border-bottom:2px dashed #d97706;color:#92400e;font-weight:700;">soulignés</span> pour lire leur définition.</p>
+
+    <style>
+      .tt{border-bottom:2px dashed #d97706;color:#92400e;font-weight:700;position:relative;cursor:help;display:inline;}
+      .tt::after{content:attr(data-def);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a0a0a;color:#fff;border-radius:10px;padding:9px 13px;font-size:13px;font-weight:500;line-height:1.5;width:230px;white-space:normal;text-align:left;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.2s;box-shadow:0 6px 24px rgba(0,0,0,0.3);}
+      .tt::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a0a0a;opacity:0;transition:opacity 0.2s;z-index:9999;}
+      .tt:hover::after,.tt:hover::before{opacity:1;}
+      @keyframes flux-anim{0%{left:-100%}100%{left:100%}}
+    </style>
+
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;">
+
+      <!-- ===== COLONNE GAUCHE : ANIMÉ ===== -->
+      <div style="flex:1;min-width:290px;background:linear-gradient(135deg,#fff7ed,#fef3c7);border:2px solid #d97706;border-radius:16px;padding:18px 14px 20px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+
+          <!-- ① ARTÈRE -->
+          <div id="v4-e1" style="width:100%;max-width:340px;">
+            <div style="height:10px;background:linear-gradient(90deg,#dc2626,#f87171);border-radius:5px;margin-bottom:8px;position:relative;overflow:hidden;">
+              
+            </div>
+            <div style="background:white;border:2.5px solid #dc2626;border-radius:12px;padding:11px 14px;text-align:center;">
+              <div style="font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:#991b1b;">① <span class="tt" data-def="Vaisseau sanguin qui part du cœur vers les organes. Dans le cas du rein : elle apporte le sang chargé en déchets à filtrer. Paroi épaisse car le sang est sous pression.">Artère rénale</span> → sang entrant</div>
+              <div style="font-size:0.88rem;color:#991b1b;margin-top:3px;">Sang chargé en déchets : <span class="tt" data-def="Déchet azoté produit par le foie quand il détruit des protéines usées. Transporté par le sang jusqu'aux reins qui l'éliminent dans l'urine.">urée</span>, eau en excès, sel</div>
+            </div>
+          </div>
+
+          <div id="v4-f1" style="font-size:1.8rem;color:#d97706;line-height:1.3;">↓</div>
+
+          <!-- ② REIN : SVG propre sans grosses flèches -->
+          <div id="v4-e2" style="width:100%;max-width:340px;">
+            <div style="background:white;border:2.5px solid #7c3aed;border-radius:14px;padding:14px;">
+              <div style="text-align:center;margin-bottom:10px;">
+                <span style="font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:#6d28d9;">② Filtration dans le rein</span>
+                <div style="font-size:0.84rem;color:#6d28d9;margin-top:2px;">1 million de <span class="tt" data-def="Unité microscopique de filtration située dans la médullaire (zone interne du rein). Chaque néphron trie le sang : il retient le glucose et les globules rouges, et laisse passer les déchets vers le bassinet.">néphrons</span> filtrent le sang en continu</div>
+              </div>
+
+              <!-- SVG rein : pas de grosses flèches, lignes fines avec labels propres -->
+              <svg viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:360px;display:block;margin:0 auto;">
+                <defs>
+                  <marker id="v4-ay" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#d97706"/></marker>
+                </defs>
+
+                <!-- Cortex (zone externe, rose clair) -->
+                <ellipse cx="200" cy="100" rx="140" ry="92" fill="#fca5a5" stroke="#b91c1c" stroke-width="2"/>
+                <!-- Label CORTEX -->
+                <text x="305" y="68" font-family="Nunito,sans-serif" font-size="12" font-weight="700" fill="#991b1b" opacity="0.6">CORTEX</text>
+
+                <!-- Médullaire (zone interne, plus sombre) – représentée par les lobes -->
+                <!-- Lobe haut -->
+                <ellipse cx="228" cy="44"  rx="36" ry="23" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5"/>
+                <text x="228" y="41"  text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="white">Néphron</text>
+                <text x="228" y="54"  text-anchor="middle" font-family="Nunito,sans-serif" font-size="9.5" fill="#fecaca">(filtre)</text>
+                <!-- Flèche fine jaune vers bassinet -->
+                <line x1="200" y1="55" x2="178" y2="74" stroke="#d97706" stroke-width="2" marker-end="url(#v4-ay)"/>
+
+                <!-- Lobe milieu droit -->
+                <ellipse cx="300" cy="100" rx="36" ry="23" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5"/>
+                <text x="300" y="97"  text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="white">Néphron</text>
+                <text x="300" y="110" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9.5" fill="#fecaca">(filtre)</text>
+                <line x1="266" y1="100" x2="184" y2="100" stroke="#d97706" stroke-width="2" marker-end="url(#v4-ay)"/>
+
+                <!-- Lobe bas -->
+                <ellipse cx="228" cy="156" rx="36" ry="23" fill="#c0524a" stroke="#7f1d1d" stroke-width="1.5"/>
+                <text x="228" y="153" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="white">Néphron</text>
+                <text x="228" y="166" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9.5" fill="#fecaca">(filtre)</text>
+                <line x1="200" y1="147" x2="178" y2="128" stroke="#d97706" stroke-width="2" marker-end="url(#v4-ay)"/>
+
+                <!-- Label MÉDULLAIRE (zone des néphrons) -->
+                <text x="282" y="138" font-family="Nunito,sans-serif" font-size="10" font-weight="700" fill="#7f1d1d" opacity="0.7">MÉDULLAIRE</text>
+                <text x="282" y="150" font-family="Nunito,sans-serif" font-size="9.5" fill="#7f1d1d" opacity="0.7">(zone des néphrons)</text>
+
+                <!-- Bassinet central -->
+                <ellipse cx="150" cy="100" rx="42" ry="58" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                <text x="150" y="92"  text-anchor="middle" font-family="Baloo 2,cursive" font-size="12" font-weight="800" fill="#92400e">Bassinet</text>
+                <text x="150" y="107" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="#92400e">collecte</text>
+                <text x="150" y="120" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="#92400e">l'urine filtrée</text>
+
+                <!-- Artère rénale : simple ligne fine rouge + label à gauche, PAS de grosse flèche -->
+                <line x1="8" y1="82" x2="106" y2="88" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+                <polygon points="100,82 100,94 110,88" fill="#dc2626"/>
+                <text x="5" y="72" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#991b1b">Artère</text>
+                <text x="5" y="84" font-family="Nunito,sans-serif" font-size="10.5" fill="#991b1b">sang entrant</text>
+
+                <!-- Veine rénale : simple ligne fine bleue + label à gauche -->
+                <line x1="106" y1="112" x2="8" y2="118" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round"/>
+                <polygon points="14,112 14,124 4,118" fill="#1d4ed8"/>
+                <text x="5" y="130" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#1e40af">Veine</text>
+                <text x="5" y="142" font-family="Nunito,sans-serif" font-size="10.5" fill="#1e40af">sang épuré</text>
+
+                <!-- Uretère bas : ligne fine jaune-brun -->
+                <line x1="150" y1="158" x2="150" y2="192" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+                <polygon points="143,186 157,186 150,198" fill="#d97706"/>
+                <text x="162" y="182" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#92400e">Uretère</text>
+                <text x="162" y="195" font-family="Nunito,sans-serif" font-size="10.5" fill="#92400e">→ vessie</text>
+              </svg>
+
+              <div style="margin-top:8px;text-align:center;font-size:0.85rem;color:#6d28d9;font-weight:600;">
+                Les néphrons filtrent → <strong>deux choses repartent</strong> ⬇
+              </div>
+            </div>
+          </div>
+
+          <!-- FOURCHE -->
+          <div id="v4-f2" style="font-size:1.8rem;color:#d97706;line-height:1.3;">
+            <svg viewBox="0 0 300 52" style="width:100%;display:block;">
+              <line x1="150" y1="0"  x2="150" y2="20" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+              <line x1="150" y1="20" x2="55"  y2="50" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round"/>
+              <line x1="150" y1="20" x2="245" y2="50" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+              <polygon points="47,43 63,45 55,56" fill="#1d4ed8"/>
+              <polygon points="237,43 253,45 245,56" fill="#d97706"/>
+            </svg>
+          </div>
+
+          <!-- ③ DEUX SORTIES -->
+          <div id="v4-e3" style="width:100%;max-width:340px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div style="background:white;border:2.5px solid #1d4ed8;border-radius:12px;padding:12px;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:4px;">🔵</div>
+                <div style="font-family:'Baloo 2',cursive;font-size:0.9rem;font-weight:800;color:#1e40af;margin-bottom:5px;">③a — <span class="tt" data-def="Vaisseau qui ramène le sang des organes vers le cœur. Paroi plus fine que l'artère. Dans le cas du rein : la veine rénale repart avec le sang épuré, débarrassé de l'urée et de l'eau en excès.">Veine rénale</span></div>
+                <div style="font-size:0.82rem;color:#1e40af;line-height:1.5;"><strong>Sang épuré</strong> → cœur<br>Glucose, globules rouges, protéines conservés</div>
+                <div style="margin-top:6px;font-size:0.82rem;font-weight:800;color:#1e40af;">← vers le cœur</div>
+              </div>
+              <div style="background:white;border:2.5px solid #d97706;border-radius:12px;padding:12px;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:4px;">🟡</div>
+                <div style="font-family:'Baloo 2',cursive;font-size:0.9rem;font-weight:800;color:#92400e;margin-bottom:5px;">③b — <span class="tt" data-def="Conduit de 25-30 cm qui transporte l'urine depuis le rein jusqu'à la vessie. Il y en a un par rein (deux au total). À ne pas confondre avec l'urètre qui est le conduit de sortie final.">Uretère</span></div>
+                <div style="font-size:0.82rem;color:#92400e;line-height:1.5;"><strong>Urine</strong> → vessie<br>Urée + eau en excès + sel éliminés</div>
+                <div style="margin-top:6px;font-size:0.82rem;font-weight:800;color:#92400e;">↓ vers la vessie</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flèche UNIQUEMENT sous uretère (côté droit) -->
+          <div id="v4-f3" style="font-size:1.8rem;color:#d97706;line-height:1.3;">
+            <div style="display:flex;">
+              <div style="flex:1;"></div>
+              <div style="flex:1;text-align:center;font-size:1.8rem;color:#d97706;line-height:1.3;">↓</div>
+            </div>
+          </div>
+
+          <!-- ④ VESSIE -->
+          <div id="v4-e4" style="width:100%;max-width:340px;">
+            <div style="background:white;border:2.5px solid #d97706;border-radius:14px;padding:14px;">
+              <div style="font-family:'Baloo 2',cursive;font-size:0.95rem;font-weight:800;color:#92400e;text-align:center;margin-bottom:12px;">
+                ④ <span class="tt" data-def="Poche musculaire élastique qui stocke l'urine produite par les reins. Sa paroi est extensible : elle se dilate progressivement. À 200 ml, les capteurs de tension envoient au cerveau le signal d'envie d'uriner.">Vessie</span> — se dilate en se remplissant
+              </div>
+              <div style="display:flex;align-items:flex-end;justify-content:center;gap:14px;">
+                <div style="text-align:center;">
+                  <div style="width:46px;height:40px;background:radial-gradient(ellipse at 40% 35%,#fdba74,#d97706);border:2px solid #92400e;border-radius:50%;margin:0 auto 5px;"></div>
+                  <div style="font-size:0.8rem;font-weight:700;color:#92400e;">Vide<br>0 ml</div>
+                </div>
+                <div style="font-size:1.2rem;color:#d97706;padding-bottom:24px;">→</div>
+                <div style="text-align:center;">
+                  <div style="width:66px;height:58px;background:radial-gradient(ellipse at 40% 35%,#fdba74,#d97706);border:2px solid #92400e;border-radius:50%;margin:0 auto 5px;"></div>
+                  <div style="font-size:0.8rem;font-weight:700;color:#92400e;">Se remplit<br>~100 ml</div>
+                </div>
+                <div style="font-size:1.2rem;color:#d97706;padding-bottom:24px;">→</div>
+                <div style="text-align:center;">
+                  <div style="width:90px;height:78px;background:radial-gradient(ellipse at 40% 35%,#fdba74,#c2770a);border:2.5px solid #7c2d12;border-radius:50%;margin:0 auto 5px;"></div>
+                  <div style="font-size:0.8rem;font-weight:800;color:#991b1b;">200 ml<br>envie d'uriner !</div>
+                </div>
+              </div>
+              <div style="margin-top:10px;background:#fee2e2;border-radius:8px;padding:7px 12px;font-size:0.84rem;font-weight:700;color:#991b1b;text-align:center;">
+                ⚠️ À 200 ml, la paroi se dilate et envoie le signal d'envie d'uriner
+              </div>
+            </div>
+          </div>
+
+          <div id="v4-f4" style="font-size:1.8rem;color:#d97706;line-height:1.3;">↓</div>
+
+          <!-- ⑤ URÈTRE -->
+          <div id="v4-e5" style="width:100%;max-width:340px;">
+            <div style="background:white;border:2px solid #d97706;border-radius:12px;padding:11px 14px;text-align:center;">
+              <div style="font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:#92400e;">⑤ <span class="tt" data-def="Canal final qui permet à l'urine de quitter la vessie vers l'extérieur du corps. Plus court chez la femme (~4 cm) que chez l'homme (~20 cm). À ne pas confondre avec l'uretère qui relie le rein à la vessie.">Urètre</span> → extérieur</div>
+              <div style="font-size:0.84rem;color:#92400e;margin-top:3px;">Le muscle de la vessie se relâche, l'urine sort du corps.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Boutons -->
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;">
+          <button onclick="v4Lancer()" style="background:linear-gradient(135deg,#dc2626,#d97706);color:white;border:none;border-radius:50px;padding:10px 26px;font-family:'Baloo 2',cursive;font-size:0.95rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(220,38,38,0.3);">▶ Animer</button>
+          <button onclick="v4Reset()" style="background:white;color:#6b7280;border:2px solid #d1d5db;border-radius:50px;padding:10px 20px;font-family:'Baloo 2',cursive;font-size:0.95rem;font-weight:700;cursor:pointer;">↺ Réinitialiser</button>
+        </div>
+      </div>
+
+      <!-- ===== COLONNE DROITE : SCHÉMA GÉNÉRAL STATIQUE ===== -->
+      <div style="flex:1;min-width:260px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #16a34a;border-radius:16px;padding:18px 14px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1rem;color:#14532d;text-align:center;margin-bottom:14px;">📋 Schéma général</div>
+        <svg viewBox="0 0 240 570" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px;display:block;margin:0 auto;">
+          <defs>
+            <marker id="sg-r" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#dc2626"/></marker>
+            <marker id="sg-b" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#1d4ed8"/></marker>
+            <marker id="sg-y" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L0,7 L7,3.5 z" fill="#d97706"/></marker>
+          </defs>
+
+          <!-- ① Artère -->
+          <rect x="20" y="8" width="200" height="12" rx="6" fill="#dc2626"/>
+          <polygon points="218,4 238,14 218,24" fill="#dc2626"/>
+          <text x="120" y="37" text-anchor="middle" font-family="Baloo 2,cursive" font-size="12" font-weight="800" fill="#991b1b">① Artère rénale</text>
+          <text x="120" y="51" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" fill="#991b1b">sang entrant (déchets)</text>
+
+          <line x1="120" y1="56" x2="120" y2="72" stroke="#d97706" stroke-width="2.5" marker-end="url(#sg-y)"/>
+
+          <!-- ② Rein -->
+          <ellipse cx="130" cy="118" rx="82" ry="56" fill="#fca5a5" stroke="#b91c1c" stroke-width="2"/>
+          <!-- Bassinet -->
+          <ellipse cx="118" cy="118" rx="26" ry="38" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+          <text x="118" y="113" text-anchor="middle" font-family="Baloo 2,cursive" font-size="9.5" font-weight="800" fill="#92400e">Bassinet</text>
+          <text x="118" y="125" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8.5" fill="#92400e">collecte urine</text>
+          <!-- Néphrons -->
+          <ellipse cx="172" cy="95"  rx="24" ry="16" fill="#c0524a" stroke="#7f1d1d" stroke-width="1"/>
+          <text x="172" y="99"  text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" font-weight="700" fill="#fff">Néphron</text>
+          <line x1="149" y1="97" x2="143" y2="106" stroke="#d97706" stroke-width="1.5" marker-end="url(#sg-y)"/>
+          <ellipse cx="186" cy="120" rx="24" ry="16" fill="#c0524a" stroke="#7f1d1d" stroke-width="1"/>
+          <text x="186" y="124" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" font-weight="700" fill="#fff">Néphron</text>
+          <line x1="162" y1="120" x2="144" y2="120" stroke="#d97706" stroke-width="1.5" marker-end="url(#sg-y)"/>
+          <ellipse cx="172" cy="146" rx="24" ry="16" fill="#c0524a" stroke="#7f1d1d" stroke-width="1"/>
+          <text x="172" y="150" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" font-weight="700" fill="#fff">Néphron</text>
+          <line x1="149" y1="144" x2="143" y2="133" stroke="#d97706" stroke-width="1.5" marker-end="url(#sg-y)"/>
+          <!-- Artère rénale fine -->
+          <line x1="16" y1="104" x2="90" y2="110" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" marker-end="url(#sg-r)"/>
+          <text x="6" y="96" font-family="Nunito,sans-serif" font-size="9.5" font-weight="700" fill="#991b1b">Artère</text>
+          <!-- Veine rénale fine -->
+          <line x1="90" y1="126" x2="16" y2="132" stroke="#1d4ed8" stroke-width="2.5" stroke-linecap="round" marker-end="url(#sg-b)"/>
+          <text x="6" y="146" font-family="Nunito,sans-serif" font-size="9.5" font-weight="700" fill="#1e40af">Veine</text>
+          <!-- Uretère -->
+          <line x1="118" y1="156" x2="118" y2="180" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" marker-end="url(#sg-y)"/>
+
+          <text x="130" y="174" text-anchor="middle" font-family="Baloo 2,cursive" font-size="11" font-weight="800" fill="#6d28d9">② Filtration</text>
+
+          <!-- Fourche -->
+          <line x1="118" y1="184" x2="118" y2="200" stroke="#555" stroke-width="2"/>
+          <line x1="118" y1="200" x2="48"  y2="222" stroke="#1d4ed8" stroke-width="2.5"/>
+          <line x1="118" y1="200" x2="188" y2="222" stroke="#d97706" stroke-width="2.5"/>
+          <polygon points="40,215 56,217 48,228" fill="#1d4ed8"/>
+          <polygon points="180,215 196,217 188,228" fill="#d97706"/>
+
+          <!-- ③a veine -->
+          <rect x="2" y="230" width="90" height="50" rx="8" fill="white" stroke="#1d4ed8" stroke-width="1.8"/>
+          <text x="47" y="245" text-anchor="middle" font-family="Baloo 2,cursive" font-size="10" font-weight="800" fill="#1e40af">③a Veine</text>
+          <text x="47" y="258" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="#1e40af">Sang épuré</text>
+          <text x="47" y="272" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="#1e40af">→ cœur</text>
+          <!-- Retour cœur -->
+          <line x1="20" y1="230" x2="20" y2="170" stroke="#1d4ed8" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#sg-b)"/>
+
+          <!-- ③b uretère -->
+          <rect x="148" y="230" width="88" height="50" rx="8" fill="white" stroke="#d97706" stroke-width="1.8"/>
+          <text x="192" y="245" text-anchor="middle" font-family="Baloo 2,cursive" font-size="10" font-weight="800" fill="#92400e">③b Uretère</text>
+          <text x="192" y="258" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="#92400e">Urine</text>
+          <text x="192" y="272" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="#92400e">→ vessie</text>
+
+          <!-- Flèche UNIQUEMENT sous uretère -->
+          <line x1="192" y1="280" x2="192" y2="308" stroke="#d97706" stroke-width="2.5" marker-end="url(#sg-y)"/>
+          <path d="M192,308 Q192,325 152,336" stroke="#d97706" stroke-width="2.5" fill="none" marker-end="url(#sg-y)"/>
+
+          <!-- ④ Vessie -->
+          <ellipse cx="120" cy="390" rx="58" ry="50" fill="#fdba74" stroke="#92400e" stroke-width="2"/>
+          <text x="120" y="384" text-anchor="middle" font-family="Baloo 2,cursive" font-size="12" font-weight="800" fill="#7c2d12">④ Vessie</text>
+          <text x="120" y="400" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="#7c2d12">stockage urine</text>
+          <text x="182" y="395" font-family="Nunito,sans-serif" font-size="9.5" font-weight="800" fill="#991b1b">← 200 ml</text>
+          <text x="182" y="408" font-family="Nunito,sans-serif" font-size="9" fill="#991b1b">envie d'uriner</text>
+
+          <!-- ⑤ Urètre -->
+          <line x1="120" y1="440" x2="120" y2="466" stroke="#d97706" stroke-width="4" stroke-linecap="round" marker-end="url(#sg-y)"/>
+          <rect x="62" y="470" width="116" height="38" rx="8" fill="white" stroke="#d97706" stroke-width="1.8"/>
+          <text x="120" y="487" text-anchor="middle" font-family="Baloo 2,cursive" font-size="11" font-weight="800" fill="#92400e">⑤ Urètre</text>
+          <text x="120" y="501" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="#92400e">→ extérieur</text>
+        </svg>
+      </div>
+
+    </div>
+
+    <div class="highlight-box hb-amber" style="margin-top:14px;">
+      💡 <strong>À retenir :</strong> Sang entrant (artère) → filtration par les <span class="tt" data-def="Unités microscopiques dans la médullaire du rein. Ils trient le sang : gardent le glucose et les globules rouges, envoient les déchets dans le bassinet.">néphrons</span> → <span style="color:#1e40af;font-weight:800;">sang épuré repart par la veine</span> + <span style="color:#92400e;font-weight:800;">urine → uretère → vessie → urètre → extérieur</span>.
+    </div>
+  </div>
+
+
+  <div class="section-title" style="margin-top:10px;"><span>📌</span> Résumé : le trajet complet</div>
+
+  <div class="card vert">
+    <div class="card-title">📌 En résumé : comment les organes sont approvisionnés</div>
+    <div class="trajet" style="flex-wrap:wrap;">
+      <div class="trajet-step" style="background:var(--vert-light);border-color:var(--vert);color:var(--vert-dark);">🍽️ Digestion<br><small>nutriments</small></div>
+      <div class="trajet-arrow" style="color:var(--vert);">+</div>
+      <div class="trajet-step" style="background:var(--bleu-light);border-color:var(--bleu);color:var(--bleu-dark);">🫁 Poumons<br><small>O2</small></div>
+      <div class="trajet-arrow" style="color:var(--rouge);">→</div>
+      <div class="trajet-step" style="background:var(--rouge-light);border-color:var(--rouge);color:var(--rouge-dark);">🩸 Sang<br><small>transporte tout</small></div>
+      <div class="trajet-arrow" style="color:var(--rouge);">→</div>
+      <div class="trajet-step" style="background:var(--rouge-light);border-color:var(--rouge);color:var(--rouge-dark);">🫀 Cœur<br><small>pompe</small></div>
+      <div class="trajet-arrow" style="color:var(--rouge);">→</div>
+      <div class="trajet-step" style="background:#ede9fe;border-color:var(--violet);color:var(--violet);">🔬 Capillaires<br><small>échanges</small></div>
+      <div class="trajet-arrow" style="color:var(--rouge);">→</div>
+      <div class="trajet-step" style="background:var(--amber-light);border-color:var(--amber);color:var(--amber);">🦠 Cellules<br><small>utilisent</small></div>
+    </div>
+    <div style="text-align:center;font-size:1.2rem;margin:8px 0;">🗑️ Déchets produits (CO2, urée) → récupérés par le sang → éliminés par les poumons et les reins</div>
+    <div class="formula">Le sang est le lien entre tous les organes du corps humain !</div>
+  </div>
+
+</section>
+
+<!-- ===== SYNTHESE ===== -->
+<section id="synthese">
+  <div class="section-title"><span>📋</span> Fiche de synthèse</div>
+
+  <div class="card rouge">
+    <div class="card-title">🩸 Ce que transporte le sang</div>
+    <table class="synth-table">
+      <thead><tr><th>Substance</th><th>Origine</th><th>Destination</th></tr></thead>
+      <tbody>
+        <tr><td>💨 Dioxygène (O2)</td><td>🫁 Poumons</td><td>🦠 Toutes les cellules</td></tr>
+        <tr><td>🍬 Nutriments (glucose…)</td><td>🍽️ Intestin grêle</td><td>🦠 Toutes les cellules</td></tr>
+        <tr><td>💨 Dioxyde de carbone (CO2)</td><td>🦠 Cellules (déchet)</td><td>🫁 Poumons (éliminé)</td></tr>
+        <tr><td>🧪 Urée</td><td>🦠 Cellules / foie (déchet)</td><td>🫘 Reins (éliminée)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card orange">
+    <div class="card-title">🔄 Les deux circulations</div>
+    <table class="synth-table">
+      <thead><tr><th>Circuit</th><th>Trajet</th><th>Rôle</th></tr></thead>
+      <tbody>
+        <tr><td>🫁 Petite circulation</td><td>Cœur droit → Poumons → Cœur gauche</td><td>Recharger le sang en O2, éliminer CO2</td></tr>
+        <tr><td>💪 Grande circulation</td><td>Cœur gauche → Organes → Cœur droit</td><td>Apporter O2 + nutriments, récupérer les déchets</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card bleu">
+    <div class="card-title">🚇 Les trois vaisseaux sanguins</div>
+    <table class="synth-table">
+      <thead><tr><th>Vaisseau</th><th>Direction</th><th>Particularité</th></tr></thead>
+      <tbody>
+        <tr><td>🔴 Artères</td><td>Du cœur vers les organes</td><td>Parois épaisses, sang sous pression</td></tr>
+        <tr><td>🔵 Veines</td><td>Des organes vers le cœur</td><td>Parois fines, valvules anti-retour</td></tr>
+        <tr><td>🟣 Capillaires</td><td>Relient artères et veines</td><td>Site des échanges avec les cellules</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card violet">
+    <div class="card-title">🔑 Les chiffres à retenir</div>
+    <table class="synth-table">
+      <thead><tr><th>Fait</th><th>Valeur</th></tr></thead>
+      <tbody>
+        <tr><td>Battements cardiaques au repos</td><td><strong>60–80 / min</strong></td></tr>
+        <tr><td>Battements cardiaques à l'effort</td><td><strong>jusqu'à 200 / min</strong></td></tr>
+        <tr><td>Volume sanguin pompé au repos</td><td><strong>~5 L / min</strong></td></tr>
+        <tr><td>Volume de sang dans le corps</td><td><strong>~5 litres</strong></td></tr>
+        <tr><td>Sang filtré par les reins / jour</td><td><strong>~180 litres</strong></td></tr>
+        <tr><td>Urine produite / jour</td><td><strong>~1,5 litre</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== QCM ===== -->
+<section id="qcm">
+  <div class="section-title"><span>🎯</span> QCM – 12 questions</div>
+  <div class="qcm-progress-bar"><div class="qcm-progress-fill" id="qcm-progress" style="width:0%"></div></div>
+  <div id="qcm-container"></div>
+  <div id="qcm-score" class="qcm-score" style="display:none"></div>
+</section>
+
+<!-- ===== EXERCICES ===== -->
+<section id="exercices">
+  <div class="section-title"><span>✏️</span> Exercices interactifs</div>
+
+  <div class="ex-card ex-vf">
+    <div class="ex-title" style="color:var(--orange-dark);">🔵 Exercice 1 – Vrai ou Faux ?</div>
+    <div id="vf-items"></div>
+    <button class="check-btn" onclick="checkVF()">Vérifier</button>
+    <div id="vf-feedback" style="margin-top:12px;font-weight:700;"></div>
+  </div>
+
+  <div class="ex-card ex-trou">
+    <div class="ex-title" style="color:var(--bleu-dark);">✏️ Exercice 2 – Texte à compléter</div>
+    <p id="trou-text" style="line-height:2.6;font-size:0.97rem;"></p>
+    <button class="check-btn" onclick="checkTrou()">Vérifier</button>
+    <div id="trou-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+
+  <div class="ex-card ex-assoc">
+    <div class="ex-title" style="color:var(--violet);">🔗 Exercice 3 – Associe vaisseau et rôle</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Glisse chaque vaisseau vers son rôle.</p>
+    <div class="drag-container">
+      <div>
+        <div class="drag-pool-title">VAISSEAUX :</div>
+        <div id="drag-pool"></div>
+      </div>
+      <div class="drop-zone" id="drop-zone"></div>
+    </div>
+    <button class="check-btn" onclick="checkDrag()">Vérifier</button>
+    <div id="drag-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+
+  <div class="ex-card ex-ordre">
+    <div class="ex-title" style="color:var(--rouge-dark);">🔄 Exercice 4 – Remets la grande circulation dans l'ordre</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Du départ au retour au cœur :</p>
+    <div id="ordre-items"></div>
+    <button class="check-btn" onclick="checkOrdre()">Vérifier</button>
+    <div id="ordre-feedback" style="margin-top:10px;font-weight:700;"></div>
+  </div>
+</section>
+
+<!-- ===== GLOSSAIRE ===== -->
+<section id="glossaire">
+  <div class="section-title"><span>📚</span> Glossaire</div>
+  <div class="glossaire-grid" id="glossaire-grid"></div>
+</section>
+
+<script>
+// NAV
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// QCM
+const qcmData = [
+  { q: "Quel est le rôle principal du sang dans l'organisme ?", opts: ["Produire de l'énergie", "Transporter l'O2, les nutriments et les déchets", "Digérer les aliments", "Fabriquer les os"], ans: 1, expl: "Le sang est le moyen de transport de l'organisme : il apporte l'O2 et les nutriments aux cellules et récupère leurs déchets." },
+  { q: "Quel composant du sang transporte le dioxygène ?", opts: ["Les globules blancs", "Le plasma", "Les plaquettes", "Les globules rouges"], ans: 3, expl: "Les globules rouges contiennent de l'hémoglobine qui se lie à l'O2 pour le transporter jusqu'aux cellules." },
+  { q: "Quel est le rôle du cœur ?", opts: ["Filtrer le sang", "Pomper le sang dans tout le corps", "Produire les globules rouges", "Digérer les graisses"], ans: 1, expl: "Le cœur est une pompe musculaire qui propulse le sang en continu dans les deux circuits (petite et grande circulation)." },
+  { q: "Dans quelle direction circule le sang dans les artères ?", opts: ["Du cœur vers les organes", "Des organes vers le cœur", "Des poumons vers les reins", "De l'intestin vers le foie"], ans: 0, expl: "Les artères transportent le sang en partant du cœur vers les organes. Le sang y est sous pression (c'est le pouls qu'on sent)." },
+  { q: "Où se font les échanges entre le sang et les cellules ?", opts: ["Dans les artères", "Dans les veines", "Dans les capillaires", "Dans le cœur"], ans: 2, expl: "Les capillaires sont de très fins vaisseaux qui longent les cellules. C'est là que l'O2 et les nutriments passent dans les cellules." },
+  { q: "Qu'est-ce que la petite circulation ?", opts: ["Cœur → organes → cœur", "Cœur → poumons → cœur", "Poumons → reins → cœur", "Cœur → intestin → cœur"], ans: 1, expl: "La petite circulation va du cœur droit aux poumons (pour recharger le sang en O2) puis revient au cœur gauche." },
+  { q: "Qu'apporte le sang aux organes dans la grande circulation ?", opts: ["CO2 et urée", "O2 et nutriments", "Urine et selles", "CO2 et sel"], ans: 1, expl: "Dans la grande circulation, le sang apporte de l'O2 (venant des poumons) et des nutriments (venant de la digestion) à tous les organes." },
+  { q: "Combien de litres de sang le cœur pompe-t-il par minute au repos ?", opts: ["1 litre", "5 litres", "10 litres", "20 litres"], ans: 1, expl: "Au repos, le cœur pompe environ 5 litres de sang par minute, ce qui correspond à la totalité du volume sanguin du corps !" },
+  { q: "Quel déchet le rein élimine-t-il principalement ?", opts: ["Le CO2", "L'O2", "L'urée", "Le glucose"], ans: 2, expl: "Le rein filtre le sang et élimine l'urée (déchet azoté) ainsi que l'excès d'eau et de sel dans l'urine." },
+  { q: "Pourquoi le glucose est-il absent dans l'urine normale ?", opts: ["Car le rein le détruit", "Car le rein le réabsorbe et le renvoie dans le sang", "Car il passe dans les selles", "Car les cellules le consomment avant"], ans: 1, expl: "Le rein filtre le sang mais réabsorbe le glucose : il est trop précieux pour être éliminé. S'il y en a dans les urines, c'est un signe de diabète." },
+  { q: "Quel vaisseau ramène le sang vers le cœur ?", opts: ["L'artère", "Le capillaire", "La veine", "Le néphron"], ans: 2, expl: "Les veines ramènent le sang des organes vers le cœur. Elles ont des parois plus fines que les artères et contiennent des valvules." },
+  { q: "Qu'est-ce que l'hémoglobine ?", opts: ["Un déchet produit par le foie", "Une protéine des globules rouges qui transporte l'O2", "Un vaisseau sanguin", "Un sucre présent dans le sang"], ans: 1, expl: "L'hémoglobine est une protéine contenue dans les globules rouges. Elle se fixe sur l'O2 dans les poumons et le libère dans les organes." },
+];
+
+let qcmAnswered = {};
+function renderQCM() {
+  const container = document.getElementById('qcm-container');
+  container.innerHTML = ''; qcmAnswered = {};
+  qcmData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'question-card'; div.id = 'q'+i;
+    div.innerHTML = `<div class="question-num">Question ${i+1} / ${qcmData.length}</div>
+      <div class="question-text">${q.q}</div>
+      <div class="options">${q.opts.map((o,j)=>`<button class="opt-btn" onclick="answerQCM(${i},${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div>
+      <div class="feedback" id="fb${i}" style="display:none"></div>`;
+    container.appendChild(div);
+  });
+  updateQProgress();
+}
+function answerQCM(qi, oi) {
+  if (qcmAnswered[qi] !== undefined) return;
+  qcmAnswered[qi] = oi;
+  const q = qcmData[qi];
+  document.getElementById('q'+qi).querySelectorAll('.opt-btn').forEach((b,j) => {
+    b.disabled = true;
+    if (j === q.ans) b.classList.add('correct');
+    else if (j === oi) b.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb'+qi);
+  fb.style.display = 'block';
+  fb.className = 'feedback '+(oi===q.ans?'ok':'ko');
+  fb.innerHTML = (oi===q.ans?'✅ Bonne réponse ! ':'❌ Non. ')+q.expl;
+  updateQProgress();
+  if (Object.keys(qcmAnswered).length === qcmData.length) setTimeout(showScore, 600);
+}
+function updateQProgress() {
+  document.getElementById('qcm-progress').style.width = (Object.keys(qcmAnswered).length/qcmData.length*100)+'%';
+}
+function showScore() {
+  const correct = Object.entries(qcmAnswered).filter(([qi,oi])=>+oi===qcmData[qi].ans).length;
+  const pct = Math.round(correct/qcmData.length*100);
+  const emoji = pct>=80?'🏆':pct>=60?'👍':'💪';
+  const msg = pct>=80?'Excellent ! Tu maîtrises le chapitre !':pct>=60?'Bien joué, continue !':'Revois le cours et réessaie !';
+  document.getElementById('qcm-score').style.display = 'block';
+  document.getElementById('qcm-score').innerHTML = `<div style="font-size:3rem">${emoji}</div>
+    <div class="score-num">${correct} / ${qcmData.length}</div>
+    <p style="font-size:1.1rem;font-weight:700;margin:8px 0">${msg}</p>
+    <p style="color:var(--muted)">${pct}% de bonnes réponses</p>
+    <button class="btn-retry" onclick="retryQCM()">🔄 Réessayer</button>`;
+  document.getElementById('qcm-score').scrollIntoView({behavior:'smooth'});
+}
+function retryQCM() { document.getElementById('qcm-score').style.display='none'; renderQCM(); }
+renderQCM();
+
+// VRAI/FAUX
+const vfData = [
+  { s: "Les artères transportent le sang du cœur vers les organes.", v: true },
+  { s: "Les globules rouges servent à défendre l'organisme contre les microbes.", v: false },
+  { s: "Le cœur bat environ 60 à 80 fois par minute au repos.", v: true },
+  { s: "Les capillaires sont les vaisseaux où se font les échanges avec les cellules.", v: true },
+  { s: "La petite circulation va du cœur gauche vers les organes.", v: false },
+  { s: "Le rein réabsorbe le glucose : on ne le trouve pas dans l'urine normale.", v: true },
+  { s: "Les veines ont des parois plus épaisses que les artères.", v: false },
+];
+const vfContainer = document.getElementById('vf-items');
+let vfAnswers = {};
+vfData.forEach((item, i) => {
+  const d = document.createElement('div');
+  d.className = 'vf-item';
+  d.innerHTML = `<div class="vf-statement">${i+1}. ${item.s}</div>
+    <div class="vf-btns">
+      <button class="vf-btn v" id="vf-v-${i}" onclick="selectVF(${i},'v')">VRAI</button>
+      <button class="vf-btn f" id="vf-f-${i}" onclick="selectVF(${i},'f')">FAUX</button>
+    </div>`;
+  vfContainer.appendChild(d);
+});
+function selectVF(i, c) {
+  vfAnswers[i] = c;
+  ['v','f'].forEach(x => document.getElementById(`vf-${x}-${i}`).style.outline = '');
+  document.getElementById(`vf-${c}-${i}`).style.outline = '3px solid var(--rouge)';
+}
+function checkVF() {
+  let score = 0;
+  vfData.forEach((item, i) => {
+    const correct = item.v ? 'v' : 'f';
+    ['v','f'].forEach(c => { document.getElementById(`vf-${c}-${i}`).classList.remove('correct','incorrect'); document.getElementById(`vf-${c}-${i}`).style.outline=''; });
+    document.getElementById(`vf-${correct}-${i}`).classList.add('correct');
+    if (vfAnswers[i] && vfAnswers[i] !== correct) document.getElementById(`vf-${vfAnswers[i]}-${i}`).classList.add('incorrect');
+    else if (vfAnswers[i] === correct) score++;
+  });
+  const fb = document.getElementById('vf-feedback');
+  fb.innerHTML = `Score : ${score} / ${vfData.length} ${score >= 5 ? '✅ Excellent !' : '💪 Revois le cours !'}`;
+  fb.style.color = score >= 5 ? 'var(--vert)' : 'var(--rouge)';
+}
+
+// TEXTE À TROUS
+const trouData = [
+  { before: "Le sang est propulsé par le ", key: "cœur", after: " dans tout le corps." },
+  { before: "Les ", key: "artères", after: " transportent le sang du cœur vers les organes." },
+  { before: "Les échanges entre le sang et les cellules se font dans les ", key: "capillaires", after: "." },
+  { before: "Dans la petite circulation, le sang se charge en ", key: "dioxygène", after: " dans les poumons." },
+  { before: "Les globules rouges transportent l'O2 grâce à l'", key: "hémoglobine", after: "." },
+  { before: "Le rein filtre le sang et élimine l'", key: "urée", after: " dans l'urine." },
+];
+const trouText = document.getElementById('trou-text');
+trouData.forEach((item, i) => {
+  const span = document.createElement('span');
+  span.innerHTML = `${item.before}<input class="trou-input" id="trou-${i}" placeholder="?" />${item.after} `;
+  trouText.appendChild(span);
+});
+function checkTrou() {
+  let score = 0;
+  trouData.forEach((item, i) => {
+    const inp = document.getElementById('trou-'+i);
+    inp.classList.remove('ok','ko');
+    if (inp.value.trim().toLowerCase() === item.key.toLowerCase()) { inp.classList.add('ok'); score++; }
+    else { inp.classList.add('ko'); inp.placeholder = item.key; }
+  });
+  const fb = document.getElementById('trou-feedback');
+  fb.innerHTML = `${score} / ${trouData.length} ${score===trouData.length?'✅ Parfait !':'❌ Les bonnes réponses apparaissent dans les cases rouges.'}`;
+  fb.style.color = score===trouData.length?'var(--vert)':'var(--rouge)';
+}
+
+// DRAG & DROP
+const dragData = [
+  { word: "Artère", def: "Du cœur vers les organes" },
+  { word: "Veine", def: "Des organes vers le cœur" },
+  { word: "Capillaire", def: "Échanges avec les cellules" },
+  { word: "Globule rouge", def: "Transporte le dioxygène" },
+];
+const pool = document.getElementById('drag-pool');
+const dropZone = document.getElementById('drop-zone');
+let dragAnswers = {};
+dragData.forEach(item => {
+  const chip = document.createElement('div');
+  chip.className = 'drag-chip'; chip.textContent = item.word;
+  chip.draggable = true; chip.id = 'chip-'+item.word;
+  chip.addEventListener('dragstart', e => e.dataTransfer.setData('text', item.word));
+  chip.addEventListener('touchstart', e => { touchChip = e.target; }, {passive:true});
+  pool.appendChild(chip);
+});
+dragData.forEach((item, i) => {
+  const row = document.createElement('div');
+  row.className = 'drop-item';
+  row.innerHTML = `<div class="drop-slot" id="slot-${i}" ondragover="event.preventDefault()" ondrop="dropChip(event,${i})">${item.def}</div>`;
+  dropZone.appendChild(row);
+});
+let touchChip = null;
+document.querySelectorAll('.drop-slot').forEach(slot => {
+  slot.addEventListener('touchend', () => {
+    if (touchChip) { const i = slot.id.replace('slot-',''); placeChip(touchChip.textContent, slot, i); }
+  });
+});
+function dropChip(e, i) { placeChip(e.dataTransfer.getData('text'), document.getElementById('slot-'+i), i); }
+function placeChip(word, slot, i) {
+  const old = Object.entries(dragAnswers).find(([k,v])=>v===word);
+  if (old) { delete dragAnswers[old[0]]; document.getElementById('slot-'+old[0]).innerHTML = dragData[old[0]].def; }
+  if (dragAnswers[i]) { const c = document.getElementById('chip-'+dragAnswers[i]); if(c) c.style.display='inline-block'; }
+  dragAnswers[i] = word;
+  slot.innerHTML = `<strong>${word}</strong>`; slot.classList.add('filled');
+  const chip = document.getElementById('chip-'+word); if(chip) chip.style.display='none';
+}
+function checkDrag() {
+  let score = 0;
+  dragData.forEach((item, i) => {
+    const slot = document.getElementById('slot-'+i);
+    if (dragAnswers[i] === item.word) { score++; slot.style.background='var(--vert-light)'; slot.style.borderColor='var(--vert)'; }
+    else { slot.style.background='var(--rouge-light)'; slot.style.borderColor='var(--rouge)'; }
+  });
+  const fb = document.getElementById('drag-feedback');
+  fb.innerHTML = `${score} / ${dragData.length} ${score===dragData.length?'✅ Parfait !':'❌ Réessaie !'}`;
+  fb.style.color = score===dragData.length?'var(--vert)':'var(--rouge)';
+}
+
+// ORDRE
+const ordreData = [
+  { event: "Le cœur gauche se contracte", ordre: 1 },
+  { event: "Le sang riche en O2 entre dans les artères", ordre: 2 },
+  { event: "Le sang arrive dans les capillaires", ordre: 3 },
+  { event: "L'O2 et les nutriments passent dans les cellules", ordre: 4 },
+  { event: "Les cellules rejettent le CO2 dans le sang", ordre: 5 },
+  { event: "Le sang appauvri en O2 revient au cœur droit par les veines", ordre: 6 },
+];
+let ordreList = [...ordreData].sort(()=>Math.random()-0.5);
+const ordreContainer = document.getElementById('ordre-items');
+function renderOrdre() {
+  ordreContainer.innerHTML = '';
+  ordreList.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:8px;';
+    d.innerHTML = `<div style="flex:1;background:#fff5f5;border:2px solid #fecaca;border-radius:10px;padding:10px 14px;font-size:0.92rem;font-weight:600;">${item.event}</div>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        <button onclick="moveOrdre(${i},-1)" style="background:var(--rouge-light);border:1px solid var(--rouge);border-radius:6px;padding:2px 10px;cursor:pointer;font-weight:700;">▲</button>
+        <button onclick="moveOrdre(${i},1)" style="background:var(--rouge-light);border:1px solid var(--rouge);border-radius:6px;padding:2px 10px;cursor:pointer;font-weight:700;">▼</button>
+      </div>`;
+    ordreContainer.appendChild(d);
+  });
+}
+function moveOrdre(i, dir) {
+  const ni = i+dir; if(ni<0||ni>=ordreList.length) return;
+  [ordreList[i],ordreList[ni]]=[ordreList[ni],ordreList[i]]; renderOrdre();
+}
+function checkOrdre() {
+  let score = 0;
+  ordreList.forEach((item,i)=>{ if(item.ordre===i+1) score++; });
+  const fb = document.getElementById('ordre-feedback');
+  fb.innerHTML = `${score} / ${ordreList.length} ${score===ordreList.length?'✅ Ordre parfait !':'❌ Pas tout à fait. Réessaie !'}`;
+  fb.style.color = score===ordreList.length?'var(--vert)':'var(--rouge)';
+}
+renderOrdre();
+
+// GLOSSAIRE
+const glossaireData = [
+  { term: "Sang", def: "Liquide rouge circulant dans les vaisseaux sanguins. Composé de globules rouges, globules blancs, plaquettes et plasma. Transporte l'O2, les nutriments, les déchets et les hormones.", ex: "Le corps contient environ 5 litres de sang." },
+  { term: "Globules rouges", def: "Cellules du sang (aussi appelées hématies ou érythrocytes) qui transportent le dioxygène grâce à l'hémoglobine.", ex: "Leur couleur rouge vient de l'hémoglobine." },
+  { term: "Hémoglobine", def: "Protéine contenue dans les globules rouges qui se fixe sur le dioxygène dans les poumons et le libère dans les organes.", ex: "Sans hémoglobine, les cellules manqueraient d'O2." },
+  { term: "Plasma", def: "Partie liquide du sang (environ 55%). Transporte les nutriments, les déchets, les hormones et les protéines.", ex: "Le plasma est jaunâtre quand on le sépare des cellules sanguines." },
+  { term: "Cœur", def: "Muscle creux qui bat en permanence pour propulser le sang dans les deux circuits de circulation.", ex: "Le cœur bat en moyenne 70 fois par minute au repos." },
+  { term: "Artère", def: "Vaisseau sanguin à paroi épaisse qui transporte le sang du cœur vers les organes. Le sang y est sous forte pression.", ex: "On sent le pouls dans les artères (poignet, cou)." },
+  { term: "Veine", def: "Vaisseau sanguin à paroi fine qui ramène le sang des organes vers le cœur. Contient des valvules pour empêcher le reflux.", ex: "Les veines apparaissent bleues sous la peau." },
+  { term: "Capillaire", def: "Très fin vaisseau sanguin reliant artérioles et veinules. C'est le lieu des échanges entre le sang et les cellules.", ex: "Les capillaires sont si fins qu'un globule rouge doit se déformer pour y passer." },
+  { term: "Petite circulation", def: "Circuit du sang entre le cœur droit et les poumons. Le sang y dépose le CO2 et récupère l'O2.", ex: "Cœur droit → artère pulmonaire → poumons → veines pulmonaires → cœur gauche." },
+  { term: "Grande circulation", def: "Circuit du sang entre le cœur gauche et tous les organes du corps. Le sang y livre l'O2 et les nutriments.", ex: "Cœur gauche → aorte → organes → veines caves → cœur droit." },
+  { term: "Néphron", def: "Unité de filtration du rein. Chaque rein contient environ 1 million de néphrons qui filtrent le sang.", ex: "Les néphrons retiennent les éléments utiles (glucose) et laissent passer les déchets." },
+  { term: "Filtration rénale", def: "Processus par lequel le rein trie le contenu du sang : élimine les déchets (urée, eau en excès) et conserve les substances utiles (glucose, protéines).", ex: "180 litres de sang filtré → 1,5 litre d'urine." },
+  { term: "Dioxygène (O2)", def: "Gaz indispensable au fonctionnement des cellules. Absorbé par les poumons, transporté par les globules rouges jusqu'aux organes.", ex: "Sans O2, les cellules ne peuvent plus produire d'énergie." },
+  { term: "Médullaire", def: "Zone interne du rein, plus sombre que le cortex. C'est là que se trouvent les néphrons (unités de filtration) et les pyramides de Malpighi. L'urine formée par les néphrons descend vers le bassinet à travers cette zone.", ex: "Les lobes sombres visibles dans un rein en coupe, c'est la médullaire." },
+  { term: "Nutriments", def: "Substances issues de la digestion (glucose, acides aminés, acides gras) transportées par le plasma jusqu'aux cellules.", ex: "Le glucose est le 'carburant' principal des cellules." },
+];
+const grid = document.getElementById('glossaire-grid');
+glossaireData.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'glos-card';
+  card.innerHTML = `<div class="glos-term">❤️ ${item.term}</div>
+    <div class="glos-def">${item.def}</div>
+    ${item.ex?`<div class="glos-ex">💡 Ex : ${item.ex}</div>`:''}`;
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
