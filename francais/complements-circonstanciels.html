@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Français 4e – Les Compléments Circonstanciels</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: #f0faf4; min-height: 100vh; }
+
+header {
+  background: linear-gradient(135deg, #27ae60, #1abc9c, #2980b9);
+  padding: 30px 20px; text-align: center; position: relative;
+}
+header .back-btn {
+  position: absolute; top: 20px; left: 20px;
+  background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5);
+  color: #fff; text-decoration: none; border-radius: 20px;
+  padding: 6px 16px; font-size: 0.9rem; font-weight: 700; transition: background 0.2s;
+}
+header .back-btn:hover { background: rgba(255,255,255,0.35); }
+header h1 { font-family: 'Baloo 2', cursive; font-size: 2rem; color: #fff; }
+header p { color: rgba(255,255,255,0.9); margin-top: 6px; font-size: 1rem; }
+
+.tabs {
+  display: flex; gap: 8px; padding: 14px 16px 0; flex-wrap: wrap;
+  justify-content: center; border-bottom: 3px solid #a8e6c2; background: #fff;
+}
+.tab-btn {
+  background: #fff; border: 2px solid #a8e6c2; border-radius: 20px;
+  padding: 8px 15px; font-family: 'Baloo 2', cursive; font-size: 0.85rem;
+  cursor: pointer; color: #888; transition: all 0.2s; margin-bottom: 10px;
+}
+.tab-btn.active { background: linear-gradient(135deg, #27ae60, #1abc9c); color: #fff; border-color: transparent; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 18px 60px; }
+
+.stitle {
+  font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800;
+  margin: 26px 0 12px; display: flex; align-items: center; gap: 10px;
+  color: #1a5c36; border-bottom: 3px solid #a8e6c2; padding-bottom: 7px;
+}
+
+.lcard {
+  background: #fff; border-radius: 16px; padding: 18px 20px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.07); margin-bottom: 14px;
+}
+.lcard h3 { font-family: 'Baloo 2', cursive; font-size: 1.05rem; color: #1a5c36; margin-bottom: 9px; }
+.lcard p { color: #444; line-height: 1.65; margin-bottom: 7px; font-size: 0.93rem; }
+.lcard ul { margin: 6px 0 6px 20px; color: #444; font-size: 0.93rem; line-height: 1.8; }
+
+/* Encadré leçon style manuel */
+.lecon-box {
+  background: #e8faf0; border: 2px solid #27ae60; border-radius: 14px;
+  padding: 16px 18px; margin: 12px 0; font-size: 0.93rem; color: #1a3c28; line-height: 1.7;
+}
+.lecon-box .lecon-title {
+  font-family: 'Baloo 2', cursive; font-size: 1rem; color: #1a8a50;
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+}
+.lecon-box .arrow { padding-left: 14px; position: relative; margin-bottom: 4px; }
+.lecon-box .arrow::before { content: "›"; position: absolute; left: 0; color: #27ae60; font-weight: 700; }
+
+/* Rappel box */
+.rappel-box {
+  background: #fff8e1; border: 2px solid #f9a825; border-radius: 14px;
+  padding: 14px 18px; margin: 12px 0; font-size: 0.92rem; color: #4a3200; line-height: 1.65;
+}
+.rappel-box .r-title { font-family: 'Baloo 2', cursive; color: #e67e22; margin-bottom: 6px; }
+
+/* Gerondif decouverte */
+.decouv-box {
+  background: #f3e5f5; border: 2px solid #8e44ad; border-radius: 14px;
+  padding: 16px 18px; margin: 12px 0; font-size: 0.93rem; color: #3d0066; line-height: 1.7;
+}
+.decouv-box .d-title { font-family: 'Baloo 2', cursive; color: #7d3c98; margin-bottom: 8px; }
+
+.formula {
+  background: linear-gradient(135deg, #d5f5e3, #a9dfbf);
+  border-left: 4px solid #27ae60; border-radius: 10px;
+  padding: 10px 15px; margin: 9px 0; font-weight: 700; color: #1a5c36; font-size: 0.93rem;
+}
+.example {
+  background: #f0f9f4; border-left: 4px solid #1abc9c;
+  border-radius: 10px; padding: 8px 13px; margin: 6px 0;
+  color: #1a4030; font-style: italic; font-size: 0.91rem; line-height: 1.5;
+}
+.tip {
+  background: #fffbea; border-left: 4px solid #f1c40f;
+  border-radius: 10px; padding: 9px 13px; margin: 9px 0; font-size: 0.9rem; color: #555;
+}
+.tip strong { color: #e67e22; }
+.warn {
+  background: #fdecea; border-left: 4px solid #e74c3c;
+  border-radius: 10px; padding: 9px 13px; margin: 9px 0; font-size: 0.9rem; color: #555;
+}
+.warn strong { color: #c0392b; }
+
+/* Tableau des CC */
+.cc-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.87rem; border-radius: 12px; overflow: hidden; }
+.cc-table th { background: #1a5c36; color: #fff; padding: 9px 12px; text-align: left; font-family: 'Baloo 2', cursive; font-size: 0.9rem; }
+.cc-table td { padding: 8px 12px; border-bottom: 1px solid #d5f5e3; vertical-align: top; line-height: 1.5; }
+.cc-table tr:nth-child(even) td { background: #f0faf4; }
+.cc-table .cc-type { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 0.92rem; }
+.cc-time  { color: #2980b9; }
+.cc-lieu  { color: #27ae60; }
+.cc-man   { color: #8e44ad; }
+.cc-moyen { color: #e67e22; }
+.cc-acc   { color: #e74c3c; }
+.cc-cause { color: #c0392b; }
+.cc-cons  { color: #1abc9c; }
+.cc-but   { color: #d35400; }
+.cc-hyp   { color: #7f8c8d; }
+
+/* Badges classes gram */
+.badge {
+  display: inline-block; border-radius: 8px; padding: 2px 9px;
+  font-size: 0.8rem; font-weight: 700; margin: 2px 3px;
+}
+.b-adv  { background: #d6eaf8; color: #1a5276; }
+.b-gn   { background: #d5f5e3; color: #1a5c36; }
+.b-gp   { background: #fde8e8; color: #922b21; }
+.b-ger  { background: #f4ecf7; color: #6c3483; }
+.b-sub  { background: #fef9e7; color: #7d6608; }
+
+/* QUIZ */
+.qcard { background: #fff; border-radius: 14px; padding: 18px 20px; box-shadow: 0 3px 12px rgba(0,0,0,0.07); margin-bottom: 16px; }
+.qnum { font-family: 'Baloo 2', cursive; font-size: 0.78rem; color: #bbb; margin-bottom: 4px; }
+.qtxt { font-size: 0.95rem; color: #2c3e50; font-weight: 700; margin-bottom: 10px; line-height: 1.55; }
+.prop { color: #27ae60; font-style: italic; font-weight: 700; }
+.choice-btn {
+  display: block; width: 100%; text-align: left;
+  background: #f8f9fa; border: 2px solid #e0e0e0; border-radius: 11px;
+  padding: 10px 14px; margin-bottom: 7px;
+  font-family: 'Nunito', sans-serif; font-size: 0.92rem; font-weight: 600;
+  cursor: pointer; transition: all 0.18s; color: #2c3e50;
+}
+.choice-btn:hover:not(:disabled) { border-color: #27ae60; background: #e8faf0; }
+.choice-btn.correct { background: #d5f5e3; border-color: #27ae60; color: #1a5c36; }
+.choice-btn.wrong   { background: #fde8e8; border-color: #e74c3c; color: #922b21; }
+.choice-btn:disabled { cursor: not-allowed; }
+.feedback { margin-top: 7px; padding: 8px 12px; border-radius: 9px; font-size: 0.87rem; display: none; line-height: 1.5; }
+.feedback.show { display: block; }
+.feedback.ok { background: #d5f5e3; color: #1a5c36; font-weight: 700; }
+.feedback.ko { background: #fde8e8; color: #922b21; font-weight: 700; }
+
+.type-select {
+  border: 2px solid #ccc; border-radius: 10px; padding: 6px 10px;
+  font-family: 'Nunito', sans-serif; font-size: 0.88rem;
+  background: #fff; cursor: pointer; min-width: 170px;
+}
+.type-select:focus { outline: none; border-color: #27ae60; }
+.type-select.correct { border-color: #27ae60; background: #d5f5e3; }
+.type-select.wrong   { border-color: #e74c3c; background: #fde8e8; }
+
+.fill-input {
+  border: 2px solid #ccc; border-radius: 10px; padding: 7px 12px;
+  font-family: 'Nunito', sans-serif; font-size: 0.92rem; width: 200px; outline: none;
+  transition: border 0.2s;
+}
+.fill-input:focus { border-color: #27ae60; }
+.fill-input.correct { border-color: #27ae60; background: #d5f5e3; }
+.fill-input.wrong   { border-color: #e74c3c; background: #fde8e8; }
+
+.check-btn {
+  background: linear-gradient(135deg, #27ae60, #1abc9c); color: #fff; border: none;
+  border-radius: 11px; padding: 8px 18px; font-family: 'Baloo 2', cursive;
+  font-size: 0.9rem; cursor: pointer; transition: opacity 0.2s;
+}
+.check-btn:hover { opacity: 0.88; }
+.reveal-btn {
+  background: none; border: 2px solid #bbb; border-radius: 11px;
+  color: #888; padding: 6px 14px; font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
+}
+.reveal-btn:hover { border-color: #27ae60; color: #27ae60; }
+
+.score-box {
+  background: linear-gradient(135deg, #27ae60, #1abc9c);
+  color: #fff; border-radius: 18px; padding: 26px;
+  text-align: center; margin-top: 20px; display: none;
+}
+.score-box.show { display: block; }
+.score-box h2 { font-family: 'Baloo 2', cursive; font-size: 1.7rem; }
+.score-box .big { font-family: 'Baloo 2', cursive; font-size: 3rem; margin: 6px 0; }
+.rbtn {
+  background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.6);
+  color: #fff; border-radius: 12px; padding: 9px 20px;
+  font-family: 'Baloo 2', cursive; font-size: 0.9rem; cursor: pointer; margin: 5px 3px 0;
+}
+.rbtn:hover { background: rgba(255,255,255,0.4); }
+
+footer { text-align: center; padding: 28px; color: #aaa; font-size: 0.83rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back-btn" href="../index.html">← Accueil</a>
+  <div style="font-size:1.8rem;margin-bottom:5px">📍 ✍️</div>
+  <h1>Les Compléments Circonstanciels</h1>
+  <p>Français · 4e · Cours + Rappels + Gérondif + Exercices</p>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active"  onclick="sw('lecon',this)">📖 La Leçon</button>
+  <button class="tab-btn"         onclick="sw('rappels',this)">🔁 Rappels</button>
+  <button class="tab-btn"         onclick="sw('gerondif',this)">🌿 Le Gérondif</button>
+  <button class="tab-btn"         onclick="sw('ex-cc',this)">🟢 Exo – Circonstances</button>
+  <button class="tab-btn"         onclick="sw('ex-ger',this)">🟣 Exo – Gérondif</button>
+  <button class="tab-btn"         onclick="sw('ex-sup',this)">🎯 Exo – Bilan</button>
+</div>
+
+<div class="container">
+
+<!-- ====================================================
+     LEÇON PRINCIPALE
+===================================================== -->
+<div class="tab-panel active" id="tab-lecon">
+
+  <div class="stitle">📖 C'est quoi un complément circonstanciel ?</div>
+
+  <div class="lecon-box">
+    <div class="lecon-title">📘 Leçon (à retenir)</div>
+    <p class="arrow">En latin, <em>circumstare</em> signifie « se tenir autour ». Le C.C. <strong>ne fait pas partie du groupe verbal</strong>. Il « se tient autour » : c'est un <strong>complément de phrase</strong>.</p>
+    <p class="arrow">Il peut donc être <strong>supprimé</strong> sans que la phrase devienne incorrecte ou change totalement de sens.</p>
+    <p class="arrow">Il donne des <strong>précisions sur les circonstances de l'action</strong>.</p>
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Attention !</strong> Certains compléments ressemblent à des C.C. mais ne peuvent <strong>pas</strong> être supprimés : ce sont des <strong>compléments essentiels</strong> (de lieu ou de temps) qui font partie du groupe verbal.<br>
+    <em>Exemple : "Il habite <u>à Paris</u>." → on ne peut pas supprimer "à Paris" !</em>
+  </div>
+
+  <div class="stitle">❓ Les différentes circonstances</div>
+  <div class="lcard">
+    <table class="cc-table">
+      <tr>
+        <th>Le C.C. de…</th>
+        <th>Question à poser</th>
+        <th>Exemple du manuel</th>
+      </tr>
+      <tr><td class="cc-type cc-time">Temps</td><td>Quand ? Depuis quand ? Jusqu'à quand ? Combien de temps ?</td><td><em>Ce soir, nous irons au cinéma.</em></td></tr>
+      <tr><td class="cc-type cc-lieu">Lieu</td><td>Où ? Vers où ? Par où ? D'où ? Jusqu'où ?</td><td><em>Nous achèterons des popcorns à l'entrée.</em></td></tr>
+      <tr><td class="cc-type cc-man">Manière</td><td>De quelle manière ?</td><td><em>Nous discuterons en marchant.</em></td></tr>
+      <tr><td class="cc-type cc-moyen">Moyen</td><td>À l'aide de quel outil ? Avec quel moyen de transport ?</td><td><em>Nous rentrerons en bus.</em></td></tr>
+      <tr><td class="cc-type cc-acc">Accompagnement</td><td>Avec qui ? (uniquement pour une personne)</td><td><em>Nous irons au cinéma avec Paul et Julie.</em></td></tr>
+      <tr><td class="cc-type cc-cause">Cause</td><td>Pour quelle raison ?</td><td><em>Nous irons voir un film d'action, <strong>car je sais que tu aimes ça</strong>.</em></td></tr>
+      <tr><td class="cc-type cc-cons">Conséquence</td><td>Avec quelle conséquence ?</td><td><em>Ma réunion a été annulée, <strong>de sorte que je suis disponible</strong>.</em></td></tr>
+      <tr><td class="cc-type cc-but">But</td><td>Dans quel but ?</td><td><em>Nous irons au cinéma <strong>pour nous détendre</strong>.</em></td></tr>
+      <tr><td class="cc-type cc-hyp">Hypothèse / Condition</td><td>À quelle condition ? Dans quelle hypothèse ?</td><td><em><strong>Si tu es disponible</strong>, nous pouvons aller au cinéma.</em></td></tr>
+    </table>
+  </div>
+
+  <div class="stitle">🏷️ Les classes grammaticales des C.C.</div>
+  <div class="lcard">
+    <p style="margin-bottom:10px">Un C.C. peut être :</p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span class="badge b-adv">Adverbe</span>
+        <span style="font-size:.92rem;color:#444"><em>silencieusement, rapidement, demain, souvent</em></span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span class="badge b-gn">Groupe nominal</span>
+        <span style="font-size:.92rem;color:#444"><em>ce matin, chaque jour</em></span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span class="badge b-gp">Groupe prépositionnel</span>
+        <span style="font-size:.92rem;color:#444"><em>au parc, en forêt, dans le jardin, sans tarder</em></span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span class="badge b-ger">Verbe au gérondif</span>
+        <span style="font-size:.92rem;color:#444"><em>en riant, en partant</em> (préposition <em>en</em> + verbe en <em>-ant</em>)</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span class="badge b-sub">Proposition subordonnée</span>
+        <span style="font-size:.92rem;color:#444"><em>comme tu n'es pas venu, si tout se passe bien, dès que tu as ouvert, afin qu'ils comprennent</em></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>🧠 Méthode en 2 étapes :</strong><br>
+    <strong>1)</strong> Peut-on supprimer le groupe ? Si oui → c'est un C.C. (pas essentiel)<br>
+    <strong>2)</strong> Quelle question répond-il ? → donne la <em>circonstance</em> (temps, lieu, manière…)
+  </div>
+</div>
+
+<!-- ====================================================
+     RAPPELS
+===================================================== -->
+<div class="tab-panel" id="tab-rappels">
+
+  <div class="stitle">🔁 Rappel 1 — Les compléments essentiels de lieu et de temps</div>
+
+  <div class="rappel-box">
+    <div class="r-title">📌 À ne pas confondre avec les C.C. !</div>
+    <p>Certains compléments de <strong>lieu</strong> ou de <strong>temps</strong> sont <strong>essentiels</strong> au verbe : ils font partie du groupe verbal et <strong>ne peuvent pas être supprimés</strong>.</p>
+  </div>
+
+  <div class="lcard">
+    <h3>🏠 Compléments essentiels de lieu</h3>
+    <p>Ils répondent à la question <em>où ?</em> mais sont indispensables au sens du verbe.</p>
+    <div class="example">Il <strong>habite</strong> <u>à Paris</u>. → on ne peut pas dire "Il habite." ✗</div>
+    <div class="example">Elle <strong>va</strong> <u>au collège</u> chaque matin. → "au collège" est essentiel</div>
+    <div class="example">Le chat <strong>est</strong> <u>dans la cuisine</u>. → "dans la cuisine" est essentiel</div>
+    <div class="tip"><strong>Verbes concernés :</strong> aller, venir, habiter, se trouver, mettre, poser, rester, partir…</div>
+  </div>
+
+  <div class="lcard">
+    <h3>⏰ Compléments essentiels de temps</h3>
+    <p>Même principe : indispensables au sens du verbe.</p>
+    <div class="example">La réunion <strong>dure</strong> <u>deux heures</u>. → on ne peut pas dire "La réunion dure." ✗</div>
+    <div class="example">Il <strong>travaille ici</strong> <u>depuis deux ans</u>.</div>
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Comment les distinguer d'un C.C. ?</strong><br>
+    Essaie de supprimer le complément :<br>
+    → La phrase est <strong>correcte</strong> sans lui → <strong>C.C.</strong><br>
+    → La phrase est <strong>incorrecte ou absurde</strong> sans lui → <strong>complément essentiel</strong>
+  </div>
+
+  <div class="stitle">🔁 Rappel 2 — Les prépositions</div>
+
+  <div class="rappel-box">
+    <div class="r-title">📌 Rappel sur les prépositions</div>
+    <p>Une <strong>préposition</strong> est un mot invariable qui introduit un groupe nominal ou un infinitif pour former un <strong>groupe prépositionnel</strong>.</p>
+  </div>
+
+  <div class="lcard">
+    <h3>Les prépositions les plus courantes</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin:10px 0">
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">à</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">de</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">en</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">dans</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">par</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">pour</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">sur</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">sous</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">vers</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">avec</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">sans</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">contre</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">entre</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">depuis</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">avant</span>
+      <span style="background:#d5f5e3;border-radius:8px;padding:4px 12px;font-weight:700;color:#1a5c36;font-size:.88rem">après</span>
+    </div>
+    <div class="example">Il part <u><strong>à</strong> Paris</u>. &nbsp;·&nbsp; Il revient <u><strong>de</strong> l'école</u>. &nbsp;·&nbsp; Elle marche <u><strong>sans</strong> bruit</u>.</div>
+    <div class="tip"><strong>Astuce :</strong> Les groupes prépositionnels qui fonctionnent comme C.C. répondent souvent aux questions <em>où ?, quand ?, comment ?, pourquoi ?</em></div>
+  </div>
+</div>
+
+<!-- ====================================================
+     GÉRONDIF — DÉCOUVERTE
+===================================================== -->
+<div class="tab-panel" id="tab-gerondif">
+
+  <div class="stitle">🌿 Découverte — Le gérondif</div>
+
+  <div class="decouv-box">
+    <div class="d-title">🔭 Nouveauté de cette leçon !</div>
+    <p>Le <strong>gérondif</strong> est une forme verbale qui peut fonctionner comme <strong>complément circonstanciel</strong>. Il est très fréquent en français.</p>
+  </div>
+
+  <div class="lecon-box">
+    <div class="lecon-title">📘 Formation du gérondif</div>
+    <div class="formula" style="background:linear-gradient(135deg,#e8d5f5,#d5a8e3);border-color:#8e44ad;color:#4a0080">
+      Gérondif = <strong>en</strong> + verbe au <strong>participe présent</strong> (-ant)
+    </div>
+    <p class="arrow">Participe présent = radical du verbe + <strong>-ant</strong></p>
+    <p class="arrow">chant<strong>er</strong> → chant<strong>ant</strong> → <strong>en chantant</strong></p>
+    <p class="arrow">finir → finissant → <strong>en finissant</strong></p>
+    <p class="arrow">prendre → prenant → <strong>en prenant</strong></p>
+  </div>
+
+  <div class="lcard">
+    <h3>💡 À quoi sert le gérondif ?</h3>
+    <p>Le gérondif exprime une <strong>circonstance</strong> de l'action principale. Il peut exprimer :</p>
+    <table class="cc-table" style="margin-top:10px">
+      <tr><th>Circonstance</th><th>Exemple</th></tr>
+      <tr><td class="cc-type cc-man">Manière</td><td><em>Il nous a répondu <u>en souriant</u>. → De quelle manière ?</em></td></tr>
+      <tr><td class="cc-type cc-time">Simultanéité (temps)</td><td><em>Elle tricote <u>en regardant la télé</u>. → En même temps que quoi ?</em></td></tr>
+      <tr><td class="cc-type cc-cause">Cause</td><td><em><u>En travaillant</u> autant, il s'est épuisé. → Pour quelle raison ?</em></td></tr>
+      <tr><td class="cc-type cc-hyp">Condition</td><td><em><u>En partant</u> plus tôt, tu éviteras les embouteillages. → À quelle condition ?</em></td></tr>
+      <tr><td class="cc-type cc-but">But / Moyen</td><td><em>Il gagne sa vie <u>en jouant</u> de la guitare. → Par quel moyen ?</em></td></tr>
+    </table>
+  </div>
+
+  <div class="lcard">
+    <h3>⚠️ Gérondif vs Participe présent — ne pas confondre !</h3>
+    <div class="warn">
+      Le participe présent s'emploie <strong>sans "en"</strong> et fonctionne comme <strong>adjectif ou relative</strong>.<br>
+      Le gérondif s'emploie <strong>avec "en"</strong> et fonctionne comme <strong>C.C.</strong>
+    </div>
+    <div class="example"><u>En chantant</u>, elle balayait le sol. → <strong>gérondif</strong> C.C. (manière ou simultanéité)</div>
+    <div class="example">La fille <u>chantant</u> sous la pluie était magnifique. → <strong>participe présent</strong> (comme une relative)</div>
+    <div class="tip">
+      <strong>🔑 Test simple :</strong> il y a le mot <strong>"en"</strong> devant ? → gérondif ✓
+    </div>
+  </div>
+
+  <div class="lcard">
+    <h3>📋 Exemples du manuel</h3>
+    <div class="example"><em>Nous discuterons <u>en marchant</u>.</em> → gérondif, C.C. de <strong>manière</strong></div>
+    <div class="example"><em>Elle est partie <u>en riant</u>.</em> → gérondif, C.C. de <strong>manière</strong></div>
+    <div class="example"><em>Il a appris la nouvelle <u>en regardant les infos</u>.</em> → gérondif, C.C. de <strong>temps/simultanéité</strong></div>
+  </div>
+
+  <div class="tip">
+    <strong>🧠 Méthode pour analyser un gérondif :</strong><br>
+    1. Repère le <em>en + …ant</em><br>
+    2. Pose la question : manière ? temps ? cause ? condition ?<br>
+    3. Vérifie qu'on peut le supprimer (sinon c'est essentiel)
+  </div>
+</div>
+
+<!-- ====================================================
+     EXERCICE 1 — CIRCONSTANCES + CLASSES GRAM
+===================================================== -->
+<div class="tab-panel" id="tab-ex-cc">
+
+  <div class="stitle">🟢 Exercice 1 — Quelle circonstance ?</div>
+  <p style="color:#555;margin-bottom:16px;font-size:.93rem">Pour chaque C.C. en vert, identifie la circonstance exprimée.</p>
+  <div id="ex-cc-cont"></div>
+  <div style="text-align:center;margin-top:10px">
+    <button class="check-btn" onclick="submitCC()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="cc-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="cc-score-val">–</div>
+    <p id="cc-score-msg"></p>
+    <button class="rbtn" onclick="resetCC()">🔄 Recommencer</button>
+    <button class="rbtn" onclick="sw('ex-ger',null)">Exercice suivant →</button>
+  </div>
+
+  <div class="stitle" style="margin-top:36px">🟢 Exercice 2 — Classe grammaticale du C.C.</div>
+  <p style="color:#555;margin-bottom:14px;font-size:.93rem">
+    Identifie la classe grammaticale du C.C. souligné.<br>
+    Choix :
+    <span class="badge b-adv">Adverbe</span>
+    <span class="badge b-gn">Groupe nominal</span>
+    <span class="badge b-gp">Groupe prépositionnel</span>
+    <span class="badge b-ger">Gérondif</span>
+    <span class="badge b-sub">Prop. subordonnée</span>
+  </p>
+  <div id="ex-cl-cont"></div>
+  <div style="text-align:center;margin-top:10px">
+    <button class="check-btn" onclick="submitCl()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="cl-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="cl-score-val">–</div>
+    <p id="cl-score-msg"></p>
+    <button class="rbtn" onclick="resetCl()">🔄 Recommencer</button>
+  </div>
+</div>
+
+<!-- ====================================================
+     EXERCICE GÉRONDIF
+===================================================== -->
+<div class="tab-panel" id="tab-ex-ger">
+
+  <div class="stitle">🟣 Exercice 1 — Reconnaître le gérondif</div>
+  <p style="color:#555;margin-bottom:14px;font-size:.93rem">Gérondif ou participe présent ?</p>
+  <div id="ex-ger-cont"></div>
+  <div style="text-align:center;margin-top:10px">
+    <button class="check-btn" onclick="submitGer()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="ger-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="ger-score-val">–</div>
+    <p id="ger-score-msg"></p>
+    <button class="rbtn" onclick="resetGer()">🔄 Recommencer</button>
+    <button class="rbtn" onclick="sw('ex-cc',null)">Revoir l'exercice 1 →</button>
+  </div>
+
+  <div class="stitle" style="margin-top:36px">🟣 Exercice 2 — Former le gérondif</div>
+  <p style="color:#555;margin-bottom:14px;font-size:.93rem">Forme le gérondif du verbe entre parenthèses et tape-le.</p>
+  <div id="ex-form-cont"></div>
+  <div style="text-align:center;margin-top:10px">
+    <button class="check-btn" onclick="submitForm()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="form-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="form-score-val">–</div>
+    <p id="form-score-msg"></p>
+    <button class="rbtn" onclick="resetForm()">🔄 Recommencer</button>
+  </div>
+</div>
+
+<!-- ====================================================
+     EXERCICE BILAN — PLUSIEURS GENRES
+===================================================== -->
+<div class="tab-panel" id="tab-ex-sup">
+
+  <div class="stitle">🎯 Exercice Bilan 1 — Trouver le C.C. dans la phrase</div>
+  <p style="color:#555;margin-bottom:14px;font-size:.93rem">Clique sur le groupe de mots qui est le C.C. de chaque phrase. Un seul C.C. par phrase.</p>
+  <div id="ex-find-cont"></div>
+  <div style="text-align:center;margin-top:10px">
+    <button class="check-btn" onclick="submitFind()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="find-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="find-score-val">–</div>
+    <p id="find-score-msg"></p>
+    <button class="rbtn" onclick="resetFind()">🔄 Recommencer</button>
+  </div>
+
+  <div class="stitle" style="margin-top:36px">🎯 Exercice Bilan 2 — C.C. ou complément essentiel ?</div>
+  <p style="color:#555;margin-bottom:14px;font-size:.93rem">Le groupe souligné peut-il être supprimé sans que la phrase devienne fausse ou absurde ?</p>
+  <div id="ex-ess-cont"></div>
+  <div style="text-align:center;margin-top:10px">
+    <button class="check-btn" onclick="submitEss()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="ess-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="ess-score-val">–</div>
+    <p id="ess-score-msg"></p>
+    <button class="rbtn" onclick="resetEss()">🔄 Recommencer</button>
+  </div>
+
+  <div class="stitle" style="margin-top:36px">🎯 Exercice Bilan 3 — Associer la question à la circonstance</div>
+  <p style="color:#555;margin-bottom:14px;font-size:.93rem">Relie chaque question posée au type de C.C. correspondant.</p>
+  <div id="ex-match-cont"></div>
+  <div style="text-align:center;margin-top:10px">
+    <button class="check-btn" onclick="submitMatch()">Voir mon score 🎯</button>
+  </div>
+  <div class="score-box" id="match-score">
+    <h2>🎉 Résultat</h2>
+    <div class="big" id="match-score-val">–</div>
+    <p id="match-score-msg"></p>
+    <button class="rbtn" onclick="resetMatch()">🔄 Recommencer</button>
+  </div>
+</div>
+
+</div><!-- /container -->
+<footer>Créé avec ❤️ pour Noah</footer>
+
+<script>
+function sw(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
+  });
+}
+
+// ============================================================
+// EXERCICE 1 — IDENTIFIER LA CIRCONSTANCE
+// ============================================================
+const ccTypes = ['Temps','Lieu','Manière','Moyen','Accompagnement','Cause','Conséquence','But','Hypothèse/Condition'];
+const ccData = [
+  { av:"Les accidents de la route ont augmenté,", prop:"au point qu'on a triplé le nombre de radars", ap:".", ans:"Conséquence",
+    exp:"'au point que' introduit une conséquence." },
+  { av:"Il crie très fort", prop:"afin que quelqu'un l'entende", ap:".", ans:"But",
+    exp:"'afin que' exprime le but. Question : dans quel but crie-t-il ?" },
+  { av:"Il suffit qu'il arrive", prop:"pour que tout le monde se taise", ap:".", ans:"But",
+    exp:"'pour que' exprime le but." },
+  { av:"Nous irons au cinéma", prop:"avec Paul et Julie", ap:".", ans:"Accompagnement",
+    exp:"'avec Paul et Julie' = accompagnement (avec une ou des personnes)." },
+  { av:"Nous rentrerons", prop:"en bus", ap:".", ans:"Moyen",
+    exp:"'en bus' = moyen de transport. Question : avec quel moyen de transport ?" },
+  { av:"Il travaille", prop:"depuis deux heures", ap:".", ans:"Temps",
+    exp:"'depuis deux heures' = durée. Question : depuis quand ?" },
+  { av:"Nous discuterons", prop:"en marchant", ap:".", ans:"Manière",
+    exp:"'en marchant' = gérondif, C.C. de manière. Question : de quelle manière ?" },
+  { av:"Elle est partie", prop:"sans bruit", ap:".", ans:"Manière",
+    exp:"'sans bruit' exprime la manière. Question : de quelle manière ?" },
+  { av:"", prop:"Si tu es disponible", ap:", nous pouvons aller au cinéma.", ans:"Hypothèse/Condition",
+    exp:"'si' introduit une hypothèse ou une condition." },
+  { av:"Nous irons voir un film d'action,", prop:"car je sais que tu aimes ça", ap:".", ans:"Cause",
+    exp:"'car' introduit une cause. Question : pour quelle raison ?" },
+];
+let ccSt=Array(ccData.length).fill(null), ccSc=0, ccDone=false;
+
+function buildCC() {
+  const c=document.getElementById('ex-cc-cont'); c.innerHTML='';
+  ccData.forEach((q,i)=>{
+    const d=document.createElement('div'); d.className='qcard';
+    const phrase=q.av ? `${q.av} <span class="prop">${q.prop}</span>${q.ap}` : `<span class="prop">${q.prop}</span>${q.ap}`;
+    const opts=ccTypes.map(o=>`<option value="${o}">${o}</option>`).join('');
+    d.innerHTML=`<div class="qnum">Phrase ${i+1} / ${ccData.length}</div>
+      <div class="qtxt" style="font-weight:normal;font-size:.95rem;line-height:1.6;margin-bottom:10px">${phrase}</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <span style="font-size:.88rem;color:#555;font-weight:700">Circonstance :</span>
+        <select class="type-select" id="cs${i}"><option value="">-- choisis --</option>${opts}</select>
+        <button class="check-btn" style="padding:6px 14px;font-size:.85rem" onclick="checkCC(${i})">✓</button>
+        <button class="reveal-btn" onclick="revealCC(${i})">Voir</button>
+      </div>
+      <div class="feedback" id="cfb${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function checkCC(i){
+  if(ccSt[i]!==null) return;
+  const sel=document.getElementById(`cs${i}`); if(!sel.value) return;
+  const ok=sel.value===ccData[i].ans; ccSt[i]=ok;
+  sel.disabled=true; sel.classList.add(ok?'correct':'wrong');
+  const fb=document.getElementById(`cfb${i}`);
+  fb.className='feedback show '+(ok?'ok':'ko');
+  fb.innerHTML=(ok?'✅ ':'❌ Réponse : <strong>'+ccData[i].ans+'</strong> — ')+ccData[i].exp;
+}
+function revealCC(i){
+  if(ccSt[i]!==null) return; ccSt[i]=false;
+  const sel=document.getElementById(`cs${i}`); sel.value=ccData[i].ans; sel.disabled=true; sel.classList.add('correct');
+  const fb=document.getElementById(`cfb${i}`);
+  fb.className='feedback show ok';
+  fb.innerHTML='👁️ <strong>'+ccData[i].ans+'</strong> — '+ccData[i].exp;
+}
+function submitCC(){
+  if(ccDone) return; ccDone=true;
+  // Calcul du score sur les réponses déjà données
+  ccSc = ccSt.filter(s=>s===true).length;
+  // Révèle les non-répondues (sans modifier le score)
+  ccData.forEach((_,i)=>{if(ccSt[i]===null) revealCC(i);});
+  const pct=Math.round(ccSc/ccData.length*100);
+  document.getElementById('cc-score-val').textContent=ccSc+' / '+ccData.length;
+  document.getElementById('cc-score-msg').textContent=pct>=80?'🏆 Excellent !':pct>=60?'👍 Bien ! Relis les explications.':'📚 Relis le tableau des circonstances.';
+  document.getElementById('cc-score').classList.add('show');
+}
+function resetCC(){ccSc=0;ccDone=false;ccSt=Array(ccData.length).fill(null);document.getElementById('cc-score').classList.remove('show');buildCC();}
+
+// ============================================================
+// EXERCICE 2 — CLASSE GRAMMATICALE DU C.C.
+// ============================================================
+const clOpts=['Adverbe','Groupe nominal','Groupe prépositionnel','Gérondif','Proposition subordonnée'];
+const clData=[
+  { av:"Elle est partie", prop:"silencieusement", ap:".", ans:"Adverbe",
+    exp:"Adverbe de manière (mot invariable)." },
+  { av:"Nous irons au cinéma", prop:"ce soir", ap:".", ans:"Groupe nominal",
+    exp:"'ce soir' = déterminant + nom = groupe nominal." },
+  { av:"Nous rentrerons", prop:"en bus", ap:".", ans:"Groupe prépositionnel",
+    exp:"'en' = préposition + 'bus' = groupe prépositionnel." },
+  { av:"Il nous a répondu", prop:"en souriant", ap:".", ans:"Gérondif",
+    exp:"'en' + verbe en -ant = gérondif." },
+  { av:"Nous irons au cinéma", prop:"si tu es disponible", ap:".", ans:"Proposition subordonnée",
+    exp:"'si tu es disponible' est une proposition subordonnée circonstancielle." },
+  { av:"Elle marche", prop:"sans bruit", ap:".", ans:"Groupe prépositionnel",
+    exp:"'sans' = préposition + 'bruit' = groupe prépositionnel." },
+  { av:"Il est arrivé", prop:"rapidement", ap:".", ans:"Adverbe",
+    exp:"Adverbe de manière." },
+  { av:"Elle tricote", prop:"en regardant la télé", ap:".", ans:"Gérondif",
+    exp:"'en' + verbe en -ant = gérondif." },
+  { av:"Nous irons voir un film", prop:"chaque samedi", ap:".", ans:"Groupe nominal",
+    exp:"'chaque samedi' = déterminant + nom = groupe nominal." },
+  { av:"La réunion a été annulée", prop:"de sorte que je suis disponible", ap:".", ans:"Proposition subordonnée",
+    exp:"'de sorte que' introduit une proposition subordonnée circonstancielle de conséquence." },
+];
+let clSt=Array(clData.length).fill(null), clSc=0, clDone=false;
+
+function buildCl(){
+  const c=document.getElementById('ex-cl-cont'); c.innerHTML='';
+  clData.forEach((q,i)=>{
+    const d=document.createElement('div'); d.className='qcard';
+    const opts=clOpts.map(o=>`<option value="${o}">${o}</option>`).join('');
+    d.innerHTML=`<div class="qnum">Phrase ${i+1} / ${clData.length}</div>
+      <div class="qtxt" style="font-weight:normal;font-size:.95rem;line-height:1.6;margin-bottom:10px">${q.av} <u class="prop">${q.prop}</u>${q.ap}</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <span style="font-size:.88rem;color:#555;font-weight:700">Classe :</span>
+        <select class="type-select" id="ls${i}"><option value="">-- choisis --</option>${opts}</select>
+        <button class="check-btn" style="padding:6px 14px;font-size:.85rem" onclick="checkCl(${i})">✓</button>
+        <button class="reveal-btn" onclick="revealCl(${i})">Voir</button>
+      </div>
+      <div class="feedback" id="lfb${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function checkCl(i){
+  if(clSt[i]!==null) return;
+  const sel=document.getElementById(`ls${i}`); if(!sel.value) return;
+  const ok=sel.value===clData[i].ans; clSt[i]=ok;
+  sel.disabled=true; sel.classList.add(ok?'correct':'wrong');
+  const fb=document.getElementById(`lfb${i}`);
+  fb.className='feedback show '+(ok?'ok':'ko');
+  fb.innerHTML=(ok?'✅ ':'❌ Réponse : <strong>'+clData[i].ans+'</strong> — ')+clData[i].exp;
+}
+function revealCl(i){
+  if(clSt[i]!==null) return; clSt[i]=false;
+  const sel=document.getElementById(`ls${i}`); sel.value=clData[i].ans; sel.disabled=true; sel.classList.add('correct');
+  const fb=document.getElementById(`lfb${i}`);
+  fb.className='feedback show ok';
+  fb.innerHTML='👁️ <strong>'+clData[i].ans+'</strong> — '+clData[i].exp;
+}
+function submitCl(){
+  if(clDone) return; clDone=true;
+  clSc = clSt.filter(s=>s===true).length;
+  clData.forEach((_,i)=>{if(clSt[i]===null) revealCl(i);});
+  const pct=Math.round(clSc/clData.length*100);
+  document.getElementById('cl-score-val').textContent=clSc+' / '+clData.length;
+  document.getElementById('cl-score-msg').textContent=pct>=80?'🏆 Parfait !':pct>=60?'👍 Bien, relis les classes grammaticales.':'📚 Relis la section "classes grammaticales" du cours.';
+  document.getElementById('cl-score').classList.add('show');
+}
+function resetCl(){clSc=0;clDone=false;clSt=Array(clData.length).fill(null);document.getElementById('cl-score').classList.remove('show');buildCl();}
+
+// ============================================================
+// EXERCICE GÉRONDIF 1 — Gérondif ou participe présent ?
+// ============================================================
+const gerData=[
+  { txt:"Il nous a répondu <span class='prop'>en souriant</span>.", ans:0, exp:"'en' + 'souriant' → gérondif ✓" },
+  { txt:"La fille <span class='prop'>chantant</span> sous la pluie était magnifique.", ans:1, exp:"Pas de 'en' → participe présent." },
+  { txt:"Elle tricote <span class='prop'>en regardant</span> la télé.", ans:0, exp:"'en' + 'regardant' → gérondif ✓" },
+  { txt:"Les enfants <span class='prop'>jouant</span> dans la cour font beaucoup de bruit.", ans:1, exp:"Pas de 'en' → participe présent (complète 'enfants')." },
+  { txt:"<span class='prop'>En travaillant</span> autant, il s'est épuisé.", ans:0, exp:"'en' + 'travaillant' → gérondif ✓" },
+  { txt:"Le chat <span class='prop'>ronronnant</span> sur mes genoux s'est endormi.", ans:1, exp:"Pas de 'en' → participe présent." },
+  { txt:"Il gagne sa vie <span class='prop'>en jouant</span> de la guitare.", ans:0, exp:"'en' + 'jouant' → gérondif ✓" },
+  { txt:"<span class='prop'>En partant</span> plus tôt, tu éviteras les embouteillages.", ans:0, exp:"'en' + 'partant' → gérondif ✓" },
+];
+let gerSt=Array(gerData.length).fill(null), gerSc=0, gerDone=false;
+
+function buildGer(){
+  const c=document.getElementById('ex-ger-cont'); c.innerHTML='';
+  gerData.forEach((q,i)=>{
+    const d=document.createElement('div'); d.className='qcard';
+    d.innerHTML=`<div class="qnum">Phrase ${i+1} / ${gerData.length}</div>
+      <div class="qtxt" style="font-weight:normal;font-size:.95rem;line-height:1.6;margin-bottom:10px">${q.txt}</div>
+      <button class="choice-btn" id="gb${i}0" onclick="ansGer(${i},0)">🌿 Gérondif</button>
+      <button class="choice-btn" id="gb${i}1" onclick="ansGer(${i},1)">📝 Participe présent</button>
+      <div class="feedback" id="gfb${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function ansGer(qi,ch){
+  if(gerSt[qi]!==null) return;
+  const ok=ch===gerData[qi].ans; gerSt[qi]=ok;
+  [0,1].forEach(j=>{const b=document.getElementById(`gb${qi}${j}`);b.disabled=true;if(j===gerData[qi].ans)b.classList.add('correct');else if(j===ch&&!ok)b.classList.add('wrong');});
+  const fb=document.getElementById(`gfb${qi}`);
+  fb.className='feedback show '+(ok?'ok':'ko');
+  fb.innerHTML=(ok?'✅ Bravo ! ':'❌ ')+gerData[qi].exp;
+}
+function submitGer(){
+  if(gerDone) return; gerDone=true;
+  gerSc = gerSt.filter(s=>s===true).length;
+  gerData.forEach((q,i)=>{if(gerSt[i]===null){[0,1].forEach(j=>{const b=document.getElementById(`gb${i}${j}`);b.disabled=true;if(j===q.ans)b.classList.add('correct');});}});
+  const pct=Math.round(gerSc/gerData.length*100);
+  document.getElementById('ger-score-val').textContent=gerSc+' / '+gerData.length;
+  document.getElementById('ger-score-msg').textContent=pct>=80?'🏆 Tu maîtrises le gérondif !':pct>=60?'👍 Bien ! Rappelle-toi : gérondif = "en" + -ant.':'📚 Relis la leçon sur le gérondif.';
+  document.getElementById('ger-score').classList.add('show');
+}
+function resetGer(){gerSc=0;gerDone=false;gerSt=Array(gerData.length).fill(null);document.getElementById('ger-score').classList.remove('show');buildGer();}
+
+// ============================================================
+// EXERCICE GÉRONDIF 2 — Former le gérondif
+// ============================================================
+const formData=[
+  { txt:"Il répond toujours ___ (sourire).", ans:["en souriant"], exp:"sourire → souriant → en souriant" },
+  { txt:"Elle est partie ___ (chanter).", ans:["en chantant"], exp:"chanter → chantant → en chantant" },
+  { txt:"___ (travailler) autant, tu vas t'épuiser.", ans:["en travaillant"], exp:"travailler → travaillant → en travaillant" },
+  { txt:"Il gagne sa vie ___ (jouer) de la guitare.", ans:["en jouant"], exp:"jouer → jouant → en jouant" },
+  { txt:"Elle tricote ___ (regarder) la télé.", ans:["en regardant"], exp:"regarder → regardant → en regardant" },
+  { txt:"___ (partir) plus tôt, tu éviteras les embouteillages.", ans:["en partant"], exp:"partir → partant → en partant" },
+  { txt:"Il m'a expliqué la route ___ (dessiner) un plan.", ans:["en dessinant"], exp:"dessiner → dessinant → en dessinant" },
+  { txt:"Elle s'est blessée ___ (courir).", ans:["en courant"], exp:"courir → courant → en courant" },
+];
+let formSt=Array(formData.length).fill(null), formSc=0, formDone=false;
+
+function buildForm(){
+  const c=document.getElementById('ex-form-cont'); c.innerHTML='';
+  formData.forEach((q,i)=>{
+    const d=document.createElement('div'); d.className='qcard';
+    d.innerHTML=`<div class="qnum">Phrase ${i+1} / ${formData.length}</div>
+      <div class="qtxt" style="font-weight:normal;font-size:.95rem;line-height:1.6;margin-bottom:10px">${q.txt}</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <input class="fill-input" id="fi${i}" placeholder="en + …ant" autocomplete="off">
+        <button class="check-btn" style="padding:6px 14px;font-size:.85rem" onclick="checkForm(${i})">✓</button>
+        <button class="reveal-btn" onclick="revealForm(${i})">Voir</button>
+      </div>
+      <div class="feedback" id="ffb${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function norm(s){return s.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function checkForm(i){
+  if(formSt[i]!==null) return;
+  const inp=document.getElementById(`fi${i}`); const val=norm(inp.value);
+  const ok=formData[i].ans.some(a=>norm(a)===val); formSt[i]=ok;
+  inp.disabled=true; inp.classList.add(ok?'correct':'wrong');
+  document.getElementById(`ffb${i}`).className='feedback show '+(ok?'ok':'ko');
+  document.getElementById(`ffb${i}`).innerHTML=(ok?'✅ Bravo ! ':'❌ Réponse : <strong>'+formData[i].ans[0]+'</strong> — ')+formData[i].exp;
+}
+function revealForm(i){
+  if(formSt[i]!==null) return; formSt[i]=false;
+  const inp=document.getElementById(`fi${i}`); inp.value=formData[i].ans[0]; inp.disabled=true; inp.classList.add('correct');
+  document.getElementById(`ffb${i}`).className='feedback show ok';
+  document.getElementById(`ffb${i}`).innerHTML='👁️ <strong>'+formData[i].ans[0]+'</strong> — '+formData[i].exp;
+}
+function submitForm(){
+  if(formDone) return; formDone=true;
+  formSc=formSt.filter(s=>s===true).length;
+  formData.forEach((_,i)=>{if(formSt[i]===null) revealForm(i);});
+  const pct=Math.round(formSc/formData.length*100);
+  document.getElementById('form-score-val').textContent=formSc+' / '+formData.length;
+  document.getElementById('form-score-msg').textContent=pct>=80?'🏆 Excellent !':pct>=60?'👍 Bien ! N\'oublie pas le "en".':'📚 Rappel : gérondif = en + radical + ant.';
+  document.getElementById('form-score').classList.add('show');
+}
+function resetForm(){formSc=0;formDone=false;formSt=Array(formData.length).fill(null);document.getElementById('form-score').classList.remove('show');buildForm();}
+
+buildCC(); buildCl(); buildGer(); buildForm();
+
+// ============================================================
+// EXERCICE BILAN 1 — CLIQUER SUR LE CC
+// ============================================================
+const findData = [
+  {
+    parts: ["Le chat dort", "sur le canapé", "toute la journée", "."],
+    cc: [1, 2], // index des parties qui sont C.C.
+    exp: "'sur le canapé' (lieu) et 'toute la journée' (temps) sont des C.C. : on peut les supprimer."
+  },
+  {
+    parts: ["Elle chante", "en souriant", "."],
+    cc: [1],
+    exp: "'en souriant' = gérondif, C.C. de manière."
+  },
+  {
+    parts: ["Nous partirons", "demain matin", "pour Lyon", "."],
+    cc: [1, 2],
+    exp: "'demain matin' (temps) et 'pour Lyon' sont C.C. On peut dire 'Nous partirons.'"
+  },
+  {
+    parts: ["Il a réussi son examen", "grâce à son travail", "."],
+    cc: [1],
+    exp: "'grâce à son travail' = C.C. de cause."
+  },
+  {
+    parts: ["Les enfants jouent", "dans le jardin", "avec leurs amis", "."],
+    cc: [1, 2],
+    exp: "'dans le jardin' (lieu) et 'avec leurs amis' (accompagnement) sont C.C."
+  },
+];
+let findSt = findData.map(()=>[]), findDone=false, findSc=0;
+
+function buildFind(){
+  const c=document.getElementById('ex-find-cont'); c.innerHTML='';
+  findData.forEach((q,i)=>{
+    const d=document.createElement('div'); d.className='qcard';
+    findSt[i]=new Array(q.parts.length).fill(null);
+    let partsHtml = q.parts.map((p,j)=>{
+      if(p==='.') return '<span>.</span>';
+      return `<button class="choice-btn" id="fp${i}_${j}" style="display:inline-block;width:auto;margin:3px 4px;padding:7px 12px;font-size:.88rem" onclick="toggleFind(${i},${j})">${p}</button>`;
+    }).join(' ');
+    d.innerHTML=`<div class="qnum">Phrase ${i+1} / ${findData.length}</div>
+      <div style="margin-bottom:10px;font-size:.88rem;color:#888">Clique sur le ou les C.C. de la phrase :</div>
+      <div style="flex-wrap:wrap;display:flex;align-items:center;gap:4px;margin-bottom:10px">${partsHtml}</div>
+      <button class="check-btn" style="padding:6px 14px;font-size:.85rem" onclick="checkFind(${i})">✓ Vérifier</button>
+      <div class="feedback" id="ffind${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function toggleFind(i,j){
+  const b=document.getElementById(`fp${i}_${j}`);
+  if(b.disabled) return;
+  b.style.borderColor = b.style.borderColor==='#27ae60' ? '#e0e0e0' : '#27ae60';
+  b.style.background  = b.style.background==='rgb(216, 245, 227)' ? '#f8f9fa' : '#d8f5e3';
+}
+function checkFind(i){
+  const q=findData[i];
+  let correct=true;
+  // Vérifier chaque partie non-ponctuation
+  q.parts.forEach((p,j)=>{
+    if(p==='.') return;
+    const b=document.getElementById(`fp${i}_${j}`);
+    const selected = b.style.borderColor==='#27ae60';
+    const shouldBeSelected = q.cc.includes(j);
+    if(selected!==shouldBeSelected) correct=false;
+    b.disabled=true;
+    if(shouldBeSelected){ b.classList.add('correct'); b.style.borderColor=''; b.style.background=''; }
+    else if(selected && !shouldBeSelected){ b.classList.add('wrong'); b.style.borderColor=''; b.style.background=''; }
+  });
+  if(correct) findSc++;
+  const fb=document.getElementById(`ffind${i}`);
+  fb.className='feedback show '+(correct?'ok':'ko');
+  fb.innerHTML=(correct?'✅ Bravo ! ':'❌ ')+q.exp;
+}
+function submitFind(){
+  if(findDone) return; findDone=true;
+  // Révèle les phrases non encore vérifiées (affiche les bonnes réponses)
+  findData.forEach((q,i)=>{
+    const b0=document.getElementById(`fp${i}_0`);
+    if(b0 && !b0.disabled){
+      // désactive tous les boutons et colore les bons
+      q.parts.forEach((p,j)=>{
+        if(p==='.') return;
+        const b=document.getElementById(`fp${i}_${j}`); b.disabled=true;
+        if(q.cc.includes(j)) b.classList.add('correct');
+      });
+      document.getElementById(`ffind${i}`).className='feedback show ko';
+      document.getElementById(`ffind${i}`).innerHTML='❌ '+q.exp;
+    }
+  });
+  // Score = nombre de vérifications correctes déjà faites
+  findSc = findSc; // déjà accumulé dans checkFind
+  const pct=Math.round(findSc/findData.length*100);
+  document.getElementById('find-score-val').textContent=findSc+' / '+findData.length;
+  document.getElementById('find-score-msg').textContent=pct>=80?'🏆 Excellent !':pct>=60?'👍 Bien ! Rappelle-toi le test de suppression.':'📚 Essaie de supprimer chaque groupe : si la phrase reste correcte → C.C.';
+  document.getElementById('find-score').classList.add('show');
+}
+function resetFind(){findSc=0;findDone=false;document.getElementById('find-score').classList.remove('show');buildFind();}
+
+// ============================================================
+// EXERCICE BILAN 2 — C.C. OU ESSENTIEL ?
+// ============================================================
+const essData=[
+  // ans: 0=CC, 1=essentiel lieu, 2=essentiel temps, type=label affiché
+  { txt:"Il <u>habite</u> <span class='prop'>à Lyon</span>.", ans:1, type:"Complément essentiel de LIEU", exp:"On ne peut pas dire 'Il habite.' → le lieu est indispensable au verbe habiter." },
+  { txt:"Elle chante <span class='prop'>le soir</span>.", ans:0, type:"C.C. de temps", exp:"On peut dire 'Elle chante.' → c'est un C.C. de temps, supprimable." },
+  { txt:"Le train <u>part</u> <span class='prop'>à 8h30</span>.", ans:0, type:"C.C. de temps", exp:"On peut dire 'Le train part.' → c'est un C.C. de temps, supprimable." },
+  { txt:"Je <u>mets</u> mon manteau <span class='prop'>dans l'armoire</span>.", ans:1, type:"Complément essentiel de LIEU", exp:"On ne peut pas dire 'Je mets mon manteau.' → le lieu est indispensable au verbe mettre." },
+  { txt:"Il travaille <span class='prop'>en silence</span>.", ans:0, type:"C.C. de manière", exp:"On peut dire 'Il travaille.' → c'est un C.C. de manière, supprimable." },
+  { txt:"La réunion <u>dure</u> <span class='prop'>deux heures</span>.", ans:2, type:"Complément essentiel de TEMPS", exp:"On ne peut pas dire 'La réunion dure.' → la durée est indispensable au verbe durer." },
+  { txt:"Nous partirons <span class='prop'>demain</span>.", ans:0, type:"C.C. de temps", exp:"On peut dire 'Nous partirons.' → c'est un C.C. de temps, supprimable." },
+  { txt:"Il <u>va</u> <span class='prop'>à l'école</span> tous les jours.", ans:1, type:"Complément essentiel de LIEU", exp:"On ne peut pas dire 'Il va.' → le lieu est indispensable au verbe aller." },
+  { txt:"Sandra <u>se trouve</u> <span class='prop'>à Madrid</span>.", ans:1, type:"Complément essentiel de LIEU", exp:"On ne peut pas dire 'Sandra se trouve.' → le lieu est indispensable au verbe se trouver." },
+  { txt:"Il travaille ici <span class='prop'>depuis deux ans</span>.", ans:2, type:"Complément essentiel de TEMPS", exp:"On ne peut pas dire 'Il travaille ici.' sans préciser depuis quand → complément essentiel de temps." },
+];
+let essSt=Array(essData.length).fill(null), essSc=0, essDone=false;
+
+function buildEss(){
+  const c=document.getElementById('ex-ess-cont'); c.innerHTML='';
+  essData.forEach((q,i)=>{
+    const d=document.createElement('div'); d.className='qcard';
+    d.innerHTML=`<div class="qnum">Phrase ${i+1} / ${essData.length}</div>
+      <div class="qtxt" style="font-weight:normal;font-size:.95rem;line-height:1.6;margin-bottom:10px">${q.txt}</div>
+      <button class="choice-btn" id="eb${i}0" onclick="ansEss(${i},0)">✂️ C.C. — peut être supprimé</button>
+      <button class="choice-btn" id="eb${i}1" onclick="ansEss(${i},1)">🔒 Complément essentiel de LIEU</button>
+      <button class="choice-btn" id="eb${i}2" onclick="ansEss(${i},2)">🔒 Complément essentiel de TEMPS</button>
+      <div class="feedback" id="efb${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function ansEss(qi,ch){
+  if(essSt[qi]!==null) return;
+  const ok=ch===essData[qi].ans; essSt[qi]=ok;
+  [0,1,2].forEach(j=>{
+    const b=document.getElementById(`eb${qi}${j}`);
+    if(!b) return;
+    b.disabled=true;
+    if(j===essData[qi].ans) b.classList.add('correct');
+    else if(j===ch&&!ok) b.classList.add('wrong');
+  });
+  const fb=document.getElementById(`efb${qi}`);
+  fb.className='feedback show '+(ok?'ok':'ko');
+  fb.innerHTML=(ok?"✅ Bravo ! ":"❌ C'est : <strong>"+essData[qi].type+"</strong> — ")+essData[qi].exp;
+}
+function submitEss(){
+  if(essDone) return; essDone=true;
+  essSc=essSt.filter(s=>s===true).length;
+  essData.forEach((q,i)=>{if(essSt[i]===null){[0,1,2].forEach(j=>{const b=document.getElementById(`eb${i}${j}`);if(!b)return;b.disabled=true;if(j===q.ans)b.classList.add('correct');});}});
+  const pct=Math.round(essSc/essData.length*100);
+  document.getElementById('ess-score-val').textContent=essSc+' / '+essData.length;
+  document.getElementById('ess-score-msg').textContent=pct>=80?'🏆 Parfait !':pct>=60?'👍 Bien ! Rappelle-toi le test : "La phrase est-elle correcte sans lui ?"':'📚 Relis la section Rappels → compléments essentiels.';
+  document.getElementById('ess-score').classList.add('show');
+}
+function resetEss(){essSc=0;essDone=false;essSt=Array(essData.length).fill(null);document.getElementById('ess-score').classList.remove('show');buildEss();}
+
+// ============================================================
+// EXERCICE BILAN 3 — ASSOCIER QUESTION ↔ TYPE DE CC
+// ============================================================
+const matchData=[
+  { question:"De quelle manière ?", ans:"Manière" },
+  { question:"Depuis quand ? Quand ?", ans:"Temps" },
+  { question:"Où ? Vers où ?", ans:"Lieu" },
+  { question:"Pour quelle raison ?", ans:"Cause" },
+  { question:"Dans quel but ?", ans:"But" },
+  { question:"Avec quel moyen ?", ans:"Moyen" },
+  { question:"À quelle condition ?", ans:"Hypothèse/Condition" },
+  { question:"Avec qui ?", ans:"Accompagnement" },
+];
+const matchOpts=["Temps","Lieu","Manière","Moyen","Accompagnement","Cause","Conséquence","But","Hypothèse/Condition"];
+let matchSt=Array(matchData.length).fill(null), matchSc=0, matchDone=false;
+
+function buildMatch(){
+  const c=document.getElementById('ex-match-cont'); c.innerHTML='';
+  matchData.forEach((q,i)=>{
+    const d=document.createElement('div'); d.className='qcard';
+    const opts=matchOpts.map(o=>`<option value="${o}">${o}</option>`).join('');
+    d.innerHTML=`<div class="qnum">Question ${i+1} / ${matchData.length}</div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+        <span style="font-size:1rem;font-style:italic;font-weight:700;color:#1a5c36;background:#e8faf0;border-radius:10px;padding:6px 14px">"${q.question}"</span>
+        <span style="font-size:.88rem;color:#888">→ C.C. de :</span>
+        <select class="type-select" id="ms${i}"><option value="">-- choisis --</option>${opts}</select>
+        <button class="check-btn" style="padding:6px 14px;font-size:.85rem" onclick="checkMatch(${i})">✓</button>
+      </div>
+      <div class="feedback" id="mfb${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function checkMatch(i){
+  if(matchSt[i]!==null) return;
+  const sel=document.getElementById(`ms${i}`); if(!sel.value) return;
+  const ok=sel.value===matchData[i].ans; matchSt[i]=ok;
+  sel.disabled=true; sel.classList.add(ok?'correct':'wrong');
+  const fb=document.getElementById(`mfb${i}`);
+  fb.className='feedback show '+(ok?'ok':'ko');
+  fb.textContent=ok?'✅ Correct !':'❌ Réponse : '+matchData[i].ans;
+}
+function submitMatch(){
+  if(matchDone) return; matchDone=true;
+  matchSc=matchSt.filter(s=>s===true).length;
+  matchData.forEach((_,i)=>{if(matchSt[i]===null){const sel=document.getElementById(`ms${i}`);sel.value=matchData[i].ans;sel.disabled=true;sel.classList.add('correct');}});
+  const pct=Math.round(matchSc/matchData.length*100);
+  document.getElementById('match-score-val').textContent=matchSc+' / '+matchData.length;
+  document.getElementById('match-score-msg').textContent=pct>=80?'🏆 Tu connais toutes les circonstances !':pct>=60?'👍 Bien ! Relis le tableau des circonstances.':'📚 Onglet "La Leçon" → tableau des circonstances.';
+  document.getElementById('match-score').classList.add('show');
+}
+function resetMatch(){matchSc=0;matchDone=false;matchSt=Array(matchData.length).fill(null);document.getElementById('match-score').classList.remove('show');buildMatch();}
+
+buildFind(); buildEss(); buildMatch();
+
+</script>
+</body>
+</html>
