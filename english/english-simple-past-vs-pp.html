@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English 4e – Simple Past vs Present Perfect</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#1e3a5f; --navy-light:#e8f0fb;
+    --sky:#3b82f6; --sky-light:#dbeafe; --sky-dark:#1d4ed8;
+    --coral:#f43f5e; --coral-light:#ffe4e6;
+    --amber:#f59e0b; --amber-light:#fef3c7;
+    --vert:#10b981; --vert-light:#d1fae5;
+    --violet:#8b5cf6; --violet-light:#ede9fe;
+    --bg:#f0f4ff; --card:#fff;
+    --text:#1e293b; --muted:#64748b;
+    --shadow:0 4px 24px rgba(30,58,95,0.10);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  header{background:linear-gradient(135deg,#1e3a5f 0%,#3b82f6 55%,#10b981 100%);padding:26px 20px 18px;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'⛵';position:absolute;right:20px;top:16px;font-size:2.5rem;opacity:0.3;}
+  header::after{content:'🌊';position:absolute;left:20px;bottom:10px;font-size:2rem;opacity:0.25;}
+  .home-btn{position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:none;color:#fff;border-radius:50px;padding:8px 16px;font-family:'Lexend Deca',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;z-index:10;}
+  .home-btn:hover{background:rgba(255,255,255,0.28);transform:translateY(-1px);}
+  header h1{font-family:'Lexend Deca',sans-serif;font-size:1.75rem;font-weight:800;color:#fff;text-shadow:2px 2px 10px rgba(0,0,0,0.2);position:relative;}
+  header p{color:rgba(255,255,255,0.88);font-size:0.95rem;margin-top:4px;position:relative;}
+
+  nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:14px 16px 0;position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:3px solid #bfdbfe;}
+  .nav-btn{padding:9px 18px;border:none;border-radius:50px;font-family:'Lexend Deca',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.25s;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+  .nav-btn.active,.nav-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.16);}
+  .nav-btn[data-tab="cours"]{background:linear-gradient(135deg,var(--navy),var(--sky-dark));color:#fff;}
+  .nav-btn[data-tab="exercices"]{background:linear-gradient(135deg,var(--amber),#d97706);color:#fff;}
+  .nav-btn[data-tab="redaction"]{background:linear-gradient(135deg,var(--coral),#be123c);color:#fff;}
+  .nav-btn[data-tab="glossaire"]{background:linear-gradient(135deg,var(--violet),#7c3aed);color:#fff;}
+
+  section{display:none;padding:22px 16px;max-width:940px;margin:0 auto;}
+  section.active{display:block;animation:fadeIn 0.35s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  .card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);border-left:6px solid;transition:transform 0.2s;}
+  .card:hover{transform:translateY(-2px);}
+  .card.navy{border-color:var(--navy);}
+  .card.sky{border-color:var(--sky);}
+  .card.coral{border-color:var(--coral);}
+  .card.amber{border-color:var(--amber);}
+  .card.vert{border-color:var(--vert);}
+  .card.violet{border-color:var(--violet);}
+  .card-title{font-family:'Lexend Deca',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .badge{display:inline-block;padding:3px 12px;border-radius:20px;font-family:'Lexend Deca',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;color:#fff;}
+  .badge.navy{background:var(--navy);}
+  .badge.sky{background:var(--sky);}
+  .badge.coral{background:var(--coral);}
+  .badge.amber{background:var(--amber);}
+  .badge.vert{background:var(--vert);}
+  .badge.violet{background:var(--violet);}
+
+  table{width:100%;border-collapse:collapse;font-size:0.88rem;}
+  th{padding:9px 12px;text-align:left;font-family:'Lexend Deca',sans-serif;font-size:0.85rem;}
+  th.sp{background:#f43f5e;color:#fff;}
+  th.pp{background:#3b82f6;color:#fff;}
+  td{padding:9px 12px;border-bottom:1px solid #e2e8f0;}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:#f8faff;}
+  th.plain{background:var(--navy);color:#fff;}
+
+  .hb{background:var(--navy-light);border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:0.9rem;line-height:1.6;}
+  .hb.amber{background:var(--amber-light);}
+  .hb.vert{background:var(--vert-light);}
+  .hb.coral{background:var(--coral-light);}
+  .hb.violet{background:var(--violet-light);}
+  .hb.sky{background:var(--sky-light);}
+
+  /* mots-clés pills */
+  .pill{display:inline-block;padding:3px 10px;border-radius:20px;font-weight:800;font-size:0.82rem;margin:2px;}
+  .pill.red{background:#ffe4e6;color:#be123c;border:2px solid #fca5a5;}
+  .pill.blue{background:#dbeafe;color:#1d4ed8;border:2px solid #93c5fd;}
+
+  .ex-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:24px;box-shadow:var(--shadow);border-top:5px solid;}
+  .ex-title{font-family:'Lexend Deca',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:14px;}
+
+  .check-btn{background:linear-gradient(135deg,var(--navy),var(--sky-dark));color:#fff;border:none;border-radius:50px;padding:10px 28px;font-family:'Lexend Deca',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:14px;transition:all 0.2s;box-shadow:0 4px 14px rgba(30,58,95,0.25);}
+  .check-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(30,58,95,0.3);}
+  .toggle-ans-btn{background:var(--amber-light);border:2px solid var(--amber);color:#92400e;border-radius:8px;padding:6px 14px;font-family:'Lexend Deca',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .toggle-ans-btn:hover{background:var(--amber);color:#fff;}
+
+  .feedback-msg{display:none;margin-top:12px;padding:10px 16px;border-radius:12px;font-weight:700;font-family:'Lexend Deca',sans-serif;font-size:0.9rem;}
+  .feedback-msg.show{display:block;}
+  .feedback-msg.ok{background:var(--vert-light);color:#065f46;}
+  .feedback-msg.ko{background:var(--coral-light);color:#9f1239;}
+
+  .blank-input{border:2px solid #bfdbfe;border-radius:8px;padding:5px 10px;font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;outline:none;transition:border 0.2s;min-width:120px;}
+  .blank-input:focus{border-color:var(--sky);}
+  .blank-input.ok{border-color:var(--vert);background:var(--vert-light);}
+  .blank-input.ko{border-color:var(--coral);background:var(--coral-light);}
+
+  .drag-block{display:inline-flex;align-items:center;gap:4px;background:var(--sky-light);border:2px solid var(--sky);border-radius:8px;padding:6px 12px;font-weight:700;font-size:0.88rem;cursor:grab;user-select:none;transition:all 0.15s;margin:3px;}
+  .drag-block:hover{background:var(--sky);color:#fff;transform:translateY(-1px);}
+  .drag-block.placed-correct{background:var(--vert-light);border-color:var(--vert);color:#065f46;}
+  .drag-block.placed-wrong{background:var(--coral-light);border-color:var(--coral);color:#9f1239;}
+  .blocks-pool{min-height:48px;background:#f8faff;border-radius:12px;border:2px dashed #bfdbfe;padding:8px;display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;transition:background 0.2s;}
+  .blocks-pool.drag-over{background:#dbeafe;}
+  .drop-zone{min-height:42px;background:#f0f9ff;border:2px dashed #93c5fd;border-radius:10px;padding:6px 10px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;transition:all 0.2s;}
+  .drop-zone.drag-over{background:#dbeafe;border-color:var(--sky);}
+  .drop-zone-empty{color:#94a3b8;font-size:0.82rem;font-style:italic;}
+
+  .choice-btn{background:#f0f4ff;border:2px solid #bfdbfe;border-radius:10px;padding:8px 16px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;margin:4px;transition:all 0.18s;}
+  .choice-btn:hover:not(:disabled){background:var(--sky-light);border-color:var(--sky);}
+  .choice-btn.correct{background:var(--vert-light);border-color:var(--vert);color:#065f46;}
+  .choice-btn.wrong{background:var(--coral-light);border-color:var(--coral);color:#9f1239;}
+  .choice-btn:disabled{opacity:0.75;cursor:default;}
+
+  /* vocab grid */
+  .vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;}
+  .vocab-cell{background:#f8faff;border-radius:10px;padding:10px 12px;text-align:center;border:2px solid #e2e8f0;}
+  .vocab-cell .en{font-family:'Lexend Deca',sans-serif;font-weight:800;font-size:0.95rem;color:var(--navy);}
+  .vocab-cell .fr{font-size:0.8rem;color:var(--muted);margin-top:3px;}
+  .vocab-cell.nature{border-color:#10b981;background:#d1fae5;}
+  .vocab-cell.nav{border-color:#3b82f6;background:#dbeafe;}
+  .vocab-cell.meteo{border-color:#f59e0b;background:#fef3c7;}
+
+  .glos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
+  .glos-card{background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);border-top:4px solid;}
+  .glos-term{font-family:'Lexend Deca',sans-serif;font-weight:800;font-size:1rem;margin-bottom:6px;}
+  .glos-fr{background:#f0f4ff;border-radius:8px;padding:5px 10px;font-weight:800;font-size:0.95rem;color:var(--navy);margin-bottom:6px;}
+  .glos-type{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;}
+  .glos-ex{font-size:0.82rem;color:var(--muted);font-style:italic;}
+
+  .ans-box{display:none;margin-top:10px;background:#fef3c7;border:2px solid var(--amber);border-radius:12px;padding:10px 14px;font-family:'Lexend Deca',sans-serif;font-weight:700;font-size:0.9rem;color:#92400e;line-height:1.7;}
+
+  /* comparatif SP vs PP side by side */
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  .compare-box{border-radius:14px;padding:14px;}
+  .compare-box.sp{background:#ffe4e6;border:3px solid #f43f5e;}
+  .compare-box.pp{background:#dbeafe;border:3px solid #3b82f6;}
+  .compare-box h3{font-family:'Lexend Deca',sans-serif;font-size:0.95rem;font-weight:800;margin-bottom:10px;}
+  .compare-box h3.sp{color:#be123c;}
+  .compare-box h3.pp{color:#1d4ed8;}
+  .compare-box ul{list-style:none;font-size:0.88rem;line-height:2;}
+
+  @media(max-width:600px){
+    header h1{font-size:1.3rem;}
+    .home-btn{font-size:0.75rem;padding:6px 12px;}
+    .compare-grid{grid-template-columns:1fr;}
+    .vocab-grid{grid-template-columns:repeat(2,1fr);}
+    .glos-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="home-btn">← Accueil</a>
+  <h1>Simple Past vs Present Perfect</h1>
+  <p>English · 4e · Out at Sea</p>
+</header>
+
+<nav>
+  <button class="nav-btn active" data-tab="cours">📖 Cours</button>
+  <button class="nav-btn" data-tab="exercices">✏️ Exercices</button>
+  <button class="nav-btn" data-tab="redaction">🔥 Entraînement</button>
+  <button class="nav-btn" data-tab="glossaire">📚 Glossaire</button>
+</nav>
+
+<!-- ══════════════════ COURS ══════════════════ -->
+<section id="cours" class="active">
+  <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>📖</span> Cours</div>
+
+  <!-- TABLEAU COMPARATIF -->
+  <div class="card navy">
+    <div class="badge navy">Grammaire clé</div>
+    <div class="card-title">⚔️ Simple Past VS Present Perfect — La différence</div>
+    <div class="compare-grid">
+      <div class="compare-box sp">
+        <h3 class="sp">🔴 Simple Past (Prétérit)</h3>
+        <ul>
+          <li>✅ Fait passé <strong>terminé</strong></li>
+          <li>✅ On sait <strong>quand</strong> c'est arrivé</li>
+          <li>✅ Récit d'une histoire</li>
+          <li>📌 <em>"Il s'est passé quelque chose hier."</em></li>
+        </ul>
+      </div>
+      <div class="compare-box pp">
+        <h3 class="pp">🔵 Present Perfect</h3>
+        <ul>
+          <li>✅ Lien entre <strong>passé et présent</strong></li>
+          <li>✅ On ne sait <strong>pas quand</strong> exactement</li>
+          <li>✅ Expérience de vie, résultat visible maintenant</li>
+          <li>📌 <em>"Je regarde le passé depuis aujourd'hui."</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="hb amber">
+      💡 <strong>L'astuce la plus simple :</strong> si la phrase dit QUAND (hier, en 2001, la semaine dernière…) → <span style="color:#be123c;font-weight:800;">Simple Past</span>. Si elle ne dit pas quand → <span style="color:#1d4ed8;font-weight:800;">Present Perfect</span>.
+    </div>
+  </div>
+
+  <!-- MOTS DECLENCHEURS -->
+  <div class="card coral">
+    <div class="badge coral">Mots-clés</div>
+    <div class="card-title">🔑 Les mots qui déclenchent chaque temps</div>
+    <div style="display:flex;flex-wrap:wrap;gap:20px;">
+      <div style="flex:1;min-width:220px;">
+        <div style="font-family:'Lexend Deca',sans-serif;font-weight:800;color:#be123c;margin-bottom:10px;">🔴 Simple Past</div>
+        <div>
+          <span class="pill red">yesterday</span>
+          <span class="pill red">ago</span>
+          <span class="pill red">last night</span>
+          <span class="pill red">last week</span>
+          <span class="pill red">last year</span>
+          <span class="pill red">in 2001</span>
+          <span class="pill red">then</span>
+          <span class="pill red">when I was…</span>
+        </div>
+        <div class="hb coral" style="margin-top:12px;font-size:0.85rem;">
+          Ces mots donnent une <strong>date précise</strong> → Simple Past obligatoire !
+        </div>
+      </div>
+      <div style="flex:1;min-width:220px;">
+        <div style="font-family:'Lexend Deca',sans-serif;font-weight:800;color:#1d4ed8;margin-bottom:10px;">🔵 Present Perfect</div>
+        <div>
+          <span class="pill blue">ever</span>
+          <span class="pill blue">never</span>
+          <span class="pill blue">already</span>
+          <span class="pill blue">yet</span>
+          <span class="pill blue">for</span>
+          <span class="pill blue">since</span>
+          <span class="pill blue">so far</span>
+          <span class="pill blue">how long</span>
+          <span class="pill blue">before</span>
+          <span class="pill blue">just</span>
+        </div>
+        <div class="hb sky" style="margin-top:12px;font-size:0.85rem;">
+          Ces mots relient le passé au présent → Present Perfect !
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMATION -->
+  <div class="card sky">
+    <div class="badge sky">Formation</div>
+    <div class="card-title">🔨 Comment former chaque temps ?</div>
+    <table>
+      <tr><th class="sp">🔴 Simple Past</th><th class="pp">🔵 Present Perfect</th></tr>
+      <tr>
+        <td><strong>Verbes réguliers :</strong> verbe + <strong>-ed</strong><br>
+        <em>walk → walked &nbsp;|&nbsp; travel → travelled</em></td>
+        <td><strong>have / has</strong> + <strong>participe passé</strong><br>
+        <em>I have been &nbsp;|&nbsp; She has gone</em></td>
+      </tr>
+      <tr>
+        <td><strong>Verbes irréguliers :</strong> forme 2<br>
+        <em>go → went &nbsp;|&nbsp; see → saw &nbsp;|&nbsp; catch → caught</em></td>
+        <td>Verbes irréguliers : <strong>forme 3</strong><br>
+        <em>go → gone &nbsp;|&nbsp; see → seen &nbsp;|&nbsp; catch → caught</em></td>
+      </tr>
+      <tr>
+        <td><strong>Négatif :</strong> didn't + verbe<br><em>I didn't go. / We didn't see.</em></td>
+        <td><strong>Négatif :</strong> haven't / hasn't + pp<br><em>I haven't been. / She hasn't seen.</em></td>
+      </tr>
+      <tr>
+        <td><strong>Question :</strong> Did + sujet + verbe ?<br><em>Did you go? / Did she catch?</em></td>
+        <td><strong>Question :</strong> Have / Has + sujet + pp ?<br><em>Have you ever been? / Has she seen?</em></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- EXEMPLES CONCRETS -->
+  <div class="card vert">
+    <div class="badge vert">Exemples concrets</div>
+    <div class="card-title">📝 Simple Past ou Present Perfect ? — Exemples du cours</div>
+    <table>
+      <tr><th class="plain">Phrase</th><th class="plain">Temps</th><th class="plain">Pourquoi ?</th></tr>
+      <tr>
+        <td>I went to London <strong>three days ago</strong>.</td>
+        <td><span style="color:#be123c;font-weight:800;">Simple Past</span></td>
+        <td>"three days ago" = date précise</td>
+      </tr>
+      <tr>
+        <td>I have <strong>never</strong> caught such a big fish <strong>before</strong>!</td>
+        <td><span style="color:#1d4ed8;font-weight:800;">Present Perfect</span></td>
+        <td>"never / before" = expérience de vie</td>
+      </tr>
+      <tr>
+        <td>They didn't see their friends <strong>last night</strong>.</td>
+        <td><span style="color:#be123c;font-weight:800;">Simple Past</span></td>
+        <td>"last night" = moment précis passé</td>
+      </tr>
+      <tr>
+        <td>She <strong>has</strong> read all his books.</td>
+        <td><span style="color:#1d4ed8;font-weight:800;">Present Perfect</span></td>
+        <td>Résultat visible maintenant, pas de date</td>
+      </tr>
+      <tr>
+        <td>We read Oliver Twist <strong>last year</strong>.</td>
+        <td><span style="color:#be123c;font-weight:800;">Simple Past</span></td>
+        <td>"last year" = moment précis passé</td>
+      </tr>
+      <tr>
+        <td><strong>Last year</strong>, I went to China.</td>
+        <td><span style="color:#be123c;font-weight:800;">Simple Past</span></td>
+        <td>"last year" = date connue</td>
+      </tr>
+      <tr>
+        <td>We have <strong>never</strong> been to New Zealand <strong>before</strong>.</td>
+        <td><span style="color:#1d4ed8;font-weight:800;">Present Perfect</span></td>
+        <td>"never / before" = expérience</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- VOCABULAIRE MARIN -->
+  <div class="card amber">
+    <div class="badge amber">Vocabulaire</div>
+    <div class="card-title">⛵ Out at Sea — Vocabulaire marin</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div>
+        <div style="font-family:'Lexend Deca',sans-serif;font-weight:800;color:#10b981;margin-bottom:8px;text-align:center;">🌿 NATURE</div>
+        <div class="vocab-cell nature"><div class="en">leaves</div><div class="fr">les feuilles</div></div>
+        <div class="vocab-cell nature" style="margin-top:6px;"><div class="en">tree</div><div class="fr">arbre</div></div>
+        <div class="vocab-cell nature" style="margin-top:6px;"><div class="en">cliff</div><div class="fr">falaise</div></div>
+        <div class="vocab-cell nature" style="margin-top:6px;"><div class="en">pool</div><div class="fr">mare / piscine</div></div>
+      </div>
+      <div>
+        <div style="font-family:'Lexend Deca',sans-serif;font-weight:800;color:#3b82f6;margin-bottom:8px;text-align:center;">⚓ NAVIGATION</div>
+        <div class="vocab-cell nav"><div class="en">rope</div><div class="fr">corde</div></div>
+        <div class="vocab-cell nav" style="margin-top:6px;"><div class="en">ship</div><div class="fr">navire / bateau</div></div>
+        <div class="vocab-cell nav" style="margin-top:6px;"><div class="en">sail</div><div class="fr">voile</div></div>
+        <div class="vocab-cell nav" style="margin-top:6px;"><div class="en">deck</div><div class="fr">le pont (du bateau)</div></div>
+      </div>
+      <div>
+        <div style="font-family:'Lexend Deca',sans-serif;font-weight:800;color:#f59e0b;margin-bottom:8px;text-align:center;">🌦️ MÉTÉO</div>
+        <div class="vocab-cell meteo"><div class="en">wind</div><div class="fr">vent</div></div>
+        <div class="vocab-cell meteo" style="margin-top:6px;"><div class="en">rain</div><div class="fr">pluie</div></div>
+        <div class="vocab-cell meteo" style="margin-top:6px;"><div class="en">weather</div><div class="fr">météo / temps</div></div>
+        <div class="vocab-cell meteo" style="margin-top:6px;"><div class="en">sun</div><div class="fr">soleil</div></div>
+      </div>
+    </div>
+    <div class="hb amber" style="margin-top:14px;">
+      💡 <strong>À retenir :</strong> un <em>ship</em> est un grand navire, un <em>boat</em> est un petit bateau. Le <em>deck</em> c'est la partie extérieure supérieure du bateau — le pont !
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════ EXERCICES ══════════════════ -->
+<section id="exercices">
+  <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>✏️</span> Exercices</div>
+
+  <!-- EX 1 : Choix Simple Past ou Present Perfect -->
+  <div class="ex-card" style="border-color:var(--coral);">
+    <div class="ex-title" style="color:var(--coral);">⚔️ Exercice 1 – Simple Past ou Present Perfect ?</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Clique sur la bonne forme. Le mot-clé te guide !</p>
+    <div id="choice-items"></div>
+  </div>
+
+  <!-- EX 2 : Texte à trous -->
+  <div class="ex-card" style="border-color:var(--sky);">
+    <div class="ex-title" style="color:var(--sky-dark);">✍️ Exercice 2 – Complète avec la bonne forme</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Écris le verbe entre parenthèses à la bonne forme. Le mot souligné t'aide à choisir !</p>
+    <div id="blank-items"></div>
+    <button class="check-btn" onclick="checkBlanks()">Vérifier ✓</button>
+    <div class="feedback-msg" id="blank-feedback"></div>
+  </div>
+
+  <!-- EX 3 : Vocabulaire marin - glisse le bon mot -->
+  <div class="ex-card" style="border-color:var(--amber);">
+    <div class="ex-title" style="color:#92400e;">⛵ Exercice 3 – Vocabulaire marin : glisse le bon mot</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Glisse le bon mot anglais dans chaque phrase :</p>
+    <div id="vocab-drop-items"></div>
+    <button class="check-btn" style="background:linear-gradient(135deg,var(--amber),#d97706);" onclick="checkVocabDrop()">Vérifier ✓</button>
+    <div class="feedback-msg" id="vocabdrop-feedback"></div>
+  </div>
+
+</section>
+
+<!-- ══════════════════ ENTRAÎNEMENT ══════════════════ -->
+<section id="redaction">
+  <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>🔥</span> Entraînement</div>
+
+  <!-- BLOC A : Remets dans l'ordre -->
+  <div class="ex-card" style="border-color:var(--sky);">
+    <div class="ex-title" style="color:var(--sky-dark);">🔀 A – Remets les mots dans le bon ordre</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Glisse les mots pour former la phrase correcte. La 🇫🇷 t'aide :</p>
+    <div id="wordorder-items"></div>
+    <button class="check-btn" onclick="checkWordOrder()">Vérifier ✓</button>
+    <div class="feedback-msg" id="wordorder-feedback"></div>
+  </div>
+
+  <!-- BLOC B : Situation → quel temps ? -->
+  <div class="ex-card" style="border-color:var(--violet);">
+    <div class="ex-title" style="color:var(--violet);">🧠 B – Lis la situation, choisis le bon temps !</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Pour chaque situation, clique sur Simple Past ou Present Perfect :</p>
+    <div id="situation-items"></div>
+  </div>
+
+  <!-- BLOC C : Charles's scrapbook -->
+  <div class="ex-card" style="border-color:var(--vert);">
+    <div class="ex-title" style="color:#065f46;">📖 C – Le carnet de voyage de Charles</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:14px;">Charles a une wish list. Écris des phrases pour dire ce qu'il a déjà fait et ce qu'il n'a pas encore fait :</p>
+    <div class="hb vert" style="margin-bottom:14px;">
+      📋 <strong>Sa wish list :</strong> fly over the Grand Canyon · spend a few weeks in the UK · go to Rome · see the Berlin Wall · drive in the American West · take a tour of Australia<br><br>
+      ✅ <strong>Déjà fait :</strong> Rome · UK · American West<br>
+      ❌ <strong>Pas encore :</strong> Grand Canyon · Berlin Wall · Australia
+    </div>
+    <div id="charles-items"></div>
+    <button class="check-btn" style="background:linear-gradient(135deg,var(--vert),#059669);" onclick="checkCharles()">Vérifier ✓</button>
+    <div class="feedback-msg" id="charles-feedback"></div>
+  </div>
+
+</section>
+
+<!-- ══════════════════ GLOSSAIRE ══════════════════ -->
+<section id="glossaire">
+  <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>📚</span> Glossaire</div>
+  <div class="glos-grid" id="glossaire-grid"></div>
+</section>
+
+<script>
+// ── NAV ──────────────────────────────────────────
+document.querySelectorAll('.nav-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.querySelectorAll('section').forEach(function(s) { s.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ══════════════════════════════════════════════════
+// EXERCICE 1 – Simple Past ou Present Perfect ?
+// ══════════════════════════════════════════════════
+var choiceData = [
+  { fr: "Es-tu déjà allé en Amérique du Sud ? (expérience, pas de date)", en: "___ you ever ___ to South America?", correct: "Present Perfect", key: "ever", expl: "'ever' dans une question = Present Perfect. Have you ever been?" },
+  { fr: "L'année dernière, je suis allé en Chine.", en: "Last year, I ___ to China.", correct: "Simple Past", key: "Last year", expl: "'Last year' = date précise → Simple Past. I went." },
+  { fr: "Nous avons vu de grands oiseaux hier.", en: "We ___ huge birds yesterday.", correct: "Simple Past", key: "yesterday", expl: "'yesterday' = moment précis → Simple Past. We saw." },
+  { fr: "Nous ne sommes jamais allés en Nouvelle-Zélande avant.", en: "We ___ never ___ to New Zealand before.", correct: "Present Perfect", key: "never / before", expl: "'never / before' = expérience → Present Perfect. We have never been." },
+  { fr: "Nous sommes partis il y a trois semaines.", en: "We ___ three weeks ago.", correct: "Simple Past", key: "ago", expl: "'ago' = durée depuis un moment passé → Simple Past. We left." },
+  { fr: "Dans ma vie, j'ai voyagé partout dans le monde.", en: "In my life, I ___ all over the world.", correct: "Present Perfect", key: "In my life", expl: "'In my life' = expérience de vie sans date → Present Perfect. I have travelled." },
+  { fr: "Helen a-t-elle déjà essayé les sushis ? (expérience)", en: "___ Helen ever ___ sushi?", correct: "Present Perfect", key: "ever", expl: "'ever' = Present Perfect. Has Helen ever tried?" },
+  { fr: "Es-tu allé au mariage hier soir ?", en: "___ you ___ to the wedding last night?", correct: "Simple Past", key: "last night", expl: "'last night' = moment précis → Simple Past. Did you go?" },
+];
+
+var choiceCont = document.getElementById('choice-items');
+choiceData.forEach(function(item, i) {
+  var d = document.createElement('div');
+  d.style.cssText = 'margin-bottom:14px;padding:13px;background:#fdf2f8;border-radius:13px;border:2px solid #e9d5ff;';
+
+  var frDiv = document.createElement('div');
+  frDiv.style.cssText = 'background:var(--violet-light);border-left:4px solid var(--violet);border-radius:8px;padding:6px 12px;margin-bottom:6px;font-size:0.88rem;font-weight:700;';
+  frDiv.textContent = '🇫🇷 ' + item.fr;
+
+  var enDiv = document.createElement('div');
+  enDiv.style.cssText = 'font-size:0.9rem;font-weight:600;margin-bottom:10px;color:var(--navy);padding:4px 12px;';
+  enDiv.textContent = '🇬🇧 ' + item.en;
+
+  var keyDiv = document.createElement('div');
+  keyDiv.style.cssText = 'margin-bottom:8px;';
+  keyDiv.innerHTML = '🔑 Mot-clé : <span class="pill blue">' + item.key + '</span>';
+
+  var btnRow = document.createElement('div');
+  btnRow.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;';
+
+  ['Simple Past','Present Perfect'].forEach(function(c) {
+    var btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.id = 'cho' + i + '_' + c.replace(/ /g,'_');
+    btn.textContent = c;
+    btn.style.cssText = c === 'Simple Past' ? 'border-color:#f43f5e;color:#be123c;' : 'border-color:#3b82f6;color:#1d4ed8;';
+    btn.addEventListener('click', function() { doChoice(i, c); });
+    btnRow.appendChild(btn);
+  });
+
+  var fbDiv = document.createElement('div');
+  fbDiv.id = 'chofb' + i;
+  fbDiv.style.cssText = 'font-size:0.85rem;margin-top:8px;font-weight:700;padding:6px 10px;border-radius:8px;display:none;';
+
+  d.appendChild(frDiv); d.appendChild(enDiv); d.appendChild(keyDiv); d.appendChild(btnRow); d.appendChild(fbDiv);
+  choiceCont.appendChild(d);
+});
+
+function doChoice(i, chosen) {
+  var item = choiceData[i];
+  ['Simple Past','Present Perfect'].forEach(function(c) {
+    var btn = document.getElementById('cho' + i + '_' + c.replace(/ /g,'_'));
+    if (btn) { btn.classList.remove('correct','wrong'); btn.disabled = true; }
+  });
+  var isCorrect = chosen === item.correct;
+  var choBtn = document.getElementById('cho' + i + '_' + chosen.replace(/ /g,'_'));
+  var corBtn = document.getElementById('cho' + i + '_' + item.correct.replace(/ /g,'_'));
+  if (choBtn) choBtn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect && corBtn) corBtn.classList.add('correct');
+  var fb = document.getElementById('chofb' + i);
+  fb.style.display = 'block';
+  fb.style.background = isCorrect ? 'var(--vert-light)' : 'var(--coral-light)';
+  fb.style.color = isCorrect ? '#065f46' : '#9f1239';
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + item.expl;
+}
+
+// ══════════════════════════════════════════════════
+// EXERCICE 2 – Texte à trous
+// ══════════════════════════════════════════════════
+var blankData = [
+  { fr: "Je suis allé à Londres il y a trois jours.", before: "I ", key: "went", after: " to London three days ago.", hint: "ago → Simple Past · go → went (irrégulier)" },
+  { fr: "Je n'ai jamais attrapé un si gros poisson avant !", before: "I have never ", key: "caught", after: " such a big fish before!", hint: "never / before → Present Perfect · catch → caught (irrégulier)" },
+  { fr: "Ils n'ont pas vu leurs amis hier soir.", before: "They ", key: "didn't see", after: " their friends last night.", hint: "last night → Simple Past · négatif : didn't + verbe" },
+  { fr: "Elle a lu tous ses livres. (résultat visible maintenant)", before: "She ", key: "has read", after: " all his books.", hint: "pas de date → Present Perfect · read → read (irrégulier !)" },
+  { fr: "Nous avons lu Oliver Twist à l'école l'année dernière.", before: "We ", key: "read", after: " Oliver Twist at school last year.", hint: "last year → Simple Past · read → read (même forme !)" },
+  { fr: "Cette année, j'ai voyagé à Athènes 3 fois jusqu'à présent.", before: "This year I ", key: "have travelled", after: " to Athens 3 times so far.", hint: "so far → Present Perfect" },
+  { fr: "Paul et Judith sont mariés depuis 1998.", before: "Paul and Judith ", key: "have been", after: " married since 1998.", hint: "since → Present Perfect" },
+  { fr: "Ils sont déjà partis de la gare.", before: "They have already ", key: "left", after: " the train station.", hint: "already → Present Perfect · leave → left (irrégulier)" },
+];
+
+var blankCont = document.getElementById('blank-items');
+blankData.forEach(function(item, i) {
+  var d = document.createElement('div');
+  d.style.cssText = 'margin-bottom:14px;padding:14px;background:#f0f4ff;border-radius:12px;border:2px solid #bfdbfe;';
+
+  var frDiv = document.createElement('div');
+  frDiv.style.cssText = 'font-size:0.88rem;font-weight:700;color:var(--navy);background:var(--navy-light);border-radius:8px;padding:6px 12px;margin-bottom:8px;';
+  frDiv.textContent = '🇫🇷 ' + item.fr;
+
+  var hintDiv = document.createElement('div');
+  hintDiv.style.cssText = 'font-size:0.78rem;color:var(--muted);margin-bottom:8px;font-style:italic;';
+  hintDiv.textContent = '💡 ' + item.hint;
+
+  var sentDiv = document.createElement('div');
+  sentDiv.style.cssText = 'line-height:2.6;font-size:0.96rem;font-weight:600;';
+  sentDiv.textContent = '🇬🇧 ' + item.before;
+
+  var inp = document.createElement('input');
+  inp.className = 'blank-input';
+  inp.id = 'bl' + i;
+  inp.placeholder = '?';
+
+  sentDiv.appendChild(inp);
+  sentDiv.appendChild(document.createTextNode(item.after));
+
+  var btnRow = document.createElement('div');
+  btnRow.style.cssText = 'margin-top:8px;display:flex;align-items:center;gap:8px;';
+  var ansBtn = document.createElement('button');
+  ansBtn.className = 'toggle-ans-btn';
+  ansBtn.textContent = '👁 Voir la réponse';
+  var ansDiv = document.createElement('div');
+  ansDiv.style.cssText = 'display:none;background:#fef3c7;border:2px solid var(--amber);border-radius:8px;padding:5px 14px;font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.92rem;color:#92400e;';
+  ansDiv.textContent = '✏️ ' + item.key;
+  ansBtn.addEventListener('click', function() {
+    var v = ansDiv.style.display !== 'none';
+    ansDiv.style.display = v ? 'none' : 'block';
+    ansBtn.textContent = v ? '👁 Voir la réponse' : '🙈 Cacher';
+  });
+  btnRow.appendChild(ansBtn); btnRow.appendChild(ansDiv);
+
+  d.appendChild(frDiv); d.appendChild(hintDiv); d.appendChild(sentDiv); d.appendChild(btnRow);
+  blankCont.appendChild(d);
+});
+
+function checkBlanks() {
+  var sc = 0;
+  blankData.forEach(function(item, i) {
+    var inp = document.getElementById('bl' + i);
+    inp.classList.remove('ok','ko');
+    if (inp.value.trim().toLowerCase() === item.key.toLowerCase()) { inp.classList.add('ok'); sc++; }
+    else inp.classList.add('ko');
+  });
+  var fb = document.getElementById('blank-feedback');
+  fb.className = 'feedback-msg show ' + (sc === blankData.length ? 'ok' : 'ko');
+  fb.textContent = sc + ' / ' + blankData.length + ' ' + (sc === blankData.length ? '✅ Excellent !' : '❌ Utilise "Voir la réponse" si tu bloques !');
+}
+
+// ══════════════════════════════════════════════════
+// EXERCICE 3 – Vocabulaire marin drag & drop
+// ══════════════════════════════════════════════════
+var vocabDropData = [
+  { pool: ["deck","sail","rope","ship"], answer: "ship", b: "We saw whales from the ", a: ". (le grand bateau)" },
+  { pool: ["cliff","pool","leaves","wind"], answer: "cliff", b: "We sailed past a huge ", a: ". (falaise)" },
+  { pool: ["sail","rope","deck","weather"], answer: "deck", b: "We stood on the ", a: " and watched the dolphins. (pont du bateau)" },
+  { pool: ["wind","rain","sun","weather"], answer: "weather", b: "The ", a: " was perfect for sailing. (météo)" },
+  { pool: ["rope","sail","ship","deck"], answer: "sail", b: "I'm learning how to ", a: " the boat. (voile / naviguer)" },
+];
+
+var vdAnswers = {};
+var vdDrag = null;
+
+var vdCont = document.getElementById('vocab-drop-items');
+vocabDropData.forEach(function(item, i) {
+  var shuffled = item.pool.slice().sort(function() { return Math.random() - 0.5; });
+  var d = document.createElement('div');
+  d.style.cssText = 'margin-bottom:20px;padding:14px;background:#fffbeb;border-radius:14px;border:2px solid #fde68a;';
+
+  var chips = '';
+  shuffled.forEach(function(w) {
+    chips += '<div class="drag-block" id="vdblk' + i + '_' + w + '" draggable="true">' + w + '</div>';
+  });
+
+  var sentHtml = '🇬🇧 ' + item.b +
+    '<span id="vdslot' + i + '" style="display:inline-block;min-width:80px;min-height:32px;vertical-align:middle;background:#f0f9ff;border:2px dashed #93c5fd;border-radius:8px;padding:3px 8px;font-weight:700;color:var(--muted);font-size:0.85rem;"></span>' +
+    item.a;
+
+  d.innerHTML = '<div class="blocks-pool" id="vdpool' + i + '">' + chips + '</div>' +
+    '<div style="font-size:0.96rem;font-weight:600;line-height:2.6;">' + sentHtml + '</div>';
+  vdCont.appendChild(d);
+
+  setTimeout(function(idx) {
+    var pool = document.getElementById('vdpool' + idx);
+    var slot = document.getElementById('vdslot' + idx);
+    pool.querySelectorAll('.drag-block').forEach(function(chip) {
+      chip.addEventListener('dragstart', function() { vdDrag = chip; });
+    });
+    pool.addEventListener('dragover', function(e) { e.preventDefault(); pool.classList.add('drag-over'); });
+    pool.addEventListener('dragleave', function() { pool.classList.remove('drag-over'); });
+    pool.addEventListener('drop', function(e) { e.preventDefault(); pool.classList.remove('drag-over'); if (vdDrag) { pool.appendChild(vdDrag); vdAnswers[idx] = null; vdDrag = null; } });
+    slot.addEventListener('dragover', function(e) { e.preventDefault(); slot.style.background = '#dbeafe'; });
+    slot.addEventListener('dragleave', function() { slot.style.background = '#f0f9ff'; });
+    slot.addEventListener('drop', function(e) {
+      e.preventDefault(); slot.style.background = '#f0f9ff';
+      if (!vdDrag) return;
+      if (slot.querySelector('.drag-block')) pool.appendChild(slot.querySelector('.drag-block'));
+      slot.innerHTML = ''; slot.appendChild(vdDrag);
+      vdAnswers[idx] = vdDrag.textContent.trim(); vdDrag = null;
+    });
+  }, 0, i);
+});
+
+function checkVocabDrop() {
+  var sc = 0;
+  vocabDropData.forEach(function(item, i) {
+    var slot = document.getElementById('vdslot' + i);
+    var chip = slot.querySelector('.drag-block');
+    if (chip) {
+      chip.classList.remove('placed-correct','placed-wrong');
+      if ((vdAnswers[i]||'') === item.answer) { chip.classList.add('placed-correct'); sc++; }
+      else chip.classList.add('placed-wrong');
+    }
+  });
+  var fb = document.getElementById('vocabdrop-feedback');
+  fb.className = 'feedback-msg show ' + (sc === vocabDropData.length ? 'ok' : 'ko');
+  fb.textContent = sc + ' / ' + vocabDropData.length + ' ' + (sc === vocabDropData.length ? '✅ Perfect !' : '❌ Les blocs en rouge sont incorrects. Réessaie !');
+}
+
+// ══════════════════════════════════════════════════
+// ENTRAÎNEMENT A – Remets dans l'ordre
+// ══════════════════════════════════════════════════
+var wordOrderData = [
+  { fr: "Je ne suis jamais allé à Paris.", words: ["I","have","never","been","to","Paris","."], answer: "I have never been to Paris ." },
+  { fr: "Nous avons vu d'énormes oiseaux hier.", words: ["We","saw","huge","birds","yesterday","."], answer: "We saw huge birds yesterday ." },
+  { fr: "Elle a lu tous ses livres.", words: ["She","has","read","all","his","books","."], answer: "She has read all his books ." },
+  { fr: "Nous avons lu Oliver Twist à l'école l'année dernière.", words: ["We","read","Oliver","Twist","at","school","last","year","."], answer: "We read Oliver Twist at school last year ." },
+  { fr: "As-tu déjà été en Amérique du Sud ?", words: ["Have","you","ever","been","to","South","America","?"], answer: "Have you ever been to South America ?" },
+  { fr: "Ils sont déjà partis de la gare.", words: ["They","have","already","left","the","train","station","."], answer: "They have already left the train station ." },
+];
+
+var woDrag = null;
+function buildWordOrder() {
+  var cont = document.getElementById('wordorder-items');
+  wordOrderData.forEach(function(item, i) {
+    var shuffled = item.words.slice().sort(function() { return Math.random() - 0.5; });
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-bottom:20px;padding:14px;background:#f0f4ff;border-radius:14px;border:2px solid #bfdbfe;';
+
+    var frDiv = document.createElement('div');
+    frDiv.style.cssText = 'background:var(--navy-light);border-left:4px solid var(--navy);border-radius:8px;padding:6px 12px;margin-bottom:10px;font-size:0.88rem;font-weight:700;';
+    frDiv.textContent = '🇫🇷 ' + item.fr;
+
+    var pool = document.createElement('div');
+    pool.className = 'blocks-pool'; pool.id = 'wopool' + i;
+    shuffled.forEach(function(w) {
+      var chip = document.createElement('div');
+      chip.className = 'drag-block'; chip.textContent = w; chip.draggable = true;
+      chip.addEventListener('dragstart', function() { woDrag = chip; });
+      pool.appendChild(chip);
+    });
+
+    var lbl = document.createElement('div');
+    lbl.style.cssText = 'font-size:0.78rem;font-weight:700;color:var(--muted);margin:10px 0 6px;';
+    lbl.textContent = '🇬🇧 Ta phrase :';
+
+    var sent = document.createElement('div');
+    sent.className = 'drop-zone'; sent.id = 'wosent' + i;
+    sent.style.cssText = 'min-height:46px;flex-wrap:wrap;gap:6px;';
+    sent.innerHTML = '<span class="drop-zone-empty">Glisse les mots ici dans l\'ordre…</span>';
+
+    var ansDiv = document.createElement('div');
+    ansDiv.id = 'woans' + i; ansDiv.className = 'ans-box';
+    ansDiv.textContent = '✏️ ' + item.answer;
+
+    var abtn = document.createElement('button');
+    abtn.className = 'toggle-ans-btn'; abtn.style.marginTop = '8px';
+    abtn.textContent = '👁 Voir la réponse';
+    abtn.addEventListener('click', function() {
+      var v = ansDiv.style.display !== 'none';
+      ansDiv.style.display = v ? 'none' : 'block';
+      abtn.textContent = v ? '👁 Voir la réponse' : '🙈 Cacher';
+    });
+
+    pool.addEventListener('dragover', function(e) { e.preventDefault(); pool.classList.add('drag-over'); });
+    pool.addEventListener('dragleave', function() { pool.classList.remove('drag-over'); });
+    pool.addEventListener('drop', function(e) { e.preventDefault(); pool.classList.remove('drag-over'); if (woDrag) { woDrag.classList.remove('placed-correct','placed-wrong'); pool.appendChild(woDrag); woDrag = null; } });
+    sent.addEventListener('dragover', function(e) { e.preventDefault(); sent.classList.add('drag-over'); });
+    sent.addEventListener('dragleave', function() { sent.classList.remove('drag-over'); });
+    sent.addEventListener('drop', function(e) {
+      e.preventDefault(); sent.classList.remove('drag-over');
+      if (!woDrag) return;
+      var empty = sent.querySelector('.drop-zone-empty');
+      if (empty) empty.remove();
+      woDrag.classList.remove('placed-correct','placed-wrong');
+      sent.appendChild(woDrag); woDrag = null;
+    });
+
+    d.appendChild(frDiv); d.appendChild(pool); d.appendChild(lbl); d.appendChild(sent); d.appendChild(ansDiv); d.appendChild(abtn);
+    cont.appendChild(d);
+  });
+}
+buildWordOrder();
+
+function checkWordOrder() {
+  var total = 0, correct = 0;
+  wordOrderData.forEach(function(item, i) {
+    var sent = document.getElementById('wosent' + i);
+    var chips = sent.querySelectorAll('.drag-block');
+    var built = Array.from(chips).map(function(c) { return c.textContent.trim(); }).join(' ');
+    chips.forEach(function(c) { c.classList.remove('placed-correct','placed-wrong'); });
+    total++;
+    if (built === item.answer) { chips.forEach(function(c) { c.classList.add('placed-correct'); }); correct++; }
+    else chips.forEach(function(c) { c.classList.add('placed-wrong'); });
+  });
+  var fb = document.getElementById('wordorder-feedback');
+  fb.className = 'feedback-msg show ' + (correct === total ? 'ok' : 'ko');
+  fb.textContent = correct + ' / ' + total + ' ' + (correct === total ? '✅ Parfait !' : '❌ Utilise "Voir la réponse" si tu bloques.');
+}
+
+// ══════════════════════════════════════════════════
+// ENTRAÎNEMENT B – Situation → quel temps ?
+// ══════════════════════════════════════════════════
+var sitData = [
+  { fr: "📅 Tu racontes ce que tu as fait hier soir : tu as regardé un film.", en: "I ___ a film last night.", choices: ["Simple Past","Present Perfect"], answer: "Simple Past", expl: "'last night' = moment précis → Simple Past. I watched." },
+  { fr: "🌍 Tu parles de tes expériences de vie : tu n'as jamais visité l'Australie.", en: "I ___ never ___ Australia.", choices: ["Simple Past","Present Perfect"], answer: "Present Perfect", expl: "'never' = expérience → Present Perfect. I have never visited." },
+  { fr: "⏰ Tu précises que Charles est allé à Rome EN 2019.", en: "Charles ___ to Rome in 2019.", choices: ["Simple Past","Present Perfect"], answer: "Simple Past", expl: "'in 2019' = date précise → Simple Past. He went." },
+  { fr: "📋 Tu dis que Jen a déjà passé quelques semaines au Royaume-Uni (pas de date).", en: "Jen ___ already ___ a few weeks in the UK.", choices: ["Simple Past","Present Perfect"], answer: "Present Perfect", expl: "'already' sans date = Present Perfect. She has already spent." },
+  { fr: "🎣 Tu racontes une histoire : hier, nous avons attrapé beaucoup de poissons.", en: "We ___ lots of fish yesterday.", choices: ["Simple Past","Present Perfect"], answer: "Simple Past", expl: "'yesterday' = Simple Past. We caught." },
+  { fr: "🌊 Tu parles de quelque chose qui dure depuis un moment : nous sommes en mer depuis un mois.", en: "We ___ at sea for a month.", choices: ["Simple Past","Present Perfect"], answer: "Present Perfect", expl: "'for' + durée continue = Present Perfect. We've been." },
+];
+
+function buildSituations() {
+  var cont = document.getElementById('situation-items');
+  sitData.forEach(function(item, i) {
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-bottom:16px;padding:14px;background:#fdf4ff;border-radius:14px;border:2px solid #e9d5ff;';
+
+    var frDiv = document.createElement('div');
+    frDiv.style.cssText = 'background:var(--violet-light);border-left:4px solid var(--violet);border-radius:8px;padding:7px 12px;margin-bottom:10px;font-size:0.88rem;font-weight:700;';
+    frDiv.textContent = item.fr;
+
+    var enDiv = document.createElement('div');
+    enDiv.style.cssText = 'font-size:0.96rem;font-weight:700;margin-bottom:10px;';
+    enDiv.textContent = '🇬🇧 ' + item.en;
+
+    var btnRow = document.createElement('div');
+    btnRow.style.cssText = 'display:flex;gap:8px;';
+
+    item.choices.forEach(function(c) {
+      var btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.id = 'sit' + i + '_' + c.replace(/ /g,'_');
+      btn.textContent = c;
+      btn.style.cssText = c === 'Simple Past' ? 'border-color:#f43f5e;color:#be123c;font-weight:800;' : 'border-color:#3b82f6;color:#1d4ed8;font-weight:800;';
+      btn.addEventListener('click', function() { doSit(i, c); });
+      btnRow.appendChild(btn);
+    });
+
+    var fbDiv = document.createElement('div');
+    fbDiv.id = 'sitfb' + i;
+    fbDiv.style.cssText = 'margin-top:8px;font-size:0.85rem;font-weight:700;display:none;padding:8px 12px;border-radius:8px;';
+
+    d.appendChild(frDiv); d.appendChild(enDiv); d.appendChild(btnRow); d.appendChild(fbDiv);
+    cont.appendChild(d);
+  });
+}
+
+function doSit(i, chosen) {
+  var item = sitData[i];
+  item.choices.forEach(function(c) {
+    var btn = document.getElementById('sit' + i + '_' + c.replace(/ /g,'_'));
+    if (btn) { btn.classList.remove('correct','wrong'); btn.disabled = true; }
+  });
+  var isCorrect = chosen === item.answer;
+  var choBtn = document.getElementById('sit' + i + '_' + chosen.replace(/ /g,'_'));
+  var corBtn = document.getElementById('sit' + i + '_' + item.answer.replace(/ /g,'_'));
+  if (choBtn) choBtn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect && corBtn) corBtn.classList.add('correct');
+  var fb = document.getElementById('sitfb' + i);
+  fb.style.display = 'block';
+  fb.style.background = isCorrect ? 'var(--vert-light)' : 'var(--coral-light)';
+  fb.style.color = isCorrect ? '#065f46' : '#9f1239';
+  fb.textContent = (isCorrect ? '✅ ' : '❌ ') + item.expl;
+}
+buildSituations();
+
+// ══════════════════════════════════════════════════
+// ENTRAÎNEMENT C – Charles scrapbook
+// ══════════════════════════════════════════════════
+var charlesData = [
+  { activity: "go to Rome", done: true, key: "has already been to Rome", hint: "go → been (irrégulier ! on utilise 'been' pour les voyages)" },
+  { activity: "spend a few weeks in the UK", done: true, key: "has already spent a few weeks in the UK", hint: "spend → spent (irrégulier)" },
+  { activity: "drive in the American West", done: true, key: "has already driven in the American West", hint: "drive → driven (irrégulier)" },
+  { activity: "fly over the Grand Canyon", done: false, key: "has not flown over the Grand Canyon yet", hint: "fly → flown (irrégulier) · négatif + yet" },
+  { activity: "see the Berlin Wall", done: false, key: "has not seen the Berlin Wall yet", hint: "see → seen (irrégulier) · négatif + yet" },
+  { activity: "take a tour of Australia", done: false, key: "has not taken a tour of Australia yet", hint: "take → taken (irrégulier) · négatif + yet" },
+];
+
+function buildCharles() {
+  var cont = document.getElementById('charles-items');
+  charlesData.forEach(function(item, i) {
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-bottom:14px;padding:14px;border-radius:13px;border:2px solid;' +
+      (item.done ? 'background:#d1fae5;border-color:#10b981;' : 'background:#ffe4e6;border-color:#f43f5e;');
+
+    var label = document.createElement('div');
+    label.style.cssText = 'font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.9rem;margin-bottom:8px;color:' + (item.done ? '#065f46' : '#be123c') + ';';
+    label.textContent = (item.done ? '✅ ' : '❌ ') + item.activity.toUpperCase();
+
+    var hintDiv = document.createElement('div');
+    hintDiv.style.cssText = 'font-size:0.78rem;color:var(--muted);margin-bottom:8px;font-style:italic;';
+    hintDiv.textContent = '💡 ' + item.hint;
+
+    var sentDiv = document.createElement('div');
+    sentDiv.style.cssText = 'font-size:0.92rem;font-weight:600;line-height:2.8;';
+    sentDiv.textContent = '🇬🇧 Charles ';
+
+    var inp = document.createElement('input');
+    inp.className = 'blank-input';
+    inp.id = 'ch' + i;
+    inp.placeholder = item.done ? 'has already …' : 'has not … yet';
+    inp.style.width = '280px';
+
+    sentDiv.appendChild(inp);
+    sentDiv.appendChild(document.createTextNode('.'));
+
+    var btnRow = document.createElement('div');
+    btnRow.style.cssText = 'margin-top:8px;display:flex;gap:8px;align-items:center;';
+    var ansBtn = document.createElement('button');
+    ansBtn.className = 'toggle-ans-btn';
+    ansBtn.textContent = '👁 Voir la réponse';
+    var ansDiv = document.createElement('div');
+    ansDiv.style.cssText = 'display:none;background:#fef3c7;border:2px solid var(--amber);border-radius:8px;padding:5px 14px;font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.88rem;color:#92400e;';
+    ansDiv.textContent = '✏️ Charles ' + item.key + '.';
+    ansBtn.addEventListener('click', function() {
+      var v = ansDiv.style.display !== 'none';
+      ansDiv.style.display = v ? 'none' : 'block';
+      ansBtn.textContent = v ? '👁 Voir la réponse' : '🙈 Cacher';
+    });
+    btnRow.appendChild(ansBtn); btnRow.appendChild(ansDiv);
+
+    d.appendChild(label); d.appendChild(hintDiv); d.appendChild(sentDiv); d.appendChild(btnRow);
+    cont.appendChild(d);
+  });
+}
+buildCharles();
+
+function checkCharles() {
+  var sc = 0;
+  charlesData.forEach(function(item, i) {
+    var inp = document.getElementById('ch' + i);
+    inp.classList.remove('ok','ko');
+    var val = inp.value.trim().toLowerCase();
+    var key = item.key.toLowerCase();
+    // Accepte si la réponse contient les mots clés essentiels
+    var essential = item.done ? ['already', item.activity.split(' ').pop()] : ['not', 'yet'];
+    var ok = essential.every(function(w) { return val.includes(w); });
+    inp.classList.add(ok ? 'ok' : 'ko');
+    if (ok) sc++;
+  });
+  var fb = document.getElementById('charles-feedback');
+  fb.className = 'feedback-msg show ' + (sc === charlesData.length ? 'ok' : 'ko');
+  fb.textContent = sc + ' / ' + charlesData.length + ' ' + (sc === charlesData.length ? '✅ Bravo, parfait !' : '❌ Regarde les cases rouges. N\'oublie pas "already" ou "yet" !');
+}
+
+// ══════════════════════════════════════════════════
+// GLOSSAIRE
+// ══════════════════════════════════════════════════
+var glossData = [
+  // Grammaire
+  { term: "Simple Past", fr: "Prétérit – fait passé daté", ex: "We saw whales yesterday.", type: "gram" },
+  { term: "Present Perfect", fr: "Passé lié au présent", ex: "I have never been to Paris.", type: "gram" },
+  { term: "ago", fr: "il y a (+ durée)", ex: "We left three weeks ago.", type: "mc" },
+  { term: "yesterday", fr: "hier", ex: "We caught lots of fish yesterday.", type: "mc" },
+  { term: "last night / week / year", fr: "hier soir / la semaine / l'année dernière", ex: "Last year, I went to China.", type: "mc" },
+  { term: "ever", fr: "déjà (question)", ex: "Have you ever been to Rome?", type: "mc" },
+  { term: "never", fr: "jamais", ex: "I have never climbed a volcano.", type: "mc" },
+  { term: "already", fr: "déjà (affirmatif)", ex: "She has already left.", type: "mc" },
+  { term: "yet", fr: "encore (négatif/question)", ex: "I haven't been there yet.", type: "mc" },
+  { term: "since", fr: "depuis (point de départ)", ex: "They've been married since 1998.", type: "mc" },
+  { term: "for", fr: "depuis (durée)", ex: "We've been at sea for a month.", type: "mc" },
+  { term: "so far", fr: "jusqu'à présent", ex: "I have visited 3 cities so far.", type: "mc" },
+  // Vocabulaire marin
+  { term: "ship", fr: "navire, grand bateau", ex: "We saw whales from the ship.", type: "vocab" },
+  { term: "sail", fr: "voile / naviguer à la voile", ex: "I'm learning how to sail.", type: "vocab" },
+  { term: "deck", fr: "le pont (du bateau)", ex: "We stood on the deck.", type: "vocab" },
+  { term: "rope", fr: "corde", ex: "Hold the rope!", type: "vocab" },
+  { term: "cliff", fr: "falaise", ex: "We sailed past a huge cliff.", type: "vocab" },
+  { term: "wind", fr: "vent", ex: "The wind was strong.", type: "vocab" },
+  { term: "weather", fr: "météo / temps", ex: "The weather was perfect.", type: "vocab" },
+  { term: "whale", fr: "baleine", ex: "We saw whales from the ship.", type: "vocab" },
+  { term: "dolphin", fr: "dauphin", ex: "Look at those dolphins!", type: "vocab" },
+  { term: "catch (caught)", fr: "attraper (pêcher)", ex: "We caught lots of fish.", type: "vocab" },
+];
+
+var typeColor = { gram:'var(--navy)', mc:'var(--coral)', vocab:'var(--vert)' };
+var typeLabel = { gram:'Grammaire', mc:'⏰ Mot-clé', vocab:'⛵ Vocabulaire marin' };
+var grid = document.getElementById('glossaire-grid');
+glossData.forEach(function(item) {
+  var card = document.createElement('div');
+  card.className = 'glos-card';
+  card.style.borderTopColor = typeColor[item.type];
+
+  var term = document.createElement('div');
+  term.className = 'glos-term';
+  term.textContent = '🇬🇧 ' + item.term;
+
+  var fr = document.createElement('div');
+  fr.className = 'glos-fr';
+  fr.textContent = '🇫🇷 ' + item.fr;
+
+  var type = document.createElement('div');
+  type.className = 'glos-type';
+  type.style.cssText = 'background:' + typeColor[item.type] + '22;color:' + typeColor[item.type] + ';';
+  type.textContent = typeLabel[item.type];
+
+  var ex = document.createElement('div');
+  ex.className = 'glos-ex';
+  ex.textContent = '💬 ' + item.ex;
+
+  card.appendChild(term); card.appendChild(fr); card.appendChild(type); card.appendChild(ex);
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
