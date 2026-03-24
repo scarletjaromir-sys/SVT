@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Español – El Imperio Inca 🏔️</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9922a;
+    --gold2: #e8b84b;
+    --gold3: #f7d98b;
+    --terra: #b5451b;
+    --terra2: #d4662e;
+    --dark: #1a0f00;
+    --dark2: #2d1a00;
+    --dark3: #3d2600;
+    --light: #fdf6e3;
+    --sun: #f5a623;
+    --teal: #1a7a6e;
+    --green: #2e8b57;
+    --red: #c0392b;
+    --cream: #fef9ec;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: var(--dark); min-height: 100vh; }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(160deg, #1a0f00 0%, #3d2600 40%, #1a0f00 100%);
+    padding: 36px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid var(--gold);
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,146,42,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sun-deco {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 18px rgba(232,184,75,0.7));
+    animation: pulse-sun 3s ease-in-out infinite;
+  }
+  @keyframes pulse-sun {
+    0%,100% { filter: drop-shadow(0 0 18px rgba(232,184,75,0.7)); }
+    50% { filter: drop-shadow(0 0 32px rgba(232,184,75,1)); }
+  }
+  header .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(201,146,42,0.15); border: 2px solid rgba(201,146,42,0.5);
+    color: var(--gold3); text-decoration: none; border-radius: 20px;
+    padding: 6px 16px; font-size: 0.9rem; font-weight: 700;
+    margin-bottom: 18px; transition: all 0.2s;
+  }
+  header .back-btn:hover { background: rgba(201,146,42,0.3); border-color: var(--gold2); }
+  header h1 {
+    font-family: 'Cinzel', serif; font-size: 2rem; color: var(--gold2);
+    text-shadow: 0 2px 20px rgba(232,184,75,0.5), 0 0 40px rgba(201,146,42,0.3);
+    letter-spacing: 2px;
+  }
+  header p { color: rgba(247,217,139,0.8); margin-top: 8px; font-size: 1rem; }
+
+  /* ===== CONTAINER ===== */
+  .container { max-width: 860px; margin: 0 auto; padding: 28px 20px 70px; }
+
+  /* ===== PROGRESS ===== */
+  .progress-wrap {
+    background: rgba(255,255,255,0.08); border-radius: 10px; height: 10px;
+    margin-bottom: 28px; border: 1px solid rgba(201,146,42,0.2);
+  }
+  .progress-fill {
+    height: 10px; border-radius: 10px;
+    background: linear-gradient(90deg, var(--terra), var(--gold2), var(--sun));
+    transition: width 0.5s;
+  }
+  .prog-label { color: rgba(247,217,139,0.6); font-size: 0.83rem; }
+
+  /* ===== TABS ===== */
+  .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .tab-btn {
+    background: rgba(255,255,255,0.05); border: 2px solid rgba(201,146,42,0.25);
+    border-radius: 20px; padding: 8px 18px;
+    font-family: 'Cinzel', serif; font-size: 0.88rem;
+    cursor: pointer; color: rgba(247,217,139,0.6); transition: all 0.2s;
+  }
+  .tab-btn:hover { border-color: var(--gold); color: var(--gold2); }
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--terra), var(--gold));
+    color: #fff; border-color: transparent;
+    box-shadow: 0 2px 12px rgba(201,146,42,0.3);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700;
+    margin: 28px 0 14px; display: flex; align-items: center; gap: 10px;
+    color: var(--gold2); border-bottom: 2px solid rgba(201,146,42,0.3);
+    padding-bottom: 8px; letter-spacing: 1px;
+  }
+
+  /* ===== LESSON CARD ===== */
+  .lesson-card {
+    background: linear-gradient(135deg, rgba(45,26,0,0.9), rgba(61,38,0,0.9));
+    border: 1px solid rgba(201,146,42,0.3);
+    border-radius: 18px; padding: 22px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4); margin-bottom: 16px;
+  }
+  .lesson-card h3 {
+    font-family: 'Cinzel', serif; font-size: 1.05rem;
+    color: var(--gold3); margin-bottom: 12px;
+  }
+  .lesson-card p { color: rgba(253,246,227,0.85); line-height: 1.8; margin-bottom: 8px; }
+  .lesson-card strong { color: var(--gold2); }
+
+  /* ===== VOCAB GRID ===== */
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: 10px; margin-top: 10px; }
+  .vocab-item {
+    background: rgba(201,146,42,0.1); border-radius: 12px; padding: 10px 14px;
+    border-left: 4px solid var(--gold);
+  }
+  .vocab-item .es { font-weight: 700; color: var(--gold2); font-size: 0.97rem; }
+  .vocab-item .fr { color: rgba(253,246,227,0.65); font-size: 0.86rem; margin-top: 2px; }
+
+  /* ===== CONJUGATION TABLE ===== */
+  .conj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+  @media(max-width:600px){ .conj-grid { grid-template-columns: 1fr; } }
+  .conj-card {
+    background: rgba(0,0,0,0.35); border: 2px solid rgba(201,146,42,0.35);
+    border-radius: 16px; overflow: hidden;
+  }
+  .conj-card .conj-head {
+    background: linear-gradient(135deg, var(--terra), var(--gold));
+    color: #fff; font-family: 'Cinzel', serif; font-size: 1rem;
+    padding: 10px 14px; text-align: center; letter-spacing: 1px;
+  }
+  .conj-card table { width: 100%; border-collapse: collapse; }
+  .conj-card td { padding: 6px 12px; font-size: 0.88rem; border-bottom: 1px solid rgba(201,146,42,0.1); }
+  .conj-card td:first-child { color: rgba(247,217,139,0.5); font-weight: 600; }
+  .conj-card td:last-child { color: var(--gold3); font-weight: 700; }
+  .conj-card tr:last-child td { border-bottom: none; }
+
+  .irreg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+  @media(max-width:600px){ .irreg-grid { grid-template-columns: 1fr; } }
+
+  /* ===== FORMULA BOX ===== */
+  .formula-box {
+    display: flex; gap: 12px; margin: 14px 0; flex-wrap: wrap;
+  }
+  .formula {
+    background: rgba(201,146,42,0.15); border: 2px solid var(--gold);
+    border-radius: 10px; padding: 10px 18px;
+    font-family: 'Cinzel', serif; color: var(--gold2); font-size: 0.92rem;
+    font-weight: 700; letter-spacing: 0.5px;
+  }
+  .example-sent {
+    background: rgba(0,0,0,0.3); border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0; padding: 8px 14px;
+    font-style: italic; color: rgba(253,246,227,0.8); font-size: 0.9rem;
+    margin: 6px 0;
+  }
+
+  /* ===== QUIZ CARD ===== */
+  .quiz-card {
+    background: linear-gradient(135deg, rgba(45,26,0,0.95), rgba(61,38,0,0.95));
+    border: 1px solid rgba(201,146,42,0.25);
+    border-radius: 18px; padding: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35); margin-bottom: 18px;
+  }
+  .q-num { font-size: 0.8rem; color: rgba(201,146,42,0.6); margin-bottom: 5px; font-family: 'Cinzel', serif; }
+  .q-text { font-size: 1.02rem; color: var(--light); font-weight: 700; margin-bottom: 14px; line-height: 1.55; }
+  .choice-btn {
+    display: block; width: 100%; text-align: left;
+    background: rgba(255,255,255,0.05); border: 2px solid rgba(201,146,42,0.2);
+    border-radius: 12px; padding: 11px 16px; margin-bottom: 8px;
+    font-family: 'Nunito', sans-serif; font-size: 0.97rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; color: var(--light);
+  }
+  .choice-btn:hover:not(:disabled) { border-color: var(--gold); background: rgba(201,146,42,0.12); }
+  .choice-btn.correct { background: rgba(46,139,87,0.25); border-color: var(--green); color: #a8f0c6; }
+  .choice-btn.wrong { background: rgba(192,57,43,0.25); border-color: var(--red); color: #f5b7b1; }
+  .choice-btn:disabled { cursor: not-allowed; }
+  .feedback { margin-top: 10px; padding: 10px 14px; border-radius: 10px; font-weight: 700; font-size: 0.92rem; display: none; }
+  .feedback.show { display: block; }
+  .feedback.ok { background: rgba(46,139,87,0.2); color: #a8f0c6; border: 1px solid rgba(46,139,87,0.4); }
+  .feedback.ko { background: rgba(192,57,43,0.2); color: #f5b7b1; border: 1px solid rgba(192,57,43,0.4); }
+
+  /* ===== FILL INPUT ===== */
+  .fill-input {
+    border: 2px solid rgba(201,146,42,0.3); border-radius: 10px;
+    padding: 7px 14px; font-family: 'Nunito', sans-serif; font-size: 1rem;
+    min-width: 170px; outline: none; transition: border 0.2s;
+    background: rgba(0,0,0,0.4); color: var(--gold3);
+  }
+  .fill-input:focus { border-color: var(--gold); }
+  .fill-input.correct { border-color: var(--green); background: rgba(46,139,87,0.15); }
+  .fill-input.wrong { border-color: var(--red); background: rgba(192,57,43,0.15); }
+
+  /* ===== BUTTONS ===== */
+  .check-btn {
+    background: linear-gradient(135deg, var(--terra), var(--gold));
+    color: #fff; border: none; border-radius: 12px;
+    padding: 10px 22px; font-family: 'Cinzel', serif; font-size: 0.95rem;
+    cursor: pointer; transition: opacity 0.2s; margin-top: 8px;
+    box-shadow: 0 2px 12px rgba(201,146,42,0.3);
+  }
+  .check-btn:hover { opacity: 0.85; }
+  .reveal-btn {
+    background: none; border: 2px solid rgba(201,146,42,0.3); border-radius: 12px;
+    color: rgba(247,217,139,0.5); padding: 8px 16px;
+    font-family: 'Nunito', sans-serif; font-size: 0.87rem;
+    cursor: pointer; transition: all 0.2s; margin-top: 8px; margin-left: 6px;
+  }
+  .reveal-btn:hover { border-color: var(--gold); color: var(--gold2); }
+
+  /* ===== MATCH ===== */
+  .match-area { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  .match-col { display: flex; flex-direction: column; gap: 8px; }
+  .match-item {
+    background: rgba(255,255,255,0.05); border: 2px solid rgba(201,146,42,0.2);
+    border-radius: 12px; padding: 10px 14px;
+    cursor: pointer; font-weight: 600; font-size: 0.9rem;
+    transition: all 0.2s; user-select: none; text-align: center;
+    color: var(--light);
+  }
+  .match-item:hover:not(.matched):not(.wrong-match) { border-color: var(--gold); background: rgba(201,146,42,0.1); }
+  .match-item.selected { border-color: var(--sun); background: rgba(245,166,35,0.15); color: var(--gold2); }
+  .match-item.matched { border-color: var(--green); background: rgba(46,139,87,0.2); cursor: default; color: #a8f0c6; }
+  .match-item.wrong-match { border-color: var(--red); background: rgba(192,57,43,0.2); }
+  @media(max-width:520px){ .match-area { grid-template-columns: 1fr; } }
+
+  /* ===== DRAG & DROP ===== */
+  .dnd-sentence {
+    background: rgba(0,0,0,0.35); border: 1px dashed rgba(201,146,42,0.25);
+    border-radius: 12px; padding: 14px 16px; min-height: 56px;
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin-bottom: 8px;
+  }
+  .word-bank {
+    display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px;
+  }
+  .word-chip {
+    background: rgba(201,146,42,0.15); border: 2px solid rgba(201,146,42,0.4);
+    border-radius: 20px; padding: 6px 14px;
+    font-weight: 700; font-size: 0.9rem; cursor: grab;
+    color: var(--gold2); transition: all 0.18s; user-select: none;
+  }
+  .word-chip:active { cursor: grabbing; opacity: 0.6; }
+  .word-chip.placed { opacity: 0.35; pointer-events: none; }
+  .drop-zone {
+    border-bottom: 2px solid var(--gold); min-width: 80px; padding: 2px 6px;
+    display: inline-flex; align-items: center; color: var(--gold3);
+    font-weight: 700; cursor: pointer; margin: 0 2px;
+    transition: background 0.15s; border-radius: 4px 4px 0 0;
+  }
+  .drop-zone:hover { background: rgba(201,146,42,0.1); }
+  .drop-zone.filled { border-color: var(--gold2); color: var(--gold2); }
+  .drop-zone.correct-dnd { border-color: var(--green); color: #a8f0c6; }
+  .drop-zone.wrong-dnd { border-color: var(--red); color: #f5b7b1; }
+
+  /* ===== SCORE BOX ===== */
+  .score-box {
+    background: linear-gradient(135deg, var(--dark3), rgba(61,38,0,0.95));
+    border: 2px solid var(--gold); border-radius: 20px; padding: 28px;
+    text-align: center; margin-top: 28px; display: none;
+    box-shadow: 0 0 40px rgba(201,146,42,0.2);
+  }
+  .score-box.show { display: block; }
+  .score-box h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold2); }
+  .score-box .big { font-family: 'Cinzel', serif; font-size: 3rem; margin: 10px 0; color: var(--gold3); }
+  .score-box p { color: rgba(253,246,227,0.8); }
+  .reset-btn {
+    background: rgba(201,146,42,0.2); border: 2px solid rgba(201,146,42,0.5);
+    color: var(--gold3); border-radius: 14px; padding: 10px 24px;
+    font-family: 'Cinzel', serif; font-size: 0.9rem; cursor: pointer; margin: 8px 4px 0;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: rgba(201,146,42,0.35); border-color: var(--gold2); }
+
+  footer { text-align: center; padding: 30px; color: rgba(201,146,42,0.35); font-size: 0.85rem; }
+
+  /* decorative stripe */
+  .inca-stripe {
+    height: 6px;
+    background: repeating-linear-gradient(90deg, var(--terra) 0, var(--terra) 12px, var(--gold) 12px, var(--gold) 24px, var(--dark3) 24px, var(--dark3) 36px);
+    margin-bottom: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="inca-stripe"></div>
+<header>
+  <a class="back-btn" href="../index.html">← Accueil</a>
+  <span class="sun-deco">☀️</span>
+  <h1>El Imperio Inca</h1>
+  <p>Español · 4e – L'imparfait de l'indicatif · Vocabulaire Inca</p>
+</header>
+
+<div class="container">
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+    <span class="prog-label">Progression</span>
+    <span class="prog-label" id="prog-label">0 / 28 réponses</span>
+  </div>
+  <div class="progress-wrap"><div class="progress-fill" id="prog-bar" style="width:0%"></div></div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('cours')">📖 Cours & Vocab</button>
+    <button class="tab-btn" onclick="switchTab('grammaire')">📐 Grammaire</button>
+    <button class="tab-btn" onclick="switchTab('ex1')">🏛️ Ex.1 – Conjugaison</button>
+    <button class="tab-btn" onclick="switchTab('ex2')">🔗 Ex.2 – Association</button>
+    <button class="tab-btn" onclick="switchTab('ex3')">🧩 Ex.3 – Phrases</button>
+  </div>
+
+  <!-- ===== COURS ===== -->
+  <div class="tab-panel active" id="tab-cours">
+
+    <div class="section-title">🏺 Vocabulaire – El Imperio Inca</div>
+    <div class="lesson-card">
+      <h3>Mots clés du cours 🔑</h3>
+      <p>Ces mots viennent du document <em>"El Fascinante Imperio Inca"</em>. À apprendre !</p>
+      <div class="vocab-grid">
+        <div class="vocab-item"><div class="es">el brazalete</div><div class="fr">le bracelet</div></div>
+        <div class="vocab-item"><div class="es">la corona</div><div class="fr">la couronne</div></div>
+        <div class="vocab-item"><div class="es">el dios / la diosa</div><div class="fr">le dieu / la déesse</div></div>
+        <div class="vocab-item"><div class="es">la leyenda</div><div class="fr">la légende</div></div>
+        <div class="vocab-item"><div class="es">el oro</div><div class="fr">l'or</div></div>
+        <div class="vocab-item"><div class="es">la túnica</div><div class="fr">la tunique</div></div>
+        <div class="vocab-item"><div class="es">dominar</div><div class="fr">dominer</div></div>
+        <div class="vocab-item"><div class="es">proteger</div><div class="fr">protéger</div></div>
+        <div class="vocab-item"><div class="es">misterioso/a</div><div class="fr">mystérieux/se</div></div>
+        <div class="vocab-item"><div class="es">el misterio</div><div class="fr">le mystère</div></div>
+        <div class="vocab-item"><div class="es">la selva</div><div class="fr">la forêt / jungle</div></div>
+        <div class="vocab-item"><div class="es">la conquista</div><div class="fr">la conquête</div></div>
+      </div>
+    </div>
+
+    <div class="lesson-card" style="margin-top:8px;">
+      <h3>Contexte historique 🗺️</h3>
+      <div class="vocab-grid">
+        <div class="vocab-item"><div class="es">el pueblo</div><div class="fr">le peuple</div></div>
+        <div class="vocab-item"><div class="es">la civilización</div><div class="fr">la civilisation</div></div>
+        <div class="vocab-item"><div class="es">el territorio</div><div class="fr">le territoire</div></div>
+        <div class="vocab-item"><div class="es">la lengua oficial</div><div class="fr">la langue officielle</div></div>
+        <div class="vocab-item"><div class="es">la agricultura</div><div class="fr">l'agriculture</div></div>
+        <div class="vocab-item"><div class="es">la realeza</div><div class="fr">la royauté</div></div>
+        <div class="vocab-item"><div class="es">la nobleza</div><div class="fr">la noblesse</div></div>
+        <div class="vocab-item"><div class="es">el apogeo</div><div class="fr">l'apogée</div></div>
+        <div class="vocab-item"><div class="es">conquistar</div><div class="fr">conquérir</div></div>
+        <div class="vocab-item"><div class="es">el conocimiento</div><div class="fr">la connaissance</div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="check-btn" onclick="switchTab('grammaire')" style="font-size:1.05rem;padding:13px 32px;">
+        Suite → Grammaire 📐
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== GRAMMAIRE ===== -->
+  <div class="tab-panel" id="tab-grammaire">
+    <div class="section-title">📐 L'imparfait de l'indicatif</div>
+
+    <div class="lesson-card">
+      <h3>Quand utiliser l'imparfait ? 💡</h3>
+      <p>L'imparfait (<strong>el imperfecto de indicativo</strong>) s'utilise pour :</p>
+      <p>🔁 Une <strong>action répétée ou habituelle</strong> dans le passé → <em>Los incas <strong>cultivaban</strong> el maíz cada año.</em></p>
+      <p>📍 Une <strong>description ou un état</strong> dans le passé → <em>El sol <strong>brillaba</strong> sobre los Andes.</em></p>
+      <p>⏳ Une <strong>action en cours</strong> dans le passé → <em>Los sacerdotes <strong>cantaban</strong> para el dios.</em></p>
+    </div>
+
+    <div class="lesson-card">
+      <h3>Formation – Verbes réguliers ✏️</h3>
+      <p style="margin-bottom:14px;">On retire la terminaison de l'infinitif (-AR, -ER ou -IR) et on ajoute :</p>
+      <div class="conj-grid">
+        <div class="conj-card">
+          <div class="conj-head">-AR → HABLAR</div>
+          <table>
+            <tr><td>yo</td><td>habl<strong>aba</strong></td></tr>
+            <tr><td>tú</td><td>habl<strong>abas</strong></td></tr>
+            <tr><td>él/ella</td><td>habl<strong>aba</strong></td></tr>
+            <tr><td>nosotros</td><td>habl<strong>ábamos</strong></td></tr>
+            <tr><td>vosotros</td><td>habl<strong>abais</strong></td></tr>
+            <tr><td>ellos</td><td>habl<strong>aban</strong></td></tr>
+          </table>
+        </div>
+        <div class="conj-card">
+          <div class="conj-head">-ER → COMER</div>
+          <table>
+            <tr><td>yo</td><td>com<strong>ía</strong></td></tr>
+            <tr><td>tú</td><td>com<strong>ías</strong></td></tr>
+            <tr><td>él/ella</td><td>com<strong>ía</strong></td></tr>
+            <tr><td>nosotros</td><td>com<strong>íamos</strong></td></tr>
+            <tr><td>vosotros</td><td>com<strong>íais</strong></td></tr>
+            <tr><td>ellos</td><td>com<strong>ían</strong></td></tr>
+          </table>
+        </div>
+        <div class="conj-card">
+          <div class="conj-head">-IR → VIVIR</div>
+          <table>
+            <tr><td>yo</td><td>viv<strong>ía</strong></td></tr>
+            <tr><td>tú</td><td>viv<strong>ías</strong></td></tr>
+            <tr><td>él/ella</td><td>viv<strong>ía</strong></td></tr>
+            <tr><td>nosotros</td><td>viv<strong>íamos</strong></td></tr>
+            <tr><td>vosotros</td><td>viv<strong>íais</strong></td></tr>
+            <tr><td>ellos</td><td>viv<strong>ían</strong></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="example-sent" style="margin-top:16px;">👉 -ER et -IR ont les <strong>mêmes terminaisons</strong> à l'imparfait !</div>
+    </div>
+
+    <div class="lesson-card">
+      <h3>⚠️ Verbes irréguliers – seulement 3 !</h3>
+      <p style="margin-bottom:14px;">Bonne nouvelle : il n'y a que <strong>3 verbes irréguliers</strong> à l'imparfait !</p>
+      <div class="irreg-grid">
+        <div class="conj-card">
+          <div class="conj-head">IR (aller)</div>
+          <table>
+            <tr><td>yo</td><td><strong>iba</strong></td></tr>
+            <tr><td>tú</td><td><strong>ibas</strong></td></tr>
+            <tr><td>él/ella</td><td><strong>iba</strong></td></tr>
+            <tr><td>nosotros</td><td><strong>íbamos</strong></td></tr>
+            <tr><td>vosotros</td><td><strong>ibais</strong></td></tr>
+            <tr><td>ellos</td><td><strong>iban</strong></td></tr>
+          </table>
+        </div>
+        <div class="conj-card">
+          <div class="conj-head">VER (voir)</div>
+          <table>
+            <tr><td>yo</td><td><strong>veía</strong></td></tr>
+            <tr><td>tú</td><td><strong>veías</strong></td></tr>
+            <tr><td>él/ella</td><td><strong>veía</strong></td></tr>
+            <tr><td>nosotros</td><td><strong>veíamos</strong></td></tr>
+            <tr><td>vosotros</td><td><strong>veíais</strong></td></tr>
+            <tr><td>ellos</td><td><strong>veían</strong></td></tr>
+          </table>
+        </div>
+        <div class="conj-card">
+          <div class="conj-head">SER (être)</div>
+          <table>
+            <tr><td>yo</td><td><strong>era</strong></td></tr>
+            <tr><td>tú</td><td><strong>eras</strong></td></tr>
+            <tr><td>él/ella</td><td><strong>era</strong></td></tr>
+            <tr><td>nosotros</td><td><strong>éramos</strong></td></tr>
+            <tr><td>vosotros</td><td><strong>erais</strong></td></tr>
+            <tr><td>ellos</td><td><strong>eran</strong></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="example-sent" style="margin-top:14px;">El Sol <strong>era</strong> el dios principal de los incas. → Le Soleil <em>était</em> le dieu principal des Incas.</div>
+      <div class="example-sent">Los incas <strong>iban</strong> al templo cada día. → Les Incas <em>allaient</em> au temple chaque jour.</div>
+      <div class="example-sent">El emperador <strong>veía</strong> a su pueblo desde el palacio. → L'empereur <em>voyait</em> son peuple depuis le palais.</div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="check-btn" onclick="switchTab('ex1')" style="font-size:1.05rem;padding:13px 32px;">
+        Suite → Exercice 1 🏛️
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== EX 1 : QCM Conjugaison ===== -->
+  <div class="tab-panel" id="tab-ex1">
+    <div class="section-title">🏛️ Exercice 1 – Quelle forme de l'imparfait ?</div>
+    <p style="color:rgba(253,246,227,0.6);margin-bottom:18px;">Choisis la bonne forme de l'imparfait pour chaque phrase.</p>
+    <div id="ex1-container"></div>
+    <div style="text-align:center;">
+      <button class="check-btn" onclick="submitQCM()">Voir le score 🎯</button>
+    </div>
+    <div class="score-box" id="ex1-score">
+      <h2>Ejercicio 1 !</h2>
+      <div class="big" id="ex1-score-val">–</div>
+      <p id="ex1-score-msg"></p>
+      <button class="reset-btn" onclick="resetQCM()">🔄 Recommencer</button>
+      <button class="reset-btn" onclick="switchTab('ex2')">Ex. 2 →</button>
+    </div>
+  </div>
+
+  <!-- ===== EX 2 : MATCH ===== -->
+  <div class="tab-panel" id="tab-ex2">
+    <div class="section-title">🔗 Exercice 2 – Associe le mot à sa traduction</div>
+    <p style="color:rgba(253,246,227,0.6);margin-bottom:18px;">Clique sur un mot espagnol puis sur sa traduction française 🔗</p>
+    <div id="ex2-container"></div>
+    <div class="score-box" id="ex2-score">
+      <h2>Ejercicio 2 !</h2>
+      <div class="big" id="ex2-score-val">–</div>
+      <p id="ex2-score-msg"></p>
+      <button class="reset-btn" onclick="resetMatch()">🔄 Recommencer</button>
+      <button class="reset-btn" onclick="switchTab('ex3')">Ex. 3 →</button>
+    </div>
+  </div>
+
+  <!-- ===== EX 3 : PHRASES À REMETTRE EN ORDRE ===== -->
+  <div class="tab-panel" id="tab-ex3">
+    <div class="section-title">🧩 Exercice 3 – Remets les mots dans l'ordre</div>
+    <p style="color:rgba(253,246,227,0.6);margin-bottom:18px;">Clique sur les mots dans le bon ordre pour former une phrase correcte à l'imparfait.</p>
+    <div id="ex3-container"></div>
+    <div style="text-align:center;">
+      <button class="check-btn" onclick="submitDnD()">Vérifier les phrases 🎯</button>
+    </div>
+    <div class="score-box" id="ex3-score">
+      <h2>¡ Ejercicio 3 terminado ! 🎉</h2>
+      <div class="big" id="ex3-score-val">–</div>
+      <p id="ex3-score-msg"></p>
+      <button class="reset-btn" onclick="resetDnD()">🔄 Recommencer</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>Creado con ❤️ para Noah · Imperio Inca 🏔️☀️</footer>
+
+<script>
+// ===== TABS =====
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ===== PROGRESS =====
+let totalDone = 0;
+const TOTAL = 28;
+function addProgress(n = 1) {
+  totalDone = Math.min(TOTAL, totalDone + n);
+  document.getElementById('prog-bar').style.width = Math.round(totalDone / TOTAL * 100) + '%';
+  document.getElementById('prog-label').textContent = totalDone + ' / ' + TOTAL + ' réponses';
+}
+
+// ===== EX 1 : QCM =====
+const qcmData = [
+  { q: "El sol ___ sobre los Andes. (briller – él)", opts: ["brillaba", "brillé", "brillo"], correct: 0 },
+  { q: "Los incas ___ maíz y patatas. (cultiver – ellos)", opts: ["cultivaban", "cultivaban", "cultivaban"].map((v,i) => ["cultivaban","cultivaron","cultivan"][i]), correct: 0 },
+  { q: "Yo ___ al templo cada mañana. (aller – yo, irrégulier)", opts: ["fui", "iba", "voy"], correct: 1 },
+  { q: "El emperador ___ el dios del Sol. (être – él, irrégulier)", opts: ["fue", "era", "es"], correct: 1 },
+  { q: "Nosotros ___ el palacio desde lejos. (voir – nosotros, irrégulier)", opts: ["veíamos", "víamos", "veemos"], correct: 0 },
+  { q: "Los sacerdotes ___ al dios Inti. (servir – ellos, -IR)", opts: ["servaban", "servían", "servían"].map((v,i) => ["servaban","servíen","servían"][i]), correct: 2 },
+  { q: "Tú ___ en el pueblo con tu familia. (vivre – tú, -IR)", opts: ["vivías", "vivabas", "vivías"].map((v,i) => ["vivabas","vivías","viviste"][i]), correct: 1 },
+  { q: "___ una civilización muy avanzada. (être – ella, irrégulier)", opts: ["Estuvo", "Era", "Está"], correct: 1 },
+  { q: "Los niños ___ al río cada tarde. (aller – ellos, irrégulier)", opts: ["fueron", "van", "iban"], correct: 2 },
+  { q: "La reina ___ una corona de oro. (porter – ella, -AR)", opts: ["llevaba", "llevó", "lleva"], correct: 0 },
+];
+
+let qcmState = Array(qcmData.length).fill(null);
+let qcmScore = 0, qcmDone = false;
+
+function buildQCM() {
+  const c = document.getElementById('ex1-container');
+  c.innerHTML = '';
+  qcmState = Array(qcmData.length).fill(null);
+  qcmScore = 0; qcmDone = false;
+  qcmData.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.className = 'quiz-card';
+    d.innerHTML = `<div class="q-num">Question ${i+1} / ${qcmData.length}</div>
+    <div class="q-text">${item.q}</div>
+    ${item.opts.map((o, j) => `<button class="choice-btn" id="qb-${i}-${j}" onclick="answerQCM(${i},${j})">${o}</button>`).join('')}
+    <div class="feedback" id="qfb-${i}"></div>`;
+    c.appendChild(d);
+  });
+}
+function answerQCM(qi, choice) {
+  if (qcmState[qi] !== null) return;
+  const item = qcmData[qi];
+  const ok = choice === item.correct;
+  qcmState[qi] = ok ? 'c' : 'w';
+  if (ok) { qcmScore++; addProgress(); }
+  else addProgress();
+  item.opts.forEach((_, j) => {
+    const btn = document.getElementById(`qb-${qi}-${j}`);
+    btn.disabled = true;
+    if (j === item.correct) btn.classList.add('correct');
+    else if (j === choice && !ok) btn.classList.add('wrong');
+  });
+  const fb = document.getElementById(`qfb-${qi}`);
+  fb.className = 'feedback show ' + (ok ? 'ok' : 'ko');
+  fb.textContent = ok ? '✅ ¡Muy bien!' : `❌ Bonne réponse : ${item.opts[item.correct]}`;
+}
+function submitQCM() {
+  if (qcmDone) return; qcmDone = true;
+  qcmData.forEach((item, i) => {
+    if (qcmState[i] === null) {
+      item.opts.forEach((_, j) => {
+        const btn = document.getElementById(`qb-${i}-${j}`);
+        btn.disabled = true;
+        if (j === item.correct) btn.classList.add('correct');
+      });
+      const fb = document.getElementById(`qfb-${i}`);
+      fb.className = 'feedback show ko';
+      fb.textContent = `❌ Réponse : ${item.opts[item.correct]}`;
+    }
+  });
+  const sb = document.getElementById('ex1-score');
+  document.getElementById('ex1-score-val').textContent = qcmScore + ' / ' + qcmData.length;
+  const pct = qcmScore / qcmData.length;
+  document.getElementById('ex1-score-msg').textContent = pct >= 0.8 ? '🎉 ¡Perfecto! Tu maîtrises l\'imparfait !' : pct >= 0.6 ? '👍 Bien ! Relis les tableaux de conjugaison.' : '💪 Continue ! Relis la leçon et réessaie.';
+  sb.classList.add('show');
+}
+function resetQCM() {
+  document.getElementById('ex1-score').classList.remove('show');
+  buildQCM();
+}
+
+// ===== EX 2 : MATCH =====
+const matchData = [
+  { es: "el oro", fr: "l'or" },
+  { es: "la corona", fr: "la couronne" },
+  { es: "la leyenda", fr: "la légende" },
+  { es: "dominar", fr: "dominer" },
+  { es: "misterioso", fr: "mystérieux" },
+  { es: "la conquista", fr: "la conquête" },
+  { es: "el pueblo", fr: "le peuple" },
+  { es: "la nobleza", fr: "la noblesse" },
+];
+let matchSel = null, matchDoneMap = {}, matchScore2 = 0;
+
+function buildMatch() {
+  matchSel = null; matchDoneMap = {}; matchScore2 = 0;
+  const c = document.getElementById('ex2-container');
+  const shuffledFr = [...matchData].sort(() => Math.random() - 0.5);
+  c.innerHTML = `<div class="match-area">
+    <div class="match-col" id="match-es">
+      ${matchData.map((m, i) => `<div class="match-item" id="mes-${i}" onclick="selectMatchItem('es',${i})">${m.es}</div>`).join('')}
+    </div>
+    <div class="match-col" id="match-fr">
+      ${shuffledFr.map((m, i) => `<div class="match-item" id="mfr-${i}" onclick="selectMatchItem('fr',${i})" data-fr="${m.fr}">${m.fr}</div>`).join('')}
+    </div>
+  </div>
+  <div id="match-fb" style="margin-top:14px;font-weight:700;font-size:0.9rem;"></div>`;
+}
+let matchEsIdx = null;
+function selectMatchItem(type, idx) {
+  if (type === 'es') {
+    if (matchDoneMap['e'+idx]) return;
+    document.querySelectorAll('[id^="mes-"]').forEach(el => { if (!el.classList.contains('matched')) el.classList.remove('selected'); });
+    document.getElementById('mes-'+idx).classList.add('selected');
+    matchEsIdx = idx;
+  } else {
+    if (matchEsIdx === null) return;
+    const frEl = document.getElementById('mfr-'+idx);
+    if (frEl.classList.contains('matched')) return;
+    const fr = frEl.dataset.fr;
+    const ok = matchData[matchEsIdx].fr === fr;
+    const esEl = document.getElementById('mes-'+matchEsIdx);
+    if (ok) {
+      esEl.classList.remove('selected'); esEl.classList.add('matched');
+      frEl.classList.add('matched');
+      matchDoneMap['e'+matchEsIdx] = true;
+      matchScore2++;
+      addProgress();
+      document.getElementById('match-fb').innerHTML = `<span style="color:#a8f0c6">✅ ¡Correcto! ${matchData[matchEsIdx].es} = ${fr}</span>`;
+      matchEsIdx = null;
+      if (matchScore2 === matchData.length) {
+        setTimeout(() => {
+          const sb = document.getElementById('ex2-score');
+          document.getElementById('ex2-score-val').textContent = matchScore2 + ' / ' + matchData.length;
+          document.getElementById('ex2-score-msg').textContent = '🎉 Parfait ! Tu connais tout le vocabulaire inca !';
+          sb.classList.add('show');
+        }, 600);
+      }
+    } else {
+      esEl.classList.remove('selected');
+      frEl.classList.add('wrong-match');
+      document.getElementById('match-fb').innerHTML = `<span style="color:#f5b7b1">❌ Pas exactement, réessaie !</span>`;
+      setTimeout(() => frEl.classList.remove('wrong-match'), 800);
+      matchEsIdx = null;
+    }
+  }
+}
+function resetMatch() {
+  document.getElementById('ex2-score').classList.remove('show');
+  buildMatch();
+}
+
+// ===== EX 3 : CLICK-TO-ORDER =====
+const dndData = [
+  { words: ["Los", "incas", "cultivaban", "maíz", "y", "patatas"], answer: ["Los", "incas", "cultivaban", "maíz", "y", "patatas"], hint: "Les Incas cultivaient du maïs et des pommes de terre." },
+  { words: ["El", "emperador", "era", "el", "dios", "del", "Sol"], answer: ["El", "emperador", "era", "el", "dios", "del", "Sol"], hint: "L'empereur était le dieu du Soleil." },
+  { words: ["Nosotros", "íbamos", "al", "templo", "cada", "mañana"], answer: ["Nosotros", "íbamos", "al", "templo", "cada", "mañana"], hint: "Nous allions au temple chaque matin." },
+  { words: ["Los", "sacerdotes", "llevaban", "túnicas", "de", "oro"], answer: ["Los", "sacerdotes", "llevaban", "túnicas", "de", "oro"], hint: "Les prêtres portaient des tuniques en or." },
+  { words: ["La", "leyenda", "decía", "que", "el", "sol", "protegía", "al", "pueblo"], answer: ["La", "leyenda", "decía", "que", "el", "sol", "protegía", "al", "pueblo"], hint: "La légende disait que le soleil protégeait le peuple." },
+  { words: ["Ellos", "veían", "las", "montañas", "desde", "el", "palacio"], answer: ["Ellos", "veían", "las", "montañas", "desde", "el", "palacio"], hint: "Ils voyaient les montagnes depuis le palais." },
+];
+
+let dndBuilt = [];
+
+function buildDnD() {
+  const c = document.getElementById('ex3-container');
+  c.innerHTML = '';
+  dndBuilt = [];
+  dndData.forEach((item, i) => {
+    const shuffled = [...item.words].sort(() => Math.random() - 0.5);
+    const state = { clicked: [], remaining: [...shuffled], done: false };
+    dndBuilt.push(state);
+
+    const d = document.createElement('div');
+    d.className = 'quiz-card';
+    d.innerHTML = `
+      <div class="q-num">Phrase ${i+1} / ${dndData.length}</div>
+      <div class="q-text" style="font-size:0.88rem;color:rgba(253,246,227,0.5);font-weight:400;margin-bottom:6px;">${item.hint}</div>
+      <div id="dnd-order-${i}" style="min-height:44px;background:rgba(0,0,0,0.3);border:1px dashed rgba(201,146,42,0.25);border-radius:10px;padding:10px;display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;"></div>
+      <div id="dnd-bank-${i}" class="word-bank"></div>
+      <button class="reveal-btn" onclick="undoLast(${i})" style="margin-top:0;">↩ Annuler dernier</button>
+      <div class="feedback" id="dnd-fb-${i}"></div>
+    `;
+    c.appendChild(d);
+
+    renderDnDBank(i, shuffled, state);
+  });
+}
+
+function renderDnDBank(i, words, state) {
+  const bank = document.getElementById(`dnd-bank-${i}`);
+  bank.innerHTML = '';
+  words.forEach(w => {
+    if (state.remaining.includes(w) && state.remaining.indexOf(w) >= 0) {
+      // count how many of this word are in remaining vs clicked
+      const totalInAnswer = state.remaining.filter(x => x === w).length;
+      for (let k = 0; k < totalInAnswer; k++) {
+        const chip = document.createElement('span');
+        chip.className = 'word-chip';
+        chip.textContent = w;
+        chip.onclick = () => clickWord(i, w, chip);
+        bank.appendChild(chip);
+      }
+    }
+  });
+}
+
+function clickWord(i, word, chip) {
+  const state = dndBuilt[i];
+  if (state.done) return;
+  const idx = state.remaining.indexOf(word);
+  if (idx === -1) return;
+  state.remaining.splice(idx, 1);
+  state.clicked.push(word);
+  chip.remove();
+
+  const orderDiv = document.getElementById(`dnd-order-${i}`);
+  const placed = document.createElement('span');
+  placed.className = 'word-chip';
+  placed.style.cursor = 'pointer';
+  placed.textContent = word;
+  placed.onclick = () => removeFromOrder(i, word, placed);
+  orderDiv.appendChild(placed);
+}
+
+function removeFromOrder(i, word, el) {
+  const state = dndBuilt[i];
+  if (state.done) return;
+  const idx = state.clicked.lastIndexOf(word);
+  if (idx === -1) return;
+  state.clicked.splice(idx, 1);
+  state.remaining.push(word);
+  el.remove();
+
+  const bank = document.getElementById(`dnd-bank-${i}`);
+  const chip = document.createElement('span');
+  chip.className = 'word-chip';
+  chip.textContent = word;
+  chip.onclick = () => clickWord(i, word, chip);
+  bank.appendChild(chip);
+}
+
+function undoLast(i) {
+  const state = dndBuilt[i];
+  if (state.done || state.clicked.length === 0) return;
+  const word = state.clicked.pop();
+  state.remaining.push(word);
+  const orderDiv = document.getElementById(`dnd-order-${i}`);
+  const chips = orderDiv.querySelectorAll('.word-chip');
+  chips[chips.length - 1].remove();
+  const bank = document.getElementById(`dnd-bank-${i}`);
+  const chip = document.createElement('span');
+  chip.className = 'word-chip';
+  chip.textContent = word;
+  chip.onclick = () => clickWord(i, word, chip);
+  bank.appendChild(chip);
+}
+
+function submitDnD() {
+  let score = 0;
+  dndData.forEach((item, i) => {
+    const state = dndBuilt[i];
+    state.done = true;
+    const ok = JSON.stringify(state.clicked) === JSON.stringify(item.answer);
+    if (ok) score++;
+    addProgress();
+    const fb = document.getElementById(`dnd-fb-${i}`);
+    fb.className = 'feedback show ' + (ok ? 'ok' : 'ko');
+    fb.textContent = ok ? '✅ ¡Perfecto!' : `❌ Réponse : ${item.answer.join(' ')}`;
+    const orderDiv = document.getElementById(`dnd-order-${i}`);
+    orderDiv.querySelectorAll('.word-chip').forEach(c => c.style.pointerEvents = 'none');
+    document.getElementById(`dnd-bank-${i}`).querySelectorAll('.word-chip').forEach(c => c.style.pointerEvents = 'none');
+  });
+  const sb = document.getElementById('ex3-score');
+  document.getElementById('ex3-score-val').textContent = score + ' / ' + dndData.length;
+  const pct = score / dndData.length;
+  document.getElementById('ex3-score-msg').textContent = pct >= 0.8 ? '🎉 ¡Excelente! Ordre des mots maîtrisé !' : pct >= 0.5 ? '👍 Bien ! Relis les exemples de la leçon.' : '💪 Continue ! Les mots se remettront en ordre !';
+  sb.classList.add('show');
+}
+
+function resetDnD() {
+  document.getElementById('ex3-score').classList.remove('show');
+  buildDnD();
+}
+
+// ===== INIT =====
+buildQCM();
+buildMatch();
+buildDnD();
+</script>
+</body>
+</html>
