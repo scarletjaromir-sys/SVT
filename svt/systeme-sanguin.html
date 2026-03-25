@@ -315,75 +315,84 @@
       Le sang livre l'<strong>O2 et les nutriments</strong> à chaque organe et récupère le CO2 produit.
     </div>
 
-    <!-- SCHÉMA fidèle au dessin manuscrit : Poumons en haut, Cœur au milieu, Organes en bas -->
-    <div style="background:linear-gradient(135deg,#fff5f5,#fce7f3);border:2px solid #e11d48;border-radius:16px;padding:24px 20px;overflow-x:auto;">
-      <div style="max-width:420px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0;">
+    <!-- SCHÉMA SVG : Poumons, Cœur, Organes reliés par des flèches directement sur les boîtes -->
+    <div style="background:linear-gradient(135deg,#fff5f5,#fce7f3);border:2px solid #e11d48;border-radius:16px;padding:20px 12px;overflow-x:auto;">
+      <svg viewBox="0 0 360 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;display:block;margin:0 auto;">
+        <defs>
+          <marker id="dc-arr-r" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L0,10 L10,5 z" fill="#dc2626"/>
+          </marker>
+          <marker id="dc-arr-b" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L0,10 L10,5 z" fill="#1d4ed8"/>
+          </marker>
+          <marker id="dc-arr-r-up" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto">
+            <path d="M10,0 L10,10 L0,5 z" fill="#dc2626"/>
+          </marker>
+          <marker id="dc-arr-b-up" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto">
+            <path d="M10,0 L10,10 L0,5 z" fill="#1d4ed8"/>
+          </marker>
+        </defs>
 
-        <!-- POUMONS (haut, centré) -->
-        <div style="background:#dbeafe;border:2.5px solid #2563eb;border-radius:12px;padding:12px 32px;text-align:center;width:220px;">
-          <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;color:#1e40af;">🫁 POUMONS</div>
-          <div style="font-size:0.82rem;color:#1e40af;margin-top:2px;">échange CO2 → O2</div>
-        </div>
+        <!-- ===== POUMONS ===== -->
+        <rect x="80" y="10" width="200" height="62" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+        <text x="180" y="36" text-anchor="middle" font-family="Baloo 2,cursive" font-size="16" font-weight="800" fill="#1e40af">🫁 POUMONS</text>
+        <text x="180" y="56" text-anchor="middle" font-family="Nunito,sans-serif" font-size="12" fill="#1e40af">échange CO2 → O2</text>
 
-        <!-- FLÈCHES entre Poumons et Cœur -->
-        <div style="display:flex;width:220px;justify-content:space-around;padding:4px 0;">
+        <!-- Flèche rouge ↓ GAUCHE : sort du bas des Poumons → entre dans Cœur gauche -->
+        <!-- Trait -->
+        <line x1="130" y1="72" x2="130" y2="178" stroke="#dc2626" stroke-width="3" marker-end="url(#dc-arr-r)"/>
+        <!-- Label à gauche du trait -->
+        <rect x="18" y="100" width="100" height="38" rx="7" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="68" y="116" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#991b1b">sang chargé</text>
+        <text x="68" y="131" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#991b1b">en O2</text>
+        <line x1="118" y1="119" x2="130" y2="119" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,2"/>
 
-          <!-- Gauche : Poumons → Cœur gauche (sang chargé O2, flèche vers le bas) -->
-          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
-            <div style="font-size:0.78rem;font-weight:700;color:#991b1b;text-align:center;background:#fee2e2;border:1.5px solid #dc2626;border-radius:6px;padding:3px 6px;line-height:1.3;">sang chargé<br>en O2</div>
-            <div style="width:3px;height:38px;background:#dc2626;position:relative;">
-              <div style="position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:12px solid #dc2626;"></div>
-            </div>
-          </div>
+        <!-- Flèche bleue ↑ DROITE : sort du haut de Cœur droit → entre dans Poumons -->
+        <line x1="230" y1="178" x2="230" y2="72" stroke="#1d4ed8" stroke-width="3" marker-end="url(#dc-arr-b)"/>
+        <!-- Label à droite du trait -->
+        <rect x="242" y="100" width="100" height="38" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="292" y="116" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#1e40af">sang chargé</text>
+        <text x="292" y="131" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#1e40af">en CO2</text>
+        <line x1="242" y1="119" x2="230" y2="119" stroke="#1d4ed8" stroke-width="1.2" stroke-dasharray="3,2"/>
 
-          <!-- Droite : Cœur droit → Poumons (sang chargé CO2, flèche vers le haut) -->
-          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
-            <div style="font-size:0.78rem;font-weight:700;color:#1e40af;text-align:center;background:#dbeafe;border:1.5px solid #2563eb;border-radius:6px;padding:3px 6px;line-height:1.3;">sang chargé<br>en CO2</div>
-            <div style="width:3px;height:38px;background:#1d4ed8;position:relative;">
-              <div style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:12px solid #1d4ed8;"></div>
-            </div>
-          </div>
-        </div>
+        <!-- ===== CŒUR ===== -->
+        <rect x="70" y="178" width="220" height="110" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+        <!-- Séparation gauche/droit -->
+        <line x1="180" y1="182" x2="180" y2="284" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <!-- Cœur gauche -->
+        <text x="125" y="210" text-anchor="middle" font-family="Baloo 2,cursive" font-size="14" font-weight="800" fill="#991b1b">Cœur</text>
+        <text x="125" y="228" text-anchor="middle" font-family="Baloo 2,cursive" font-size="14" font-weight="800" fill="#991b1b">gauche</text>
+        <text x="125" y="248" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10.5" fill="#991b1b">reçoit O2</text>
+        <text x="125" y="262" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10.5" fill="#991b1b">envoie aux organes</text>
+        <!-- Cœur droit -->
+        <text x="235" y="210" text-anchor="middle" font-family="Baloo 2,cursive" font-size="14" font-weight="800" fill="#991b1b">Cœur</text>
+        <text x="235" y="228" text-anchor="middle" font-family="Baloo 2,cursive" font-size="14" font-weight="800" fill="#991b1b">droit</text>
+        <text x="235" y="248" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10.5" fill="#991b1b">reçoit CO2</text>
+        <text x="235" y="262" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10.5" fill="#991b1b">envoie aux poumons</text>
 
-        <!-- CŒUR (centre, divisé gauche/droit) -->
-        <div style="display:flex;border:2.5px solid #dc2626;border-radius:12px;overflow:hidden;width:220px;">
-          <div style="flex:1;background:#fee2e2;padding:12px 8px;text-align:center;border-right:2px dashed #dc2626;">
-            <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;color:#991b1b;">Cœur<br>gauche</div>
-            <div style="font-size:0.72rem;color:#991b1b;margin-top:3px;">reçoit O2<br>envoie aux organes</div>
-          </div>
-          <div style="flex:1;background:#fee2e2;padding:12px 8px;text-align:center;">
-            <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:0.9rem;color:#991b1b;">Cœur<br>droit</div>
-            <div style="font-size:0.72rem;color:#991b1b;margin-top:3px;">reçoit CO2<br>envoie aux poumons</div>
-          </div>
-        </div>
+        <!-- Flèche rouge ↓ GAUCHE : sort du bas Cœur gauche → entre dans Organes -->
+        <line x1="130" y1="288" x2="130" y2="388" stroke="#dc2626" stroke-width="3" marker-end="url(#dc-arr-r)"/>
+        <!-- Label à gauche -->
+        <rect x="4" y="306" width="116" height="56" rx="7" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="62" y="324" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#991b1b">sang chargé</text>
+        <text x="62" y="340" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#991b1b">en O2</text>
+        <text x="62" y="356" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#991b1b">+ nutriments</text>
+        <line x1="120" y1="338" x2="130" y2="338" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,2"/>
 
-        <!-- FLÈCHES entre Cœur et Organes -->
-        <div style="display:flex;width:220px;justify-content:space-around;padding:4px 0;">
+        <!-- Flèche bleue ↑ DROITE : sort du haut des Organes → entre dans Cœur droit -->
+        <line x1="230" y1="388" x2="230" y2="288" stroke="#1d4ed8" stroke-width="3" marker-end="url(#dc-arr-b)"/>
+        <!-- Label à droite -->
+        <rect x="242" y="310" width="108" height="48" rx="7" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="296" y="328" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#1e40af">sang chargé</text>
+        <text x="296" y="343" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11" font-weight="700" fill="#1e40af">en CO2</text>
+        <line x1="242" y1="334" x2="230" y2="334" stroke="#1d4ed8" stroke-width="1.2" stroke-dasharray="3,2"/>
 
-          <!-- Gauche : Cœur gauche → Organes (sang chargé O2 + nutriments, flèche vers le bas) -->
-          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
-            <div style="width:3px;height:38px;background:#dc2626;position:relative;">
-              <div style="position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:12px solid #dc2626;"></div>
-            </div>
-            <div style="font-size:0.78rem;font-weight:700;color:#991b1b;text-align:center;background:#fee2e2;border:1.5px solid #dc2626;border-radius:6px;padding:3px 6px;line-height:1.3;">sang chargé O2<br>+ nutriments</div>
-          </div>
-
-          <!-- Droite : Organes → Cœur droit (sang chargé CO2, flèche vers le haut) -->
-          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
-            <div style="width:3px;height:38px;background:#1d4ed8;position:relative;">
-              <div style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:12px solid #1d4ed8;"></div>
-            </div>
-            <div style="font-size:0.78rem;font-weight:700;color:#1e40af;text-align:center;background:#dbeafe;border:1.5px solid #2563eb;border-radius:6px;padding:3px 6px;line-height:1.3;">sang chargé<br>en CO2</div>
-          </div>
-        </div>
-
-        <!-- ORGANES (bas, centré) -->
-        <div style="background:#dcfce7;border:2.5px solid #16a34a;border-radius:12px;padding:12px 32px;text-align:center;width:220px;">
-          <div style="font-family:'Baloo 2',cursive;font-weight:800;font-size:1.05rem;color:#14532d;">💪 ORGANES</div>
-          <div style="font-size:0.82rem;color:#14532d;margin-top:2px;">utilisent O2 + nutriments<br>rejettent CO2</div>
-        </div>
-
-      </div>
+        <!-- ===== ORGANES ===== -->
+        <rect x="70" y="388" width="220" height="70" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+        <text x="180" y="415" text-anchor="middle" font-family="Baloo 2,cursive" font-size="16" font-weight="800" fill="#14532d">💪 ORGANES</text>
+        <text x="180" y="435" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11.5" fill="#14532d">utilisent O2 + nutriments</text>
+        <text x="180" y="451" text-anchor="middle" font-family="Nunito,sans-serif" font-size="11.5" fill="#14532d">rejettent CO2</text>
+      </svg>
     </div>
 
     <div class="highlight-box hb-rouge" style="margin-top:14px;">
@@ -851,10 +860,7 @@
         </div>
 
         <!-- Boutons -->
-        <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;">
-          <button onclick="v4Lancer()" style="background:linear-gradient(135deg,#dc2626,#d97706);color:white;border:none;border-radius:50px;padding:10px 26px;font-family:'Baloo 2',cursive;font-size:0.95rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(220,38,38,0.3);">▶ Animer</button>
-          <button onclick="v4Reset()" style="background:white;color:#6b7280;border:2px solid #d1d5db;border-radius:50px;padding:10px 20px;font-family:'Baloo 2',cursive;font-size:0.95rem;font-weight:700;cursor:pointer;">↺ Réinitialiser</button>
-        </div>
+        
       </div>
 
       <!-- ===== COLONNE DROITE : SCHÉMA GÉNÉRAL STATIQUE ===== -->
@@ -1057,7 +1063,7 @@
 
   <div class="ex-card ex-assoc">
     <div class="ex-title" style="color:var(--violet);">🔗 Exercice 3 – Associe vaisseau et rôle</div>
-    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Glisse chaque vaisseau vers son rôle.</p>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Glisse chaque vaisseau vers son rôle. Tu peux déplacer les étiquettes librement.</p>
     <div class="drag-container">
       <div>
         <div class="drag-pool-title">VAISSEAUX :</div>
@@ -1065,17 +1071,137 @@
       </div>
       <div class="drop-zone" id="drop-zone"></div>
     </div>
-    <button class="check-btn" onclick="checkDrag()">Vérifier</button>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+      <button class="check-btn" onclick="checkDrag()">Vérifier</button>
+      <button onclick="resetDrag()" style="background:white;color:#6b7280;border:2px solid #d1d5db;border-radius:50px;padding:10px 20px;font-family:'Baloo 2',cursive;font-size:0.9rem;font-weight:700;cursor:pointer;">↺ Recommencer</button>
+    </div>
     <div id="drag-feedback" style="margin-top:10px;font-weight:700;"></div>
   </div>
 
   <div class="ex-card ex-ordre">
-    <div class="ex-title" style="color:var(--rouge-dark);">🔄 Exercice 4 – Remets la grande circulation dans l'ordre</div>
-    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:12px;">Du départ au retour au cœur :</p>
-    <div id="ordre-items"></div>
-    <button class="check-btn" onclick="checkOrdre()">Vérifier</button>
-    <div id="ordre-feedback" style="margin-top:10px;font-weight:700;"></div>
+    <div class="ex-title" style="color:var(--rouge-dark);">🏷️ Exercice 4 – Légende du schéma de circulation</div>
+    <p style="font-size:0.92rem;color:var(--muted);margin-bottom:14px;">Glisse chaque étiquette vers la bonne zone du schéma.</p>
+
+    <div id="ex4-container">
+
+      <!-- Pool d'étiquettes -->
+      <div id="ex4-pool" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;padding:12px;background:#fff5f5;border:2px dashed #fca5a5;border-radius:12px;min-height:48px;"></div>
+
+      <!-- SCHÉMA HTML/CSS identique au cours -->
+      <div style="background:linear-gradient(135deg,#fff5f5,#fce7f3);border:2px solid #e11d48;border-radius:16px;padding:20px 12px;">
+        <div style="max-width:400px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0;">
+
+          <!-- POUMONS -->
+          <div id="drop-poumons" class="ex4-zone" data-answer="Poumons"
+            style="width:200px;min-height:54px;background:#dbeafe;border:2.5px solid #2563eb;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;">
+            <span class="ex4-hint">Glisse ici</span>
+          </div>
+          <div style="font-size:0.78rem;color:#1e40af;margin:2px 0;">échange CO2 → O2</div>
+
+          <!-- Flèches Poumons ↔ Cœur -->
+          <div style="display:flex;width:220px;justify-content:space-between;padding:4px 10px;">
+            <!-- Gauche : label rouge + flèche ↓ -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
+              <div id="drop-fl1" class="ex4-zone" data-answer="sang chargé en O2"
+                style="width:88px;min-height:36px;background:#fee2e2;border:1.5px dashed #dc2626;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;">
+                <span class="ex4-hint" style="font-size:0.72rem;">?</span>
+              </div>
+              <div style="width:3px;height:26px;background:#dc2626;position:relative;">
+                <div style="position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:11px solid #dc2626;"></div>
+              </div>
+            </div>
+            <!-- Droite : label bleu + flèche ↑ -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
+              <div id="drop-fl2" class="ex4-zone" data-answer="sang chargé en CO2"
+                style="width:88px;min-height:36px;background:#dbeafe;border:1.5px dashed #1d4ed8;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;">
+                <span class="ex4-hint" style="font-size:0.72rem;">?</span>
+              </div>
+              <div style="width:3px;height:26px;background:#1d4ed8;position:relative;">
+                <div style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:11px solid #1d4ed8;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CŒUR gauche + droit -->
+          <div style="display:flex;width:220px;border:2.5px solid #dc2626;border-radius:12px;overflow:hidden;">
+            <div id="drop-cg" class="ex4-zone" data-answer="Cœur gauche"
+              style="flex:1;min-height:70px;background:#fee2e2;border-right:2px dashed #dc2626;display:flex;align-items:center;justify-content:center;text-align:center;">
+              <span class="ex4-hint" style="font-size:0.78rem;">?</span>
+            </div>
+            <div id="drop-cd" class="ex4-zone" data-answer="Cœur droit"
+              style="flex:1;min-height:70px;background:#fee2e2;display:flex;align-items:center;justify-content:center;text-align:center;">
+              <span class="ex4-hint" style="font-size:0.78rem;">?</span>
+            </div>
+          </div>
+          <div style="display:flex;width:220px;justify-content:space-between;padding:2px 10px;">
+            <div style="font-size:0.68rem;color:#991b1b;width:90px;text-align:center;">reçoit O2<br>envoie aux organes</div>
+            <div style="font-size:0.68rem;color:#991b1b;width:90px;text-align:center;">reçoit CO2<br>envoie aux poumons</div>
+          </div>
+
+          <!-- Flèches Cœur ↔ Organes -->
+          <div style="display:flex;width:220px;justify-content:space-between;padding:4px 10px;">
+            <!-- Gauche : flèche ↓ + label rouge -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
+              <div style="width:3px;height:26px;background:#dc2626;position:relative;">
+                <div style="position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:11px solid #dc2626;"></div>
+              </div>
+              <div id="drop-fl3" class="ex4-zone" data-answer="sang chargé en O2 + nutriments"
+                style="width:88px;min-height:44px;background:#fee2e2;border:1.5px dashed #dc2626;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:10px;">
+                <span class="ex4-hint" style="font-size:0.72rem;">?</span>
+              </div>
+            </div>
+            <!-- Droite : flèche ↑ + label bleu -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:90px;">
+              <div style="width:3px;height:26px;background:#1d4ed8;position:relative;">
+                <div style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:11px solid #1d4ed8;"></div>
+              </div>
+              <div id="drop-fl4" class="ex4-zone" data-answer="sang chargé en CO2"
+                style="width:88px;min-height:44px;background:#dbeafe;border:1.5px dashed #1d4ed8;border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:10px;">
+                <span class="ex4-hint" style="font-size:0.72rem;">?</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ORGANES -->
+          <div id="drop-organes" class="ex4-zone" data-answer="Organes"
+            style="width:200px;min-height:54px;background:#dcfce7;border:2.5px solid #16a34a;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:10px;">
+            <span class="ex4-hint">Glisse ici</span>
+          </div>
+          <div style="font-size:0.78rem;color:#14532d;margin:2px 0;">utilisent O2 + nutriments · rejettent CO2</div>
+
+        </div>
+      </div>
+
+      <button class="check-btn" onclick="checkEx4()" style="margin-top:14px;">Vérifier</button>
+      <button onclick="resetEx4()" style="background:white;color:#6b7280;border:2px solid #d1d5db;border-radius:50px;padding:10px 20px;font-family:'Baloo 2',cursive;font-size:0.9rem;font-weight:700;cursor:pointer;margin-top:14px;margin-left:8px;">↺ Recommencer</button>
+      <div id="ex4-feedback" style="margin-top:12px;font-weight:700;"></div>
+
+      <!-- CORRECTION -->
+      <div id="ex4-correction" style="display:none;margin-top:16px;background:#dcfce7;border:2px solid #16a34a;border-radius:12px;padding:14px;">
+        <div style="font-family:'Baloo 2',cursive;font-weight:800;color:#14532d;margin-bottom:8px;">✅ Correction :</div>
+        <ul style="font-size:0.88rem;color:#14532d;padding-left:18px;line-height:2;">
+          <li><strong>Boîte haut :</strong> Poumons</li>
+          <li><strong>Flèche gauche ↓ (poumons→cœur) :</strong> sang chargé en O2</li>
+          <li><strong>Flèche droite ↑ (cœur→poumons) :</strong> sang chargé en CO2</li>
+          <li><strong>Case gauche du cœur :</strong> Cœur gauche</li>
+          <li><strong>Case droite du cœur :</strong> Cœur droit</li>
+          <li><strong>Flèche gauche ↓ (cœur→organes) :</strong> sang chargé en O2 + nutriments</li>
+          <li><strong>Flèche droite ↑ (organes→cœur) :</strong> sang chargé en CO2</li>
+          <li><strong>Boîte bas :</strong> Organes</li>
+        </ul>
+      </div>
+    </div>
   </div>
+
+  <style>
+    .ex4-zone{transition:all 0.2s;cursor:pointer;}
+    .ex4-zone.dragover{outline:3px solid #dc2626;opacity:0.8;}
+    .ex4-zone.correct{background:#dcfce7!important;border-color:#16a34a!important;border-style:solid!important;}
+    .ex4-zone.wrong{background:#fee2e2!important;border-color:#dc2626!important;border-style:solid!important;}
+    .ex4-chip{background:#fee2e2;border:2px solid #dc2626;color:#991b1b;border-radius:8px;padding:6px 12px;font-size:0.85rem;font-weight:700;cursor:grab;user-select:none;display:inline-block;transition:opacity 0.2s;}
+    .ex4-chip:active{cursor:grabbing;}
+    .ex4-hint{opacity:0.4;font-size:0.78rem;color:#999;}
+  </style>
 </section>
 
 <!-- ===== GLOSSAIRE ===== -->
@@ -1230,93 +1356,236 @@ function checkTrou() {
   fb.style.color = score===trouData.length?'var(--vert)':'var(--rouge)';
 }
 
-// DRAG & DROP
+// DRAG & DROP exercice 3
 const dragData = [
-  { word: "Artère", def: "Du cœur vers les organes" },
-  { word: "Veine", def: "Des organes vers le cœur" },
-  { word: "Capillaire", def: "Échanges avec les cellules" },
+  { word: "Artère",        def: "Du cœur vers les organes" },
+  { word: "Veine",         def: "Des organes vers le cœur" },
+  { word: "Capillaire",    def: "Échanges avec les cellules" },
   { word: "Globule rouge", def: "Transporte le dioxygène" },
 ];
-const pool = document.getElementById('drag-pool');
-const dropZone = document.getElementById('drop-zone');
-let dragAnswers = {};
+const ex3Pool = document.getElementById('drag-pool');
+const ex3DropZone = document.getElementById('drop-zone');
+const ex3State = {}; // idx -> word
+let ex3Cur = null;
+
+// Build chips
 dragData.forEach(item => {
   const chip = document.createElement('div');
-  chip.className = 'drag-chip'; chip.textContent = item.word;
-  chip.draggable = true; chip.id = 'chip-'+item.word;
-  chip.addEventListener('dragstart', e => e.dataTransfer.setData('text', item.word));
-  chip.addEventListener('touchstart', e => { touchChip = e.target; }, {passive:true});
-  pool.appendChild(chip);
+  chip.className = 'drag-chip';
+  chip.textContent = item.word;
+  chip.draggable = true;
+  chip.dataset.word = item.word;
+  chip.id = 'chip3-' + item.word.replace(/ /g,'_');
+  chip.addEventListener('dragstart', () => { ex3Cur = chip; });
+  chip.addEventListener('touchstart', () => { ex3Cur = chip; }, {passive:true});
+  ex3Pool.appendChild(chip);
 });
+
+// Build slots
 dragData.forEach((item, i) => {
   const row = document.createElement('div');
   row.className = 'drop-item';
-  row.innerHTML = `<div class="drop-slot" id="slot-${i}" ondragover="event.preventDefault()" ondrop="dropChip(event,${i})">${item.def}</div>`;
-  dropZone.appendChild(row);
+  const slot = document.createElement('div');
+  slot.className = 'drop-slot';
+  slot.id = 'slot3-' + i;
+  slot.innerHTML = ex3SlotContent(i);
+  slot.addEventListener('dragover', e => e.preventDefault());
+  slot.addEventListener('drop', e => { e.preventDefault(); ex3Place(i); });
+  slot.addEventListener('touchend', () => { if (ex3Cur) ex3Place(i); });
+  row.appendChild(slot);
+  ex3DropZone.appendChild(row);
 });
-let touchChip = null;
-document.querySelectorAll('.drop-slot').forEach(slot => {
-  slot.addEventListener('touchend', () => {
-    if (touchChip) { const i = slot.id.replace('slot-',''); placeChip(touchChip.textContent, slot, i); }
-  });
-});
-function dropChip(e, i) { placeChip(e.dataTransfer.getData('text'), document.getElementById('slot-'+i), i); }
-function placeChip(word, slot, i) {
-  const old = Object.entries(dragAnswers).find(([k,v])=>v===word);
-  if (old) { delete dragAnswers[old[0]]; document.getElementById('slot-'+old[0]).innerHTML = dragData[old[0]].def; }
-  if (dragAnswers[i]) { const c = document.getElementById('chip-'+dragAnswers[i]); if(c) c.style.display='inline-block'; }
-  dragAnswers[i] = word;
-  slot.innerHTML = `<strong>${word}</strong>`; slot.classList.add('filled');
-  const chip = document.getElementById('chip-'+word); if(chip) chip.style.display='none';
+
+function ex3SlotContent(i) {
+  return ex3State[i]
+    ? '<strong>' + ex3State[i] + '</strong>'
+    : '<span style="opacity:0.5;font-size:0.85rem;">' + dragData[i].def + '</span>';
 }
+
+function ex3Place(targetIdx) {
+  if (!ex3Cur) return;
+  const word = ex3Cur.dataset.word;
+  const chipId = 'chip3-' + word.replace(/ /g,'_');
+
+  // Remove word from any previous slot
+  Object.keys(ex3State).forEach(idx => {
+    if (ex3State[idx] === word && +idx !== targetIdx) {
+      delete ex3State[idx];
+      const s = document.getElementById('slot3-' + idx);
+      if (s) { s.className = 'drop-slot'; s.innerHTML = ex3SlotContent(+idx); }
+    }
+  });
+
+  // If target slot already had a word, restore that chip
+  if (ex3State[targetIdx] && ex3State[targetIdx] !== word) {
+    const oldId = 'chip3-' + ex3State[targetIdx].replace(/ /g,'_');
+    const oldChip = document.getElementById(oldId);
+    if (oldChip) oldChip.style.opacity = '1';
+  }
+
+  ex3State[targetIdx] = word;
+  document.getElementById(chipId).style.opacity = '0.35';
+
+  const slot = document.getElementById('slot3-' + targetIdx);
+  if (slot) { slot.className = 'drop-slot filled'; slot.innerHTML = ex3SlotContent(targetIdx); }
+  ex3Cur = null;
+}
+
 function checkDrag() {
   let score = 0;
   dragData.forEach((item, i) => {
-    const slot = document.getElementById('slot-'+i);
-    if (dragAnswers[i] === item.word) { score++; slot.style.background='var(--vert-light)'; slot.style.borderColor='var(--vert)'; }
-    else { slot.style.background='var(--rouge-light)'; slot.style.borderColor='var(--rouge)'; }
+    const slot = document.getElementById('slot3-' + i);
+    if (!slot) return;
+    slot.classList.remove('correct','wrong');
+    if (ex3State[i] === item.word) { slot.classList.add('correct'); score++; }
+    else if (ex3State[i]) slot.classList.add('wrong');
   });
   const fb = document.getElementById('drag-feedback');
-  fb.innerHTML = `${score} / ${dragData.length} ${score===dragData.length?'✅ Parfait !':'❌ Réessaie !'}`;
-  fb.style.color = score===dragData.length?'var(--vert)':'var(--rouge)';
+  fb.innerHTML = score + ' / ' + dragData.length + (score === dragData.length ? ' ✅ Parfait !' : ' ❌ Réessaie !');
+  fb.style.color = score === dragData.length ? 'var(--vert)' : 'var(--rouge)';
 }
 
-// ORDRE
-const ordreData = [
-  { event: "Le cœur gauche se contracte", ordre: 1 },
-  { event: "Le sang riche en O2 entre dans les artères", ordre: 2 },
-  { event: "Le sang arrive dans les capillaires", ordre: 3 },
-  { event: "L'O2 et les nutriments passent dans les cellules", ordre: 4 },
-  { event: "Les cellules rejettent le CO2 dans le sang", ordre: 5 },
-  { event: "Le sang appauvri en O2 revient au cœur droit par les veines", ordre: 6 },
+function resetDrag() {
+  Object.keys(ex3State).forEach(k => delete ex3State[k]);
+  dragData.forEach((item, i) => {
+    const slot = document.getElementById('slot3-' + i);
+    if (slot) { slot.className = 'drop-slot'; slot.innerHTML = ex3SlotContent(i); }
+    const chip = document.getElementById('chip3-' + item.word.replace(/ /g,'_'));
+    if (chip) chip.style.opacity = '1';
+  });
+  const fb = document.getElementById('drag-feedback');
+  if (fb) fb.innerHTML = '';
+}
+
+// EXERCICE 4 — déplacement libre
+const ex4Labels = [
+  'Poumons','Cœur gauche','Cœur droit','Organes',
+  'sang chargé en O2','sang chargé en CO2',
+  'sang chargé en O2 + nutriments','sang chargé en CO2 (retour)',
 ];
-let ordreList = [...ordreData].sort(()=>Math.random()-0.5);
-const ordreContainer = document.getElementById('ordre-items');
-function renderOrdre() {
-  ordreContainer.innerHTML = '';
-  ordreList.forEach((item, i) => {
-    const d = document.createElement('div');
-    d.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:8px;';
-    d.innerHTML = `<div style="flex:1;background:#fff5f5;border:2px solid #fecaca;border-radius:10px;padding:10px 14px;font-size:0.92rem;font-weight:600;">${item.event}</div>
-      <div style="display:flex;flex-direction:column;gap:3px;">
-        <button onclick="moveOrdre(${i},-1)" style="background:var(--rouge-light);border:1px solid var(--rouge);border-radius:6px;padding:2px 10px;cursor:pointer;font-weight:700;">▲</button>
-        <button onclick="moveOrdre(${i},1)" style="background:var(--rouge-light);border:1px solid var(--rouge);border-radius:6px;padding:2px 10px;cursor:pointer;font-weight:700;">▼</button>
-      </div>`;
-    ordreContainer.appendChild(d);
+const ex4Correct = {
+  'drop-poumons': 'Poumons',
+  'drop-fl1':     'sang chargé en O2',
+  'drop-fl2':     'sang chargé en CO2',
+  'drop-cg':      'Cœur gauche',
+  'drop-cd':      'Cœur droit',
+  'drop-fl3':     'sang chargé en O2 + nutriments',
+  'drop-fl4':     'sang chargé en CO2',
+  'drop-organes': 'Organes',
+};
+const ex4CO2zones = ['drop-fl2','drop-fl4'];
+const ex4Map = {};
+let ex4Cur = null;
+
+function ex4Init() {
+  // Build pool chips
+  const pool = document.getElementById('ex4-pool');
+  if (!pool) return;
+  pool.innerHTML = '';
+  ex4Labels.forEach(label => {
+    const chip = document.createElement('div');
+    chip.className = 'ex4-chip';
+    chip.textContent = label;
+    chip.dataset.label = label;
+    chip.draggable = true;
+    chip.id = 'chip4-' + label.replace(/[^a-z0-9]/gi,'_');
+    chip.addEventListener('dragstart', () => { ex4Cur = chip; });
+    chip.addEventListener('touchstart', () => { ex4Cur = chip; }, {passive:true});
+    pool.appendChild(chip);
+  });
+
+  // Attach zones
+  document.querySelectorAll('.ex4-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.outline='3px solid #dc2626'; });
+    zone.addEventListener('dragleave', () => { zone.style.outline=''; });
+    zone.addEventListener('drop', e => { e.preventDefault(); zone.style.outline=''; ex4Place(zone); });
+    zone.addEventListener('touchend', () => { zone.style.outline=''; if (ex4Cur) ex4Place(zone); });
   });
 }
-function moveOrdre(i, dir) {
-  const ni = i+dir; if(ni<0||ni>=ordreList.length) return;
-  [ordreList[i],ordreList[ni]]=[ordreList[ni],ordreList[i]]; renderOrdre();
+
+function ex4Place(zone) {
+  if (!ex4Cur) return;
+  const label = ex4Cur.dataset.label;
+  const chipId = 'chip4-' + label.replace(/[^a-z0-9]/gi,'_');
+
+  // Remove label from any previous zone
+  Object.keys(ex4Map).forEach(zid => {
+    if (ex4Map[zid] === label && zid !== zone.id) {
+      delete ex4Map[zid];
+      ex4Render(document.getElementById(zid));
+    }
+  });
+
+  // Restore previous label's chip if zone was occupied
+  if (ex4Map[zone.id] && ex4Map[zone.id] !== label) {
+    const prev = 'chip4-' + ex4Map[zone.id].replace(/[^a-z0-9]/gi,'_');
+    const prevChip = document.getElementById(prev);
+    if (prevChip) prevChip.style.opacity = '1';
+  }
+
+  ex4Map[zone.id] = label;
+  document.getElementById(chipId).style.opacity = '0.35';
+  ex4Render(zone);
+  ex4Cur = null;
 }
-function checkOrdre() {
+
+function ex4Render(zone) {
+  zone.classList.remove('correct','wrong');
+  const label = ex4Map[zone.id];
+  zone.innerHTML = '';
+  if (label) {
+    zone.style.fontFamily = "'Baloo 2',cursive";
+    zone.style.fontWeight = '700';
+    zone.style.fontSize = '0.8rem';
+    zone.style.color = '#1a0a0a';
+    zone.textContent = label;
+  } else {
+    zone.style.fontFamily = '';
+    zone.style.color = '';
+    const h = document.createElement('span');
+    h.className = 'ex4-hint';
+    h.textContent = '?';
+    zone.appendChild(h);
+  }
+}
+
+function checkEx4() {
   let score = 0;
-  ordreList.forEach((item,i)=>{ if(item.ordre===i+1) score++; });
-  const fb = document.getElementById('ordre-feedback');
-  fb.innerHTML = `${score} / ${ordreList.length} ${score===ordreList.length?'✅ Ordre parfait !':'❌ Pas tout à fait. Réessaie !'}`;
-  fb.style.color = score===ordreList.length?'var(--vert)':'var(--rouge)';
+  const total = Object.keys(ex4Correct).length;
+  document.querySelectorAll('.ex4-zone').forEach(zone => {
+    zone.classList.remove('correct','wrong');
+    const user = ex4Map[zone.id];
+    if (!user) return;
+    const expected = ex4Correct[zone.id];
+    const ok = user === expected ||
+      (ex4CO2zones.includes(zone.id) && (user === 'sang chargé en CO2' || user === 'sang chargé en CO2 (retour)'));
+    if (ok) { zone.classList.add('correct'); score++; }
+    else zone.classList.add('wrong');
+  });
+  const fb = document.getElementById('ex4-feedback');
+  fb.innerHTML = score === total
+    ? '✅ Parfait ! Toutes les étiquettes sont bien placées.'
+    : '❌ ' + (total - score) + ' erreur(s). Regarde la correction ci-dessous.';
+  fb.style.color = score === total ? 'var(--vert)' : 'var(--rouge)';
+  document.getElementById('ex4-correction').style.display = 'block';
 }
-renderOrdre();
+
+function resetEx4() {
+  Object.keys(ex4Map).forEach(k => delete ex4Map[k]);
+  document.querySelectorAll('.ex4-zone').forEach(zone => {
+    zone.classList.remove('correct','wrong');
+    ex4Render(zone);
+  });
+  document.querySelectorAll('.ex4-chip').forEach(ch => ch.style.opacity = '1');
+  const fb = document.getElementById('ex4-feedback');
+  if (fb) fb.innerHTML = '';
+  const corr = document.getElementById('ex4-correction');
+  if (corr) corr.style.display = 'none';
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', ex4Init);
+} else { ex4Init(); }
 
 // GLOSSAIRE
 const glossaireData = [
