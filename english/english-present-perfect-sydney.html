@@ -104,10 +104,7 @@
   .choice-btn.wrong{background:var(--coral-light);border-color:var(--coral);color:#9f1239;}
   .choice-btn:disabled{opacity:0.75;cursor:default;}
 
-  .qcm-item{margin-bottom:20px;}
-  .qcm-q{font-weight:700;margin-bottom:8px;}
-  .qcm-opts{display:flex;flex-direction:column;gap:6px;}
-  .qcm-opt{background:#f0f4ff;border:2px solid #bfdbfe;border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;font-size:0.9rem;transition:all 0.18s;text-align:left;}
+  .qcm-opt{background:#f0f4ff;border:2px solid #bfdbfe;border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;font-size:0.9rem;transition:all 0.18s;text-align:left;width:100%;margin-bottom:6px;}
   .qcm-opt:hover:not(.disabled){background:var(--sky-light);border-color:var(--sky);}
   .qcm-opt.correct{background:var(--vert-light);border-color:var(--vert);color:#065f46;}
   .qcm-opt.wrong{background:var(--coral-light);border-color:var(--coral);color:#9f1239;}
@@ -121,6 +118,12 @@
   .glos-ex{font-size:0.82rem;color:var(--muted);font-style:italic;}
 
   .ans-box{display:none;margin-top:10px;background:#fef3c7;border:2px solid var(--amber);border-radius:12px;padding:10px 14px;font-family:'Lexend Deca',sans-serif;font-weight:700;font-size:0.9rem;color:#92400e;line-height:1.7;}
+
+  /* règle superlatif visuelle */
+  .superl-rule{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+  .superl-rule-box{flex:1;min-width:160px;border-radius:12px;padding:12px 14px;text-align:center;}
+  .superl-rule-box .rule-title{font-family:'Lexend Deca',sans-serif;font-weight:800;font-size:0.82rem;margin-bottom:6px;}
+  .superl-rule-box .rule-ex{font-size:0.88rem;font-weight:700;}
 
   @media(max-width:600px){
     header h1{font-size:1.3rem;}
@@ -184,20 +187,43 @@
     </div>
   </div>
 
-  <!-- SUPERLATIFS -->
+  <!-- SUPERLATIFS - ENRICHI -->
   <div class="card coral">
     <div class="badge coral">Superlatifs</div>
-    <div class="card-title">🏆 Les Superlatifs</div>
-    <table>
-      <tr><th>Type d'adjectif</th><th>Formation</th><th>Exemple</th></tr>
-      <tr><td>Court (1 syllabe)</td><td>the + adj + <strong>-est</strong></td><td>the <strong>tallest</strong>, the <strong>fastest</strong></td></tr>
-      <tr><td>Court se terminant en -y</td><td>the + adj(-y→<strong>-iest</strong>)</td><td>the <strong>funniest</strong>, the <strong>messiest</strong></td></tr>
-      <tr><td>Long (2 syllabes+)</td><td>the <strong>most</strong> + adj</td><td>the <strong>most exciting</strong>, the <strong>most dangerous</strong></td></tr>
-      <tr><td>Irréguliers</td><td>à retenir !</td><td>good → the <strong>best</strong> &nbsp;|&nbsp; bad → the <strong>worst</strong></td></tr>
-    </table>
-    <div class="hb coral" style="margin-top:14px;">
-      🔑 Le superlatif s'utilise avec le <strong>Present Perfect</strong> : <em>What is the most exciting sport <strong>you have ever played</strong>?</em><br>
-      → It's the most exciting sport I <strong>have ever</strong> tried!
+    <div class="card-title">🏆 Les Superlatifs – Les 4 règles</div>
+
+    <div class="superl-rule">
+      <div class="superl-rule-box" style="background:#fff5f5;border:2px solid #fca5a5;">
+        <div class="rule-title" style="color:#be123c;">📏 Règle 1 — Adjectif COURT (1 syllabe)</div>
+        <div class="rule-ex">the + adj + <strong>-est</strong></div>
+        <div style="font-size:0.78rem;margin-top:6px;color:#64748b;">tall → the <strong>tall<u>est</u></strong><br>fast → the <strong>fast<u>est</u></strong><br>big → the <strong>bigg<u>est</u></strong> ⚠️ double</div>
+      </div>
+      <div class="superl-rule-box" style="background:#fef3c7;border:2px solid #fcd34d;">
+        <div class="rule-title" style="color:#92400e;">📏 Règle 2 — Finit en -Y</div>
+        <div class="rule-ex">-y → <strong>-iest</strong></div>
+        <div style="font-size:0.78rem;margin-top:6px;color:#64748b;">funny → the <strong>funn<u>iest</u></strong><br>messy → the <strong>mess<u>iest</u></strong><br>scary → the <strong>scar<u>iest</u></strong></div>
+      </div>
+      <div class="superl-rule-box" style="background:#dbeafe;border:2px solid #93c5fd;">
+        <div class="rule-title" style="color:#1d4ed8;">📏 Règle 3 — Adjectif LONG (2+ syllabes)</div>
+        <div class="rule-ex">the <strong>most</strong> + adj</div>
+        <div style="font-size:0.78rem;margin-top:6px;color:#64748b;">exciting → the <strong>most</strong> exciting<br>dangerous → the <strong>most</strong> dangerous<br>expensive → the <strong>most</strong> expensive</div>
+      </div>
+      <div class="superl-rule-box" style="background:#d1fae5;border:2px solid #6ee7b7;">
+        <div class="rule-title" style="color:#065f46;">⚠️ Règle 4 — IRRÉGULIERS</div>
+        <div class="rule-ex">à apprendre !</div>
+        <div style="font-size:0.78rem;margin-top:6px;color:#64748b;">good → the <strong>best</strong><br>bad → the <strong>worst</strong><br>far → the <strong>furthest</strong></div>
+      </div>
+    </div>
+
+    <div class="hb coral">
+      🔑 <strong>Superlatif + Present Perfect = combo de l'oral !</strong><br>
+      <em>What is the most exciting sport <strong>you have ever played</strong>?</em> → C'est quoi le sport le plus excitant que tu aies jamais pratiqué ?<br>
+      <em>It's the most beautiful place I <strong>have ever seen</strong>!</em> → C'est le plus bel endroit que j'aie jamais vu !
+    </div>
+    <div class="hb amber">
+      💡 <strong>Astuce pour l'oral :</strong> Pour répondre à une question avec superlatif, utilise toujours <strong>"I have ever + participe passé"</strong> à la fin !<br>
+      Q : What is the best film you have ever seen?<br>
+      R : The best film I <strong>have ever seen</strong> is… because it is the most…
     </div>
   </div>
 
@@ -252,14 +278,14 @@
 <section id="exercices">
   <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>✏️</span> Exercices</div>
 
-  <!-- EX 1 : Present Perfect - already / never / yet -->
+  <!-- EX 1 -->
   <div class="ex-card" style="border-color:var(--navy);">
     <div class="ex-title" style="color:var(--navy);">⏳ Exercice 1 – Already, Never ou Yet ?</div>
     <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Clique sur le bon mot pour chaque phrase :</p>
     <div id="advChoice-items"></div>
   </div>
 
-  <!-- EX 2 : Present Perfect - texte à trous -->
+  <!-- EX 2 -->
   <div class="ex-card" style="border-color:var(--sky);">
     <div class="ex-title" style="color:var(--sky-dark);">✍️ Exercice 2 – Complète au Present Perfect</div>
     <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">La phrase 🇫🇷 t'aide. Écris la forme correcte du Present Perfect :</p>
@@ -268,14 +294,17 @@
     <div class="feedback-msg" id="pp-feedback"></div>
   </div>
 
-  <!-- EX 3 : Superlatifs QCM -->
+  <!-- EX 3 – SUPERLATIFS ENRICHI -->
   <div class="ex-card" style="border-color:var(--coral);">
     <div class="ex-title" style="color:var(--coral);">🏆 Exercice 3 – Forme le bon superlatif</div>
-    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Clique sur la bonne forme du superlatif :</p>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:6px;">Clique sur la bonne forme. L'indice entre parenthèses te dit quelle règle utiliser :</p>
+    <div class="hb coral" style="margin-bottom:18px;font-size:0.82rem;">
+      💡 <strong>Rappel :</strong> 1 syllabe → <strong>-est</strong> &nbsp;|&nbsp; finit en -y → <strong>-iest</strong> &nbsp;|&nbsp; long → <strong>the most</strong> &nbsp;|&nbsp; irrégulier → <strong>apprendre !</strong>
+    </div>
     <div id="superl-items"></div>
   </div>
 
-  <!-- EX 4 : Drag & drop - Vocabulary Sydney -->
+  <!-- EX 4 -->
   <div class="ex-card" style="border-color:var(--vert);">
     <div class="ex-title" style="color:#065f46;">🗺️ Exercice 4 – Sydney : glisse le bon lieu</div>
     <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Glisse le lieu ou l'activité correct dans chaque phrase :</p>
@@ -289,7 +318,7 @@
 <section id="redaction">
   <div style="font-family:'Lexend Deca',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:var(--navy);"><span>🔥</span> Entraînement</div>
 
-  <!-- BLOC A : Remets les mots dans l'ordre -->
+  <!-- BLOC A -->
   <div class="ex-card" style="border-color:var(--sky);">
     <div class="ex-title" style="color:var(--sky-dark);">🔀 A – Remets les mots dans le bon ordre</div>
     <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Glisse les mots pour former la phrase correcte. La 🇫🇷 t'aide :</p>
@@ -298,14 +327,14 @@
     <div class="feedback-msg" id="wordorder-feedback"></div>
   </div>
 
-  <!-- BLOC B : Situation → Present Perfect ou Préférence ? -->
+  <!-- BLOC B -->
   <div class="ex-card" style="border-color:var(--violet);">
     <div class="ex-title" style="color:var(--violet);">❓ B – Quelle structure ? Lis bien la situation !</div>
     <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">Pour chaque situation, clique sur la bonne structure :</p>
     <div id="struct-items"></div>
   </div>
 
-  <!-- BLOC C : Vacation Experiences - compléter librement -->
+  <!-- BLOC C -->
   <div class="ex-card" style="border-color:var(--amber);">
     <div class="ex-title" style="color:#92400e;">🌍 C – Vacation Experiences : à toi !</div>
     <p style="font-size:0.9rem;color:var(--muted);margin-bottom:14px;">Écris tes propres phrases sur les activités de vacances. Utilise le Present Perfect + une préférence :</p>
@@ -313,6 +342,30 @@
     <button class="check-btn" style="background:linear-gradient(135deg,var(--amber),#d97706);" onclick="checkVac()">Vérifier ✓</button>
     <div class="feedback-msg" id="vac-feedback"></div>
   </div>
+
+  <!-- BLOC D – NOUVEAU : Superlatif + Present Perfect pour l'oral -->
+  <div class="ex-card" style="border-color:var(--coral);">
+    <div class="ex-title" style="color:var(--coral);">🎤 D – Superlatif + Present Perfect : entraîne-toi pour l'oral !</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:10px;">Lis la question, construis la forme correcte du superlatif ET ajoute "you / I have ever + participe passé" :</p>
+    <div class="hb coral" style="margin-bottom:18px;font-size:0.85rem;">
+      🎯 <strong>Structure type à l'oral :</strong><br>
+      Q : <em>What is the most frightening film you have ever seen?</em><br>
+      R : <em>The most frightening film I have ever seen is… because it is really scary!</em>
+    </div>
+    <div id="oral-items"></div>
+    <button class="check-btn" style="background:linear-gradient(135deg,var(--coral),#be123c);" onclick="checkOral()">Vérifier ✓</button>
+    <div class="feedback-msg" id="oral-feedback"></div>
+  </div>
+
+  <!-- BLOC E – NOUVEAU : Superlatif à construire -->
+  <div class="ex-card" style="border-color:var(--vert);">
+    <div class="ex-title" style="color:#065f46;">✏️ E – Construis le superlatif toi-même !</div>
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:18px;">L'adjectif est donné entre parenthèses. Écris le superlatif correct dans la case :</p>
+    <div id="build-superl-items"></div>
+    <button class="check-btn" style="background:linear-gradient(135deg,var(--vert),#059669);" onclick="checkBuildSuperl()">Vérifier ✓</button>
+    <div class="feedback-msg" id="build-superl-feedback"></div>
+  </div>
+
 </section>
 
 <!-- ══════════════════ GLOSSAIRE ══════════════════ -->
@@ -348,18 +401,14 @@ var advCont = document.getElementById('advChoice-items');
 advData.forEach(function(item, i) {
   var d = document.createElement('div');
   d.style.cssText = 'margin-bottom:14px;padding:13px;background:#f0f4ff;border-radius:13px;border:2px solid #bfdbfe;';
-
   var frDiv = document.createElement('div');
   frDiv.style.cssText = 'background:var(--navy-light);border-left:4px solid var(--navy);border-radius:8px;padding:6px 12px;margin-bottom:8px;font-size:0.88rem;font-weight:700;';
   frDiv.textContent = '🇫🇷 ' + item.fr;
-
   var enDiv = document.createElement('div');
   enDiv.style.cssText = 'font-size:0.9rem;font-weight:600;margin-bottom:10px;';
   enDiv.textContent = '🇬🇧 ' + item.sentence_before + '___' + item.sentence_after;
-
   var btnRow = document.createElement('div');
   btnRow.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;';
-
   ['already','never','yet'].forEach(function(w) {
     var btn = document.createElement('button');
     btn.className = 'choice-btn';
@@ -368,11 +417,9 @@ advData.forEach(function(item, i) {
     btn.addEventListener('click', function() { doAdv(i, w); });
     btnRow.appendChild(btn);
   });
-
   var fbDiv = document.createElement('div');
   fbDiv.id = 'advfb' + i;
   fbDiv.style.cssText = 'font-size:0.85rem;margin-top:8px;font-weight:700;padding:6px 10px;border-radius:8px;display:none;';
-
   d.appendChild(frDiv); d.appendChild(enDiv); d.appendChild(btnRow); d.appendChild(fbDiv);
   advCont.appendChild(d);
 });
@@ -411,45 +458,33 @@ var ppCont = document.getElementById('pp-items');
 ppData.forEach(function(item, i) {
   var d = document.createElement('div');
   d.style.cssText = 'margin-bottom:14px;padding:14px;background:#f0f4ff;border-radius:12px;border:2px solid #bfdbfe;';
-
   var frDiv = document.createElement('div');
   frDiv.style.cssText = 'font-size:0.88rem;font-weight:700;color:var(--navy);background:var(--navy-light);border-radius:8px;padding:6px 12px;margin-bottom:10px;';
   frDiv.textContent = '🇫🇷 ' + item.fr;
-
   var hintDiv = document.createElement('div');
   hintDiv.style.cssText = 'font-size:0.78rem;color:var(--muted);margin-bottom:8px;font-style:italic;';
   hintDiv.textContent = '💡 ' + item.hint;
-
   var sentDiv = document.createElement('div');
   sentDiv.style.cssText = 'line-height:2.6;font-size:0.96rem;font-weight:600;';
   sentDiv.textContent = '🇬🇧 ' + item.before;
-
   var inp = document.createElement('input');
-  inp.className = 'blank-input';
-  inp.id = 'pp' + i;
-  inp.placeholder = '?';
-
+  inp.className = 'blank-input'; inp.id = 'pp' + i; inp.placeholder = '?';
   sentDiv.appendChild(inp);
   sentDiv.appendChild(document.createTextNode(item.after));
-
   var btnRow = document.createElement('div');
   btnRow.style.cssText = 'margin-top:8px;display:flex;align-items:center;gap:8px;';
   var ansBtn = document.createElement('button');
-  ansBtn.className = 'toggle-ans-btn';
-  ansBtn.id = 'pptgl' + i;
-  ansBtn.textContent = '👁 Voir la réponse';
-  ansBtn.addEventListener('click', function() {
-    var ansDiv = document.getElementById('ppans' + i);
-    var visible = ansDiv.style.display !== 'none';
-    ansDiv.style.display = visible ? 'none' : 'block';
-    ansBtn.textContent = visible ? '👁 Voir la réponse' : '🙈 Cacher la réponse';
-  });
+  ansBtn.className = 'toggle-ans-btn'; ansBtn.id = 'pptgl' + i; ansBtn.textContent = '👁 Voir la réponse';
   var ansDiv = document.createElement('div');
   ansDiv.id = 'ppans' + i;
   ansDiv.style.cssText = 'display:none;background:#fef3c7;border:2px solid var(--amber);border-radius:8px;padding:5px 14px;font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.92rem;color:#92400e;';
   ansDiv.textContent = '✏️ ' + item.key;
+  ansBtn.addEventListener('click', function() {
+    var visible = ansDiv.style.display !== 'none';
+    ansDiv.style.display = visible ? 'none' : 'block';
+    ansBtn.textContent = visible ? '👁 Voir la réponse' : '🙈 Cacher la réponse';
+  });
   btnRow.appendChild(ansBtn); btnRow.appendChild(ansDiv);
-
   d.appendChild(frDiv); d.appendChild(hintDiv); d.appendChild(sentDiv); d.appendChild(btnRow);
   ppCont.appendChild(d);
 });
@@ -459,9 +494,8 @@ function checkPP() {
   ppData.forEach(function(item, i) {
     var inp = document.getElementById('pp' + i);
     inp.classList.remove('ok','ko');
-    if (inp.value.trim().toLowerCase() === item.key.toLowerCase()) {
-      inp.classList.add('ok'); sc++;
-    } else { inp.classList.add('ko'); }
+    if (inp.value.trim().toLowerCase() === item.key.toLowerCase()) { inp.classList.add('ok'); sc++; }
+    else inp.classList.add('ko');
   });
   var fb = document.getElementById('pp-feedback');
   fb.className = 'feedback-msg show ' + (sc === ppData.length ? 'ok' : 'ko');
@@ -469,31 +503,33 @@ function checkPP() {
 }
 
 // ══════════════════════════════════════════════════
-// EXERCICE 3 – Superlatifs QCM
+// EXERCICE 3 – Superlatifs QCM ENRICHI
 // ══════════════════════════════════════════════════
 var superlData = [
-  { q: "What is ___ film you have ever seen? (funny)", choices: ["the funniest","the most funny","the funnyest"], answer: "the funniest", expl: "1 syllabe finissant en -y → -iest" },
-  { q: "What is ___ sport you have ever played? (exciting)", choices: ["the excitingest","the most exciting","the most excitingest"], answer: "the most exciting", expl: "Long adjectif (3 syllabes) → the most + adj" },
-  { q: "What is ___ thing you have ever bought? (expensive)", choices: ["the expensivest","the most expensive","the most expensivest"], answer: "the most expensive", expl: "Long adjectif → the most + adj" },
-  { q: "What is ___ book you have ever read? (boring)", choices: ["the boringest","the most boring","the morest boring"], answer: "the most boring", expl: "2 syllabes se terminant en -ing → the most + adj" },
-  { q: "What is ___ experience you have ever had? (good → irrégulier !)", choices: ["the goodest","the most good","the best"], answer: "the best", expl: "Irrégulier : good → the best" },
-  { q: "What is ___ thing you have ever lost? (valuable)", choices: ["the valuablest","the most valuable","the valuablier"], answer: "the most valuable", expl: "Long adjectif → the most + adj" },
-  { q: "What is ___ car you have ever been in? (fast)", choices: ["the fastest","the most fast","the fastest"], answer: "the fastest", expl: "1 syllabe → the + adj + -est (double la consonne finale)" },
-  { q: "Who is ___ person you have ever met? (bad → irrégulier !)", choices: ["the most bad","the baddest","the worst"], answer: "the worst", expl: "Irrégulier : bad → the worst" },
+  { q: "C'est le film le plus drôle que j'aie jamais vu. (funny)", choices: ["the funniest","the most funny","the funnyest"], answer: "the funniest", expl: "Finit en -Y → on retire le Y et on ajoute -IEST : funny → funniest" },
+  { q: "C'est le sport le plus excitant que j'aie jamais pratiqué. (exciting)", choices: ["the excitingest","the most exciting","the most excitingest"], answer: "the most exciting", expl: "Adjectif long (3 syllabes) → the most + adjectif" },
+  { q: "C'est la chose la plus chère que j'aie jamais achetée. (expensive)", choices: ["the expensivest","the most expensive","the most expensivest"], answer: "the most expensive", expl: "Adjectif long → the most + adjectif" },
+  { q: "C'est le livre le plus ennuyeux que j'aie jamais lu. (boring)", choices: ["the boringest","the most boring","the morest boring"], answer: "the most boring", expl: "Adjectif long → the most + adjectif" },
+  { q: "C'est la meilleure expérience que j'aie jamais vécue. (good → irrégulier !)", choices: ["the goodest","the most good","the best"], answer: "the best", expl: "IRRÉGULIER : good → the best. À apprendre par cœur !" },
+  { q: "C'est la chose la plus précieuse que j'aie jamais perdue. (valuable)", choices: ["the valuablest","the most valuable","the valuablier"], answer: "the most valuable", expl: "Adjectif long → the most + adjectif" },
+  { q: "C'est la voiture la plus rapide dans laquelle je sois jamais monté. (fast)", choices: ["the fastest","the most fast","the fasttest"], answer: "the fastest", expl: "1 syllabe → the + adjectif + -EST : fast → fastest" },
+  { q: "C'est la pire personne que j'aie jamais rencontrée. (bad → irrégulier !)", choices: ["the most bad","the baddest","the worst"], answer: "the worst", expl: "IRRÉGULIER : bad → the worst. À apprendre par cœur !" },
+  { q: "C'est le plat le plus délicieux que j'aie jamais mangé. (delicious)", choices: ["the deliciouser","the most delicious","the deliciousest"], answer: "the most delicious", expl: "Adjectif long (4 syllabes) → the most + adjectif" },
+  { q: "C'est le moment le plus effrayant que j'aie jamais vécu. (scary)", choices: ["the most scary","the scariest","the scarryest"], answer: "the scariest", expl: "Finit en -Y → scary → scariest (-y devient -iest)" },
 ];
 
 var superlCont = document.getElementById('superl-items');
 superlData.forEach(function(item, i) {
   var d = document.createElement('div');
   d.style.cssText = 'margin-bottom:16px;padding:14px;background:#fff5f5;border-radius:14px;border:2px solid #fecaca;';
-
   var qDiv = document.createElement('div');
-  qDiv.style.cssText = 'font-size:0.96rem;font-weight:700;margin-bottom:10px;';
-  qDiv.textContent = '🇬🇧 ' + item.q;
-
+  qDiv.style.cssText = 'font-size:0.92rem;font-weight:700;margin-bottom:4px;color:var(--navy);';
+  qDiv.textContent = '🇫🇷 ' + item.q;
+  var enDiv = document.createElement('div');
+  enDiv.style.cssText = 'font-size:0.88rem;color:var(--muted);margin-bottom:10px;font-style:italic;';
+  enDiv.textContent = '🇬🇧 It is ___ experience I have ever had.';
   var btnRow = document.createElement('div');
   btnRow.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;';
-
   var shuffled = item.choices.slice().sort(function() { return Math.random() - 0.5; });
   shuffled.forEach(function(c) {
     var btn = document.createElement('button');
@@ -503,12 +539,10 @@ superlData.forEach(function(item, i) {
     btn.addEventListener('click', function() { doSuperl(i, c); });
     btnRow.appendChild(btn);
   });
-
   var fbDiv = document.createElement('div');
   fbDiv.id = 'splfb' + i;
   fbDiv.style.cssText = 'margin-top:8px;font-size:0.85rem;font-weight:700;display:none;padding:8px 12px;border-radius:8px;';
-
-  d.appendChild(qDiv); d.appendChild(btnRow); d.appendChild(fbDiv);
+  d.appendChild(qDiv); d.appendChild(enDiv); d.appendChild(btnRow); d.appendChild(fbDiv);
   superlCont.appendChild(d);
 });
 
@@ -543,53 +577,34 @@ var sydneyData = [
 
 var sydAnswers = {};
 var sydDrag = null;
-
 var sydCont = document.getElementById('sydney-items');
 sydneyData.forEach(function(item, i) {
   var shuffled = item.pool.slice().sort(function() { return Math.random() - 0.5; });
   var d = document.createElement('div');
   d.style.cssText = 'margin-bottom:20px;padding:14px;background:#f0fdf4;border-radius:14px;border:2px solid #bbf7d0;';
-
   var chips = '';
   shuffled.forEach(function(w) {
     var sid = 'sydblk' + i + '_' + w.replace(/ /g,'_');
     chips += '<div class="drag-block" id="' + sid + '" draggable="true" style="background:#d1fae5;border-color:#10b981;">' + w + '</div>';
   });
-
-  var sentHtml = '🇬🇧 ' + item.b +
-    '<span class="inline-drop" id="sydslot' + i + '" style="display:inline-block;min-width:120px;min-height:32px;vertical-align:middle;background:#f0f9ff;border:2px dashed #93c5fd;border-radius:8px;padding:3px 8px;font-weight:700;color:var(--muted);font-size:0.85rem;cursor:pointer;"></span>' +
-    item.a;
-
-  d.innerHTML = '<div class="blocks-pool" id="sydpool' + i + '">' + chips + '</div>' +
-    '<div style="font-size:0.96rem;font-weight:600;line-height:2.6;">' + sentHtml + '</div>';
-
+  var sentHtml = '🇬🇧 ' + item.b + '<span class="inline-drop" id="sydslot' + i + '" style="display:inline-block;min-width:120px;min-height:32px;vertical-align:middle;background:#f0f9ff;border:2px dashed #93c5fd;border-radius:8px;padding:3px 8px;font-weight:700;color:var(--muted);font-size:0.85rem;cursor:pointer;"></span>' + item.a;
+  d.innerHTML = '<div class="blocks-pool" id="sydpool' + i + '">' + chips + '</div><div style="font-size:0.96rem;font-weight:600;line-height:2.6;">' + sentHtml + '</div>';
   sydCont.appendChild(d);
-
   setTimeout(function(idx) {
     var pool = document.getElementById('sydpool' + idx);
     var slot = document.getElementById('sydslot' + idx);
-
-    pool.querySelectorAll('.drag-block').forEach(function(chip) {
-      chip.addEventListener('dragstart', function() { sydDrag = chip; });
-    });
-
+    pool.querySelectorAll('.drag-block').forEach(function(chip) { chip.addEventListener('dragstart', function() { sydDrag = chip; }); });
     pool.addEventListener('dragover', function(e) { e.preventDefault(); pool.classList.add('drag-over'); });
     pool.addEventListener('dragleave', function() { pool.classList.remove('drag-over'); });
-    pool.addEventListener('drop', function(e) {
-      e.preventDefault(); pool.classList.remove('drag-over');
-      if (sydDrag) { pool.appendChild(sydDrag); sydAnswers[idx] = null; sydDrag = null; }
-    });
-
+    pool.addEventListener('drop', function(e) { e.preventDefault(); pool.classList.remove('drag-over'); if (sydDrag) { pool.appendChild(sydDrag); sydAnswers[idx] = null; sydDrag = null; } });
     slot.addEventListener('dragover', function(e) { e.preventDefault(); slot.style.background = '#dbeafe'; });
     slot.addEventListener('dragleave', function() { slot.style.background = '#f0f9ff'; });
     slot.addEventListener('drop', function(e) {
       e.preventDefault(); slot.style.background = '#f0f9ff';
       if (!sydDrag) return;
       if (slot.querySelector('.drag-block')) pool.appendChild(slot.querySelector('.drag-block'));
-      slot.innerHTML = '';
-      slot.appendChild(sydDrag);
-      sydAnswers[idx] = sydDrag.textContent.trim();
-      sydDrag = null;
+      slot.innerHTML = ''; slot.appendChild(sydDrag);
+      sydAnswers[idx] = sydDrag.textContent.trim(); sydDrag = null;
     });
   }, 0, i);
 });
@@ -620,71 +635,53 @@ var wordOrderData = [
   { fr: "Je préférerais nager avec des dauphins. (avec TO)", words: ["I","would","prefer","to","swim","with","dolphins","."], answer: "I would prefer to swim with dolphins ." },
   { fr: "Ils vont se retrouver devant l'Opera House.", words: ["They","are","going","to","meet","in","front","of","the","Opera","House","."], answer: "They are going to meet in front of the Opera House ." },
   { fr: "C'est le sport le plus excitant que j'aie jamais pratiqué.", words: ["It","is","the","most","exciting","sport","I","have","ever","played","."], answer: "It is the most exciting sport I have ever played ." },
+  { fr: "C'est le meilleur film que j'aie jamais vu.", words: ["It","is","the","best","film","I","have","ever","seen","."], answer: "It is the best film I have ever seen ." },
 ];
 
 var woDrag = null;
-
 function buildWordOrder() {
   var cont = document.getElementById('wordorder-items');
   wordOrderData.forEach(function(item, i) {
     var shuffled = item.words.slice().sort(function() { return Math.random() - 0.5; });
-
     var d = document.createElement('div');
     d.style.cssText = 'margin-bottom:20px;padding:14px;background:#f0f4ff;border-radius:14px;border:2px solid #bfdbfe;';
-
     var frDiv = document.createElement('div');
     frDiv.style.cssText = 'background:var(--navy-light);border-left:4px solid var(--navy);border-radius:8px;padding:6px 12px;margin-bottom:10px;font-size:0.88rem;font-weight:700;';
     frDiv.textContent = '🇫🇷 ' + item.fr;
-
     var lbl1 = document.createElement('div');
     lbl1.style.cssText = 'font-size:0.78rem;font-weight:700;color:var(--muted);margin-bottom:6px;';
     lbl1.textContent = '📦 Mots disponibles :';
-
     var pool = document.createElement('div');
-    pool.className = 'blocks-pool';
-    pool.id = 'wopool' + i;
+    pool.className = 'blocks-pool'; pool.id = 'wopool' + i;
     shuffled.forEach(function(w) {
       var chip = document.createElement('div');
-      chip.className = 'drag-block';
-      chip.textContent = w;
-      chip.draggable = true;
+      chip.className = 'drag-block'; chip.textContent = w; chip.draggable = true;
       chip.addEventListener('dragstart', function() { woDrag = chip; });
       pool.appendChild(chip);
     });
-
     var lbl2 = document.createElement('div');
     lbl2.style.cssText = 'font-size:0.78rem;font-weight:700;color:var(--muted);margin:10px 0 6px;';
     lbl2.textContent = '🇬🇧 Ta phrase :';
-
     var sent = document.createElement('div');
-    sent.className = 'drop-zone';
-    sent.id = 'wosent' + i;
+    sent.className = 'drop-zone'; sent.id = 'wosent' + i;
     sent.style.cssText = 'min-height:46px;flex-wrap:wrap;gap:6px;';
     sent.innerHTML = '<span class="drop-zone-empty">Glisse les mots ici dans l\'ordre…</span>';
-
     var ansDiv = document.createElement('div');
-    ansDiv.id = 'woans' + i;
-    ansDiv.className = 'ans-box';
+    ansDiv.id = 'woans' + i; ansDiv.className = 'ans-box';
     ansDiv.textContent = '✏️ ' + item.answer;
-
     var ansBtn = document.createElement('div');
     ansBtn.style.marginTop = '8px';
     var abtn = document.createElement('button');
-    abtn.className = 'toggle-ans-btn';
-    abtn.textContent = '👁 Voir la réponse';
+    abtn.className = 'toggle-ans-btn'; abtn.textContent = '👁 Voir la réponse';
     abtn.addEventListener('click', function() {
       var visible = ansDiv.style.display !== 'none';
       ansDiv.style.display = visible ? 'none' : 'block';
       abtn.textContent = visible ? '👁 Voir la réponse' : '🙈 Cacher la réponse';
     });
     ansBtn.appendChild(abtn);
-
     pool.addEventListener('dragover', function(e) { e.preventDefault(); pool.classList.add('drag-over'); });
     pool.addEventListener('dragleave', function() { pool.classList.remove('drag-over'); });
-    pool.addEventListener('drop', function(e) {
-      e.preventDefault(); pool.classList.remove('drag-over');
-      if (woDrag) { woDrag.classList.remove('placed-correct','placed-wrong'); pool.appendChild(woDrag); woDrag = null; }
-    });
+    pool.addEventListener('drop', function(e) { e.preventDefault(); pool.classList.remove('drag-over'); if (woDrag) { woDrag.classList.remove('placed-correct','placed-wrong'); pool.appendChild(woDrag); woDrag = null; } });
     sent.addEventListener('dragover', function(e) { e.preventDefault(); sent.classList.add('drag-over'); });
     sent.addEventListener('dragleave', function() { sent.classList.remove('drag-over'); });
     sent.addEventListener('drop', function(e) {
@@ -693,10 +690,8 @@ function buildWordOrder() {
       var empty = sent.querySelector('.drop-zone-empty');
       if (empty) empty.remove();
       woDrag.classList.remove('placed-correct','placed-wrong');
-      sent.appendChild(woDrag);
-      woDrag = null;
+      sent.appendChild(woDrag); woDrag = null;
     });
-
     d.appendChild(frDiv); d.appendChild(lbl1); d.appendChild(pool);
     d.appendChild(lbl2); d.appendChild(sent); d.appendChild(ansDiv); d.appendChild(ansBtn);
     cont.appendChild(d);
@@ -713,7 +708,7 @@ function checkWordOrder() {
     chips.forEach(function(c) { c.classList.remove('placed-correct','placed-wrong'); });
     total++;
     if (built === item.answer) { chips.forEach(function(c) { c.classList.add('placed-correct'); }); correct++; }
-    else { chips.forEach(function(c) { c.classList.add('placed-wrong'); }); }
+    else chips.forEach(function(c) { c.classList.add('placed-wrong'); });
   });
   var fb = document.getElementById('wordorder-feedback');
   fb.className = 'feedback-msg show ' + (correct === total ? 'ok' : 'ko');
@@ -724,48 +719,12 @@ function checkWordOrder() {
 // ENTRAÎNEMENT B – Quelle structure ?
 // ══════════════════════════════════════════════════
 var structData = [
-  {
-    fr: "🌋 Tu veux parler d'une expérience passée : tu n'as jamais gravi un volcan.",
-    en: "I ___ climbed a volcano.",
-    choices: ["have never", "would rather", "will"],
-    answer: "have never",
-    expl: "Present Perfect négatif avec 'never' pour parler d'une expérience jamais vécue."
-  },
-  {
-    fr: "❤️ Tu veux dire ce que tu préfères faire : plutôt nager avec les dauphins qu'avec les piranhas.",
-    en: "I ___ swim with dolphins.",
-    choices: ["have already", "would prefer to", "will"],
-    answer: "would prefer to",
-    expl: "'Would prefer to' + infinitif pour exprimer une préférence."
-  },
-  {
-    fr: "🏖️ Tu veux dire que Jen a déjà fait de la randonnée.",
-    en: "Jen ___ trekked in the mountains.",
-    choices: ["has already", "would rather", "is going to"],
-    answer: "has already",
-    expl: "Present Perfect affirmatif avec 'already' = action déjà accomplie."
-  },
-  {
-    fr: "🦘 Tu veux exprimer que Mark préférerait (SANS TO) visiter un zoo.",
-    en: "Mark ___ visit a zoo.",
-    choices: ["has already", "would prefer to", "would rather"],
-    answer: "would rather",
-    expl: "'Would rather' + base verb (sans TO) pour exprimer une préférence."
-  },
-  {
-    fr: "🎢 Tu demandes à quelqu'un quelle est la chose la plus dangereuse qu'il ait jamais faite.",
-    en: "What is the most dangerous thing you have ___ done?",
-    choices: ["already", "never", "ever"],
-    answer: "ever",
-    expl: "'Ever' s'utilise dans les questions au Present Perfect pour demander une expérience."
-  },
-  {
-    fr: "🗺️ Le programme de Jen est confirmé : elle visite l'Harbour Bridge demain matin.",
-    en: "Jen ___ the Harbour Bridge tomorrow morning.",
-    choices: ["will visit", "has visited", "is visiting"],
-    answer: "is visiting",
-    expl: "'Be + Ving' = planning déjà confirmé et organisé."
-  },
+  { fr: "🌋 Tu veux parler d'une expérience passée : tu n'as jamais gravi un volcan.", en: "I ___ climbed a volcano.", choices: ["have never","would rather","will"], answer: "have never", expl: "Present Perfect négatif avec 'never' pour parler d'une expérience jamais vécue." },
+  { fr: "❤️ Tu veux dire ce que tu préfères faire : plutôt nager avec les dauphins.", en: "I ___ swim with dolphins.", choices: ["have already","would prefer to","will"], answer: "would prefer to", expl: "'Would prefer to' + infinitif pour exprimer une préférence." },
+  { fr: "🏖️ Tu veux dire que Jen a déjà fait de la randonnée.", en: "Jen ___ trekked in the mountains.", choices: ["has already","would rather","is going to"], answer: "has already", expl: "Present Perfect affirmatif avec 'already' = action déjà accomplie." },
+  { fr: "🦘 Tu veux exprimer que Mark préférerait (SANS TO) visiter un zoo.", en: "Mark ___ visit a zoo.", choices: ["has already","would prefer to","would rather"], answer: "would rather", expl: "'Would rather' + base verb (sans TO) pour exprimer une préférence." },
+  { fr: "🎢 Tu demandes quelle est la chose la plus dangereuse qu'il ait jamais faite.", en: "What is the most dangerous thing you have ___ done?", choices: ["already","never","ever"], answer: "ever", expl: "'Ever' s'utilise dans les questions au Present Perfect pour demander une expérience." },
+  { fr: "🗺️ Le programme de Jen est confirmé : elle visite l'Harbour Bridge demain matin.", en: "Jen ___ the Harbour Bridge tomorrow morning.", choices: ["will visit","has visited","is visiting"], answer: "is visiting", expl: "'Be + Ving' = planning déjà confirmé et organisé." },
 ];
 
 function buildStruct() {
@@ -773,18 +732,14 @@ function buildStruct() {
   structData.forEach(function(item, i) {
     var d = document.createElement('div');
     d.style.cssText = 'margin-bottom:18px;padding:14px;background:#f5f3ff;border-radius:14px;border:2px solid #ddd6fe;';
-
     var frDiv = document.createElement('div');
     frDiv.style.cssText = 'background:var(--violet-light);border-left:4px solid var(--violet);border-radius:8px;padding:7px 12px;margin-bottom:10px;font-size:0.88rem;font-weight:700;';
     frDiv.textContent = item.fr;
-
     var enDiv = document.createElement('div');
     enDiv.style.cssText = 'font-size:0.96rem;font-weight:700;margin-bottom:10px;';
     enDiv.textContent = '🇬🇧 ' + item.en;
-
     var btnRow = document.createElement('div');
     btnRow.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;';
-
     var shuffled = item.choices.slice().sort(function() { return Math.random() - 0.5; });
     shuffled.forEach(function(c) {
       var btn = document.createElement('button');
@@ -794,11 +749,9 @@ function buildStruct() {
       btn.addEventListener('click', function() { doStruct(i, c); });
       btnRow.appendChild(btn);
     });
-
     var fbDiv = document.createElement('div');
     fbDiv.id = 'stfb' + i;
     fbDiv.style.cssText = 'margin-top:8px;font-size:0.85rem;font-weight:700;display:none;padding:8px 12px;border-radius:8px;line-height:1.5;';
-
     d.appendChild(frDiv); d.appendChild(enDiv); d.appendChild(btnRow); d.appendChild(fbDiv);
     cont.appendChild(d);
   });
@@ -821,11 +774,10 @@ function doStruct(i, chosen) {
   fb.style.color = isCorrect ? '#065f46' : '#9f1239';
   fb.textContent = (isCorrect ? '✅ Correct ! ' : '❌ Non. ') + item.expl;
 }
-
 buildStruct();
 
 // ══════════════════════════════════════════════════
-// ENTRAÎNEMENT C – Vacation Experiences à compléter
+// ENTRAÎNEMENT C – Vacation Experiences
 // ══════════════════════════════════════════════════
 var vacData = [
   { activity: "trek in the mountains", haveEver: true, key_pp: "trekked", pref: "would like to do it again", full: "I have already trekked in the mountains and I would like to do it again." },
@@ -840,38 +792,26 @@ function buildVac() {
   vacData.forEach(function(item, i) {
     var d = document.createElement('div');
     d.style.cssText = 'margin-bottom:16px;padding:14px;background:#fffbeb;border-radius:13px;border:2px solid #fde68a;';
-
     var actDiv = document.createElement('div');
     actDiv.style.cssText = 'font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.92rem;margin-bottom:10px;color:var(--navy);';
     actDiv.textContent = '🌍 ' + item.activity.toUpperCase();
-
     var row1 = document.createElement('div');
     row1.style.cssText = 'font-size:0.9rem;font-weight:600;line-height:2.8;margin-bottom:4px;';
     row1.textContent = '🇬🇧 I have ' + (item.haveEver ? 'already ' : 'never ');
-
     var inp1 = document.createElement('input');
-    inp1.className = 'blank-input';
-    inp1.id = 'vac_pp' + i;
-    inp1.placeholder = 'participe passé…';
-    inp1.style.width = '160px';
-
+    inp1.className = 'blank-input'; inp1.id = 'vac_pp' + i;
+    inp1.placeholder = 'participe passé…'; inp1.style.width = '160px';
     row1.appendChild(inp1);
     row1.appendChild(document.createTextNode(' ... and/but I '));
-
     var inp2 = document.createElement('input');
-    inp2.className = 'blank-input';
-    inp2.id = 'vac_pref' + i;
-    inp2.placeholder = 'would like to / would prefer to…';
-    inp2.style.width = '200px';
-
+    inp2.className = 'blank-input'; inp2.id = 'vac_pref' + i;
+    inp2.placeholder = 'would like to / would prefer to…'; inp2.style.width = '200px';
     row1.appendChild(inp2);
     row1.appendChild(document.createTextNode('.'));
-
     var btnRow = document.createElement('div');
     btnRow.style.cssText = 'margin-top:8px;display:flex;gap:8px;align-items:center;';
     var ansBtn = document.createElement('button');
-    ansBtn.className = 'toggle-ans-btn';
-    ansBtn.textContent = '👁 Voir la réponse';
+    ansBtn.className = 'toggle-ans-btn'; ansBtn.textContent = '👁 Voir la réponse';
     var ansDiv = document.createElement('div');
     ansDiv.style.cssText = 'display:none;background:#fef3c7;border:2px solid var(--amber);border-radius:8px;padding:5px 14px;font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.88rem;color:#92400e;';
     ansDiv.textContent = '✏️ ' + item.full;
@@ -881,7 +821,6 @@ function buildVac() {
       ansBtn.textContent = visible ? '👁 Voir la réponse' : '🙈 Cacher la réponse';
     });
     btnRow.appendChild(ansBtn); btnRow.appendChild(ansDiv);
-
     d.appendChild(actDiv); d.appendChild(row1); d.appendChild(btnRow);
     cont.appendChild(d);
   });
@@ -906,6 +845,152 @@ function checkVac() {
 }
 
 // ══════════════════════════════════════════════════
+// ENTRAÎNEMENT D – NOUVEAU : Superlatif + PP oral
+// ══════════════════════════════════════════════════
+var oralData = [
+  { q: "What is the most frightening film you have ever seen?", adjHint: "frightening → long → the most frightening", superl: "the most frightening", pp: "seen", full: "The most frightening film I have ever seen is… because it is really scary!" },
+  { q: "What is the best meal you have ever eaten?", adjHint: "good → IRRÉGULIER → the best", superl: "the best", pp: "eaten", full: "The best meal I have ever eaten is… because it is delicious!" },
+  { q: "What is the most dangerous sport you have ever tried?", adjHint: "dangerous → long → the most dangerous", superl: "the most dangerous", pp: "tried", full: "The most dangerous sport I have ever tried is… because it is terrifying!" },
+  { q: "What is the funniest person you have ever met?", adjHint: "funny → finit en -Y → the funniest", superl: "the funniest", pp: "met", full: "The funniest person I have ever met is… because they always make me laugh!" },
+  { q: "What is the worst experience you have ever had?", adjHint: "bad → IRRÉGULIER → the worst", superl: "the worst", pp: "had", full: "The worst experience I have ever had is… because it was awful!" },
+];
+
+function buildOral() {
+  var cont = document.getElementById('oral-items');
+  oralData.forEach(function(item, i) {
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-bottom:18px;padding:14px;background:#fff5f5;border-radius:14px;border:2px solid #fecaca;';
+
+    var qDiv = document.createElement('div');
+    qDiv.style.cssText = 'font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.92rem;color:var(--coral);margin-bottom:6px;';
+    qDiv.textContent = '🎤 Q : ' + item.q;
+
+    var hintDiv = document.createElement('div');
+    hintDiv.style.cssText = 'font-size:0.78rem;color:var(--muted);margin-bottom:10px;font-style:italic;';
+    hintDiv.textContent = '💡 ' + item.adjHint;
+
+    var row = document.createElement('div');
+    row.style.cssText = 'font-size:0.9rem;font-weight:600;line-height:2.8;';
+    row.textContent = '🇬🇧 R : ';
+
+    var inp1 = document.createElement('input');
+    inp1.className = 'blank-input'; inp1.id = 'oral_superl' + i;
+    inp1.placeholder = 'superlatif…'; inp1.style.width = '180px';
+
+    row.appendChild(inp1);
+    row.appendChild(document.createTextNode(' … I have ever '));
+
+    var inp2 = document.createElement('input');
+    inp2.className = 'blank-input'; inp2.id = 'oral_pp' + i;
+    inp2.placeholder = 'pp…'; inp2.style.width = '80px';
+
+    row.appendChild(inp2);
+    row.appendChild(document.createTextNode(' is…'));
+
+    var btnRow = document.createElement('div');
+    btnRow.style.cssText = 'margin-top:8px;display:flex;gap:8px;align-items:center;';
+    var ansBtn = document.createElement('button');
+    ansBtn.className = 'toggle-ans-btn'; ansBtn.textContent = '👁 Voir la réponse';
+    var ansDiv = document.createElement('div');
+    ansDiv.style.cssText = 'display:none;background:#fef3c7;border:2px solid var(--amber);border-radius:8px;padding:5px 14px;font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.88rem;color:#92400e;';
+    ansDiv.textContent = '✏️ ' + item.full;
+    ansBtn.addEventListener('click', function() {
+      var v = ansDiv.style.display !== 'none';
+      ansDiv.style.display = v ? 'none' : 'block';
+      ansBtn.textContent = v ? '👁 Voir la réponse' : '🙈 Cacher';
+    });
+    btnRow.appendChild(ansBtn); btnRow.appendChild(ansDiv);
+
+    d.appendChild(qDiv); d.appendChild(hintDiv); d.appendChild(row); d.appendChild(btnRow);
+    cont.appendChild(d);
+  });
+}
+buildOral();
+
+function checkOral() {
+  var sc = 0;
+  oralData.forEach(function(item, i) {
+    var s = document.getElementById('oral_superl' + i);
+    var p = document.getElementById('oral_pp' + i);
+    s.classList.remove('ok','ko'); p.classList.remove('ok','ko');
+    var sok = s.value.trim().toLowerCase() === item.superl.toLowerCase();
+    var pok = p.value.trim().toLowerCase() === item.pp.toLowerCase();
+    s.classList.add(sok ? 'ok' : 'ko');
+    p.classList.add(pok ? 'ok' : 'ko');
+    if (sok && pok) sc++;
+  });
+  var fb = document.getElementById('oral-feedback');
+  fb.className = 'feedback-msg show ' + (sc === oralData.length ? 'ok' : 'ko');
+  fb.textContent = sc + ' / ' + oralData.length + ' ' + (sc === oralData.length ? '✅ Parfait, tu es prêt pour l\'oral !' : '❌ Regarde les cases rouges. N\'oublie pas la règle du superlatif !');
+}
+
+// ══════════════════════════════════════════════════
+// ENTRAÎNEMENT E – NOUVEAU : Construis le superlatif
+// ══════════════════════════════════════════════════
+var buildSuperlData = [
+  { fr: "le plus grand", adj: "tall", key: "the tallest", hint: "1 syllabe → -est", rule: "Règle 1" },
+  { fr: "le plus drôle", adj: "funny", key: "the funniest", hint: "finit en -y → -iest", rule: "Règle 2" },
+  { fr: "le plus excitant", adj: "exciting", key: "the most exciting", hint: "long → the most", rule: "Règle 3" },
+  { fr: "le meilleur", adj: "good", key: "the best", hint: "irrégulier !", rule: "Règle 4" },
+  { fr: "le plus effrayant", adj: "scary", key: "the scariest", hint: "finit en -y → -iest", rule: "Règle 2" },
+  { fr: "le plus dangereux", adj: "dangerous", key: "the most dangerous", hint: "long → the most", rule: "Règle 3" },
+  { fr: "le pire", adj: "bad", key: "the worst", hint: "irrégulier !", rule: "Règle 4" },
+  { fr: "le plus rapide", adj: "fast", key: "the fastest", hint: "1 syllabe → -est", rule: "Règle 1" },
+  { fr: "le plus cher", adj: "expensive", key: "the most expensive", hint: "long → the most", rule: "Règle 3" },
+  { fr: "le plus grand (big)", adj: "big", key: "the biggest", hint: "1 syllabe, consonne doublée → -gest", rule: "Règle 1 ⚠️" },
+];
+
+function buildBuildSuperl() {
+  var cont = document.getElementById('build-superl-items');
+  buildSuperlData.forEach(function(item, i) {
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-bottom:12px;padding:12px 14px;background:#f0fdf4;border-radius:12px;border:2px solid #bbf7d0;display:flex;align-items:center;flex-wrap:wrap;gap:10px;';
+
+    var numDiv = document.createElement('div');
+    numDiv.style.cssText = 'width:28px;height:28px;background:var(--vert);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.8rem;flex-shrink:0;';
+    numDiv.textContent = i + 1;
+
+    var frDiv = document.createElement('div');
+    frDiv.style.cssText = 'font-weight:700;font-size:0.9rem;min-width:140px;';
+    frDiv.textContent = '🇫🇷 ' + item.fr;
+
+    var adjDiv = document.createElement('div');
+    adjDiv.style.cssText = 'background:#dbeafe;border:2px solid #93c5fd;border-radius:8px;padding:4px 10px;font-family:"Lexend Deca",sans-serif;font-weight:800;font-size:0.9rem;color:#1d4ed8;';
+    adjDiv.textContent = item.adj;
+
+    var arrow = document.createElement('div');
+    arrow.style.cssText = 'color:var(--muted);font-size:1rem;';
+    arrow.textContent = '→';
+
+    var inp = document.createElement('input');
+    inp.className = 'blank-input'; inp.id = 'bsup' + i;
+    inp.placeholder = 'the …'; inp.style.width = '180px';
+
+    var hintDiv = document.createElement('div');
+    hintDiv.style.cssText = 'font-size:0.75rem;color:var(--muted);font-style:italic;width:100%;margin-top:4px;padding-left:38px;';
+    hintDiv.textContent = '💡 ' + item.hint + ' (' + item.rule + ')';
+
+    d.appendChild(numDiv); d.appendChild(frDiv); d.appendChild(adjDiv); d.appendChild(arrow); d.appendChild(inp);
+    d.appendChild(hintDiv);
+    cont.appendChild(d);
+  });
+}
+buildBuildSuperl();
+
+function checkBuildSuperl() {
+  var sc = 0;
+  buildSuperlData.forEach(function(item, i) {
+    var inp = document.getElementById('bsup' + i);
+    inp.classList.remove('ok','ko');
+    if (inp.value.trim().toLowerCase() === item.key.toLowerCase()) { inp.classList.add('ok'); sc++; }
+    else inp.classList.add('ko');
+  });
+  var fb = document.getElementById('build-superl-feedback');
+  fb.className = 'feedback-msg show ' + (sc === buildSuperlData.length ? 'ok' : 'ko');
+  fb.textContent = sc + ' / ' + buildSuperlData.length + ' ' + (sc === buildSuperlData.length ? '✅ Bravo ! Tu maîtrises les 4 règles du superlatif !' : '❌ Les cases rouges sont incorrectes. Relis les 4 règles dans le cours !');
+}
+
+// ══════════════════════════════════════════════════
 // GLOSSAIRE
 // ══════════════════════════════════════════════════
 var glossData = [
@@ -915,6 +1000,7 @@ var glossData = [
   { term: "have ever + pp", fr: "avoir déjà (question)", ex: "What's the best film you have ever seen?", type: "pp" },
   { term: "the most + adj", fr: "le/la plus + adj long", ex: "the most exciting, the most dangerous", type: "superlatif" },
   { term: "the + adj + est", fr: "le/la plus + adj court", ex: "the fastest, the tallest", type: "superlatif" },
+  { term: "adj(-y) + iest", fr: "le/la plus + adj en -y", ex: "funny → the funniest, scary → the scariest", type: "superlatif" },
   { term: "the best / the worst", fr: "le meilleur / le pire", ex: "What is the best book you have ever read?", type: "superlatif" },
   { term: "would prefer to", fr: "préférerait (avec TO)", ex: "I would prefer to swim with dolphins.", type: "pref" },
   { term: "would rather", fr: "préférerait (sans TO)", ex: "Mark would rather visit a museum.", type: "pref" },
@@ -923,9 +1009,7 @@ var glossData = [
   { term: "go sandboarding", fr: "faire du sandboard", ex: "I have never been sandboarding.", type: "vocab" },
   { term: "swim with piranhas", fr: "nager avec des piranhas", ex: "Have you ever swum with piranhas?", type: "vocab" },
   { term: "drive a dune buggy", fr: "conduire un buggy des dunes", ex: "I would like to drive a dune buggy.", type: "vocab" },
-  { term: "mountain bike", fr: "faire du VTT", ex: "I wouldn't like to mountain bike down a dangerous road.", type: "vocab" },
   { term: "must be", fr: "ça doit être", ex: "It must be impressive!", type: "vocab" },
-  { term: "probably", fr: "probablement", ex: "It is probably funny!", type: "vocab" },
   { term: "terrifying", fr: "terrifiant", ex: "It is terrifying!", type: "vocab" },
   { term: "the Harbour Bridge", fr: "le pont de Sydney", ex: "Jen would rather climb the Harbour Bridge.", type: "sydney" },
   { term: "Taronga Zoo", fr: "Zoo de Sydney", ex: "Mark would prefer to visit Taronga Zoo.", type: "sydney" },
@@ -940,24 +1024,12 @@ glossData.forEach(function(item) {
   var card = document.createElement('div');
   card.className = 'glos-card';
   card.style.borderTopColor = typeColor[item.type];
-
-  var term = document.createElement('div');
-  term.className = 'glos-term';
-  term.textContent = '🇬🇧 ' + item.term;
-
-  var fr = document.createElement('div');
-  fr.className = 'glos-fr';
-  fr.textContent = '🇫🇷 ' + item.fr;
-
-  var type = document.createElement('div');
-  type.className = 'glos-type';
+  var term = document.createElement('div'); term.className = 'glos-term'; term.textContent = '🇬🇧 ' + item.term;
+  var fr = document.createElement('div'); fr.className = 'glos-fr'; fr.textContent = '🇫🇷 ' + item.fr;
+  var type = document.createElement('div'); type.className = 'glos-type';
   type.style.cssText = 'background:' + typeColor[item.type] + '22;color:' + typeColor[item.type] + ';';
   type.textContent = typeLabel[item.type];
-
-  var ex = document.createElement('div');
-  ex.className = 'glos-ex';
-  ex.textContent = '💬 ' + item.ex;
-
+  var ex = document.createElement('div'); ex.className = 'glos-ex'; ex.textContent = '💬 ' + item.ex;
   card.appendChild(term); card.appendChild(fr); card.appendChild(type); card.appendChild(ex);
   grid.appendChild(card);
 });
