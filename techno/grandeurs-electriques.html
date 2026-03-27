@@ -29,7 +29,7 @@ header p{color:rgba(255,255,255,.8);margin-top:6px;font-size:1rem;}
 /* TITRES */
 .stitle{font-family:'Baloo 2',cursive;font-size:1.3rem;font-weight:800;margin:28px 0 14px;display:flex;align-items:center;gap:10px;color:var(--dk);border-bottom:3px solid #f1c40f44;padding-bottom:8px;}
 
-/* CARDS DÉFINITIONS */
+/* CARDS */
 .defcard{border-radius:16px;padding:18px 20px;margin-bottom:16px;border-left:5px solid;}
 .defcard.bleu{background:#e8f4fd;border-color:var(--b);}
 .defcard.vert{background:#e8faf0;border-color:var(--g);}
@@ -54,40 +54,31 @@ header p{color:rgba(255,255,255,.8);margin-top:6px;font-size:1rem;}
 .badge.serie{background:#dbeafe;color:#1e40af;}
 .badge.deriv{background:#dcfce7;color:#166534;}
 
-/* SVG SCHEMAS */
+/* SCHEMAS */
 .schema-box{background:var(--dk);border-radius:16px;padding:20px;margin:16px 0;display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap;}
-.schema-box svg{border-radius:8px;}
 .schema-lbl{font-family:'Baloo 2',cursive;color:var(--y);font-size:.88rem;text-align:center;margin-top:8px;}
 
-/* MULTIMETRE */
-.multimeter-steps{counter-reset:step;}
+/* STEPS */
 .step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
 .step-num{background:var(--dk);color:var(--y);font-family:'Baloo 2',cursive;font-size:1rem;min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
 .step-txt{font-size:.95rem;color:#333;line-height:1.5;}
 .step-txt strong{color:var(--dk);}
 .step-txt .kw{background:var(--y);color:var(--dk);border-radius:6px;padding:1px 7px;font-weight:700;}
 
-/* PREFIXES TABLE */
+/* PREFIXES */
 .prefix-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0;}
 .prefix-card{background:#fff;border:2px solid #e0e0e0;border-radius:12px;padding:12px;text-align:center;}
 .prefix-card .sym{font-family:'Baloo 2',cursive;font-size:1.6rem;color:var(--b);}
 .prefix-card .name{font-size:.82rem;color:#666;margin-top:2px;}
 .prefix-card .val{font-size:.78rem;color:#999;margin-top:2px;}
 
-/* LOI D'OHM */
-.ohm-triangle{display:flex;justify-content:center;margin:20px 0;}
-.ohm-tri-inner{position:relative;width:220px;height:190px;}
-.ohm-circle{position:absolute;width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;cursor:pointer;transition:transform .2s;box-shadow:0 4px 12px rgba(0,0,0,.15);}
-.ohm-circle:hover{transform:scale(1.1);}
-.ohm-circle.U{background:#e74c3c;color:#fff;top:0;left:50%;transform:translateX(-50%);}
-.ohm-circle.U:hover{transform:translateX(-50%) scale(1.1);}
-.ohm-circle.I{background:#3498db;color:#fff;bottom:0;left:0;}
-.ohm-circle.R{background:#2ecc71;color:#fff;bottom:0;right:0;}
+/* LOI OHM */
 .ohm-formula-box{background:var(--dk);border-radius:14px;padding:14px 20px;margin:10px 0;text-align:center;}
 .ohm-formula-box .f{font-family:'Baloo 2',cursive;font-size:1.5rem;color:var(--y);margin:4px 0;}
 .ohm-formula-box .desc{font-size:.82rem;color:rgba(255,255,255,.7);}
+.ohm-triangle{display:flex;justify-content:center;margin:20px 0;flex-wrap:wrap;gap:20px;}
 
-/* LOIS CIRCUITS */
+/* LOIS */
 .loi-card{border-radius:14px;padding:16px 18px;margin-bottom:14px;}
 .loi-card.serie{background:linear-gradient(135deg,#dbeafe,#eff6ff);border:2px solid #3b82f6;}
 .loi-card.deriv{background:linear-gradient(135deg,#dcfce7,#f0fdf4);border:2px solid #22c55e;}
@@ -112,32 +103,101 @@ header p{color:rgba(255,255,255,.8);margin-top:6px;font-size:1rem;}
 .score-box .big{font-family:'Baloo 2',cursive;font-size:3.5rem;margin:8px 0;}
 .rbtn{background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.5);color:#fff;border-radius:14px;padding:10px 24px;font-family:'Baloo 2',cursive;font-size:1rem;cursor:pointer;margin-top:14px;}
 
-/* MEMO */
-.memo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:16px 0;}
-.memo-card{background:var(--dk);border-radius:14px;padding:16px;text-align:center;color:#fff;}
-.memo-card .icon{font-size:2.2rem;margin-bottom:6px;}
-.memo-card .titre{font-family:'Baloo 2',cursive;font-size:.95rem;color:var(--y);margin-bottom:4px;}
-.memo-card .val{font-family:'Baloo 2',cursive;font-size:1.3rem;color:#fff;}
-.memo-card .sub{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:4px;}
-
-/* DANGER BOX */
+/* DANGER */
 .danger-box{background:#fde8e8;border:2px solid var(--r);border-radius:14px;padding:14px 18px;margin:14px 0;}
 .danger-box h4{font-family:'Baloo 2',cursive;color:var(--r);margin-bottom:8px;}
 .danger-box li{font-size:.93rem;color:#555;margin-left:18px;margin-bottom:4px;}
-
-/* ASTUCE */
 .tip{background:#fff9e6;border-left:4px solid var(--y);border-radius:0 12px 12px 0;padding:12px 16px;margin:12px 0;font-size:.93rem;color:#555;}
 .tip strong{color:var(--o);}
 
-footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
-
-/* TOOLTIPS DÉFINITIONS */
+/* TOOLTIPS */
 .def{border-bottom:2px dashed var(--b);cursor:help;color:inherit;position:relative;display:inline-block;font-weight:700;}
 .def::after{content:attr(data-def);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--dk);color:#fff;font-size:.82rem;font-weight:400;padding:8px 12px;border-radius:10px;white-space:normal;width:240px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.25);pointer-events:none;opacity:0;transition:opacity .2s;z-index:100;line-height:1.4;}
 .def::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dk);opacity:0;transition:opacity .2s;pointer-events:none;}
 .def:hover::after,.def:focus::after{opacity:1;}
 .def:hover::before,.def:focus::before{opacity:1;}
 @media(hover:none){.def{border-bottom-style:solid;}.def::after{display:none;}}
+
+/* ============ EXERCICES ============ */
+.exo-section{margin-bottom:32px;}
+.exo-section-title{font-family:'Baloo 2',cursive;font-size:1.15rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--dk),#16213e);border-radius:14px;padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+
+/* Multimètre simulé */
+.multimeter-widget{background:var(--dk);border-radius:20px;padding:24px;margin-bottom:20px;}
+.mm-display-area{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;justify-content:center;}
+.mm-body{background:#2a2a2a;border-radius:16px;padding:20px;width:180px;flex-shrink:0;border:2px solid #444;}
+.mm-screen{background:#0d0d0d;border-radius:8px;padding:10px 8px;text-align:center;margin-bottom:14px;border:1px solid #333;}
+.mm-reading{font-family:'Courier New',monospace;font-size:2.2rem;color:#00ff88;font-weight:bold;letter-spacing:2px;min-height:42px;display:flex;align-items:center;justify-content:center;}
+.mm-unit-display{font-family:'Baloo 2',cursive;font-size:.85rem;color:#00cc66;margin-top:2px;}
+.mm-dial-label{font-family:'Baloo 2',cursive;font-size:.75rem;color:#f1c40f;text-align:center;margin-bottom:8px;}
+.mm-bornes{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+.mm-borne{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff;border:1.5px solid #666;}
+.mm-borne.vohmega{background:#333;}
+.mm-borne.com{background:#111;}
+.mm-borne.ma{background:#333;}
+.mm-borne.dixa{background:#c0392b;}
+.mm-borne.active-red{border-color:#e74c3c !important;box-shadow:0 0 6px #e74c3c;}
+.mm-borne.active-black{border-color:#999 !important;box-shadow:0 0 6px #999;}
+
+.mm-question-area{flex:1;min-width:240px;}
+.mm-question-area .mm-q{font-family:'Baloo 2',cursive;font-size:1rem;color:#f1c40f;margin-bottom:12px;line-height:1.4;}
+.mm-context{background:rgba(255,255,255,.07);border-radius:10px;padding:12px;margin-bottom:12px;font-size:.88rem;color:#ccc;line-height:1.5;}
+.mm-context strong{color:#fff;}
+.mm-choices{display:flex;flex-direction:column;gap:8px;}
+.mm-choice{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);border-radius:10px;padding:10px 14px;color:#fff;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:left;}
+.mm-choice:hover{background:rgba(241,196,15,.2);border-color:var(--y);}
+.mm-choice.correct{background:rgba(46,204,113,.25);border-color:#2ecc71;color:#2ecc71;}
+.mm-choice.wrong{background:rgba(231,76,60,.25);border-color:#e74c3c;color:#e74c3c;}
+.mm-fb{margin-top:10px;padding:10px 14px;border-radius:10px;font-size:.88rem;display:none;line-height:1.5;}
+.mm-fb.ok{background:rgba(46,204,113,.2);color:#2ecc71;border:1px solid #2ecc71;display:block;}
+.mm-fb.ko{background:rgba(231,76,60,.2);color:#e74c3c;border:1px solid #e74c3c;display:block;}
+.mm-nav{display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap;}
+.mm-next-btn{background:var(--y);color:var(--dk);border:none;border-radius:10px;padding:9px 20px;font-family:'Baloo 2',cursive;font-size:.95rem;cursor:pointer;font-weight:700;}
+.mm-prog{font-family:'Baloo 2',cursive;font-size:.85rem;color:rgba(255,255,255,.5);}
+
+/* CALCUL EXERCICES */
+.calc-card{background:#fff;border-radius:16px;padding:22px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.07);border-left:5px solid var(--b);}
+.calc-card.ohm-card{border-color:var(--b);}
+.calc-card.puiss-card{border-color:var(--o);}
+.calc-card.serie-card{border-color:#3b82f6;}
+.calc-card.deriv-card{border-color:#22c55e;}
+.calc-badge{display:inline-block;border-radius:8px;padding:3px 10px;font-family:'Baloo 2',cursive;font-size:.78rem;margin-bottom:10px;font-weight:700;}
+.calc-badge.ohm{background:#dbeafe;color:#1e40af;}
+.calc-badge.puiss{background:#fef3c7;color:#92400e;}
+.calc-badge.serie{background:#dbeafe;color:#1e40af;}
+.calc-badge.deriv{background:#dcfce7;color:#166534;}
+.calc-q-txt{font-weight:700;color:var(--dk);font-size:.98rem;margin-bottom:6px;line-height:1.5;}
+.calc-schema{background:#f8f9fa;border-radius:10px;padding:10px;margin:10px 0;text-align:center;font-family:'Baloo 2',cursive;font-size:.9rem;color:#555;}
+.calc-given{background:#f0f7ff;border-radius:8px;padding:8px 12px;margin:8px 0;font-size:.88rem;color:#1e40af;}
+.calc-given span{font-weight:700;}
+.calc-input-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px;}
+.calc-input{border:2px solid #e0e0e0;border-radius:10px;padding:9px 14px;font-size:1rem;font-family:'Nunito';width:130px;transition:border .2s;}
+.calc-input:focus{outline:none;border-color:var(--b);}
+.calc-unit-sel{border:2px solid #e0e0e0;border-radius:10px;padding:9px;font-size:.92rem;font-family:'Nunito';background:#fff;}
+.calc-verify{background:var(--dk);color:var(--y);border:none;border-radius:10px;padding:10px 18px;font-family:'Baloo 2',cursive;font-size:.95rem;cursor:pointer;}
+.calc-next{background:#f0f0f0;color:#555;border:none;border-radius:10px;padding:10px 16px;font-family:'Baloo 2',cursive;font-size:.88rem;cursor:pointer;}
+.calc-fb{margin-top:10px;padding:10px 14px;border-radius:10px;font-size:.9rem;display:none;line-height:1.6;}
+.calc-fb.ok{background:#d5f5e3;color:#1a5c36;display:block;}
+.calc-fb.ko{background:#fde8e8;color:#922b21;display:block;}
+.calc-solution{background:#fff9e6;border:1px solid #f1c40f;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:.88rem;color:#555;display:none;}
+.calc-solution.show{display:block;}
+.calc-solution strong{color:var(--dk);font-family:'Baloo 2',cursive;}
+.show-sol-btn{background:none;border:1px solid #ccc;border-radius:8px;padding:5px 12px;font-size:.82rem;color:#888;cursor:pointer;margin-top:6px;font-family:'Nunito';}
+.show-sol-btn:hover{border-color:var(--o);color:var(--o);}
+
+/* SCORE EXOS */
+.exo-score{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:16px;padding:20px;text-align:center;color:#fff;margin-top:10px;}
+.exo-score-num{font-family:'Baloo 2',cursive;font-size:2rem;color:var(--y);}
+.exo-score-label{font-size:.88rem;opacity:.7;margin-top:4px;}
+
+/* TABS EXERCICES */
+.exo-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.exo-tab{background:#f0f0f0;border:2px solid #e0e0e0;border-radius:14px;padding:8px 16px;font-family:'Baloo 2',cursive;font-size:.9rem;cursor:pointer;color:#666;transition:all .2s;}
+.exo-tab.active{background:linear-gradient(135deg,var(--dk),#16213e);color:var(--y);border-color:var(--dk);}
+.exo-pane{display:none;}
+.exo-pane.active{display:block;}
+
+footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
 </style>
 </head>
 <body>
@@ -149,17 +209,17 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
 </header>
 
 <div class="tabs">
-  <button class="tab-btn active" onclick="sw('grandeurs')">📐 Les 3 Grandeurs</button>
-  <button class="tab-btn" onclick="sw('multimetre')">🔬 Multimètre</button>
-  <button class="tab-btn" onclick="sw('ohm')">📏 Loi d'Ohm</button>
-  <button class="tab-btn" onclick="sw('lois')">⚖️ Lois des circuits</button>
-  <button class="tab-btn" onclick="sw('energie')">🔋 Énergie</button>
-  <button class="tab-btn" onclick="sw('quiz')">🎯 Quiz</button>
+  <button class="tab-btn active" onclick="sw('grandeurs',this)">📐 Les 3 Grandeurs</button>
+  <button class="tab-btn" onclick="sw('multimetre',this)">🔬 Multimètre</button>
+  <button class="tab-btn" onclick="sw('ohm',this)">📏 Loi d'Ohm</button>
+  <button class="tab-btn" onclick="sw('lois',this)">⚖️ Lois des circuits</button>
+  <button class="tab-btn" onclick="sw('energie',this)">🔋 Énergie</button>
+  <button class="tab-btn" onclick="sw('exercices',this)">✏️ Exercices</button>
+  <button class="tab-btn" onclick="sw('quiz',this)">🎯 Quiz</button>
 </div>
 
 <!-- ===================== GRANDEURS ===================== -->
 <div id="tab-grandeurs" class="tab-panel active">
-
   <div class="tip"><strong>💡 Le courant électrique</strong> : c'est le déplacement d'électrons dans un circuit. Il circule du <strong>+ vers le −</strong> (convention). Les électrons, eux, vont du − vers le +.</div>
 
   <div class="stitle">⚡ L'Intensité du courant (I)</div>
@@ -171,13 +231,7 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
     <table class="gtable" style="margin-top:12px">
       <tr><th>Appareil</th><th>Schéma</th><th>Branchement</th><th>Bornes</th></tr>
       <tr><td><strong>Ampèremètre</strong></td><td style="text-align:center">
-        <svg width="50" height="36" viewBox="0 0 50 36">
-          <line x1="2" y1="18" x2="13" y2="18" stroke="#e74c3c" stroke-width="2.5"/>
-          <line x1="37" y1="18" x2="48" y2="18" stroke="#e74c3c" stroke-width="2.5"/>
-          <line x1="2" y1="18" x2="7" y2="10" stroke="#e74c3c" stroke-width="2"/>
-          <circle cx="25" cy="18" r="12" fill="none" stroke="#333" stroke-width="2"/>
-          <text x="25" y="23" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="bold" fill="#333">A</text>
-        </svg>
+        <svg width="50" height="36" viewBox="0 0 50 36"><line x1="2" y1="18" x2="13" y2="18" stroke="#e74c3c" stroke-width="2.5"/><line x1="37" y1="18" x2="48" y2="18" stroke="#e74c3c" stroke-width="2.5"/><circle cx="25" cy="18" r="12" fill="none" stroke="#333" stroke-width="2"/><text x="25" y="23" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="bold" fill="#333">A</text></svg>
       </td><td><span class="badge serie">En série</span></td><td>COM et 10A ou mA</td></tr>
     </table>
     <div class="tip" style="margin-top:8px">⚠️ L'ampèremètre doit être branché <strong>en série</strong> — il est traversé par tout le courant.</div>
@@ -186,18 +240,13 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
   <div class="stitle">🔋 La Tension électrique (U)</div>
   <div class="defcard vert">
     <h3>🟢 Tension — U</h3>
-    <p><strong>Définition :</strong> La <span class='def' data-def='Aussi appelée différence de potentiel : c&apos;est la &quot;pression électrique&quot; qui pousse les électrons'>tension</span> (ou <span class='def' data-def='Différence entre le potentiel électrique en deux points du circuit'>différence de potentiel</span>) mesure l'<strong>énergie fournie aux électrons</strong> entre deux points du circuit. C'est ce qui "pousse" le courant.</p>
+    <p><strong>Définition :</strong> La <span class='def' data-def='Différence d&apos;état électrique entre deux points du circuit'>tension</span> (ou <span class='def' data-def='Différence entre le potentiel électrique en deux points du circuit'>différence de potentiel</span>) est la <strong>différence d'état électrique entre deux points du circuit</strong>. C'est elle qui met les électrons en mouvement.</p>
     <div class="formula">U</div>
     <div><span class="unit">Volt · V</span> &nbsp; (sous-multiples : mV)</div>
     <table class="gtable" style="margin-top:12px">
       <tr><th>Appareil</th><th>Schéma</th><th>Branchement</th><th>Bornes</th></tr>
       <tr><td><strong>Voltmètre</strong></td><td style="text-align:center">
-        <svg width="50" height="36" viewBox="0 0 50 36">
-          <circle cx="25" cy="18" r="12" fill="none" stroke="#333" stroke-width="2"/>
-          <text x="25" y="23" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="bold" fill="#333">V</text>
-          <line x1="17" y1="7" x2="17" y2="1" stroke="#e74c3c" stroke-width="2"/>
-          <line x1="33" y1="7" x2="33" y2="1" stroke="#333" stroke-width="2"/>
-        </svg>
+        <svg width="50" height="36" viewBox="0 0 50 36"><circle cx="25" cy="18" r="12" fill="none" stroke="#333" stroke-width="2"/><text x="25" y="23" text-anchor="middle" font-family="Nunito" font-size="11" font-weight="bold" fill="#333">V</text><line x1="17" y1="7" x2="17" y2="1" stroke="#e74c3c" stroke-width="2"/><line x1="33" y1="7" x2="33" y2="1" stroke="#333" stroke-width="2"/></svg>
       </td><td><span class="badge deriv">En dérivation</span></td><td>COM et V</td></tr>
     </table>
     <div class="tip" style="margin-top:8px">⚠️ Le voltmètre se branche <strong>en dérivation</strong> (en parallèle) aux bornes du composant à mesurer.</div>
@@ -212,10 +261,7 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
     <table class="gtable" style="margin-top:12px">
       <tr><th>Appareil</th><th>Schéma</th><th>Branchement</th><th>Bornes</th></tr>
       <tr><td><strong>Ohmmètre</strong></td><td style="text-align:center">
-        <svg width="50" height="36" viewBox="0 0 50 36">
-          <circle cx="25" cy="18" r="12" fill="none" stroke="#333" stroke-width="2"/>
-          <text x="25" y="23" text-anchor="middle" font-family="Nunito" font-size="10" font-weight="bold" fill="#333">Ω</text>
-        </svg>
+        <svg width="50" height="36" viewBox="0 0 50 36"><circle cx="25" cy="18" r="12" fill="none" stroke="#333" stroke-width="2"/><text x="25" y="23" text-anchor="middle" font-family="Nunito" font-size="10" font-weight="bold" fill="#333">Ω</text></svg>
       </td><td><span class="badge deriv">En dérivation</span></td><td>COM et VΩ</td></tr>
     </table>
     <div class="tip" style="margin-top:8px">⚠️ On mesure la résistance <strong>hors circuit</strong> — le composant ne doit pas être alimenté !</div>
@@ -228,34 +274,26 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
     <tr><td>Tension</td><td style="font-family:'Baloo 2';font-size:1.1rem;font-weight:700">U</td><td>Volt</td><td>V</td><td>Voltmètre</td><td><span class="badge deriv">Dérivation</span></td></tr>
     <tr><td>Résistance</td><td style="font-family:'Baloo 2';font-size:1.1rem;font-weight:700">R</td><td>Ohm</td><td>Ω</td><td>Ohmmètre</td><td><span class="badge deriv">Dérivation (hors circuit)</span></td></tr>
   </table>
-
 </div>
 
 <!-- ===================== MULTIMETRE ===================== -->
 <div id="tab-multimetre" class="tab-panel">
-
   <div class="stitle">🔬 Le multimètre</div>
   <p style="margin-bottom:16px;color:#555;">Le multimètre est un appareil qui regroupe <strong>voltmètre + ampèremètre + ohmmètre</strong> en un seul outil. Il mesure en <strong>courant continu (DC ===)</strong>.</p>
 
   <div class="schema-box">
     <svg width="200" height="260" viewBox="0 0 200 260">
-      <!-- Corps -->
       <rect x="20" y="10" width="160" height="200" rx="16" fill="#2a2a2a" stroke="#444" stroke-width="2"/>
-      <!-- Écran -->
       <rect x="40" y="25" width="120" height="45" rx="6" fill="#0d0d0d" stroke="#555"/>
       <text x="100" y="55" text-anchor="middle" font-family="Courier New" font-size="22" fill="#00ff88" font-weight="bold">0.28</text>
-      <!-- Sélecteur fond -->
       <circle cx="100" cy="135" r="42" fill="#1a1a1a" stroke="#555" stroke-width="2"/>
       <circle cx="100" cy="135" r="26" fill="#333" stroke="#666" stroke-width="1.5"/>
-      <!-- Repères sélecteur -->
       <text x="100" y="105" text-anchor="middle" font-family="Arial" font-size="8" fill="#aaa">V---</text>
       <text x="135" y="120" text-anchor="middle" font-family="Arial" font-size="8" fill="#aaa">V~</text>
       <text x="140" y="145" text-anchor="middle" font-family="Arial" font-size="8" fill="#e74c3c">mA</text>
       <text x="60" y="145" text-anchor="middle" font-family="Arial" font-size="8" fill="#aaa">Ω</text>
-      <!-- Aiguille sélecteur -->
       <line x1="100" y1="135" x2="118" y2="122" stroke="#f1c40f" stroke-width="2.5" stroke-linecap="round"/>
       <circle cx="100" cy="135" r="5" fill="#f1c40f"/>
-      <!-- Bornes -->
       <circle cx="55" cy="192" r="9" fill="#222" stroke="#888" stroke-width="2"/>
       <text x="55" y="196" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">V/Ω</text>
       <circle cx="85" cy="192" r="9" fill="#111" stroke="#888" stroke-width="2"/>
@@ -266,7 +304,7 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
       <text x="145" y="196" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">10A</text>
     </svg>
     <div>
-      <div style="color:#aaa;font-size:.85rem;margin-bottom:10px;font-family:'Baloo 2',cursive;color:var(--y)">Parties du multimètre</div>
+      <div style="color:var(--y);font-family:'Baloo 2',cursive;font-size:.9rem;margin-bottom:10px">Parties du multimètre</div>
       <div style="color:#fff;font-size:.88rem;margin-bottom:6px;">🖥️ <strong style="color:var(--y)">Afficheur</strong> : lecture de la mesure</div>
       <div style="color:#fff;font-size:.88rem;margin-bottom:6px;">🎛️ <strong style="color:var(--y)">Sélecteur</strong> : choisir la fonction</div>
       <div style="color:#fff;font-size:.88rem;margin-bottom:6px;">📊 <strong style="color:var(--y)">Calibre</strong> : zone du sélecteur</div>
@@ -275,27 +313,11 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
   </div>
 
   <div class="stitle">📋 Comment utiliser le multimètre</div>
-
-  <div class="step">
-    <div class="step-num">1</div>
-    <div class="step-txt">Mettre le <span class="kw">sélecteur</span> dans la <strong>bonne zone</strong> (V pour tension, A pour intensité, Ω pour résistance). Commencer par le <strong>plus grand calibre</strong>.</div>
-  </div>
-  <div class="step">
-    <div class="step-num">2</div>
-    <div class="step-txt">Brancher les <span class="kw">bornes</span> : toujours <strong>COM</strong> (borne −) et la borne adaptée à la mesure (V/Ω ou mA ou 10A).</div>
-  </div>
-  <div class="step">
-    <div class="step-num">3</div>
-    <div class="step-txt">Adapter le <span class="kw"><span class='def' data-def='Plage de mesure sélectionnée sur le multimètre. Doit toujours être supérieur à la valeur mesurée'>calibre</span></span> pour avoir la valeur la plus <strong>précise</strong>. Le calibre doit être <strong>supérieur à la mesure</strong>. Si l'écran affiche <strong style="color:var(--r)">"1."</strong> → calibre trop petit, diminue !</div>
-  </div>
-  <div class="step">
-    <div class="step-num">4</div>
-    <div class="step-txt">L'<span class="kw">unité</span> est donnée par le calibre : <strong>k = kilo (×1000)</strong> · <strong>M = méga (×1 000 000)</strong> · <strong>m = milli (÷1000)</strong> · <strong>µ = micro (÷1 000 000)</strong></div>
-  </div>
-  <div class="step">
-    <div class="step-num">5</div>
-    <div class="step-txt">Lire et <span class="kw">écrire</span> le résultat avec son unité. Exemple : affichage <strong>0,28</strong> sur calibre <strong>2 mA</strong> → résultat = <strong>0,28 mA</strong></div>
-  </div>
+  <div class="step"><div class="step-num">1</div><div class="step-txt">Mettre le <span class="kw">sélecteur</span> dans la <strong>bonne zone</strong> (V pour tension, A pour intensité, Ω pour résistance). Commencer par le <strong>plus grand calibre</strong>.</div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-txt">Brancher les <span class="kw">bornes</span> : toujours <strong>COM</strong> (borne −) et la borne adaptée (V/Ω ou mA ou 10A).</div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-txt">Adapter le <span class="kw">calibre</span> pour avoir la valeur la plus précise. Le calibre doit être <strong>supérieur à la mesure</strong>. Si l'écran affiche <strong style="color:var(--r)">"1."</strong> → calibre trop petit, augmente !</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-txt">L'<span class="kw">unité</span> est donnée par le calibre : <strong>k = kilo (×1000)</strong> · <strong>m = milli (÷1000)</strong> · <strong>µ = micro (÷1 000 000)</strong></div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-txt">Lire et <span class="kw">écrire</span> le résultat avec son unité. Ex : affichage <strong>0,28</strong> sur calibre <strong>2 mA</strong> → résultat = <strong>0,28 mA</strong></div></div>
 
   <div class="stitle">🔣 Préfixes des unités</div>
   <div class="prefix-grid">
@@ -312,85 +334,48 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
     <p style="margin-top:8px">Exemple sur une ampoule : <strong>230 V – 60 W</strong> → fonctionne correctement sous 230 V et consomme 60 W.</p>
     <p style="margin-top:8px">⚠️ Dépasser ces valeurs peut <strong>détruire l'appareil</strong> ou provoquer un danger !</p>
   </div>
-
 </div>
 
 <!-- ===================== LOI D'OHM ===================== -->
 <div id="tab-ohm" class="tab-panel">
-
   <div class="stitle">📏 La loi d'Ohm</div>
-  <p style="margin-bottom:16px;color:#555;">La loi d'Ohm relie les trois grandeurs électriques : tension, intensité et résistance.</p>
-
   <div class="ohm-formula-box">
     <div class="f">U = R × I</div>
     <div class="desc">Tension (V) = Résistance (Ω) × Intensité (A)</div>
   </div>
-
   <div class="tip"><strong>✨ Moyen mnémotechnique :</strong> Le triangle U·R·I — cache la grandeur cherchée, les deux autres indiquent l'opération !</div>
 
-  <!-- Triangle interactif -->
   <div class="ohm-triangle">
     <div style="text-align:center">
-      <svg width="220" height="190" viewBox="0 0 220 190" id="tri-svg">
-        <!-- Triangle fond -->
+      <svg width="220" height="190" viewBox="0 0 220 190">
         <polygon points="110,10 20,175 200,175" fill="#f0f0f0" stroke="#ccc" stroke-width="2"/>
-        <!-- Barre horizontale milieu -->
         <line x1="20" y1="93" x2="200" y2="93" stroke="#888" stroke-width="2" stroke-dasharray="4,3"/>
-        <!-- Cercles -->
         <circle cx="110" cy="52" r="34" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
         <text x="110" y="60" text-anchor="middle" font-family="Baloo 2" font-size="22" fill="#fff" font-weight="bold">U</text>
         <circle cx="60" cy="148" r="34" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
         <text x="60" y="156" text-anchor="middle" font-family="Baloo 2" font-size="22" fill="#fff" font-weight="bold">I</text>
         <circle cx="160" cy="148" r="34" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
         <text x="160" y="156" text-anchor="middle" font-family="Baloo 2" font-size="22" fill="#fff" font-weight="bold">R</text>
-        <!-- × entre I et R -->
         <text x="110" y="162" text-anchor="middle" font-family="Baloo 2" font-size="16" fill="#666">×</text>
       </svg>
       <div style="font-size:.85rem;color:#888;margin-top:4px">Cache la lettre cherchée avec le doigt !</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;justify-content:center">
-      <div class="ohm-formula-box" style="padding:10px 16px">
-        <div class="f" style="font-size:1.2rem">U = R × I</div>
-        <div class="desc">Je cherche la tension</div>
-      </div>
-      <div class="ohm-formula-box" style="padding:10px 16px">
-        <div class="f" style="font-size:1.2rem">I = U ÷ R</div>
-        <div class="desc">Je cherche l'intensité</div>
-      </div>
-      <div class="ohm-formula-box" style="padding:10px 16px">
-        <div class="f" style="font-size:1.2rem">R = U ÷ I</div>
-        <div class="desc">Je cherche la résistance</div>
-      </div>
+      <div class="ohm-formula-box" style="padding:10px 16px"><div class="f" style="font-size:1.2rem">U = R × I</div><div class="desc">Je cherche la tension</div></div>
+      <div class="ohm-formula-box" style="padding:10px 16px"><div class="f" style="font-size:1.2rem">I = U ÷ R</div><div class="desc">Je cherche l'intensité</div></div>
+      <div class="ohm-formula-box" style="padding:10px 16px"><div class="f" style="font-size:1.2rem">R = U ÷ I</div><div class="desc">Je cherche la résistance</div></div>
     </div>
   </div>
-
-  <div class="stitle">🧮 Exercice guidé</div>
-  <div id="ohm-exo" style="background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.07)">
-    <div id="ohm-q" style="font-weight:700;color:var(--dk);margin-bottom:14px;font-size:1rem"></div>
-    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-      <input id="ohm-in" type="number" placeholder="Ta réponse..." style="border:2px solid #e0e0e0;border-radius:10px;padding:9px 14px;font-size:1rem;font-family:'Nunito';width:160px;">
-      <select id="ohm-unit" style="border:2px solid #e0e0e0;border-radius:10px;padding:9px;font-size:.95rem;font-family:'Nunito'">
-        <option>V</option><option>A</option><option>Ω</option>
-      </select>
-      <button onclick="checkOhm()" style="background:var(--dk);color:var(--y);border:none;border-radius:10px;padding:10px 20px;font-family:'Baloo 2';font-size:1rem;cursor:pointer">Vérifier ✓</button>
-      <button onclick="nextOhm()" style="background:#f0f0f0;color:#555;border:none;border-radius:10px;padding:10px 16px;font-family:'Baloo 2';font-size:.9rem;cursor:pointer">Suivant →</button>
-    </div>
-    <div id="ohm-fb" style="margin-top:12px;display:none;padding:10px;border-radius:10px;font-size:.93rem;"></div>
-  </div>
-
 </div>
 
 <!-- ===================== LOIS DES CIRCUITS ===================== -->
 <div id="tab-lois" class="tab-panel">
-
   <div class="stitle">🔗 Circuit en SÉRIE</div>
-
   <div class="loi-card serie">
     <h4>🔵 Loi d'unicité de l'intensité (série)</h4>
-    <p style="font-size:.93rem;color:#333">En série, l'intensité est la <strong>même</strong> partout dans le circuit. L'ordre des dipôles ne change rien.</p>
+    <p style="font-size:.93rem;color:#333">En série, l'intensité est la <strong>même</strong> partout dans le circuit.</p>
     <div class="math" style="color:#1d4ed8">I₁ = I₂ = I₃ = ... = I</div>
   </div>
-
   <div class="loi-card serie">
     <h4>🔵 Loi des tensions (série)</h4>
     <p style="font-size:.93rem;color:#333">En série, la tension du générateur est égale à la <strong>somme</strong> des tensions aux bornes de chaque dipôle.</p>
@@ -399,124 +384,44 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
 
   <div class="schema-box" style="margin:10px 0">
     <svg width="340" height="160" viewBox="0 0 340 160">
-      <!-- Circuit série -->
+      <defs><marker id="arrowW" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#fff"/></marker></defs>
       <line x1="20" y1="30" x2="320" y2="30" stroke="#3498db" stroke-width="2.5"/>
       <line x1="20" y1="30" x2="20" y2="110" stroke="#3498db" stroke-width="2.5"/>
       <line x1="320" y1="30" x2="320" y2="110" stroke="#3498db" stroke-width="2.5"/>
       <line x1="20" y1="110" x2="85" y2="110" stroke="#3498db" stroke-width="2.5"/>
       <line x1="135" y1="110" x2="185" y2="110" stroke="#3498db" stroke-width="2.5"/>
       <line x1="235" y1="110" x2="320" y2="110" stroke="#3498db" stroke-width="2.5"/>
-      <!-- Pile -->
       <line x1="45" y1="22" x2="45" y2="38" stroke="#f1c40f" stroke-width="3"/>
       <line x1="52" y1="17" x2="52" y2="43" stroke="#f1c40f" stroke-width="2"/>
       <text x="49" y="14" text-anchor="middle" font-size="9" fill="#f1c40f" font-family="Arial">+</text>
-      <!-- Lampe 1 -->
       <circle cx="110" cy="110" r="16" fill="none" stroke="#f1c40f" stroke-width="2"/>
       <line x1="100" y1="100" x2="120" y2="120" stroke="#f1c40f" stroke-width="1.5"/>
       <line x1="120" y1="100" x2="100" y2="120" stroke="#f1c40f" stroke-width="1.5"/>
-      <!-- Lampe 2 -->
       <circle cx="210" cy="110" r="16" fill="none" stroke="#f1c40f" stroke-width="2"/>
       <line x1="200" y1="100" x2="220" y2="120" stroke="#f1c40f" stroke-width="1.5"/>
       <line x1="220" y1="100" x2="200" y2="120" stroke="#f1c40f" stroke-width="1.5"/>
-      <!-- Flèche intensité I sur fil haut -->
       <line x1="160" y1="20" x2="200" y2="20" stroke="#fff" stroke-width="1.5" marker-end="url(#arrowW)"/>
       <text x="174" y="14" text-anchor="middle" font-family="Nunito" font-size="10" fill="#fff" font-weight="bold">I</text>
-      <defs>
-        <marker id="arrowW" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L6,3 z" fill="#fff"/>
-        </marker>
-        <marker id="arrowR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L6,3 z" fill="#e74c3c"/>
-        </marker>
-      </defs>
-      <!-- Accolade U1 sous L1 -->
       <path d="M85,128 Q85,138 110,138 Q135,138 135,128" fill="none" stroke="#e74c3c" stroke-width="1.5"/>
       <text x="110" y="152" text-anchor="middle" font-family="Nunito" font-size="10" fill="#e74c3c" font-weight="bold">U₁</text>
-      <!-- Accolade U2 sous L2 -->
       <path d="M185,128 Q185,138 210,138 Q235,138 235,128" fill="none" stroke="#e74c3c" stroke-width="1.5"/>
       <text x="210" y="152" text-anchor="middle" font-family="Nunito" font-size="10" fill="#e74c3c" font-weight="bold">U₂</text>
-      <!-- Label L1 L2 -->
       <text x="110" y="96" text-anchor="middle" font-family="Nunito" font-size="9" fill="#aaa">L₁</text>
       <text x="210" y="96" text-anchor="middle" font-family="Nunito" font-size="9" fill="#aaa">L₂</text>
     </svg>
-    <div>
-      <div class="schema-lbl">Circuit série</div>
-      <div style="color:#aaa;font-size:.82rem;margin-top:6px">I même partout<br>U = U₁ + U₂</div>
-    </div>
+    <div><div class="schema-lbl">Circuit série</div><div style="color:#aaa;font-size:.82rem;margin-top:6px">I même partout<br>U = U₁ + U₂</div></div>
   </div>
 
   <div class="stitle">🔀 Circuit en DÉRIVATION</div>
-
   <div class="loi-card deriv">
     <h4>🟢 Loi des nœuds (dérivation)</h4>
-    <p style="font-size:.93rem;color:#333">À un <span class='def' data-def='Point du circuit où se rejoignent ou se séparent plusieurs fils électriques'>nœud</span>, la somme des courants entrants est égale à la somme des courants sortants. Le courant <strong>se divise</strong>.</p>
+    <p style="font-size:.93rem;color:#333">À un <span class='def' data-def='Point du circuit où se rejoignent ou se séparent plusieurs fils électriques'>nœud</span>, la somme des courants entrants est égale à la somme des courants sortants.</p>
     <div class="math" style="color:#15803d">I = I₁ + I₂ + I₃ + ...</div>
   </div>
-
   <div class="loi-card deriv">
     <h4>🟢 Loi des tensions (dérivation)</h4>
     <p style="font-size:.93rem;color:#333">En dérivation, la tension est la <strong>même</strong> aux bornes de chaque branche.</p>
     <div class="math" style="color:#15803d">U = U₁ = U₂ = U₃ = ...</div>
-  </div>
-
-  <div class="schema-box" style="margin:10px 0">
-    <svg width="360" height="170" viewBox="0 0 360 170">
-      <defs>
-        <marker id="arrowG" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L6,3 z" fill="#2ecc71"/>
-        </marker>
-        <marker id="arrowO" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L6,3 z" fill="#e67e22"/>
-        </marker>
-      </defs>
-      <!-- Branche principale (haut) -->
-      <line x1="30" y1="20" x2="330" y2="20" stroke="#2ecc71" stroke-width="2.5"/>
-      <!-- Fils verticaux gauche/droit -->
-      <line x1="30" y1="20" x2="30" y2="150" stroke="#2ecc71" stroke-width="2.5"/>
-      <line x1="330" y1="20" x2="330" y2="150" stroke="#2ecc71" stroke-width="2.5"/>
-      <!-- Branche L1 -->
-      <line x1="30" y1="70" x2="90" y2="70" stroke="#2ecc71" stroke-width="2.5"/>
-      <circle cx="120" cy="70" r="16" fill="none" stroke="#f1c40f" stroke-width="2"/>
-      <line x1="110" y1="60" x2="130" y2="80" stroke="#f1c40f" stroke-width="1.5"/>
-      <line x1="130" y1="60" x2="110" y2="80" stroke="#f1c40f" stroke-width="1.5"/>
-      <line x1="136" y1="70" x2="330" y2="70" stroke="#2ecc71" stroke-width="2.5"/>
-      <!-- Branche L2 -->
-      <line x1="30" y1="125" x2="90" y2="125" stroke="#2ecc71" stroke-width="2.5"/>
-      <circle cx="120" cy="125" r="16" fill="none" stroke="#f1c40f" stroke-width="2"/>
-      <line x1="110" y1="115" x2="130" y2="135" stroke="#f1c40f" stroke-width="1.5"/>
-      <line x1="130" y1="115" x2="110" y2="135" stroke="#f1c40f" stroke-width="1.5"/>
-      <line x1="136" y1="125" x2="330" y2="125" stroke="#2ecc71" stroke-width="2.5"/>
-      <!-- Pile -->
-      <line x1="55" y1="12" x2="55" y2="28" stroke="#f1c40f" stroke-width="3"/>
-      <line x1="63" y1="7" x2="63" y2="33" stroke="#f1c40f" stroke-width="2"/>
-      <text x="59" y="6" text-anchor="middle" font-size="9" fill="#f1c40f" font-family="Arial">+</text>
-      <!-- Nœuds -->
-      <circle cx="30" cy="70" r="5" fill="#27ae60"/>
-      <circle cx="30" cy="125" r="5" fill="#27ae60"/>
-      <circle cx="330" cy="70" r="5" fill="#27ae60"/>
-      <circle cx="330" cy="125" r="5" fill="#27ae60"/>
-      <!-- Flèche I₁ sur branche 1 -->
-      <line x1="200" y1="60" x2="230" y2="60" stroke="#e67e22" stroke-width="1.5" marker-end="url(#arrowO)"/>
-      <text x="214" y="55" text-anchor="middle" font-family="Nunito" font-size="10" fill="#e67e22" font-weight="bold">I₁</text>
-      <!-- Flèche I₂ sur branche 2 -->
-      <line x1="200" y1="115" x2="230" y2="115" stroke="#e67e22" stroke-width="1.5" marker-end="url(#arrowO)"/>
-      <text x="214" y="110" text-anchor="middle" font-family="Nunito" font-size="10" fill="#e67e22" font-weight="bold">I₂</text>
-      <!-- Accolade U1 à droite branche 1 -->
-      <path d="M340,54 Q350,54 350,70 Q350,86 340,86" fill="none" stroke="#e74c3c" stroke-width="1.5"/>
-      <text x="358" y="74" text-anchor="start" font-family="Nunito" font-size="10" fill="#e74c3c" font-weight="bold">U₁</text>
-      <!-- Accolade U2 à droite branche 2 -->
-      <path d="M340,109 Q350,109 350,125 Q350,141 340,141" fill="none" stroke="#e74c3c" stroke-width="1.5"/>
-      <text x="358" y="129" text-anchor="start" font-family="Nunito" font-size="10" fill="#e74c3c" font-weight="bold">U₂</text>
-      <!-- Labels N1 N2 L1 L2 -->
-      <text x="18" y="68" text-anchor="end" font-family="Nunito" font-size="9" fill="#2ecc71" font-weight="bold">N1</text>
-      <text x="18" y="123" text-anchor="end" font-family="Nunito" font-size="9" fill="#2ecc71" font-weight="bold">N2</text>
-      <text x="120" y="56" text-anchor="middle" font-family="Nunito" font-size="9" fill="#aaa">L₁</text>
-      <text x="120" y="111" text-anchor="middle" font-family="Nunito" font-size="9" fill="#aaa">L₂</text>
-    </svg>
-    <div>
-      <div class="schema-lbl">Circuit en dérivation</div>
-      <div style="color:#aaa;font-size:.82rem;margin-top:6px">U même dans chaque branche<br>I = I₁ + I₂</div>
-    </div>
   </div>
 
   <div class="stitle">📊 Comparaison série / dérivation</div>
@@ -525,16 +430,13 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
     <tr><td><strong>Intensité</strong></td><td>Même partout : I₁ = I₂</td><td>Se divise : I = I₁ + I₂</td></tr>
     <tr><td><strong>Tension</strong></td><td>Se divise : U = U₁ + U₂</td><td>Même partout : U₁ = U₂</td></tr>
     <tr><td><strong>Si un composant tombe</strong></td><td>Tout s'éteint ❌</td><td>Les autres restent allumés ✅</td></tr>
-    <tr><td><strong>Exemple</strong></td><td>Vieilles guirlandes</td><td>Circuits domestiques, maison</td></tr>
+    <tr><td><strong>Exemple</strong></td><td>Vieilles guirlandes</td><td>Circuits domestiques</td></tr>
   </table>
-
 </div>
 
 <!-- ===================== ENERGIE ===================== -->
 <div id="tab-energie" class="tab-panel">
-
   <div class="stitle">🔋 L'énergie électrique</div>
-
   <div class="defcard orange">
     <h3>⚡ Énergie électrique</h3>
     <p>L'énergie électrique est transférée par le courant électrique. Elle peut être convertie en lumière, chaleur, mouvement...</p>
@@ -552,27 +454,11 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
     <div style="margin-top:8px"><span class="unit">Watt · W</span></div>
   </div>
 
-  <div class="stitle">🔄 Bilan énergétique</div>
-  <div style="background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.07);margin:10px 0">
-    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;justify-content:center">
-      <div style="background:#3498db;color:#fff;border-radius:10px;padding:8px 16px;font-family:'Baloo 2';font-size:.95rem">Source</div>
-      <div style="color:#888;font-size:1.2rem">→</div>
-      <div style="background:#e67e22;color:#fff;border-radius:10px;padding:8px 16px;font-family:'Baloo 2';font-size:.95rem">Convertisseur</div>
-      <div style="color:#888;font-size:.8rem;display:flex;flex-direction:column;gap:4px;align-items:flex-start">
-        <span>→ <span style="background:#2ecc71;color:#fff;border-radius:6px;padding:1px 6px;font-size:.8rem">Énergie utile</span></span>
-        <span>→ <span style="background:#e74c3c;color:#fff;border-radius:6px;padding:1px 6px;font-size:.8rem">Énergie dissipée (chaleur)</span></span>
-      </div>
-    </div>
-    <div style="margin-top:14px;background:#f9f9f9;border-radius:10px;padding:12px;text-align:center;font-family:'Baloo 2';font-size:1rem;color:var(--dk)">
-      Énergie reçue = Énergie utile + Énergie dissipée
-    </div>
-  </div>
-
   <div class="stitle">💧 Analogie hydraulique</div>
   <table class="gtable">
     <tr><th>Électricité</th><th>Hydraulique (eau)</th></tr>
     <tr><td><strong>Intensité I</strong> (débit d'électrons)</td><td>Débit de l'eau (litres/seconde)</td></tr>
-    <tr><td><strong>Tension U</strong> (différence de potentiel)</td><td>Hauteur d'une cascade</td></tr>
+    <tr><td><strong>Tension U</strong> (différence d'état électrique)</td><td>Hauteur d'une cascade</td></tr>
     <tr><td><strong>Résistance R</strong></td><td>Rétrécissement du tuyau</td></tr>
     <tr><td><strong>Générateur</strong></td><td>Pompe à eau</td></tr>
   </table>
@@ -581,12 +467,86 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
   <div class="danger-box">
     <h4>⚡ Les 3 principaux dangers</h4>
     <ul>
-      <li><span class='def' data-def='Intensité anormalement élevée, souvent causée par un court-circuit ou surcharge'><strong>Surintensité</strong></span> : intensité trop élevée → risque d'<strong>incendie</strong> (fusible/disjoncteur pour se protéger)</li>
-      <li><span class='def' data-def='Tension anormalement élevée qui peut détruire les composants électriques'><strong>Surtension</strong></span> : tension trop importante → risque d'<strong>endommager les appareils</strong></li>
-      <li><span class='def' data-def='Le courant emprunte un chemin involontaire (souvent le corps humain) au lieu du circuit normal'><strong>Fuite de courant</strong></span> : un corps crée un circuit supplémentaire → risque d'<strong>électrocution</strong></li>
+      <li><strong>Surintensité</strong> : intensité trop élevée → risque d'<strong>incendie</strong></li>
+      <li><strong>Surtension</strong> : tension trop importante → risque d'<strong>endommager les appareils</strong></li>
+      <li><strong>Fuite de courant</strong> : chemin involontaire → risque d'<strong>électrocution</strong></li>
     </ul>
   </div>
   <div class="tip"><strong>🛡️ Protections :</strong> fusibles, disjoncteurs, prises de terre, interrupteurs différentiels.</div>
+</div>
+
+<!-- ===================== EXERCICES ===================== -->
+<div id="tab-exercices" class="tab-panel">
+
+  <div class="exo-tabs">
+    <button class="exo-tab active" onclick="switchExo('mm',this)">🔬 Lecture multimètre</button>
+    <button class="exo-tab" onclick="switchExo('ohm',this)">📏 Loi d'Ohm</button>
+    <button class="exo-tab" onclick="switchExo('puiss',this)">💡 Puissance</button>
+    <button class="exo-tab" onclick="switchExo('circ',this)">⚖️ Lois des circuits</button>
+  </div>
+
+  <!-- ---- PANE : LECTURE MULTIMETRE ---- -->
+  <div class="exo-pane active" id="exo-mm">
+    <div class="multimeter-widget">
+      <div class="mm-display-area">
+        <div>
+          <div class="mm-body">
+            <div class="mm-screen">
+              <div class="mm-reading" id="mm-reading">---</div>
+              <div class="mm-unit-display" id="mm-unit-disp"></div>
+            </div>
+            <div class="mm-dial-label" id="mm-dial-lbl">Sélecteur : —</div>
+            <div class="mm-bornes">
+              <div class="mm-borne vohmega" id="b-vohm">V/Ω</div>
+              <div class="mm-borne com" id="b-com">COM</div>
+              <div class="mm-borne ma" id="b-ma">mA</div>
+              <div class="mm-borne dixa" id="b-dixa">10A</div>
+            </div>
+          </div>
+          <div class="mm-prog" id="mm-prog" style="text-align:center;margin-top:8px;color:rgba(255,255,255,.4);font-family:'Baloo 2',cursive;font-size:.85rem"></div>
+        </div>
+        <div class="mm-question-area">
+          <div class="mm-q" id="mm-q">Chargement...</div>
+          <div class="mm-context" id="mm-ctx"></div>
+          <div class="mm-choices" id="mm-choices"></div>
+          <div class="mm-fb" id="mm-fb"></div>
+          <div class="mm-nav">
+            <button class="mm-next-btn" id="mm-next" onclick="nextMM()" style="display:none">Question suivante →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---- PANE : LOI D'OHM ---- -->
+  <div class="exo-pane" id="exo-ohm">
+    <div id="ohm-cards-area"></div>
+    <div class="exo-score" id="ohm-score" style="display:none">
+      <div class="exo-score-num" id="ohm-score-num"></div>
+      <div class="exo-score-label">exercices réussis</div>
+      <button class="rbtn" style="margin-top:12px" onclick="initOhm()">🔄 Recommencer</button>
+    </div>
+  </div>
+
+  <!-- ---- PANE : PUISSANCE ---- -->
+  <div class="exo-pane" id="exo-puiss">
+    <div id="puiss-cards-area"></div>
+    <div class="exo-score" id="puiss-score" style="display:none">
+      <div class="exo-score-num" id="puiss-score-num"></div>
+      <div class="exo-score-label">exercices réussis</div>
+      <button class="rbtn" style="margin-top:12px" onclick="initPuiss()">🔄 Recommencer</button>
+    </div>
+  </div>
+
+  <!-- ---- PANE : CIRCUITS ---- -->
+  <div class="exo-pane" id="exo-circ">
+    <div id="circ-cards-area"></div>
+    <div class="exo-score" id="circ-score" style="display:none">
+      <div class="exo-score-num" id="circ-score-num"></div>
+      <div class="exo-score-label">exercices réussis</div>
+      <button class="rbtn" style="margin-top:12px" onclick="initCirc()">🔄 Recommencer</button>
+    </div>
+  </div>
 
 </div>
 
@@ -604,48 +564,502 @@ footer{text-align:center;padding:30px;color:#aaa;font-size:.85rem;}
 <footer>Créé avec ❤️ pour Noah</footer>
 
 <script>
-// TABS
-function sw(id){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+/* ===== TABS ===== */
+function sw(id, btn){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
   document.getElementById('tab-'+id).classList.add('active');
-  event.target.classList.add('active');
+  btn.classList.add('active');
 }
 
-// LOI D'OHM - exercices
-const ohmExos = [
-  {q:'Une résistance de 100 Ω est traversée par un courant de 0,5 A. Quelle est la tension à ses bornes ?', a:50, u:'V', hint:'U = R × I = 100 × 0,5'},
-  {q:'Un dipôle est soumis à une tension de 12 V et une résistance de 4 Ω. Calculer l\'intensité.', a:3, u:'A', hint:'I = U ÷ R = 12 ÷ 4'},
-  {q:'Un ampèremètre indique 2 A et le voltmètre 24 V. Quelle est la résistance du dipôle ?', a:12, u:'Ω', hint:'R = U ÷ I = 24 ÷ 2'},
-  {q:'Tension de 6 V, intensité de 0,3 A. Calculer R.', a:20, u:'Ω', hint:'R = U ÷ I = 6 ÷ 0,3'},
-  {q:'R = 220 Ω, I = 0,1 A. Calculer U.', a:22, u:'V', hint:'U = R × I = 220 × 0,1'},
-];
-let ohmIdx = 0;
-function showOhm(){
-  const e = ohmExos[ohmIdx % ohmExos.length];
-  document.getElementById('ohm-q').textContent = e.q;
-  document.getElementById('ohm-in').value='';
-  document.getElementById('ohm-fb').style.display='none';
-  document.getElementById('ohm-unit').value = e.u;
+function switchExo(id, btn){
+  document.querySelectorAll('.exo-pane').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.exo-tab').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('exo-'+id).classList.add('active');
+  btn.classList.add('active');
 }
-function checkOhm(){
-  const e = ohmExos[ohmIdx % ohmExos.length];
-  const val = parseFloat(document.getElementById('ohm-in').value);
-  const fb = document.getElementById('ohm-fb');
-  fb.style.display='block';
-  if(Math.abs(val - e.a) < 0.01){
-    fb.style.background='#d5f5e3'; fb.style.color='#1a5c36';
-    fb.textContent = '✅ Bravo ! ' + e.a + ' ' + e.u + ' — ' + e.hint;
+
+/* ===========================
+   MULTIMETRE EXERCICES
+   =========================== */
+var mmExos = [
+  {
+    reading:'0.28', dialLabel:'Calibre : 2 mA — Fonction : mA',
+    bornesRouge:'ma', bornesNoir:'com',
+    ctx:'Le sélecteur est sur la zone <strong>mA</strong>, calibre <strong>2 mA</strong>. Les sondes sont branchées sur <strong>COM</strong> (noir) et <strong>mA</strong> (rouge).',
+    q:'Quelle est la valeur mesurée ?',
+    choices:['0,28 A','2,8 mA','0,28 mA','28 mA'],
+    ans:2,
+    exp:'Le calibre est 2 mA, donc l\'unité est le mA. L\'affichage 0,28 donne <strong>0,28 mA</strong>.'
+  },
+  {
+    reading:'12.4', dialLabel:'Calibre : 20 V — Fonction : V (DC)',
+    bornesRouge:'vohm', bornesNoir:'com',
+    ctx:'Le sélecteur est sur la zone <strong>V---</strong>, calibre <strong>20 V</strong>. Sondes sur <strong>COM</strong> et <strong>V/Ω</strong>.',
+    q:'Quelle est la tension mesurée ?',
+    choices:['124 V','1,24 V','12,4 V','12,4 mV'],
+    ans:2,
+    exp:'Calibre 20 V, affichage 12,4 → la tension est <strong>12,4 V</strong>. Le calibre 20 V est bien supérieur à 12,4 V donc c\'est correct.'
+  },
+  {
+    reading:'1.', dialLabel:'Calibre : 2 V — Fonction : V (DC)',
+    bornesRouge:'vohm', bornesNoir:'com',
+    ctx:'Le sélecteur est sur <strong>V---</strong>, calibre <strong>2 V</strong>. L\'écran affiche <strong style="color:#e74c3c">1.</strong>',
+    q:'Que doit faire Noah ?',
+    choices:['Lire 1 V, c\'est correct','Changer les piles du multimètre','Augmenter le calibre (passer à 20 V)','Brancher les sondes différemment'],
+    ans:2,
+    exp:'L\'affichage "1." signifie que la valeur mesurée dépasse le calibre choisi. Il faut <strong>augmenter le calibre</strong> (ex. passer à 20 V).'
+  },
+  {
+    reading:'470', dialLabel:'Calibre : 2 kΩ — Fonction : Ω',
+    bornesRouge:'vohm', bornesNoir:'com',
+    ctx:'Sélecteur sur <strong>Ω</strong>, calibre <strong>2 kΩ</strong>. Les sondes sont branchées sur <strong>COM</strong> et <strong>V/Ω</strong>. Le composant est <strong>hors circuit</strong>.',
+    q:'Quelle est la résistance mesurée ?',
+    choices:['470 Ω','470 kΩ','4,70 kΩ','0,470 MΩ'],
+    ans:0,
+    exp:'Le calibre est 2 kΩ. L\'affichage donne 470. Comme 470 est inférieur à 2000 (= 2 k), la valeur est <strong>470 Ω</strong>. Si le calibre avait été en kΩ, on lirait 0,470 kΩ, ce qui est équivalent.'
+  },
+  {
+    reading:'3.52', dialLabel:'Calibre : 20 V — Fonction : V (DC)',
+    bornesRouge:'vohm', bornesNoir:'com',
+    ctx:'Sélecteur sur <strong>V---</strong>, calibre <strong>20 V</strong>. On mesure la tension aux bornes d\'une pile.',
+    q:'Le calibre 20 V est-il adapté ? Quel calibre plus précis aurait-on pu choisir ?',
+    choices:['Non, il faut le calibre 200 V','Oui, 20 V est correct, mais 5 V serait plus précis','Non, on devrait passer en mA','Le calibre 2 V serait plus précis'],
+    ans:3,
+    exp:'La mesure est 3,52 V. Le calibre 20 V fonctionne (3,52 < 20), mais le calibre <strong>5 V</strong> ou <strong>4 V</strong> (selon le multimètre) donnerait plus de décimales et serait plus précis. Le calibre 2 V serait trop petit (3,52 > 2).'
+  },
+  {
+    reading:'052', dialLabel:'Calibre : 200 mA — Fonction : mA',
+    bornesRouge:'ma', bornesNoir:'com',
+    ctx:'Sélecteur sur <strong>mA</strong>, calibre <strong>200 mA</strong>. Sondes sur <strong>COM</strong> et <strong>mA</strong>.',
+    q:'Quelle est l\'intensité mesurée ? Comment la convertir en ampères ?',
+    choices:['52 A','5,2 mA','52 mA = 0,052 A','520 mA'],
+    ans:2,
+    exp:'Affichage 052 sur calibre 200 mA → <strong>52 mA</strong>. Pour convertir : 52 mA ÷ 1000 = <strong>0,052 A</strong>.'
+  },
+  {
+    reading:'1.8', dialLabel:'Calibre : 2 kΩ — Fonction : Ω',
+    bornesRouge:'vohm', bornesNoir:'com',
+    ctx:'Sélecteur sur <strong>Ω</strong>, calibre <strong>2 kΩ</strong>. Mesure d\'une résistance hors circuit.',
+    q:'Quelle est la résistance ? Exprime-la en Ω.',
+    choices:['1,8 Ω','180 Ω','1 800 Ω','18 000 Ω'],
+    ans:2,
+    exp:'Calibre 2 kΩ, affichage 1,8 → <strong>1,8 kΩ</strong> = 1,8 × 1000 = <strong>1 800 Ω</strong>.'
+  },
+  {
+    reading:'0.00', dialLabel:'Calibre : 2 mA — Fonction : mA',
+    bornesRouge:'ma', bornesNoir:'com',
+    ctx:'Le circuit est branché, sélecteur sur mA, calibre 2 mA. L\'écran affiche <strong>0,00</strong>.',
+    q:'Quelle est la cause la plus probable ?',
+    choices:['La valeur est exactement 0 mA, tout va bien','Le circuit est ouvert (fil coupé ou interrupteur ouvert)','Le multimètre est cassé','Il faut augmenter le calibre'],
+    ans:1,
+    exp:'Un affichage de 0,00 sur le calibre le plus bas signifie qu\'aucun courant ne circule. La cause la plus probable est un <strong>circuit ouvert</strong> (interrupteur ouvert, fil débranché...).'
+  }
+];
+
+var mmIdx = 0;
+var mmAnswered = false;
+
+function renderMM(){
+  var exo = mmExos[mmIdx];
+  document.getElementById('mm-reading').textContent = exo.reading;
+  document.getElementById('mm-unit-disp').textContent = '';
+  document.getElementById('mm-dial-lbl').textContent = exo.dialLabel;
+  document.getElementById('mm-prog').textContent = (mmIdx+1) + ' / ' + mmExos.length;
+
+  // Bornes
+  ['b-vohm','b-com','b-ma','b-dixa'].forEach(function(id){
+    document.getElementById(id).className = document.getElementById(id).className
+      .replace(' active-red','').replace(' active-black','');
+  });
+  var borneRedMap = {vohm:'b-vohm', com:'b-com', ma:'b-ma', dixa:'b-dixa'};
+  if(exo.bornesRouge && borneRedMap[exo.bornesRouge]){
+    document.getElementById(borneRedMap[exo.bornesRouge]).className += ' active-red';
+  }
+  if(exo.bornesNoir && borneRedMap[exo.bornesNoir]){
+    document.getElementById(borneRedMap[exo.bornesNoir]).className += ' active-black';
+  }
+
+  document.getElementById('mm-q').textContent = exo.q;
+  document.getElementById('mm-ctx').innerHTML = exo.ctx;
+
+  var choicesDiv = document.getElementById('mm-choices');
+  choicesDiv.innerHTML = '';
+  exo.choices.forEach(function(c, i){
+    var btn = document.createElement('button');
+    btn.className = 'mm-choice';
+    btn.textContent = c;
+    btn.onclick = function(){ answerMM(i); };
+    choicesDiv.appendChild(btn);
+  });
+
+  document.getElementById('mm-fb').style.display = 'none';
+  document.getElementById('mm-fb').className = 'mm-fb';
+  document.getElementById('mm-next').style.display = 'none';
+  mmAnswered = false;
+}
+
+function answerMM(idx){
+  if(mmAnswered) return;
+  mmAnswered = true;
+  var exo = mmExos[mmIdx];
+  var btns = document.querySelectorAll('.mm-choice');
+  btns[idx].classList.add(idx === exo.ans ? 'correct' : 'wrong');
+  btns[exo.ans].classList.add('correct');
+  btns.forEach(function(b){ b.onclick = null; });
+  var fb = document.getElementById('mm-fb');
+  fb.className = 'mm-fb ' + (idx === exo.ans ? 'ok' : 'ko');
+  fb.innerHTML = (idx === exo.ans ? '✅ ' : '❌ ') + exo.exp;
+  document.getElementById('mm-next').style.display = 'inline-block';
+}
+
+function nextMM(){
+  mmIdx++;
+  if(mmIdx >= mmExos.length) mmIdx = 0;
+  renderMM();
+}
+
+renderMM();
+
+/* ===========================
+   CALCUL — LOI D'OHM
+   =========================== */
+var ohmExos = [
+  {badge:'Trouver U', txt:'Une résistance de <strong>100 Ω</strong> est traversée par un courant de <strong>0,5 A</strong>. Quelle est la tension à ses bornes ?', given:'R = 100 Ω &nbsp;·&nbsp; I = 0,5 A', formula:'U = R × I', calc:'100 × 0,5', ans:50, unit:'V', tol:0.1},
+  {badge:'Trouver I', txt:'Un dipôle est soumis à une tension de <strong>12 V</strong> et présente une résistance de <strong>4 Ω</strong>. Calculer l\'intensité.', given:'U = 12 V &nbsp;·&nbsp; R = 4 Ω', formula:'I = U ÷ R', calc:'12 ÷ 4', ans:3, unit:'A', tol:0.05},
+  {badge:'Trouver R', txt:'Un ampèremètre indique <strong>2 A</strong> et un voltmètre <strong>24 V</strong>. Quelle est la résistance du dipôle ?', given:'I = 2 A &nbsp;·&nbsp; U = 24 V', formula:'R = U ÷ I', calc:'24 ÷ 2', ans:12, unit:'Ω', tol:0.1},
+  {badge:'Trouver R', txt:'Un composant est soumis à <strong>6 V</strong> et traverse par <strong>0,3 A</strong>. Calculer sa résistance.', given:'U = 6 V &nbsp;·&nbsp; I = 0,3 A', formula:'R = U ÷ I', calc:'6 ÷ 0,3', ans:20, unit:'Ω', tol:0.1},
+  {badge:'Trouver U', txt:'Une résistance de <strong>220 Ω</strong> est traversée par <strong>0,1 A</strong>. Calculer la tension.', given:'R = 220 Ω &nbsp;·&nbsp; I = 0,1 A', formula:'U = R × I', calc:'220 × 0,1', ans:22, unit:'V', tol:0.1},
+  {badge:'Trouver I', txt:'Une lampe de résistance <strong>60 Ω</strong> est branchée sous <strong>240 V</strong>. Quel courant la traverse ?', given:'R = 60 Ω &nbsp;·&nbsp; U = 240 V', formula:'I = U ÷ R', calc:'240 ÷ 60', ans:4, unit:'A', tol:0.05},
+  {badge:'Trouver U', txt:'Un capteur de résistance <strong>1 000 Ω</strong> (1 kΩ) est traversé par <strong>5 mA</strong> (0,005 A). Calculer la tension.', given:'R = 1000 Ω &nbsp;·&nbsp; I = 0,005 A', formula:'U = R × I', calc:'1000 × 0,005', ans:5, unit:'V', tol:0.05},
+  {badge:'Trouver R', txt:'Un moteur fonctionne sous <strong>9 V</strong> avec un courant de <strong>0,6 A</strong>. Quelle est sa résistance ?', given:'U = 9 V &nbsp;·&nbsp; I = 0,6 A', formula:'R = U ÷ I', calc:'9 ÷ 0,6', ans:15, unit:'Ω', tol:0.1}
+];
+
+var ohmScores = {};
+
+function initOhm(){
+  ohmScores = {};
+  var area = document.getElementById('ohm-cards-area');
+  area.innerHTML = '';
+  document.getElementById('ohm-score').style.display = 'none';
+  ohmExos.forEach(function(exo, i){
+    ohmScores[i] = null;
+    var card = document.createElement('div');
+    card.className = 'calc-card ohm-card';
+    card.id = 'ohm-card-' + i;
+    card.innerHTML = '<span class="calc-badge ohm">' + exo.badge + '</span>' +
+      '<div class="calc-q-txt">' + exo.txt + '</div>' +
+      '<div class="calc-given">📋 Données : <span>' + exo.given + '</span></div>' +
+      '<div class="calc-input-row">' +
+        '<span style="font-family:\'Baloo 2\';color:#1e40af;font-size:.95rem">Réponse :</span>' +
+        '<input class="calc-input" type="number" id="ohm-in-' + i + '" placeholder="...">' +
+        '<span style="font-family:\'Baloo 2\';font-weight:700;color:#555">' + exo.unit + '</span>' +
+        '<button class="calc-verify" onclick="checkCalc(\'ohm\',' + i + ')">Vérifier ✓</button>' +
+      '</div>' +
+      '<div class="calc-fb" id="ohm-fb-' + i + '"></div>' +
+      '<div class="calc-solution" id="ohm-sol-' + i + '"><strong>Correction :</strong> ' + exo.formula + ' = ' + exo.calc + ' = <strong>' + exo.ans + ' ' + exo.unit + '</strong></div>' +
+      '<button class="show-sol-btn" onclick="toggleSol(\'ohm\',' + i + ')">Voir la correction</button>';
+    area.appendChild(card);
+  });
+}
+
+function toggleSol(type, i){
+  var sol = document.getElementById(type + '-sol-' + i);
+  sol.classList.toggle('show');
+}
+
+function checkCalc(type, i){
+  var exos = type === 'ohm' ? ohmExos : type === 'puiss' ? puissExos : circExos;
+  var exo = exos[i];
+  var input = document.getElementById(type + '-in-' + i);
+  var val = parseFloat(input.value);
+  var fb = document.getElementById(type + '-fb-' + i);
+  if(isNaN(val)){ fb.style.display='block'; fb.className='calc-fb ko'; fb.textContent='❌ Entre une valeur numérique.'; return; }
+  var ok = Math.abs(val - exo.ans) <= (exo.tol || 0.05);
+  fb.style.display = 'block';
+  fb.className = 'calc-fb ' + (ok ? 'ok' : 'ko');
+  if(ok){
+    fb.innerHTML = '✅ Bravo ! ' + exo.ans + ' ' + exo.unit + ' — ' + exo.formula + ' = ' + exo.calc;
+    input.style.borderColor = '#2ecc71';
+    if(type === 'ohm') ohmScores[i] = true;
+    else if(type === 'puiss') puissScores[i] = true;
+    else circScores[i] = true;
   } else {
-    fb.style.background='#fde8e8'; fb.style.color='#922b21';
-    fb.textContent = '❌ Pas tout à fait... Indice : ' + e.hint + ' = ' + e.a + ' ' + e.u;
+    fb.innerHTML = '❌ Pas tout à fait. Indice : ' + exo.formula;
+    input.style.borderColor = '#e74c3c';
+    if(type === 'ohm') ohmScores[i] = ohmScores[i] === null ? false : ohmScores[i];
+    else if(type === 'puiss') puissScores[i] = puissScores[i] === null ? false : puissScores[i];
+    else circScores[i] = circScores[i] === null ? false : circScores[i];
+  }
+  checkAllDone(type, exos);
+}
+
+function checkAllDone(type, exos){
+  var scores = type === 'ohm' ? ohmScores : type === 'puiss' ? puissScores : circScores;
+  var allDone = true;
+  var correct = 0;
+  for(var k in scores){
+    if(scores[k] === null){ allDone = false; }
+    else if(scores[k] === true){ correct++; }
+  }
+  if(allDone){
+    var scoreEl = document.getElementById(type + '-score');
+    scoreEl.style.display = 'block';
+    document.getElementById(type + '-score-num').textContent = correct + ' / ' + exos.length;
+    scoreEl.scrollIntoView({behavior:'smooth'});
   }
 }
-function nextOhm(){ ohmIdx++; showOhm(); }
-showOhm();
 
-// QUIZ
-const questions = [
+/* ===========================
+   CALCUL — PUISSANCE & ENERGIE
+   =========================== */
+var puissExos = [
+  {badge:'Trouver P', txt:'Un fer à repasser fonctionne sous <strong>230 V</strong> avec un courant de <strong>8 A</strong>. Quelle est sa puissance ?', given:'U = 230 V &nbsp;·&nbsp; I = 8 A', formula:'P = U × I', calc:'230 × 8', ans:1840, unit:'W', tol:1},
+  {badge:'Trouver I', txt:'Une ampoule LED affiche une puissance de <strong>9 W</strong> sous <strong>230 V</strong>. Quel courant la traverse ?', given:'P = 9 W &nbsp;·&nbsp; U = 230 V', formula:'I = P ÷ U', calc:'9 ÷ 230', ans:0.039, unit:'A', tol:0.003},
+  {badge:'Trouver U', txt:'Un chargeur de téléphone délivre <strong>15 W</strong> avec un courant de <strong>3 A</strong>. Quelle est sa tension de sortie ?', given:'P = 15 W &nbsp;·&nbsp; I = 3 A', formula:'U = P ÷ I', calc:'15 ÷ 3', ans:5, unit:'V', tol:0.1},
+  {badge:'Trouver E', txt:'Un radiateur électrique de <strong>2 000 W</strong> fonctionne pendant <strong>3 heures</strong> (10 800 s). Calculer l\'énergie consommée en joules.', given:'P = 2000 W &nbsp;·&nbsp; t = 10 800 s', formula:'E = P × t', calc:'2000 × 10800', ans:21600000, unit:'J', tol:10000},
+  {badge:'Trouver P', txt:'Un ventilateur fonctionne sous <strong>12 V</strong> avec un courant de <strong>0,5 A</strong>. Quelle est sa puissance ?', given:'U = 12 V &nbsp;·&nbsp; I = 0,5 A', formula:'P = U × I', calc:'12 × 0,5', ans:6, unit:'W', tol:0.1},
+  {badge:'Trouver E', txt:'Un téléviseur de <strong>120 W</strong> est allumé <strong>2 heures</strong> (7 200 s). Calculer l\'énergie consommée.', given:'P = 120 W &nbsp;·&nbsp; t = 7200 s', formula:'E = P × t', calc:'120 × 7200', ans:864000, unit:'J', tol:1000},
+  {badge:'Trouver I', txt:'Un grille-pain de <strong>800 W</strong> branché sur <strong>230 V</strong>. Quel est le courant absorbé ?', given:'P = 800 W &nbsp;·&nbsp; U = 230 V', formula:'I = P ÷ U', calc:'800 ÷ 230', ans:3.48, unit:'A', tol:0.05},
+  {badge:'Trouver P', txt:'Une pile de <strong>9 V</strong> alimente un circuit avec <strong>200 mA</strong> (0,2 A). Quelle puissance fournit-elle ?', given:'U = 9 V &nbsp;·&nbsp; I = 0,2 A', formula:'P = U × I', calc:'9 × 0,2', ans:1.8, unit:'W', tol:0.05}
+];
+
+var puissScores = {};
+
+function initPuiss(){
+  puissScores = {};
+  var area = document.getElementById('puiss-cards-area');
+  area.innerHTML = '';
+  document.getElementById('puiss-score').style.display = 'none';
+  puissExos.forEach(function(exo, i){
+    puissScores[i] = null;
+    var card = document.createElement('div');
+    card.className = 'calc-card puiss-card';
+    card.id = 'puiss-card-' + i;
+    card.innerHTML = '<span class="calc-badge puiss">' + exo.badge + '</span>' +
+      '<div class="calc-q-txt">' + exo.txt + '</div>' +
+      '<div class="calc-given">📋 Données : <span>' + exo.given + '</span></div>' +
+      '<div class="calc-input-row">' +
+        '<span style="font-family:\'Baloo 2\';color:#92400e;font-size:.95rem">Réponse :</span>' +
+        '<input class="calc-input" type="number" id="puiss-in-' + i + '" placeholder="...">' +
+        '<span style="font-family:\'Baloo 2\';font-weight:700;color:#555">' + exo.unit + '</span>' +
+        '<button class="calc-verify" onclick="checkCalc(\'puiss\',' + i + ')">Vérifier ✓</button>' +
+      '</div>' +
+      '<div class="calc-fb" id="puiss-fb-' + i + '"></div>' +
+      '<div class="calc-solution" id="puiss-sol-' + i + '"><strong>Correction :</strong> ' + exo.formula + ' = ' + exo.calc + ' = <strong>' + exo.ans + ' ' + exo.unit + '</strong></div>' +
+      '<button class="show-sol-btn" onclick="toggleSol(\'puiss\',' + i + ')">Voir la correction</button>';
+    area.appendChild(card);
+  });
+}
+
+/* ===========================
+   CALCUL — LOIS DES CIRCUITS
+   =========================== */
+
+/* --- SVGs des schémas --- */
+/* Schéma série générique : pile + 2 dipôles, avec étiquettes paramétrables */
+function svgSerie(opts){
+  /* opts : { gen, l1, l2, iLabel, u1Label, u2Label, uGenLabel, arrowI } */
+  var W=320, H=148;
+  var wireCol = '#3b82f6';
+  var labelCol = '#1d4ed8';
+  var u1 = opts.u1Label || 'U\u2081';
+  var u2 = opts.u2Label || 'U\u2082';
+  var uG = opts.uGenLabel || 'U';
+  var l1 = opts.l1 || 'L\u2081';
+  var l2 = opts.l2 || 'L\u2082';
+  var iL = opts.iLabel || 'I';
+  var showUgen = opts.showUgen ? true : false;
+
+  var s = '<svg width="100%" viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="max-width:320px;display:block;margin:0 auto">';
+  s += '<defs><marker id="aw1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="'+wireCol+'"/></marker></defs>';
+  /* Fils */
+  s += '<line x1="20" y1="24" x2="300" y2="24" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<line x1="20" y1="24" x2="20" y2="104" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<line x1="300" y1="24" x2="300" y2="104" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<line x1="20" y1="104" x2="72" y2="104" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<line x1="122" y1="104" x2="178" y2="104" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<line x1="228" y1="104" x2="300" y2="104" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  /* Pile */
+  s += '<line x1="44" y1="16" x2="44" y2="32" stroke="#f1c40f" stroke-width="3"/>';
+  s += '<line x1="52" y1="11" x2="52" y2="37" stroke="#f1c40f" stroke-width="2"/>';
+  s += '<text x="56" y="10" font-family="Baloo 2" font-size="9" fill="#f1c40f">+</text>';
+  if(opts.genLabel){ s += '<text x="34" y="52" font-family="Baloo 2" font-size="9" fill="#f1c40f" text-anchor="middle">'+opts.genLabel+'</text>'; }
+  /* Dipôle 1 */
+  s += '<circle cx="97" cy="104" r="16" fill="none" stroke="#f1c40f" stroke-width="2"/>';
+  s += '<line x1="87" y1="94" x2="107" y2="114" stroke="#f1c40f" stroke-width="1.5"/>';
+  s += '<line x1="107" y1="94" x2="87" y2="114" stroke="#f1c40f" stroke-width="1.5"/>';
+  s += '<text x="97" y="90" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#555">'+l1+'</text>';
+  /* Dipôle 2 */
+  s += '<circle cx="203" cy="104" r="16" fill="none" stroke="#f1c40f" stroke-width="2"/>';
+  s += '<line x1="193" y1="94" x2="213" y2="114" stroke="#f1c40f" stroke-width="1.5"/>';
+  s += '<line x1="213" y1="94" x2="193" y2="114" stroke="#f1c40f" stroke-width="1.5"/>';
+  s += '<text x="203" y="90" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#555">'+l2+'</text>';
+  /* Flèche I sur fil haut */
+  s += '<line x1="155" y1="14" x2="190" y2="14" stroke="'+wireCol+'" stroke-width="1.5" marker-end="url(#aw1)"/>';
+  s += '<text x="166" y="10" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="'+labelCol+'" font-weight="bold">'+iL+'</text>';
+  /* Accolades tensions */
+  s += '<path d="M72,120 Q72,132 97,132 Q122,132 122,120" fill="none" stroke="#e74c3c" stroke-width="1.5"/>';
+  s += '<text x="97" y="144" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#e74c3c" font-weight="bold">'+u1+'</text>';
+  s += '<path d="M178,120 Q178,132 203,132 Q228,132 228,120" fill="none" stroke="#e74c3c" stroke-width="1.5"/>';
+  s += '<text x="203" y="144" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#e74c3c" font-weight="bold">'+u2+'</text>';
+  if(showUgen){
+    s += '<path d="M20,138 Q20,148 160,148 Q300,148 300,138" fill="none" stroke="#9b59b6" stroke-width="1.5" stroke-dasharray="3,2"/>';
+    s += '<text x="160" y="148" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#9b59b6" font-weight="bold" dy="-2">'+uG+'</text>';
+  }
+  s += '</svg>';
+  return s;
+}
+
+/* Schéma dérivation générique */
+function svgDeriv(opts){
+  var W=340, H=160;
+  var wireCol = '#22c55e';
+  var labelCol = '#15803d';
+  var u1 = opts.u1Label || 'U\u2081';
+  var u2 = opts.u2Label || 'U\u2082';
+  var l1 = opts.l1 || 'L\u2081';
+  var l2 = opts.l2 || 'L\u2082';
+  var i1L = opts.i1Label || 'I\u2081';
+  var i2L = opts.i2Label || 'I\u2082';
+  var iL  = opts.iLabel  || 'I';
+
+  var s = '<svg width="100%" viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" style="max-width:340px;display:block;margin:0 auto">';
+  s += '<defs><marker id="aw2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#e67e22"/></marker>';
+  s += '<marker id="aw3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="'+wireCol+'"/></marker></defs>';
+  /* Fils principaux */
+  s += '<line x1="28" y1="18" x2="312" y2="18" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<line x1="28" y1="18" x2="28" y2="142" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<line x1="312" y1="18" x2="312" y2="142" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  /* Branche 1 */
+  s += '<line x1="28" y1="62" x2="86" y2="62" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<circle cx="114" cy="62" r="15" fill="none" stroke="#f1c40f" stroke-width="2"/>';
+  s += '<line x1="104" y1="52" x2="124" y2="72" stroke="#f1c40f" stroke-width="1.5"/>';
+  s += '<line x1="124" y1="52" x2="104" y2="72" stroke="#f1c40f" stroke-width="1.5"/>';
+  s += '<line x1="129" y1="62" x2="312" y2="62" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<text x="114" y="48" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#555">'+l1+'</text>';
+  /* Branche 2 */
+  s += '<line x1="28" y1="118" x2="86" y2="118" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<circle cx="114" cy="118" r="15" fill="none" stroke="#f1c40f" stroke-width="2"/>';
+  s += '<line x1="104" y1="108" x2="124" y2="128" stroke="#f1c40f" stroke-width="1.5"/>';
+  s += '<line x1="124" y1="108" x2="104" y2="128" stroke="#f1c40f" stroke-width="1.5"/>';
+  s += '<line x1="129" y1="118" x2="312" y2="118" stroke="'+wireCol+'" stroke-width="2.2"/>';
+  s += '<text x="114" y="104" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#555">'+l2+'</text>';
+  /* Pile */
+  s += '<line x1="52" y1="10" x2="52" y2="26" stroke="#f1c40f" stroke-width="3"/>';
+  s += '<line x1="60" y1="5" x2="60" y2="31" stroke="#f1c40f" stroke-width="2"/>';
+  s += '<text x="64" y="5" font-family="Baloo 2" font-size="9" fill="#f1c40f">+</text>';
+  /* Noeuds */
+  s += '<circle cx="28" cy="62" r="5" fill="#16a34a"/>';
+  s += '<circle cx="28" cy="118" r="5" fill="#16a34a"/>';
+  s += '<circle cx="312" cy="62" r="5" fill="#16a34a"/>';
+  s += '<circle cx="312" cy="118" r="5" fill="#16a34a"/>';
+  /* Flèche I principale */
+  s += '<line x1="165" y1="8" x2="200" y2="8" stroke="'+wireCol+'" stroke-width="1.5" marker-end="url(#aw3)"/>';
+  s += '<text x="180" y="5" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="'+labelCol+'" font-weight="bold">'+iL+'</text>';
+  /* Flèche I1 branche 1 */
+  s += '<line x1="200" y1="52" x2="230" y2="52" stroke="#e67e22" stroke-width="1.5" marker-end="url(#aw2)"/>';
+  s += '<text x="213" y="48" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#e67e22" font-weight="bold">'+i1L+'</text>';
+  /* Flèche I2 branche 2 */
+  s += '<line x1="200" y1="108" x2="230" y2="108" stroke="#e67e22" stroke-width="1.5" marker-end="url(#aw2)"/>';
+  s += '<text x="213" y="104" text-anchor="middle" font-family="Baloo 2" font-size="10" fill="#e67e22" font-weight="bold">'+i2L+'</text>';
+  /* Accolades tensions droite */
+  s += '<path d="M320,48 Q330,48 330,62 Q330,76 320,76" fill="none" stroke="#e74c3c" stroke-width="1.5"/>';
+  s += '<text x="336" y="66" font-family="Baloo 2" font-size="10" fill="#e74c3c" font-weight="bold">'+u1+'</text>';
+  s += '<path d="M320,104 Q330,104 330,118 Q330,132 320,132" fill="none" stroke="#e74c3c" stroke-width="1.5"/>';
+  s += '<text x="336" y="122" font-family="Baloo 2" font-size="10" fill="#e74c3c" font-weight="bold">'+u2+'</text>';
+  s += '</svg>';
+  return s;
+}
+
+var circExos = [
+  { badge:'Circuit série', cardClass:'serie-card', badgeClass:'serie',
+    txt:'Dans un circuit série, on mesure <strong>U₁ = 3 V</strong> aux bornes de L₁ et <strong>U₂ = 5 V</strong> aux bornes de L₂. Quelle est la tension totale du générateur ?',
+    given:'U₁ = 3 V &nbsp;·&nbsp; U₂ = 5 V', formula:'U = U₁ + U₂', calc:'3 + 5', ans:8, unit:'V', tol:0.05,
+    svg: svgSerie({u1Label:'3 V', u2Label:'5 V', iLabel:'I', showUgen:true, uGenLabel:'U = ?'})
+  },
+  { badge:'Circuit série', cardClass:'serie-card', badgeClass:'serie',
+    txt:'Un générateur de <strong>12 V</strong> alimente deux résistances en série. On mesure <strong>U₁ = 4 V</strong> aux bornes de R₁. Quelle est la tension <strong>U₂</strong> aux bornes de R₂ ?',
+    given:'U = 12 V &nbsp;·&nbsp; U₁ = 4 V', formula:'U₂ = U - U₁', calc:'12 - 4', ans:8, unit:'V', tol:0.05,
+    svg: svgSerie({l1:'R\u2081', l2:'R\u2082', u1Label:'4 V', u2Label:'U\u2082 = ?', iLabel:'I', showUgen:true, uGenLabel:'12 V'})
+  },
+  { badge:'Circuit série', cardClass:'serie-card', badgeClass:'serie',
+    txt:'Dans un circuit série, l\'ampèremètre A₁ indique <strong>I = 250 mA</strong>. Quelle est l\'intensité en tous les autres points du circuit ?',
+    given:'I mesuré = 250 mA (circuit série)', formula:'I₁ = I₂ = I', calc:'250', ans:250, unit:'mA', tol:1,
+    svg: svgSerie({l1:'L\u2081', l2:'L\u2082', u1Label:'U\u2081', u2Label:'U\u2082', iLabel:'250 mA'})
+  },
+  { badge:'Circuit dérivation', cardClass:'deriv-card', badgeClass:'deriv',
+    txt:'Dans un circuit en dérivation, le courant principal est <strong>I = 1,2 A</strong>. La branche L₁ reçoit <strong>I₁ = 0,5 A</strong>. Quel est le courant <strong>I₂</strong> dans la branche L₂ ?',
+    given:'I = 1,2 A &nbsp;·&nbsp; I₁ = 0,5 A', formula:'I₂ = I - I₁', calc:'1,2 - 0,5', ans:0.7, unit:'A', tol:0.05,
+    svg: svgDeriv({iLabel:'1,2 A', i1Label:'0,5 A', i2Label:'I\u2082 = ?', u1Label:'U\u2081', u2Label:'U\u2082'})
+  },
+  { badge:'Circuit dérivation', cardClass:'deriv-card', badgeClass:'deriv',
+    txt:'Dans un circuit en dérivation, la tension du générateur est <strong>U = 9 V</strong>. Quelle est la tension aux bornes de chaque branche ?',
+    given:'U générateur = 9 V', formula:'U₁ = U₂ = U', calc:'9', ans:9, unit:'V', tol:0.05,
+    svg: svgDeriv({iLabel:'I', i1Label:'I\u2081', i2Label:'I\u2082', u1Label:'U\u2081 = ?', u2Label:'U\u2082 = ?'})
+  },
+  { badge:'Circuit dérivation', cardClass:'deriv-card', badgeClass:'deriv',
+    txt:'Dans un circuit en dérivation, la branche L₁ reçoit <strong>I₁ = 0,3 A</strong> et la branche L₂ reçoit <strong>I₂ = 0,4 A</strong>. Quelle est l\'intensité totale fournie par le générateur ?',
+    given:'I₁ = 0,3 A &nbsp;·&nbsp; I₂ = 0,4 A', formula:'I = I₁ + I₂', calc:'0,3 + 0,4', ans:0.7, unit:'A', tol:0.05,
+    svg: svgDeriv({iLabel:'I = ?', i1Label:'0,3 A', i2Label:'0,4 A', u1Label:'U\u2081', u2Label:'U\u2082'})
+  },
+  { badge:'Mixte Ohm + circuit', cardClass:'ohm-card', badgeClass:'ohm',
+    txt:'Dans un circuit série, R₁ = 20 Ω et R₂ = 30 Ω sont traversées par <strong>I = 0,4 A</strong>. Calcule U₁ puis U₂, puis la tension totale <strong>U</strong>.',
+    given:'R₁ = 20 Ω &nbsp;·&nbsp; R₂ = 30 Ω &nbsp;·&nbsp; I = 0,4 A', formula:'U = (R₁+R₂) × I', calc:'50 × 0,4', ans:20, unit:'V', tol:0.1,
+    svg: svgSerie({l1:'R\u2081\n20\u03a9', l2:'R\u2082\n30\u03a9', u1Label:'U\u2081', u2Label:'U\u2082', iLabel:'0,4 A', showUgen:true, uGenLabel:'U = ?'})
+  },
+  { badge:'Mixte Ohm + circuit', cardClass:'deriv-card', badgeClass:'deriv',
+    txt:'Dans un circuit en dérivation alimenté par <strong>U = 6 V</strong>, R₁ = 12 Ω et R₂ = 6 Ω. Calcule l\'intensité totale fournie par le générateur (I₁ + I₂).',
+    given:'U = 6 V &nbsp;·&nbsp; R₁ = 12 Ω &nbsp;·&nbsp; R₂ = 6 Ω', formula:'I = U/R₁ + U/R₂', calc:'0,5 + 1', ans:1.5, unit:'A', tol:0.05,
+    svg: svgDeriv({l1:'R\u2081 12\u03a9', l2:'R\u2082 6\u03a9', iLabel:'I = ?', i1Label:'I\u2081', i2Label:'I\u2082', u1Label:'6 V', u2Label:'6 V'})
+  }
+];
+
+var circScores = {};
+
+function initCirc(){
+  circScores = {};
+  var area = document.getElementById('circ-cards-area');
+  area.innerHTML = '';
+  document.getElementById('circ-score').style.display = 'none';
+  circExos.forEach(function(exo, i){
+    circScores[i] = null;
+    var card = document.createElement('div');
+    card.className = 'calc-card ' + (exo.cardClass || 'ohm-card');
+    card.id = 'circ-card-' + i;
+    /* Layout : texte à gauche, schéma à droite sur desktop */
+    var svgHtml = exo.svg
+      ? '<div style="background:#f0f6ff;border-radius:12px;padding:12px;margin:10px 0;border:1px solid #bfdbfe">' + exo.svg + '</div>'
+      : '';
+    card.innerHTML = '<span class="calc-badge ' + (exo.badgeClass || 'ohm') + '">' + exo.badge + '</span>' +
+      '<div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">' +
+        '<div style="flex:1;min-width:200px">' +
+          '<div class="calc-q-txt">' + exo.txt + '</div>' +
+          '<div class="calc-given">📋 Données : <span>' + exo.given + '</span></div>' +
+        '</div>' +
+        (exo.svg ? '<div style="flex:0 0 auto;width:240px">' + svgHtml + '</div>' : '') +
+      '</div>' +
+      '<div class="calc-input-row">' +
+        '<span style="font-family:\'Baloo 2\';color:#555;font-size:.95rem">Réponse :</span>' +
+        '<input class="calc-input" type="number" id="circ-in-' + i + '" placeholder="..." step="0.01">' +
+        '<span style="font-family:\'Baloo 2\';font-weight:700;color:#555">' + exo.unit + '</span>' +
+        '<button class="calc-verify" onclick="checkCalc(\'circ\',' + i + ')">Vérifier ✓</button>' +
+      '</div>' +
+      '<div class="calc-fb" id="circ-fb-' + i + '"></div>' +
+      '<div class="calc-solution" id="circ-sol-' + i + '"><strong>Correction :</strong> ' + exo.formula + ' = ' + exo.calc + ' = <strong>' + exo.ans + ' ' + exo.unit + '</strong></div>' +
+      '<button class="show-sol-btn" onclick="toggleSol(\'circ\',' + i + ')">Voir la correction</button>';
+    area.appendChild(card);
+  });
+}
+
+initOhm();
+initPuiss();
+initCirc();
+
+/* ===========================
+   QUIZ
+   =========================== */
+var questions = [
   {q:"Quelle est l'unité de l'intensité électrique ?", opts:["Le volt (V)","L'ampère (A)","L'ohm (Ω)","Le watt (W)"], ans:1, exp:"L'intensité I se mesure en ampère (A) avec un ampèremètre."},
   {q:"Comment branche-t-on un voltmètre ?", opts:["En série dans le circuit","En dérivation aux bornes du dipôle","En série avant le dipôle","Hors circuit"], ans:1, exp:"Le voltmètre se branche en dérivation (parallèle) aux bornes du composant."},
   {q:"Un ampèremètre se branche :", opts:["En parallèle","En série","En dérivation","Hors circuit"], ans:1, exp:"L'ampèremètre se branche toujours en série — il est traversé par tout le courant."},
@@ -653,59 +1067,58 @@ const questions = [
   {q:"Dans un circuit série, l'intensité est :", opts:["Différente dans chaque branche","La même partout","Nulle dans les résistances","Divisée par le nombre de dipôles"], ans:1, exp:"En série, l'intensité est identique en tout point du circuit."},
   {q:"Dans un circuit en dérivation, la tension est :", opts:["La somme des tensions de chaque branche","Divisée par le nombre de branches","La même dans chaque branche","Nulle"], ans:2, exp:"En dérivation, la tension est identique aux bornes de chaque branche."},
   {q:"R = 50 Ω, I = 2 A. Quelle est la tension U ?", opts:["25 V","100 V","52 V","48 V"], ans:1, exp:"U = R × I = 50 × 2 = 100 V."},
-  {q:"Quelle grandeur mesure la 'force' qui pousse les électrons ?", opts:["L'intensité","La résistance","La tension","La puissance"], ans:2, exp:"La tension (différence de potentiel) est ce qui met les électrons en mouvement."},
-  {q:"Si l'écran du multimètre affiche '1.' (juste la virgule), que faut-il faire ?", opts:["Augmenter le calibre","Diminuer le calibre","Changer les piles","Tout va bien"], ans:1, exp:"'1.' signifie que le calibre est trop petit — il faut passer au calibre supérieur."},
-  {q:"Un court-circuit est dangereux car il provoque :", opts:["Une tension nulle","Une résistance infinie","Une surintensité qui peut enflammer les fils","Une coupure du courant"], ans:2, exp:"Le court-circuit crée un chemin sans résistance, ce qui génère une intensité très élevée et un risque d'incendie."},
-  {q:"Pour mesurer la résistance R d'un composant, on doit :", opts:["Laisser le circuit alimenté","Couper l'alimentation du circuit","Brancher en série","Utiliser uniquement les bornes 10A"], ans:1, exp:"L'ohmmètre mesure la résistance hors circuit — le composant ne doit pas être alimenté."},
-  {q:"La loi d'Ohm s'écrit :", opts:["U = R + I","U = R × I","U = R ÷ I","R = U + I"], ans:1, exp:"La loi d'Ohm : U = R × I (tension = résistance × intensité)."},
-  {q:"Dans quel type de circuit chaque dipôle peut-il fonctionner indépendamment ?", opts:["Circuit en série","Circuit en dérivation","Les deux","Aucun"], ans:1, exp:"En dérivation, si un composant tombe en panne, les autres continuent de fonctionner car ils ont chacun leur propre branche."},
-  {q:"L'unité de l'énergie électrique est :", opts:["Le watt (W)","Le volt (V)","Le joule (J)","L'ampère (A)"], ans:2, exp:"L'énergie se mesure en joule (J). En pratique on utilise aussi le kilowattheure (kWh)."},
-  {q:"Quelle est la puissance d'un appareil sous 230 V avec un courant de 2 A ?", opts:["115 W","232 W","460 W","460 V"], ans:2, exp:"P = U × I = 230 × 2 = 460 W."},
+  {q:"Quelle grandeur représente la différence d'état électrique entre deux points ?", opts:["L'intensité","La résistance","La tension","La puissance"], ans:2, exp:"La tension (différence de potentiel) est la différence d'état électrique entre deux points du circuit."},
+  {q:"Si l'écran du multimètre affiche '1.', que faut-il faire ?", opts:["Augmenter le calibre","Diminuer le calibre","Changer les piles","Tout va bien"], ans:0, exp:"'1.' signifie que la valeur mesurée dépasse le calibre — il faut passer au calibre supérieur."},
+  {q:"Un court-circuit provoque :", opts:["Une tension nulle","Une résistance infinie","Une surintensité pouvant enflammer les fils","Une coupure du courant"], ans:2, exp:"Le court-circuit crée un chemin sans résistance, générant une intensité très élevée."},
+  {q:"Pour mesurer une résistance, on doit :", opts:["Laisser le circuit alimenté","Couper l'alimentation","Brancher en série","Utiliser uniquement les bornes 10A"], ans:1, exp:"L'ohmmètre mesure hors circuit — le composant ne doit pas être alimenté."},
+  {q:"La loi d'Ohm s'écrit :", opts:["U = R + I","U = R × I","U = R ÷ I","R = U + I"], ans:1, exp:"La loi d'Ohm : U = R × I."},
+  {q:"Dans quel type de circuit chaque dipôle fonctionne-t-il indépendamment ?", opts:["Série","Dérivation","Les deux","Aucun"], ans:1, exp:"En dérivation, chaque branche est indépendante — une panne n'affecte pas les autres."},
+  {q:"L'unité de l'énergie électrique est :", opts:["Le watt (W)","Le volt (V)","Le joule (J)","L'ampère (A)"], ans:2, exp:"L'énergie se mesure en joule (J)."},
+  {q:"Quelle est la puissance d'un appareil sous 230 V avec 2 A ?", opts:["115 W","232 W","460 W","460 V"], ans:2, exp:"P = U × I = 230 × 2 = 460 W."}
 ];
 
-let qIdx=0, score=0, answered=[];
+var qIdx=0, score=0, answered=[];
 
 function buildQuiz(){
-  const cont = document.getElementById('quiz-container');
+  var cont = document.getElementById('quiz-container');
   cont.innerHTML = '';
   document.getElementById('score-box').style.display='none';
   answered = new Array(questions.length).fill(false);
   qIdx=0; score=0;
-  questions.forEach((q,i)=>{
-    const card = document.createElement('div');
+  questions.forEach(function(q,i){
+    var card = document.createElement('div');
     card.className='qcard'; card.id='qcard-'+i;
-    card.innerHTML=`<div class="qnum">Question ${i+1} / ${questions.length}</div>
-      <div class="qtxt">${q.q}</div>
-      ${q.opts.map((o,j)=>`<button class="qbtn" onclick="answerQ(${i},${j})">${o}</button>`).join('')}
-      <div class="fb" id="fb-${i}"></div>`;
+    card.innerHTML='<div class="qnum">Question '+(i+1)+' / '+questions.length+'</div>'
+      +'<div class="qtxt">'+q.q+'</div>'
+      +q.opts.map(function(o,j){return '<button class="qbtn" onclick="answerQ('+i+','+j+')">'+o+'</button>';}).join('')
+      +'<div class="fb" id="fb-'+i+'"></div>';
     cont.appendChild(card);
   });
 }
 
-function answerQ(qi, oi){
+function answerQ(qi,oi){
   if(answered[qi]) return;
   answered[qi]=true;
-  const q=questions[qi];
-  const card=document.getElementById('qcard-'+qi);
-  const btns=card.querySelectorAll('.qbtn');
+  var q=questions[qi];
+  var card=document.getElementById('qcard-'+qi);
+  var btns=card.querySelectorAll('.qbtn');
   btns[oi].classList.add(oi===q.ans?'correct':'wrong');
-  if(oi===q.ans) btns[q.ans].classList.add('correct');
-  else btns[q.ans].classList.add('correct');
-  const fb=document.getElementById('fb-'+qi);
+  btns[q.ans].classList.add('correct');
+  var fb=document.getElementById('fb-'+qi);
   fb.className='fb '+(oi===q.ans?'ok':'ko');
   fb.textContent=(oi===q.ans?'✅ ':'❌ ')+q.exp;
   if(oi===q.ans) score++;
-  if(answered.every(a=>a)) showScore();
+  if(answered.every(function(a){return a;})) showScore();
 }
 
 function showScore(){
-  const sb=document.getElementById('score-box');
+  var sb=document.getElementById('score-box');
   sb.style.display='block';
   document.getElementById('score-txt').textContent=score+' / '+questions.length;
-  const pct=score/questions.length;
+  var pct=score/questions.length;
   document.getElementById('score-msg').textContent=
     pct>=0.9?'🏆 Excellent ! Tu maîtrises ce chapitre !':
-    pct>=0.7?'👍 Bien joué ! Encore un peu de révision pour les points ratés.':
+    pct>=0.7?'👍 Bien joué ! Relis les points ratés.':
     pct>=0.5?'💪 Pas mal ! Relis le cours et réessaie.':
     '📚 Continue à réviser, tu vas y arriver !';
   sb.scrollIntoView({behavior:'smooth'});
@@ -714,6 +1127,5 @@ function showScore(){
 function resetQ(){ buildQuiz(); }
 buildQuiz();
 </script>
-
 </body>
 </html>
