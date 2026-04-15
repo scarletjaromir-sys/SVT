@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Justice ⚖️</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --vert: #6c9e3a;
+  --vert-dark: #4a7a1e;
+  --vert-light: #b8d98a;
+  --vert-pale: #eef5e6;
+  --or: #c8941a;
+  --or-light: #fdf3d9;
+  --rouge: #e74c3c;
+  --bleu: #3498db;
+  --text: #2c3e50;
+  --text-light: #666;
+  --white: #fff;
+  --bg: #f2f7ee;
+  --card-shadow: 0 4px 20px rgba(108,158,58,0.12);
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(135deg, #4a7a1e, #6c9e3a, #8ab84a);
+  padding: 36px 20px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='10' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 50px 50px;
+}
+.header-emoji { font-size: 2.4rem; margin-bottom: 8px; position: relative; }
+header h1 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.8rem;
+  color: #fff;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+  position: relative;
+  line-height: 1.3;
+}
+header .subtitle {
+  color: rgba(255,255,255,0.85);
+  margin-top: 8px;
+  font-size: 0.95rem;
+  position: relative;
+}
+.back-btn {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.4);
+  color: #fff; padding: 6px 16px;
+  border-radius: 20px; font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem; cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 16px;
+  position: relative;
+  transition: background 0.2s;
+}
+.back-btn:hover { background: rgba(255,255,255,0.28); }
+
+/* ===== TABS ===== */
+.tabs-nav {
+  display: flex; justify-content: center; gap: 8px;
+  padding: 20px 16px 0;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  font-family: 'Baloo 2', cursive;
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  border-radius: 24px;
+  border: 2px solid var(--vert-light);
+  background: #fff;
+  color: var(--vert);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 700;
+}
+.tab-btn.active, .tab-btn:hover {
+  background: linear-gradient(135deg, var(--vert), var(--vert-dark));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(108,158,58,0.35);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 24px 18px 60px;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.3rem;
+  color: var(--vert-dark);
+  margin: 32px 0 14px;
+  display: flex; align-items: center; gap: 10px;
+  border-left: 5px solid var(--vert);
+  padding-left: 12px;
+}
+
+/* ===== INFO BOXES ===== */
+.info-box {
+  background: var(--vert-pale);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  border-left: 5px solid var(--vert);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.info-box.or {
+  background: var(--or-light);
+  border-left-color: var(--or);
+}
+.info-box.rouge {
+  background: #fdf0ee;
+  border-left-color: var(--rouge);
+}
+.info-box.blanc {
+  background: #fff;
+  border-left-color: var(--vert-dark);
+  padding-left: 20px;
+}
+
+/* ===== QUESTION CENTRALE ===== */
+.question-centrale {
+  background: linear-gradient(135deg, var(--vert-dark), var(--vert));
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ===== TOOLTIP DEFINITIONS ===== */
+.def {
+  border-bottom: 2px dotted var(--vert);
+  color: var(--vert-dark);
+  font-weight: 700;
+  cursor: help;
+  position: relative;
+  display: inline-block;
+}
+.def .tooltip {
+  display: none;
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2d4a10;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  width: 230px;
+  text-align: center;
+  z-index: 50;
+  line-height: 1.4;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+.def .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #2d4a10;
+}
+.def:hover .tooltip { display: block; }
+
+/* ===== GRILLE FORMES DE JUSTICE ===== */
+.justice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.justice-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 14px;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--vert);
+}
+.justice-card .icon { font-size: 1.8rem; margin-bottom: 8px; }
+.justice-card .titre {
+  font-family: 'Baloo 2', cursive;
+  color: var(--vert-dark);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.justice-card .desc {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.justice-card .ex {
+  font-size: 0.78rem;
+  color: var(--vert-dark);
+  border-top: 1px solid var(--vert-pale);
+  padding-top: 6px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* ===== ETAPES PROCESSUS ===== */
+.etapes-row {
+  display: flex; gap: 8px; align-items: stretch;
+  margin: 16px 0; flex-wrap: wrap;
+}
+.etape-box {
+  flex: 1; min-width: 150px;
+  background: #fff; border-radius: 14px;
+  padding: 16px 14px; text-align: center;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--vert);
+}
+.etape-box .icon { font-size: 1.8rem; margin-bottom: 8px; }
+.etape-box .etape-titre {
+  font-family: 'Baloo 2', cursive;
+  color: var(--vert-dark); font-size: 1rem; margin-bottom: 4px;
+}
+.etape-box .etape-desc { font-size: 0.82rem; color: var(--text-light); margin-bottom: 8px; }
+.etape-badge {
+  display: inline-block;
+  background: var(--vert-pale); color: var(--vert-dark);
+  border-radius: 10px; padding: 4px 10px;
+  font-size: 0.78rem; font-weight: 800;
+}
+
+/* ===== VOCAB GRID ===== */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.vocab-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vocab-mot {
+  font-family: 'Baloo 2', cursive;
+  color: var(--vert-dark);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+.vocab-def {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* ===== SYNTHESE ===== */
+.synth-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--vert);
+}
+.synth-card h3 {
+  font-family: 'Baloo 2', cursive;
+  color: var(--vert-dark);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.synth-card p, .synth-card li {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+.synth-card ul { padding-left: 20px; }
+.synth-card li { margin-bottom: 5px; }
+
+/* ===== EXERCICES ===== */
+.exo-section { margin-bottom: 32px; }
+.exo-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.15rem;
+  color: var(--vert-dark);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* QCM */
+.qcm-question {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--card-shadow);
+}
+.qcm-question p { font-weight: 700; margin-bottom: 12px; font-size: 0.97rem; line-height: 1.5; }
+.qcm-choices { display: flex; flex-direction: column; gap: 8px; }
+.qcm-choice {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--vert-light);
+  background: var(--vert-pale);
+  cursor: pointer;
+  font-size: 0.93rem;
+  transition: all 0.18s;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  text-align: left;
+}
+.qcm-choice:hover { border-color: var(--vert); background: #d5ecb8; }
+.qcm-choice.correct { background: #eafaf1; border-color: #27ae60; color: #1a7a47; }
+.qcm-choice.wrong { background: #fdf0ee; border-color: var(--rouge); color: #a93226; }
+.qcm-feedback {
+  margin-top: 10px; font-size: 0.88rem; font-weight: 700;
+  display: none; padding: 8px 12px; border-radius: 10px;
+}
+.qcm-feedback.show { display: block; }
+.qcm-feedback.ok { background: #eafaf1; color: #1a7a47; }
+.qcm-feedback.ko { background: #fdf0ee; color: #a93226; }
+
+/* VRAI FAUX */
+.vf-question {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--card-shadow);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.vf-text { flex: 1; font-size: 0.95rem; font-weight: 600; min-width: 180px; line-height: 1.5; }
+.vf-btns { display: flex; gap: 8px; }
+.vf-btn {
+  padding: 7px 16px; border-radius: 20px;
+  border: 2px solid var(--vert-light);
+  background: var(--vert-pale);
+  cursor: pointer; font-family: 'Nunito', sans-serif;
+  font-weight: 700; font-size: 0.88rem; transition: all 0.18s;
+}
+.vf-btn:hover { border-color: var(--vert); }
+.vf-btn.selected-vrai { background: #eafaf1; border-color: #27ae60; color: #1a7a47; }
+.vf-btn.selected-faux { background: #fdf0ee; border-color: var(--rouge); color: #a93226; }
+.vf-btn.correct-btn { background: #eafaf1; border-color: #27ae60; color: #1a7a47; }
+.vf-btn.wrong-btn { background: #fdf0ee; border-color: var(--rouge); color: #a93226; }
+
+/* ASSOCIER */
+.match-flat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.match-item {
+  background: #fff; border: 2px solid var(--vert-light); border-radius: 12px;
+  padding: 10px 14px; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all 0.18s; text-align: center; line-height: 1.4;
+}
+.match-word { border-style: solid; font-weight: 800; }
+.match-def { border-style: dashed; background: #fff; border-color: var(--vert-light); }
+.match-word[data-color="1"] { background: #fde8e8; border-color: #e74c3c; color: #c0392b; }
+.match-word[data-color="2"] { background: #fef0e0; border-color: #e67e22; color: #d35400; }
+.match-word[data-color="3"] { background: #e8f4fd; border-color: #3498db; color: #2980b9; }
+.match-word[data-color="4"] { background: #f5eef8; border-color: #8e44ad; color: #6c3483; }
+.match-word[data-color="5"] { background: #e8f8f0; border-color: #27ae60; color: #1e8449; }
+.match-word:hover { opacity: 0.8; }
+.match-def:hover { border-color: var(--vert); background: var(--vert-pale); }
+.match-word.selected { color: #fff !important; border-style: solid !important; }
+.match-word[data-color="1"].selected { background: #e74c3c !important; border-color: #c0392b !important; }
+.match-word[data-color="2"].selected { background: #e67e22 !important; border-color: #d35400 !important; }
+.match-word[data-color="3"].selected { background: #3498db !important; border-color: #2980b9 !important; }
+.match-word[data-color="4"].selected { background: #8e44ad !important; border-color: #6c3483 !important; }
+.match-word[data-color="5"].selected { background: #27ae60 !important; border-color: #1e8449 !important; }
+.match-def.selected { background: var(--vert); color: #fff; border-color: var(--vert-dark); border-style: solid !important; }
+.match-item.matched-ok { color: #fff !important; border-style: solid !important; opacity: 1; }
+.match-item[data-color="1"].matched-ok { background: #e74c3c !important; border-color: #c0392b !important; }
+.match-item[data-color="2"].matched-ok { background: #e67e22 !important; border-color: #d35400 !important; }
+.match-item[data-color="3"].matched-ok { background: #3498db !important; border-color: #2980b9 !important; }
+.match-item[data-color="4"].matched-ok { background: #8e44ad !important; border-color: #6c3483 !important; }
+.match-item[data-color="5"].matched-ok { background: #27ae60 !important; border-color: #1e8449 !important; }
+.match-item.matched-ko { background: #fdf0ee !important; border-color: var(--rouge) !important; color: #a93226 !important; }
+
+/* ORDRE */
+.order-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.order-item {
+  background: #fff; border: 2px solid var(--vert-light); border-radius: 12px;
+  padding: 11px 16px; cursor: grab; display: flex; align-items: center; gap: 10px;
+  font-size: 0.9rem; font-weight: 600; user-select: none; transition: box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(108,158,58,0.07); line-height: 1.4;
+}
+.order-item:hover { box-shadow: 0 4px 16px rgba(108,158,58,0.18); border-color: var(--vert); }
+.order-item.dragging-o { opacity: 0.3; }
+.order-handle { color: var(--vert-light); font-size: 1.1rem; }
+
+/* DRAG & DROP */
+.drag-container {
+  background: #fff; border-radius: 16px;
+  padding: 20px; box-shadow: var(--card-shadow); margin-bottom: 16px;
+}
+.drag-container p { font-weight: 700; margin-bottom: 14px; font-size: 0.97rem; }
+.drag-words {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
+  min-height: 44px; padding: 8px;
+  border: 2px dashed var(--vert-light); border-radius: 12px;
+}
+.drag-word {
+  background: linear-gradient(135deg, var(--vert), var(--vert-dark));
+  color: #fff; padding: 6px 14px; border-radius: 20px;
+  cursor: grab; font-size: 0.88rem; font-weight: 700;
+  user-select: none; transition: transform 0.15s, box-shadow 0.15s;
+}
+.drag-word:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(108,158,58,0.35); }
+.drag-word.dragging { opacity: 0.4; }
+.drag-slots { display: flex; flex-direction: column; gap: 10px; }
+.drag-slot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.drag-slot .slot-label { font-size: 0.9rem; font-weight: 700; min-width: 100px; color: var(--vert-dark); }
+.slot-drop {
+  min-height: 36px; min-width: 130px;
+  border: 2px dashed var(--vert-light); border-radius: 10px;
+  padding: 4px 10px; display: flex; align-items: center;
+  background: var(--vert-pale); transition: border-color 0.2s, background 0.2s;
+}
+.slot-drop.drag-over { border-color: var(--vert); background: #d5ecb8; }
+.slot-drop.correct-drop { border-color: #27ae60; background: #eafaf1; }
+.slot-drop.wrong-drop { border-color: var(--rouge); background: #fdf0ee; }
+
+/* FLASHCARDS */
+.flashcards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.flashcard { height: 130px; perspective: 1000px; cursor: pointer; }
+.flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.5s; transform-style: preserve-3d; }
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back {
+  position: absolute; inset: 0; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px; text-align: center; backface-visibility: hidden;
+  font-size: 0.9rem; font-weight: 700; line-height: 1.4; box-shadow: var(--card-shadow);
+}
+.flashcard-front { background: linear-gradient(135deg, var(--vert), var(--vert-dark)); color: #fff; }
+.flashcard-back { background: #fff; color: var(--vert-dark); transform: rotateY(180deg); border: 2px solid var(--vert-light); }
+
+/* BOUTONS */
+.btn-check {
+  background: linear-gradient(135deg, var(--vert), var(--vert-dark));
+  color: #fff; border: none; border-radius: 14px;
+  padding: 10px 24px; font-family: 'Baloo 2', cursive;
+  font-size: 1rem; cursor: pointer; margin-top: 12px;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-check:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-reset {
+  background: none; border: 2px solid var(--vert-light);
+  color: var(--vert); border-radius: 14px; padding: 8px 20px;
+  font-family: 'Nunito', sans-serif; font-size: 0.9rem;
+  cursor: pointer; margin-top: 8px; margin-left: 8px; transition: all 0.2s;
+}
+.btn-reset:hover { border-color: var(--vert); background: var(--vert-pale); }
+.result-msg {
+  margin-top: 12px; padding: 12px 16px; border-radius: 12px;
+  font-weight: 700; font-size: 0.95rem; display: none;
+}
+.result-msg.show { display: block; }
+.result-msg.ok { background: #eafaf1; color: #1a7a47; }
+.result-msg.partial { background: #fef9e7; color: #7d6608; }
+.result-msg.ko { background: #fdf0ee; color: #a93226; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  header h1 { font-size: 1.3rem; }
+  .tabs-nav { gap: 5px; padding: 14px 10px 0; }
+  .tab-btn { font-size: 0.78rem; padding: 7px 10px; }
+  .container { padding: 16px 12px 50px; }
+  .justice-grid { grid-template-columns: 1fr 1fr; }
+  .etapes-row { flex-direction: column; }
+  .match-flat { grid-template-columns: 1fr; }
+  .flashcards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .flashcard { height: 110px; }
+  .flashcard-front, .flashcard-back { font-size: 0.78rem; padding: 10px; }
+  .vf-question { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .drag-slot { flex-wrap: wrap; }
+  .vocab-grid { grid-template-columns: 1fr; }
+  .info-box { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="back-btn">← Retour</a>
+  <div class="header-emoji">⚖️ 🏛️ 👨‍⚖️</div>
+  <h1>La Justice</h1>
+  <p class="subtitle">EMC • 4ème • Les différentes formes de justice en France</p>
+</header>
+
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="showTab('cours', this)">📖 Cours</button>
+  <button class="tab-btn" onclick="showTab('synthese', this)">🗂️ Synthèse</button>
+  <button class="tab-btn" onclick="showTab('vocabulaire', this)">📝 Vocabulaire</button>
+  <button class="tab-btn" onclick="showTab('exercices', this)">✏️ Exercices</button>
+  <button class="tab-btn" onclick="showTab('flashcards', this)">🃏 Flashcards</button>
+</div>
+
+<!-- ===================== COURS ===================== -->
+<div id="tab-cours" class="tab-content active">
+<div class="container">
+
+  <div class="question-centrale">
+    ❓ Comment fonctionne la justice en France ? Qui juge qui, et pourquoi ?
+  </div>
+
+  <div class="info-box">
+    💡 La <span class="def">justice<span class="tooltip">Institution qui veille au respect des lois et garantit les droits de chacun.</span></span> veille à ce que les lois soient respectées. Elle doit être <strong>équitable</strong> (juste pour tous) et <strong>publique</strong>. Chaque accusé est <span class="def">présumé innocent<span class="tooltip">Toute personne est innocente tant que sa culpabilité n'a pas été prouvée par un juge. C'est un droit fondamental !</span></span> tant que le tribunal n'a pas prouvé sa culpabilité.
+  </div>
+
+  <div class="section-title">⚖️ 1. Les différentes formes de justice</div>
+
+  <div class="justice-grid">
+    <div class="justice-card">
+      <div class="icon">🤝</div>
+      <div class="titre">Justice civile</div>
+      <div class="desc">Pour régler les <strong>conflits entre particuliers</strong>. Elle ne punit pas : elle tranche un désaccord.</div>
+      <div class="ex">Ex : loyer impayé → tribunal d'instance<br>Ex : vol d'invention → tribunal de grande instance</div>
+    </div>
+    <div class="justice-card">
+      <div class="icon">🚨</div>
+      <div class="titre">Justice pénale</div>
+      <div class="desc"><strong>Punit</strong> ceux qui n'ont pas respecté la loi. 3 niveaux selon la gravité.</div>
+      <div class="ex">Contravention → tribunal de police<br>Délit → tribunal correctionnel<br>Crime → cour d'assises</div>
+    </div>
+    <div class="justice-card">
+      <div class="icon">🏛️</div>
+      <div class="titre">Justice administrative</div>
+      <div class="desc">Pour les conflits entre les <strong>citoyens et l'État</strong> (communes, départements, régions…).</div>
+      <div class="ex">Ex : opposition à une autoroute → tribunal administratif</div>
+    </div>
+    <div class="justice-card">
+      <div class="icon">⚙️</div>
+      <div class="titre">Autres justices spécialisées</div>
+      <div class="desc">Des tribunaux pour des situations précises.</div>
+      <div class="ex">Licenciement → conseil de prud'hommes<br>Litige commercial → tribunal de commerce<br>Mineur délinquant → tribunal pour enfants</div>
+    </div>
+  </div>
+
+  <div class="section-title">🔢 2. Les étapes d'un procès pénal</div>
+
+  <div class="info-box">
+    📌 En France, une <span class="def">infraction<span class="tooltip">Non-respect de la loi.</span></span> peut être de 3 niveaux différents. Le tribunal qui juge dépend de la <strong>gravité</strong> de l'infraction.
+  </div>
+
+  <div class="etapes-row">
+    <div class="etape-box">
+      <div class="icon">🚗</div>
+      <div class="etape-titre"><span class="def">Contravention<span class="tooltip">Infraction légère punie d'une amende. Ex : excès de vitesse.</span></span></div>
+      <div class="etape-desc">Infraction légère<br>(ex : griller un feu rouge)</div>
+      <div class="etape-badge">Tribunal de police</div>
+    </div>
+    <div class="etape-box">
+      <div class="icon">👊</div>
+      <div class="etape-titre">Délit</div>
+      <div class="etape-desc">Infraction grave<br>(ex : vol, agression)</div>
+      <div class="etape-badge">Tribunal correctionnel</div>
+    </div>
+    <div class="etape-box">
+      <div class="icon">🔫</div>
+      <div class="etape-titre">Crime</div>
+      <div class="etape-desc">Infraction très grave<br>(ex : meurtre, viol)</div>
+      <div class="etape-badge">Cour d'assises</div>
+    </div>
+  </div>
+
+  <div class="info-box blanc">
+    <ul style="padding-left:16px; line-height:2.1;">
+      <li>La <strong>police</strong> constate l'infraction et prévient le <strong>procureur</strong>.</li>
+      <li>Le <strong>procureur</strong> examine l'affaire : si les preuves sont là, le procès peut avoir lieu.</li>
+      <li>À la <strong>cour d'assises</strong>, 3 juges + <strong>9 jurés</strong> citoyens (tirés au sort) décident ensemble.</li>
+      <li>Si on n'est pas satisfait du jugement → on peut faire <strong>appel</strong> (rejugé par la cour d'appel).</li>
+      <li>La <strong>Cour de cassation</strong> vérifie que la loi a bien été appliquée.</li>
+    </ul>
+  </div>
+
+  <div class="section-title">👦 3. La justice des mineurs</div>
+
+  <div class="info-box or">
+    🌟 Les <span class="def">mineurs<span class="tooltip">Personnes de moins de 18 ans.</span></span> ne sont pas jugés comme les adultes. La justice privilégie leur <strong>éducation</strong> plutôt que la punition.
+  </div>
+
+  <div class="justice-grid">
+    <div class="justice-card">
+      <div class="icon">👨‍⚖️</div>
+      <div class="titre">Le juge des enfants</div>
+      <div class="desc">Juge spécialisé du tribunal de grande instance. Il protège les mineurs en danger et juge les faits les moins graves.</div>
+    </div>
+    <div class="justice-card">
+      <div class="icon">🏛️</div>
+      <div class="titre">Tribunal pour enfants</div>
+      <div class="desc">Pour les infractions graves des <strong>moins de 16 ans</strong>. Composé du juge des enfants + 2 assesseurs citoyens.</div>
+    </div>
+    <div class="justice-card">
+      <div class="icon">⚖️</div>
+      <div class="titre">Cour d'assises des mineurs</div>
+      <div class="desc">Pour les crimes des <strong>plus de 16 ans</strong>. Composée d'un président, 2 juges des enfants et 9 jurés.</div>
+    </div>
+    <div class="justice-card">
+      <div class="icon">🎓</div>
+      <div class="titre">Mesures éducatives</div>
+      <div class="desc">Avant 13 ans : uniquement mesures éducatives (réprimande, réparation des dommages, placement spécialisé). Pas de prison.</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="background:#fff; border-left-color:var(--vert-dark); padding-left:20px;">
+    <strong>🌱 La Protection judiciaire de la jeunesse (PJJ)</strong>
+    <ul style="margin-top:10px; padding-left:16px; line-height:2;">
+      <li>Regroupe des spécialistes (enseignants, psychologues, éducateurs).</li>
+      <li>S'occupe des mineurs en <strong>danger ou délinquants</strong>.</li>
+      <li>Objectif : les remettre sur la bonne voie, assurer leur retour à la vie normale.</li>
+      <li>Entre 13 et 18 ans : amende ou prison possible dans les cas les plus graves.</li>
+      <li>Dans tous les cas, le mineur est suivi par un <strong>éducateur</strong>.</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== SYNTHESE ===================== -->
+<div id="tab-synthese" class="tab-content">
+<div class="container">
+
+  <div class="section-title">🗂️ L'essentiel à retenir</div>
+
+  <div class="synth-card">
+    <h3>📌 Les 3 formes principales de justice</h3>
+    <ul>
+      <li><strong>Justice civile</strong> : règle les conflits entre particuliers (loyer, inventions…).</li>
+      <li><strong>Justice pénale</strong> : punit les infractions à la loi (contravention, délit, crime).</li>
+      <li><strong>Justice administrative</strong> : tranche les conflits entre citoyens et État.</li>
+    </ul>
+  </div>
+
+  <div class="synth-card">
+    <h3>📌 Les 3 niveaux d'infraction pénale</h3>
+    <ul>
+      <li><strong>Contravention</strong> (légère) → tribunal de police → amende.</li>
+      <li><strong>Délit</strong> (grave) → tribunal correctionnel → amende, travail d'intérêt général ou prison.</li>
+      <li><strong>Crime</strong> (très grave) → cour d'assises (3 juges + 9 jurés) → prison.</li>
+    </ul>
+  </div>
+
+  <div class="synth-card">
+    <h3>📌 Les grands principes de la justice</h3>
+    <ul>
+      <li><strong>Présomption d'innocence</strong> : on est innocent jusqu'à ce que le juge prouve le contraire.</li>
+      <li><strong>Proportionnalité de la peine</strong> : la punition doit être adaptée à la gravité du délit.</li>
+      <li><strong>Droit à un avocat</strong> : tout accusé peut se faire défendre.</li>
+      <li><strong>Droit d'appel</strong> : on peut demander à être rejugé si on estime ne pas avoir été jugé correctement.</li>
+    </ul>
+  </div>
+
+  <div class="synth-card">
+    <h3>📌 La justice des mineurs</h3>
+    <ul>
+      <li>Avant <strong>13 ans</strong> : mesures éducatives uniquement (pas de prison).</li>
+      <li>Entre <strong>13 et 18 ans</strong> : amende ou prison possible dans les cas graves.</li>
+      <li><strong>Tribunal pour enfants</strong> pour les moins de 16 ans.</li>
+      <li><strong>Cour d'assises des mineurs</strong> pour les plus de 16 ans ayant commis un crime.</li>
+      <li>La <strong>PJJ</strong> accompagne les mineurs pour les remettre sur la bonne voie.</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== VOCABULAIRE ===================== -->
+<div id="tab-vocabulaire" class="tab-content">
+<div class="container">
+
+  <div class="section-title">📝 Les mots importants du cours</div>
+  <p style="color:var(--text-light); margin-bottom:18px; font-size:0.93rem;">Tous les mots clés expliqués simplement 👇</p>
+
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <div class="vocab-mot">⚖️ Justice</div>
+      <div class="vocab-def">Institution qui veille au respect des lois et garantit les droits de chacun. Elle doit être équitable et publique.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">📜 Loi</div>
+      <div class="vocab-def">Règle votée par le Parlement que tous les habitants d'un pays doivent respecter.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">❌ Infraction</div>
+      <div class="vocab-def">Non-respect de la loi. Il y a 3 niveaux : contravention, délit, crime.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🚗 Contravention</div>
+      <div class="vocab-def">Infraction légère punie d'une amende. Ex : excès de vitesse, griller un feu rouge.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">👊 Délit</div>
+      <div class="vocab-def">Infraction grave : vol, insultes, coups et blessures… Jugé au tribunal correctionnel.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🔫 Crime</div>
+      <div class="vocab-def">Infraction très grave : meurtre, viol, attaque à main armée… Jugé en cour d'assises.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🤍 Présomption d'innocence</div>
+      <div class="vocab-def">On est considéré innocent tant que le tribunal n'a pas prouvé qu'on est coupable.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">⚖️ Proportionnalité de la peine</div>
+      <div class="vocab-def">La peine doit être adaptée à la gravité du délit commis.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🤝 Litige</div>
+      <div class="vocab-def">Désaccord entre deux ou plusieurs personnes pouvant donner lieu à un procès.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🏛️ Cour d'assises</div>
+      <div class="vocab-def">Tribunal pour les crimes (meurtres, viols…). Composé de 3 juges et 9 jurés citoyens.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🏠 Tribunal correctionnel</div>
+      <div class="vocab-def">Tribunal pour les délits (vols, coups, insultes…). Un avocat défend l'accusé.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🌱 PJJ</div>
+      <div class="vocab-def">Protection Judiciaire de la Jeunesse. Service qui aide les mineurs en danger ou délinquants à se réinsérer.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== EXERCICES ===================== -->
+<div id="tab-exercices" class="tab-content">
+<div class="container">
+
+  <!-- QCM -->
+  <div class="exo-section">
+    <div class="exo-title">🔵 QCM – Une seule bonne réponse !</div>
+
+    <div class="qcm-question" id="q1">
+      <p>1. Quel tribunal juge un cambriolage (vol avec effraction) ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q1',this,false)">Le tribunal de police</button>
+        <button class="qcm-choice" onclick="checkQCM('q1',this,true)">Le tribunal correctionnel</button>
+        <button class="qcm-choice" onclick="checkQCM('q1',this,false)">La cour d'assises</button>
+        <button class="qcm-choice" onclick="checkQCM('q1',this,false)">Le tribunal administratif</button>
+      </div>
+      <div class="qcm-feedback" id="q1-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q1')">↺ Recommencer</button>
+    </div>
+
+    <div class="qcm-question" id="q2">
+      <p>2. Qu'est-ce que la présomption d'innocence ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q2',this,false)">Le droit d'avoir un avocat</button>
+        <button class="qcm-choice" onclick="checkQCM('q2',this,false)">Le fait que toute peine doit être proportionnelle</button>
+        <button class="qcm-choice" onclick="checkQCM('q2',this,true)">Le principe selon lequel on est innocent tant que la culpabilité n'est pas prouvée</button>
+        <button class="qcm-choice" onclick="checkQCM('q2',this,false)">Le droit de faire appel</button>
+      </div>
+      <div class="qcm-feedback" id="q2-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q2')">↺ Recommencer</button>
+    </div>
+
+    <div class="qcm-question" id="q3">
+      <p>3. Un automobiliste grille un feu rouge. Devant quel tribunal passe-t-il ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q3',this,true)">Le tribunal de police</button>
+        <button class="qcm-choice" onclick="checkQCM('q3',this,false)">Le tribunal correctionnel</button>
+        <button class="qcm-choice" onclick="checkQCM('q3',this,false)">La cour d'assises</button>
+        <button class="qcm-choice" onclick="checkQCM('q3',this,false)">Le conseil de prud'hommes</button>
+      </div>
+      <div class="qcm-feedback" id="q3-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q3')">↺ Recommencer</button>
+    </div>
+
+    <div class="qcm-question" id="q4">
+      <p>4. La justice civile sert à :</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q4',this,false)">Punir les criminels</button>
+        <button class="qcm-choice" onclick="checkQCM('q4',this,true)">Régler les conflits entre particuliers</button>
+        <button class="qcm-choice" onclick="checkQCM('q4',this,false)">Gérer les conflits entre citoyens et l'État</button>
+        <button class="qcm-choice" onclick="checkQCM('q4',this,false)">Juger les mineurs délinquants</button>
+      </div>
+      <div class="qcm-feedback" id="q4-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q4')">↺ Recommencer</button>
+    </div>
+
+    <div class="qcm-question" id="q5">
+      <p>5. Un mineur de 12 ans commet un délit. Quelle sanction est possible ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q5',this,false)">Une peine de prison</button>
+        <button class="qcm-choice" onclick="checkQCM('q5',this,false)">Une amende</button>
+        <button class="qcm-choice" onclick="checkQCM('q5',this,true)">Une mesure éducative (réprimande, réparation des dommages)</button>
+        <button class="qcm-choice" onclick="checkQCM('q5',this,false)">Aucune sanction possible</button>
+      </div>
+      <div class="qcm-feedback" id="q5-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q5')">↺ Recommencer</button>
+    </div>
+  </div>
+
+  <!-- VRAI FAUX -->
+  <div class="exo-section">
+    <div class="exo-title">✅ Vrai ou Faux ?</div>
+    <div class="vf-question" data-answer="faux">
+      <div class="vf-text">1. Un crime est une infraction moins grave qu'un délit.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="vrai">
+      <div class="vf-text">2. La cour d'assises juge les crimes avec des jurés citoyens.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="vrai">
+      <div class="vf-text">3. Un mineur de 17 ans peut être condamné à une peine de prison.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="faux">
+      <div class="vf-text">4. La justice administrative juge les conflits entre employés et employeurs.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="vrai">
+      <div class="vf-text">5. On peut faire appel si on n'est pas satisfait d'un jugement.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="faux">
+      <div class="vf-text">6. La PJJ est le tribunal qui juge les mineurs de moins de 16 ans.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <button class="btn-check" onclick="checkAllVF()">Vérifier mes réponses 🔍</button>
+    <button class="btn-reset" onclick="resetVF()">Recommencer</button>
+    <div class="result-msg" id="vf-result"></div>
+  </div>
+
+  <!-- ASSOCIER -->
+  <div class="exo-section">
+    <div class="exo-title">🔗 Associe le tribunal à l'affaire</div>
+    <div class="drag-container">
+      <p>Appuie sur un tribunal 🟦 puis sur l'affaire correspondante. Chaque paire a la même couleur !</p>
+      <div class="match-flat" id="match-flat">
+        <div class="match-item match-word" data-id="1" data-color="1" onclick="selectMatch(this,'word')">Tribunal de police</div>
+        <div class="match-item match-word" data-id="2" data-color="2" onclick="selectMatch(this,'word')">Tribunal correctionnel</div>
+        <div class="match-item match-word" data-id="3" data-color="3" onclick="selectMatch(this,'word')">Cour d'assises</div>
+        <div class="match-item match-word" data-id="4" data-color="4" onclick="selectMatch(this,'word')">Conseil de prud'hommes</div>
+        <div class="match-item match-word" data-id="5" data-color="5" onclick="selectMatch(this,'word')">Tribunal pour enfants</div>
+        <div class="match-item match-def"  data-id="2" data-color="2" onclick="selectMatch(this,'def')">Un voleur surpris en flagrant délit</div>
+        <div class="match-item match-def"  data-id="1" data-color="1" onclick="selectMatch(this,'def')">Un automobiliste qui dépasse les 130 km/h</div>
+        <div class="match-item match-def"  data-id="5" data-color="5" onclick="selectMatch(this,'def')">Un enfant de 14 ans qui a volé un téléphone</div>
+        <div class="match-item match-def"  data-id="3" data-color="3" onclick="selectMatch(this,'def')">Un meurtrier en jugement</div>
+        <div class="match-item match-def"  data-id="4" data-color="4" onclick="selectMatch(this,'def')">Un salarié renvoyé illégalement</div>
+      </div>
+      <button class="btn-reset" onclick="resetMatch()">Recommencer</button>
+      <div class="result-msg" id="match-result"></div>
+    </div>
+  </div>
+
+  <!-- REMETTRE DANS L'ORDRE -->
+  <div class="exo-section">
+    <div class="exo-title">🔢 Remets ces étapes dans le bon ordre</div>
+    <div class="drag-container">
+      <p>Glisse les étapes du procès pénal dans le bon ordre :</p>
+      <div class="order-list" id="order-list">
+        <div class="order-item" data-pos="3"><span class="order-handle">☰</span> Le procès a lieu : le juge entend les arguments</div>
+        <div class="order-item" data-pos="1"><span class="order-handle">☰</span> La police constate l'infraction</div>
+        <div class="order-item" data-pos="4"><span class="order-handle">☰</span> Le jugement est prononcé : relaxe ou condamnation</div>
+        <div class="order-item" data-pos="2"><span class="order-handle">☰</span> Le procureur examine l'affaire et décide si le procès a lieu</div>
+      </div>
+      <button class="btn-check" onclick="checkOrder()">Vérifier l'ordre ✅</button>
+      <button class="btn-reset" onclick="resetOrder()">Mélanger à nouveau</button>
+      <div class="result-msg" id="order-result"></div>
+    </div>
+  </div>
+
+  <!-- GLISSER DEPOSER -->
+  <div class="exo-section">
+    <div class="exo-title">🧩 Glisse le bon mot dans la bonne case</div>
+    <div class="drag-container">
+      <p>Complète les phrases avec les mots proposés :</p>
+      <div class="drag-words" id="drag-bank">
+        <div class="drag-word" data-word="justice">justice</div>
+        <div class="drag-word" data-word="crime">crime</div>
+        <div class="drag-word" data-word="appel">appel</div>
+        <div class="drag-word" data-word="mineur">mineur</div>
+        <div class="drag-word" data-word="procureur">procureur</div>
+      </div>
+      <div class="drag-slots">
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 1 :</span>
+          <div>La <div class="slot-drop" data-answer="justice" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div> veille au respect des lois.</div>
+        </div>
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 2 :</span>
+          <div>Un meurtre est un <div class="slot-drop" data-answer="crime" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div>, jugé en cour d'assises.</div>
+        </div>
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 3 :</span>
+          <div>Le <div class="slot-drop" data-answer="procureur" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div> examine l'affaire et décide si le procès peut avoir lieu.</div>
+        </div>
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 4 :</span>
+          <div>Si on n'est pas satisfait du jugement, on peut faire <div class="slot-drop" data-answer="appel" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div>.</div>
+        </div>
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 5 :</span>
+          <div>Un <div class="slot-drop" data-answer="mineur" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div> de moins de 13 ans ne peut recevoir que des mesures éducatives.</div>
+        </div>
+      </div>
+      <button class="btn-check" onclick="checkDrag()">Vérifier ✅</button>
+      <button class="btn-reset" onclick="resetDrag()">Recommencer</button>
+      <div class="result-msg" id="drag-result"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== FLASHCARDS ===================== -->
+<div id="tab-flashcards" class="tab-content">
+<div class="container">
+  <div class="section-title">🃏 Flashcards – Clique pour retourner la carte !</div>
+  <p style="color:var(--text-light); margin-bottom:20px; font-size:0.93rem;">Lis la question, essaie de répondre dans ta tête, puis clique 🔄</p>
+
+  <div class="flashcards-grid">
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">C'est quoi la justice ? ⚖️</div>
+        <div class="flashcard-back">Institution qui veille au respect des lois et garantit les droits de chacun.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Quelle est la différence délit / crime ? 🔫</div>
+        <div class="flashcard-back">Le délit est grave (vol, agression). Le crime est très grave (meurtre, viol). Le crime est plus sévèrement puni.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Quel tribunal juge les délits ? 🏛️</div>
+        <div class="flashcard-back">Le tribunal correctionnel. Il juge les vols, insultes, coups et blessures...</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Qui juge à la cour d'assises ? ⚖️</div>
+        <div class="flashcard-back">3 juges professionnels + 9 jurés citoyens tirés au sort. Ils décident ensemble.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">C'est quoi la présomption d'innocence ? 🤍</div>
+        <div class="flashcard-back">On est considéré innocent tant que le tribunal n'a pas prouvé qu'on est coupable.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">C'est quoi la proportionnalité de la peine ? ⚖️</div>
+        <div class="flashcard-back">La peine doit être adaptée au délit : on ne punit pas un vol et un meurtre de la même façon.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Comment est jugé un mineur de 12 ans ? 👦</div>
+        <div class="flashcard-back">Avant 13 ans : mesures éducatives uniquement (réprimande, réparation). Pas de prison possible.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">C'est quoi la PJJ ? 🌱</div>
+        <div class="flashcard-back">La Protection Judiciaire de la Jeunesse. Elle aide les mineurs en danger ou délinquants à se réinsérer.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">C'est quoi la justice civile ? 🤝</div>
+        <div class="flashcard-back">Elle règle les conflits entre particuliers (loyer impayé, litige commercial…). Elle ne punit pas.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Qu'est-ce que faire appel ? 🔄</div>
+        <div class="flashcard-back">Demander à être rejugé devant la cour d'appel si on pense avoir été mal jugé.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Qu'est-ce qu'une contravention ? 🚗</div>
+        <div class="flashcard-back">L'infraction la plus légère, punie d'une amende. Ex : excès de vitesse → tribunal de police.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">La justice administrative, c'est pour qui ? 🏛️</div>
+        <div class="flashcard-back">Pour les conflits entre les citoyens et l'État (communes, départements, régions). Ex : opposition à une autoroute.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ===== TABS =====
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('tab-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ===== QCM =====
+function checkQCM(qId, btn, isCorrect) {
+  var q = document.getElementById(qId);
+  if (q.dataset.done) return;
+  q.dataset.done = '1';
+  q.querySelectorAll('.qcm-choice').forEach(function(b) { b.disabled = true; });
+  var fb = document.getElementById(qId + '-fb');
+  fb.classList.add('show');
+  if (isCorrect) {
+    btn.classList.add('correct');
+    fb.textContent = '🎉 Bravo, c\'est la bonne réponse !';
+    fb.classList.add('ok');
+  } else {
+    btn.classList.add('wrong');
+    q.querySelectorAll('.qcm-choice').forEach(function(b) {
+      if (b.getAttribute('onclick').includes('true')) b.classList.add('correct');
+    });
+    fb.textContent = '❌ Pas tout à fait… La bonne réponse est en vert !';
+    fb.classList.add('ko');
+  }
+}
+function resetQCM(qId) {
+  var q = document.getElementById(qId);
+  delete q.dataset.done;
+  q.querySelectorAll('.qcm-choice').forEach(function(b) {
+    b.disabled = false;
+    b.classList.remove('correct', 'wrong');
+  });
+  var fb = document.getElementById(qId + '-fb');
+  fb.className = 'qcm-feedback';
+  fb.textContent = '';
+}
+
+// ===== VRAI FAUX =====
+function checkVF(btn, answer) {
+  var q = btn.closest('.vf-question');
+  if (q.dataset.done) return;
+  q.dataset.selected = answer;
+  q.querySelectorAll('.vf-btn').forEach(function(b) { b.classList.remove('selected-vrai','selected-faux'); });
+  btn.classList.add(answer === 'vrai' ? 'selected-vrai' : 'selected-faux');
+}
+function checkAllVF() {
+  var questions = document.querySelectorAll('.vf-question');
+  var score = 0;
+  questions.forEach(function(q) {
+    var answer = q.dataset.answer;
+    var selected = q.dataset.selected;
+    q.dataset.done = '1';
+    q.querySelectorAll('.vf-btn').forEach(function(b) {
+      b.classList.remove('selected-vrai','selected-faux');
+      var type = b.getAttribute('onclick').includes("'vrai'") ? 'vrai' : 'faux';
+      if (type === answer) b.classList.add('correct-btn');
+      else if (type === selected && selected !== answer) b.classList.add('wrong-btn');
+    });
+    if (selected === answer) score++;
+  });
+  var res = document.getElementById('vf-result');
+  res.classList.add('show');
+  if (score === questions.length) {
+    res.textContent = '🏆 Parfait ! ' + score + '/' + questions.length + ' – Tout bon !';
+    res.className = 'result-msg show ok';
+  } else if (score >= questions.length / 2) {
+    res.textContent = '👍 Pas mal ! ' + score + '/' + questions.length + '. Relis les réponses en vert.';
+    res.className = 'result-msg show partial';
+  } else {
+    res.textContent = '💪 ' + score + '/' + questions.length + '. Relis le cours et réessaie !';
+    res.className = 'result-msg show ko';
+  }
+}
+function resetVF() {
+  document.querySelectorAll('.vf-question').forEach(function(q) {
+    delete q.dataset.done; delete q.dataset.selected;
+    q.querySelectorAll('.vf-btn').forEach(function(b) { b.className = 'vf-btn'; });
+  });
+  var res = document.getElementById('vf-result');
+  res.className = 'result-msg'; res.textContent = '';
+}
+
+// ===== ASSOCIER =====
+var matchSelected = { word: null, def: null };
+var matchDone = {};
+function selectMatch(el, type) {
+  if (el.classList.contains('matched-ok')) return;
+  var selector = type === 'word' ? '.match-word' : '.match-def';
+  document.querySelectorAll(selector).forEach(function(i) {
+    if (!i.classList.contains('matched-ok')) i.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  matchSelected[type] = el;
+  if (matchSelected.word && matchSelected.def) {
+    var wId = matchSelected.word.dataset.id;
+    var dId = matchSelected.def.dataset.id;
+    if (wId === dId) {
+      matchSelected.word.classList.remove('selected'); matchSelected.def.classList.remove('selected');
+      matchSelected.word.classList.add('matched-ok'); matchSelected.def.classList.add('matched-ok');
+      matchDone[wId] = true;
+      if (Object.keys(matchDone).length === 5) {
+        var res = document.getElementById('match-result');
+        res.textContent = '🏆 Excellent ! Tu as tout associé correctement !';
+        res.className = 'result-msg show ok';
+      }
+    } else {
+      var w = matchSelected.word, d = matchSelected.def;
+      w.classList.add('matched-ko'); d.classList.add('matched-ko');
+      setTimeout(function() { w.classList.remove('matched-ko','selected'); d.classList.remove('matched-ko','selected'); }, 700);
+    }
+    matchSelected = { word: null, def: null };
+  }
+}
+function resetMatch() {
+  matchSelected = { word: null, def: null }; matchDone = {};
+  document.querySelectorAll('.match-item').forEach(function(i) {
+    var color = i.dataset.color;
+    var type = i.classList.contains('match-word') ? 'match-word' : 'match-def';
+    i.className = 'match-item ' + type;
+    if (color) i.dataset.color = color;
+  });
+  document.getElementById('match-result').className = 'result-msg';
+  document.getElementById('match-result').textContent = '';
+}
+
+// ===== ORDRE =====
+function initOrder() {
+  var list = document.getElementById('order-list');
+  var _ord = null, _ph = null, _startY = 0, _startTop = 0;
+  function getItemAtY(y) {
+    return Array.from(list.querySelectorAll('.order-item')).filter(function(i) { return i !== _ord; }).find(function(i) {
+      return y < i.getBoundingClientRect().top + i.getBoundingClientRect().height / 2;
+    }) || null;
+  }
+  function startOrd(el, clientY) {
+    _ord = el; _startY = clientY;
+    _startTop = el.getBoundingClientRect().top;
+    el.classList.add('dragging-o');
+    _ph = document.createElement('div');
+    _ph.style.cssText = 'height:' + el.offsetHeight + 'px;margin:4px 0;border-radius:12px;border:2px dashed var(--vert-light);background:var(--vert-pale);';
+    el.parentNode.insertBefore(_ph, el.nextSibling);
+    el.style.position = 'fixed';
+    el.style.left = list.getBoundingClientRect().left + 'px';
+    el.style.width = list.offsetWidth + 'px';
+    el.style.top = _startTop + 'px';
+    el.style.zIndex = '999';
+    el.style.boxShadow = '0 8px 24px rgba(108,158,58,0.3)';
+  }
+  function moveOrd(clientY) {
+    if (!_ord) return;
+    _ord.style.top = (_startTop + (clientY - _startY)) + 'px';
+    var target = getItemAtY(clientY);
+    if (target) list.insertBefore(_ph, target); else list.appendChild(_ph);
+  }
+  function endOrd() {
+    if (!_ord) return;
+    _ord.style.position = _ord.style.left = _ord.style.width = _ord.style.top = _ord.style.zIndex = _ord.style.boxShadow = '';
+    _ord.classList.remove('dragging-o');
+    list.insertBefore(_ord, _ph);
+    _ph.parentNode && _ph.parentNode.removeChild(_ph);
+    _ord = null; _ph = null;
+  }
+  Array.from(list.querySelectorAll('.order-item')).forEach(function(item) {
+    item.style.userSelect = item.style.webkitUserSelect = 'none';
+    item.style.touchAction = 'none';
+    item.style.cursor = 'grab';
+    item.addEventListener('mousedown', function(e) { e.preventDefault(); startOrd(item, e.clientY); });
+    item.addEventListener('touchstart', function(e) { e.preventDefault(); startOrd(item, e.touches[0].clientY); }, { passive: false });
+  });
+  document.addEventListener('mousemove', function(e) { moveOrd(e.clientY); });
+  document.addEventListener('touchmove', function(e) { if (_ord) { e.preventDefault(); moveOrd(e.touches[0].clientY); } }, { passive: false });
+  document.addEventListener('mouseup', endOrd);
+  document.addEventListener('touchend', endOrd);
+}
+function checkOrder() {
+  var items = document.querySelectorAll('#order-list .order-item');
+  var positions = Array.from(items).map(function(i) { return parseInt(i.dataset.pos); });
+  var correct = true;
+  for (var i = 0; i < positions.length - 1; i++) { if (positions[i] > positions[i+1]) { correct = false; break; } }
+  var res = document.getElementById('order-result');
+  if (correct) { res.textContent = '🎉 Parfait ! L\'ordre est correct !'; res.className = 'result-msg show ok'; }
+  else { res.textContent = '❌ Pas tout à fait… Le bon ordre : Police → Procureur → Procès → Jugement.'; res.className = 'result-msg show ko'; }
+}
+function resetOrder() {
+  var list = document.getElementById('order-list');
+  var items = Array.from(list.querySelectorAll('.order-item'));
+  for (var i = items.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    list.insertBefore(items[j], items[i]);
+    var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+  }
+  document.getElementById('order-result').className = 'result-msg';
+  document.getElementById('order-result').textContent = '';
+}
+
+// ===== DRAG & DROP MOTS =====
+var _dw = null, _clone = null, _offX = 0, _offY = 0;
+
+document.addEventListener('DOMContentLoaded', function() {
+  initOrder();
+  initDragWords();
+});
+
+function initDragWords() { document.querySelectorAll('.drag-word').forEach(attachDragWord); }
+function attachDragWord(w) {
+  w.style.userSelect = w.style.webkitUserSelect = 'none';
+  w.style.touchAction = 'none';
+  w.addEventListener('mousedown', onDragStart);
+  w.addEventListener('touchstart', onDragStart, { passive: false });
+}
+function onDragStart(e) {
+  e.preventDefault();
+  _dw = this;
+  var pt = e.touches ? e.touches[0] : e;
+  var box = _dw.getBoundingClientRect();
+  _offX = pt.clientX - box.left; _offY = pt.clientY - box.top;
+  _clone = _dw.cloneNode(true);
+  _clone.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;opacity:0.9;transform:scale(1.08);transition:none;left:' + (pt.clientX - _offX) + 'px;top:' + (pt.clientY - _offY) + 'px;width:' + box.width + 'px;box-shadow:0 6px 20px rgba(108,158,58,0.4);';
+  document.body.appendChild(_clone);
+  _dw.style.opacity = '0.25';
+}
+document.addEventListener('mousemove', function(e) {
+  if (!_clone) return;
+  _clone.style.left = (e.clientX - _offX) + 'px';
+  _clone.style.top  = (e.clientY - _offY) + 'px';
+});
+document.addEventListener('touchmove', function(e) {
+  if (!_clone) return;
+  e.preventDefault();
+  _clone.style.left = (e.touches[0].clientX - _offX) + 'px';
+  _clone.style.top  = (e.touches[0].clientY - _offY) + 'px';
+}, { passive: false });
+function onDragEnd(e) {
+  if (!_clone) return;
+  var pt = e.changedTouches ? e.changedTouches[0] : e;
+  _clone.style.display = 'none';
+  var under = document.elementFromPoint(pt.clientX, pt.clientY);
+  _clone.style.display = '';
+  var slot = under ? under.closest('.slot-drop') : null;
+  if (slot) {
+    var existing = slot.querySelector('.drag-word');
+    if (existing && existing !== _dw) {
+      existing.style.opacity = '1';
+      document.getElementById('drag-bank').appendChild(existing);
+      attachDragWord(existing);
+    }
+    slot.appendChild(_dw);
+    slot.style.background = '#d5ecb8';
+  }
+  _dw.style.opacity = '1';
+  document.body.removeChild(_clone);
+  _clone = null; _dw = null;
+}
+document.addEventListener('mouseup', onDragEnd);
+document.addEventListener('touchend', onDragEnd);
+
+function dropWord(event, slot) {
+  event.preventDefault();
+  slot.classList.remove('drag-over');
+  var word = event.dataTransfer ? event.dataTransfer.getData('text') : null;
+  if (!word && _dw) word = _dw.dataset.word;
+  if (!word) return;
+  var el = document.querySelector('[data-word="' + word + '"]');
+  if (!el) return;
+  var existing = slot.querySelector('.drag-word');
+  if (existing) { document.getElementById('drag-bank').appendChild(existing); attachDragWord(existing); }
+  slot.appendChild(el);
+  slot.style.background = '#d5ecb8';
+  el.style.opacity = '1';
+}
+
+function checkDrag() {
+  var slots = document.querySelectorAll('.slot-drop');
+  var score = 0;
+  slots.forEach(function(slot) {
+    var answer = slot.dataset.answer;
+    var word = slot.querySelector('.drag-word');
+    var val = word ? word.dataset.word : '';
+    if (val === answer) { slot.classList.add('correct-drop'); slot.classList.remove('wrong-drop'); score++; }
+    else { slot.classList.add('wrong-drop'); slot.classList.remove('correct-drop'); }
+  });
+  var res = document.getElementById('drag-result');
+  res.classList.add('show');
+  if (score === slots.length) { res.textContent = '🏆 Parfait ! ' + score + '/' + slots.length + ' – Tout bon !'; res.className = 'result-msg show ok'; }
+  else if (score >= slots.length / 2) { res.textContent = '👍 ' + score + '/' + slots.length + '. Relis le cours !'; res.className = 'result-msg show partial'; }
+  else { res.textContent = '💪 ' + score + '/' + slots.length + '. Continue à réviser !'; res.className = 'result-msg show ko'; }
+}
+function resetDrag() {
+  document.querySelectorAll('.slot-drop').forEach(function(slot) {
+    var word = slot.querySelector('.drag-word');
+    if (word) { document.getElementById('drag-bank').appendChild(word); word.style.opacity = '1'; attachDragWord(word); }
+    slot.classList.remove('correct-drop','wrong-drop','drag-over');
+    slot.style.background = '';
+  });
+  var res = document.getElementById('drag-result');
+  res.className = 'result-msg'; res.textContent = '';
+}
+</script>
+</body>
+</html>
