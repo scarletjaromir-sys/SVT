@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Español – El Perú y el Machu Picchu 🇵🇪</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --or: #c8941a;
+  --or-dark: #9a6e10;
+  --or-light: #f0c050;
+  --or-pale: #fdf3d9;
+  --rouge: #e74c3c;
+  --rouge-pale: #fdf0ee;
+  --vert: #2ecc71;
+  --bleu: #2980b9;
+  --violet: #8e44ad;
+  --text: #2c3e50;
+  --text-light: #666;
+  --white: #fff;
+  --bg: #fffbf0;
+  --card-shadow: 0 4px 20px rgba(200,148,26,0.13);
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, #7d4e00, #c8941a, #f0c050);
+  padding: 36px 20px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='20,4 36,36 4,36' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 50px 50px;
+}
+.header-emoji { font-size: 2.4rem; margin-bottom: 8px; position: relative; }
+header h1 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.8rem;
+  color: #fff;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+  position: relative;
+  line-height: 1.3;
+}
+header .subtitle {
+  color: rgba(255,255,255,0.88);
+  margin-top: 8px;
+  font-size: 0.95rem;
+  position: relative;
+}
+.back-btn {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.4);
+  color: #fff; padding: 6px 16px;
+  border-radius: 20px; font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem; cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 16px;
+  position: relative;
+  transition: background 0.2s;
+}
+.back-btn:hover { background: rgba(255,255,255,0.28); }
+
+.tabs-nav {
+  display: flex; justify-content: center; gap: 8px;
+  padding: 20px 16px 0;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  font-family: 'Baloo 2', cursive;
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  border-radius: 24px;
+  border: 2px solid var(--or-light);
+  background: #fff;
+  color: var(--or-dark);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 700;
+}
+.tab-btn.active, .tab-btn:hover {
+  background: linear-gradient(135deg, var(--or), var(--or-dark));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(200,148,26,0.35);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 24px 18px 60px;
+}
+
+.section-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.3rem;
+  color: var(--or-dark);
+  margin: 32px 0 14px;
+  display: flex; align-items: center; gap: 10px;
+  border-left: 5px solid var(--or);
+  padding-left: 12px;
+}
+
+.info-box {
+  background: var(--or-pale);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  border-left: 5px solid var(--or);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.info-box.rouge { background: #fdf0ee; border-left-color: var(--rouge); }
+.info-box.vert  { background: #eafaf1; border-left-color: var(--vert); }
+.info-box.bleu  { background: #eaf4fb; border-left-color: var(--bleu); }
+
+.question-centrale {
+  background: linear-gradient(135deg, var(--or-dark), var(--or));
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.def {
+  border-bottom: 2px dotted var(--or-dark);
+  color: var(--or-dark);
+  font-weight: 700;
+  cursor: help;
+  position: relative;
+  display: inline-block;
+}
+.def .tooltip {
+  display: none;
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #5a3800;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  width: 230px;
+  text-align: center;
+  z-index: 50;
+  line-height: 1.4;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+.def .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #5a3800;
+}
+.def:hover .tooltip { display: block; }
+
+.deux-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 18px 0;
+}
+.col-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--card-shadow);
+}
+.col-card h3 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--or-pale);
+  color: var(--or-dark);
+}
+.col-card ul { list-style: none; padding: 0; }
+.col-card ul li {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  padding: 4px 0 4px 18px;
+  border-bottom: 1px solid #f5f0e0;
+  position: relative;
+}
+.col-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--or); font-weight: 700; }
+.col-card ul li:last-child { border-bottom: none; }
+
+.frise {
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.frise-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.frise-date {
+  background: linear-gradient(135deg, var(--or), var(--or-dark));
+  color: #fff;
+  font-family: 'Baloo 2', cursive;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 5px 10px;
+  border-radius: 10px;
+  min-width: 80px;
+  text-align: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.frise-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+}
+.frise-dot {
+  width: 14px; height: 14px;
+  background: var(--or);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.frise-trait {
+  width: 2px;
+  flex: 1;
+  background: var(--or-light);
+  min-height: 20px;
+}
+.frise-text {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: var(--card-shadow);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  flex: 1;
+}
+
+.lieux-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.lieu-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 14px;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--or);
+  text-align: center;
+}
+.lieu-card .icon { font-size: 2rem; margin-bottom: 8px; }
+.lieu-card .nom {
+  font-family: 'Baloo 2', cursive;
+  color: var(--or-dark);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.lieu-card .desc {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.vocab-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vocab-mot {
+  font-family: 'Baloo 2', cursive;
+  color: var(--or-dark);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+.vocab-trad {
+  font-size: 0.85rem;
+  color: var(--rouge);
+  font-weight: 700;
+}
+.vocab-def {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.synth-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--or);
+}
+.synth-card h3 {
+  font-family: 'Baloo 2', cursive;
+  color: var(--or-dark);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.synth-card p, .synth-card li {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+.synth-card ul { padding-left: 20px; }
+.synth-card li { margin-bottom: 5px; }
+
+.exo-section { margin-bottom: 32px; }
+.exo-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.15rem;
+  color: var(--or-dark);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.qcm-question {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--card-shadow);
+}
+.qcm-question p { font-weight: 700; margin-bottom: 12px; font-size: 0.97rem; line-height: 1.5; }
+.qcm-choices { display: flex; flex-direction: column; gap: 8px; }
+.qcm-choice {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--or-light);
+  background: var(--or-pale);
+  cursor: pointer;
+  font-size: 0.93rem;
+  transition: all 0.18s;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  text-align: left;
+}
+.qcm-choice:hover { border-color: var(--or); background: #fae8b0; }
+.qcm-choice.correct { background: #eafaf1; border-color: var(--vert); color: #1a7a47; }
+.qcm-choice.wrong { background: #fdf0ee; border-color: var(--rouge); color: #a93226; }
+.qcm-feedback {
+  margin-top: 10px; font-size: 0.88rem; font-weight: 700;
+  display: none; padding: 8px 12px; border-radius: 10px;
+}
+.qcm-feedback.show { display: block; }
+.qcm-feedback.ok { background: #eafaf1; color: #1a7a47; }
+.qcm-feedback.ko { background: #fdf0ee; color: #a93226; }
+
+.vf-question {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--card-shadow);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.vf-text { flex: 1; font-size: 0.95rem; font-weight: 600; min-width: 180px; line-height: 1.5; }
+.vf-btns { display: flex; gap: 8px; }
+.vf-btn {
+  padding: 7px 16px; border-radius: 20px;
+  border: 2px solid var(--or-light);
+  background: var(--or-pale);
+  cursor: pointer; font-family: 'Nunito', sans-serif;
+  font-weight: 700; font-size: 0.88rem; transition: all 0.18s;
+}
+.vf-btn:hover { border-color: var(--or); }
+.vf-btn.selected-vrai { background: #eafaf1; border-color: var(--vert); color: #1a7a47; }
+.vf-btn.selected-faux { background: #fdf0ee; border-color: var(--rouge); color: #a93226; }
+.vf-btn.correct-btn { background: #eafaf1; border-color: var(--vert); color: #1a7a47; }
+.vf-btn.wrong-btn { background: #fdf0ee; border-color: var(--rouge); color: #a93226; }
+
+.drag-container {
+  background: #fff; border-radius: 16px;
+  padding: 20px; box-shadow: var(--card-shadow); margin-bottom: 16px;
+}
+.drag-container p { font-weight: 700; margin-bottom: 14px; font-size: 0.97rem; }
+.drag-words {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
+  min-height: 44px; padding: 8px;
+  border: 2px dashed var(--or-light); border-radius: 12px;
+}
+.drag-word {
+  background: linear-gradient(135deg, var(--or), var(--or-dark));
+  color: #fff; padding: 6px 14px; border-radius: 20px;
+  cursor: grab; font-size: 0.88rem; font-weight: 700;
+  user-select: none; transition: transform 0.15s, box-shadow 0.15s;
+}
+.drag-word:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(200,148,26,0.4); }
+.drag-word.dragging { opacity: 0.4; }
+.drag-slots { display: flex; flex-direction: column; gap: 10px; }
+.drag-slot { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.drag-slot .slot-label { font-size: 0.9rem; font-weight: 700; min-width: 80px; color: var(--or-dark); }
+.slot-drop {
+  min-height: 36px; min-width: 130px;
+  border: 2px dashed var(--or-light); border-radius: 10px;
+  padding: 4px 10px; display: inline-flex; align-items: center;
+  background: var(--or-pale); transition: border-color 0.2s, background 0.2s;
+}
+.slot-drop.drag-over { border-color: var(--or); background: #fae8b0; }
+.slot-drop.correct-drop { border-color: var(--vert); background: #eafaf1; }
+.slot-drop.wrong-drop { border-color: var(--rouge); background: #fdf0ee; }
+
+.match-flat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.match-item {
+  background: #fff; border: 2px solid var(--or-light); border-radius: 12px;
+  padding: 10px 14px; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all 0.18s; text-align: center; line-height: 1.4;
+}
+.match-word { border-style: solid; font-weight: 800; }
+.match-def { border-style: dashed; background: #fff; border-color: var(--or-light); }
+.match-word[data-color="1"] { background: #fde8e8; border-color: #e74c3c; color: #c0392b; }
+.match-word[data-color="2"] { background: #fef0e0; border-color: #e67e22; color: #d35400; }
+.match-word[data-color="3"] { background: #e8f4fd; border-color: #3498db; color: #2980b9; }
+.match-word[data-color="4"] { background: #f5eef8; border-color: #8e44ad; color: #6c3483; }
+.match-word[data-color="5"] { background: #e8f8f0; border-color: #27ae60; color: #1e8449; }
+.match-word:hover { opacity: 0.8; }
+.match-def:hover { border-color: var(--or); background: var(--or-pale); }
+.match-word.selected { color: #fff !important; border-style: solid !important; }
+.match-word[data-color="1"].selected { background: #e74c3c !important; border-color: #c0392b !important; }
+.match-word[data-color="2"].selected { background: #e67e22 !important; border-color: #d35400 !important; }
+.match-word[data-color="3"].selected { background: #3498db !important; border-color: #2980b9 !important; }
+.match-word[data-color="4"].selected { background: #8e44ad !important; border-color: #6c3483 !important; }
+.match-word[data-color="5"].selected { background: #27ae60 !important; border-color: #1e8449 !important; }
+.match-def.selected { background: var(--or); color: #fff; border-color: var(--or-dark); border-style: solid !important; }
+.match-item.matched-ok { color: #fff !important; border-style: solid !important; opacity: 1; }
+.match-item[data-color="1"].matched-ok { background: #e74c3c !important; border-color: #c0392b !important; }
+.match-item[data-color="2"].matched-ok { background: #e67e22 !important; border-color: #d35400 !important; }
+.match-item[data-color="3"].matched-ok { background: #3498db !important; border-color: #2980b9 !important; }
+.match-item[data-color="4"].matched-ok { background: #8e44ad !important; border-color: #6c3483 !important; }
+.match-item[data-color="5"].matched-ok { background: #27ae60 !important; border-color: #1e8449 !important; }
+.match-item.matched-ko { background: #fdf0ee !important; border-color: var(--rouge) !important; color: #a93226 !important; }
+
+.order-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.order-item {
+  background: #fff; border: 2px solid var(--or-light); border-radius: 12px;
+  padding: 11px 16px; cursor: grab; display: flex; align-items: center; gap: 10px;
+  font-size: 0.9rem; font-weight: 600; user-select: none; transition: box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(200,148,26,0.08); line-height: 1.4;
+}
+.order-item:hover { box-shadow: 0 4px 16px rgba(200,148,26,0.2); border-color: var(--or); }
+.order-item.dragging-o { opacity: 0.3; }
+.order-handle { color: var(--or-light); font-size: 1.1rem; }
+
+.flashcards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.flashcard { height: 130px; perspective: 1000px; cursor: pointer; }
+.flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.5s; transform-style: preserve-3d; }
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back {
+  position: absolute; inset: 0; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px; text-align: center; backface-visibility: hidden;
+  font-size: 0.9rem; font-weight: 700; line-height: 1.4; box-shadow: var(--card-shadow);
+}
+.flashcard-front { background: linear-gradient(135deg, var(--or), var(--or-dark)); color: #fff; }
+.flashcard-back { background: #fff; color: var(--or-dark); transform: rotateY(180deg); border: 2px solid var(--or-light); }
+
+.btn-check {
+  background: linear-gradient(135deg, var(--or), var(--or-dark));
+  color: #fff; border: none; border-radius: 14px;
+  padding: 10px 24px; font-family: 'Baloo 2', cursive;
+  font-size: 1rem; cursor: pointer; margin-top: 12px;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-check:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-reset {
+  background: none; border: 2px solid var(--or-light);
+  color: var(--or-dark); border-radius: 14px; padding: 8px 20px;
+  font-family: 'Nunito', sans-serif; font-size: 0.9rem;
+  cursor: pointer; margin-top: 8px; margin-left: 8px; transition: all 0.2s;
+}
+.btn-reset:hover { border-color: var(--or); background: var(--or-pale); }
+.result-msg {
+  margin-top: 12px; padding: 12px 16px; border-radius: 12px;
+  font-weight: 700; font-size: 0.95rem; display: none;
+}
+.result-msg.show { display: block; }
+.result-msg.ok { background: #eafaf1; color: #1a7a47; }
+.result-msg.partial { background: #fef9e7; color: #7d6608; }
+.result-msg.ko { background: #fdf0ee; color: #a93226; }
+
+@media (max-width: 600px) {
+  header h1 { font-size: 1.3rem; }
+  .tabs-nav { gap: 5px; padding: 14px 10px 0; }
+  .tab-btn { font-size: 0.78rem; padding: 7px 10px; }
+  .container { padding: 16px 12px 50px; }
+  .deux-cols { grid-template-columns: 1fr; }
+  .lieux-grid { grid-template-columns: 1fr 1fr; }
+  .match-flat { grid-template-columns: 1fr; }
+  .flashcards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .flashcard { height: 110px; }
+  .flashcard-front, .flashcard-back { font-size: 0.78rem; padding: 10px; }
+  .vf-question { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .drag-slot { flex-wrap: wrap; }
+  .vocab-grid { grid-template-columns: 1fr; }
+  .info-box { font-size: 0.9rem; }
+  .frise-item { gap: 8px; }
+  .frise-date { min-width: 60px; font-size: 0.72rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="text-align:center; padding:0 0 4px;">
+    <a href="../index.html" class="back-btn">← Retour</a>
+  </div>
+  <div class="header-emoji">🇵🇪 ☀️ 🏔️</div>
+  <h1>El Perú y el Machu Picchu</h1>
+  <p class="subtitle">Español • 4e • Civilisation inca, vocabulaire du voyage et futur proche</p>
+</header>
+
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="showTab('cours', this)">📖 Cours</button>
+  <button class="tab-btn" onclick="showTab('synthese', this)">🗂️ Synthèse</button>
+  <button class="tab-btn" onclick="showTab('vocabulaire', this)">📝 Vocabulaire</button>
+  <button class="tab-btn" onclick="showTab('exercices', this)">✏️ Exercices</button>
+  <button class="tab-btn" onclick="showTab('flashcards', this)">🃏 Flashcards</button>
+</div>
+
+<!-- ===================== COURS ===================== -->
+<div id="tab-cours" class="tab-content active">
+<div class="container">
+
+  <div class="question-centrale">
+    ❓ ¿Cómo se habla de un viaje en español ? Comment décrire un lieu et parler au futur proche en espagnol ?
+  </div>
+
+  <!-- PARTIE 1 : LE PÉROU -->
+  <div class="section-title">🗺️ 1. El Perú – Découvrir le pays</div>
+
+  <div class="info-box">
+    🌍 Le Pérou est un grand pays d'<strong>Amérique du Sud</strong>. Sa capitale est <strong>Lima</strong>. On y parle l'<strong>espagnol</strong> comme langue officielle, mais aussi le <span class="def">quechua<span class="tooltip">Le quechua est l'ancienne langue des Incas, encore parlée aujourd'hui par des millions de personnes au Pérou, en Bolivie et en Équateur.</span></span>, la langue des Incas.
+  </div>
+
+  <div class="lieux-grid">
+    <div class="lieu-card">
+      <div class="icon">🏙️</div>
+      <div class="nom">Lima</div>
+      <div class="desc">La capitale du Pérou. C'est la ville la plus grande du pays.</div>
+    </div>
+    <div class="lieu-card">
+      <div class="icon">🏔️</div>
+      <div class="nom">Cusco</div>
+      <div class="desc">L'ancienne capitale de l'Empire inca. Située dans les Andes à 3400 m d'altitude.</div>
+    </div>
+    <div class="lieu-card">
+      <div class="icon">🌄</div>
+      <div class="nom">Machu Picchu</div>
+      <div class="desc">La citadelle inca perchée dans les montagnes. Une des 7 merveilles du monde.</div>
+    </div>
+    <div class="lieu-card">
+      <div class="icon">🏖️</div>
+      <div class="nom">Paracas</div>
+      <div class="desc">Réserve naturelle sur la côte. On peut y voir des otaries et des oiseaux marins.</div>
+    </div>
+    <div class="lieu-card">
+      <div class="icon">🌊</div>
+      <div class="nom">Huacachina</div>
+      <div class="desc">Une oasis incroyable entourée de grandes dunes de sable dans le désert.</div>
+    </div>
+    <div class="lieu-card">
+      <div class="icon">🏔️</div>
+      <div class="nom">Laguna Humantay</div>
+      <div class="desc">Un lac turquoise magnifique entouré de montagnes enneigées près de Cusco.</div>
+    </div>
+  </div>
+
+  <!-- PARTIE 2 : LE MACHU PICCHU -->
+  <div class="section-title">🏯 2. El Machu Picchu – La cité inca</div>
+
+  <div class="info-box">
+    💡 <strong>Machu Picchu</strong> veut dire <em>« vieille montagne »</em> en <span class="def">quechua<span class="tooltip">La langue des Incas, encore parlée aujourd'hui dans les Andes.</span></span>. C'est une ville construite par les <span class="def">Incas<span class="tooltip">Les Incas étaient un peuple très puissant d'Amérique du Sud. Leur empire s'appelait le Tawantinsuyu et s'étendait sur une grande partie de l'Amérique du Sud.</span></span> au XVe siècle (vers 1450), à 2500 mètres d'altitude.
+  </div>
+
+  <div class="frise">
+    <div class="frise-item">
+      <div class="frise-date">XVe s.</div>
+      <div class="frise-line"><div class="frise-dot"></div><div class="frise-trait"></div></div>
+      <div class="frise-text">Construction de Machu Picchu par les Incas. La ville comptait entre 300 et 1000 habitants.</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-date">XVIe s.</div>
+      <div class="frise-line"><div class="frise-dot"></div><div class="frise-trait"></div></div>
+      <div class="frise-text">La ville est <strong>abandonnée</strong> à l'arrivée des Espagnols au Pérou. Elle reste secrète pendant 4 siècles.</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-date">1911</div>
+      <div class="frise-line"><div class="frise-dot"></div><div class="frise-trait"></div></div>
+      <div class="frise-text"><strong>Hiram Bingham</strong>, archéologue américain, redécouvre la cité. Il rapporte des objets aux États-Unis.</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-date">1983</div>
+      <div class="frise-line"><div class="frise-dot"></div><div class="frise-trait"></div></div>
+      <div class="frise-text">Machu Picchu est déclaré <span class="def">Patrimoine mondial<span class="tooltip">Patrimoine mondial = un lieu reconnu par l'UNESCO comme appartenant à toute l'humanité, à protéger pour toujours.</span></span> de l'UNESCO.</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-date">2007</div>
+      <div class="frise-line"><div class="frise-dot"></div></div>
+      <div class="frise-text">Machu Picchu est élue <strong>une des 7 merveilles du monde</strong> modernes.</div>
+    </div>
+  </div>
+
+  <div class="info-box vert">
+    🧱 <strong>L'architecture inca, c'est impressionnant !</strong><br>
+    Les Incas utilisaient d'énormes pierres <strong>sans ciment</strong> — les blocs s'emboîtent parfaitement. Les maisons avaient des toits de paille. La cité avait une muraille, des temples, des palais et même un <span class="def">système d'irrigation<span class="tooltip">Système d'irrigation = réseau de canaux pour amener l'eau là où on en a besoin, notamment pour arroser les cultures.</span></span> pour l'eau. Dans les terrasses, les Incas cultivaient leur nourriture.
+  </div>
+
+  <div class="deux-cols">
+    <div class="col-card">
+      <h3>🏛️ Les bâtiments importants</h3>
+      <ul>
+        <li>Le <strong>Templo del Sol</strong> (Temple du Soleil)</li>
+        <li>La <strong>Casa del Inca</strong> (maison de l'Inca)</li>
+        <li>La <strong>Plaza Sagrada</strong> (Place Sacrée)</li>
+        <li>Les terrasses agricoles</li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <h3>🛤️ Le Camino Inca</h3>
+      <ul>
+        <li>Un réseau de chemins bien construits</li>
+        <li>Relie Cusco à Machu Picchu</li>
+        <li>Très célèbre : les randonneurs l'empruntent encore</li>
+        <li>Traverse montagnes et forêts tropicales</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PARTIE 3 : VOCABULAIRE DU VOYAGE -->
+  <div class="section-title">✈️ 3. Vocabulaire du voyage en espagnol</div>
+
+  <div class="info-box">
+    📋 Dans le document de la prof, tu dois compléter un programme de voyage sur 8 jours avec des verbes au <strong>futur proche</strong>. Voici comment ça fonctionne en espagnol !
+  </div>
+
+  <div class="info-box bleu">
+    🔧 <strong>Le futur proche en espagnol</strong><br><br>
+    En français : <em>Je vais visiter</em> = verbe <strong>aller</strong> + infinitif<br>
+    En espagnol : c'est pareil ! <strong>IR (conjugué) + infinitif</strong><br><br>
+    <table style="width:100%; border-collapse:collapse; margin-top:8px; font-size:0.9rem;">
+      <tr style="background:#d0e8f5;">
+        <th style="padding:6px 10px; text-align:left; border-radius:6px 0 0 0;">Pronom</th>
+        <th style="padding:6px 10px; text-align:left;">IR</th>
+        <th style="padding:6px 10px; text-align:left; border-radius:0 6px 0 0;">Exemple</th>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="padding:6px 10px;"><strong>Yo</strong></td><td style="padding:6px 10px;">voy</td><td style="padding:6px 10px;"><em>Voy a visitar Lima.</em></td>
+      </tr>
+      <tr style="background:#f9f9f9; border-bottom:1px solid #e0e0e0;">
+        <td style="padding:6px 10px;"><strong>Nosotros</strong></td><td style="padding:6px 10px;">vamos</td><td style="padding:6px 10px;"><em>Vamos a visitar Cusco.</em></td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="padding:6px 10px;"><strong>Ellos / Ustedes</strong></td><td style="padding:6px 10px;">van</td><td style="padding:6px 10px;"><em>Van a disfrutar del paisaje.</em></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- PARTIE 4 : LES VERBES DU PROGRAMME -->
+  <div class="section-title">📅 4. Les verbes du programme de voyage</div>
+
+  <div class="info-box or">
+    💡 Ces verbes apparaissent dans les étiquettes DÍA 1 → DÍA 8 que tu dois compléter. Apprends-les !
+  </div>
+
+  <div class="deux-cols">
+    <div class="col-card">
+      <h3>🚀 Verbes de déplacement</h3>
+      <ul>
+        <li><strong>Nos dirigiremos</strong> → Nous nous dirigerons vers</li>
+        <li><strong>Nos trasladaremos</strong> → Nous nous déplacerons</li>
+        <li><strong>Abordaremos</strong> → Nous prendrons (avion/bus)</li>
+        <li><strong>Nos aventuraremos</strong> → Nous nous aventurerons</li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <h3>👀 Verbes d'activité</h3>
+      <ul>
+        <li><strong>Visitaremos</strong> → Nous visiterons</li>
+        <li><strong>Descubrir</strong> → Découvrir</li>
+        <li><strong>Tendremos</strong> → Nous aurons</li>
+        <li><strong>Aguardarán</strong> → Ils attendront</li>
+        <li><strong>Acompañaremos</strong> → Nous accompagnerons</li>
+        <li><strong>se puede observar</strong> → On peut observer</li>
+        <li><strong>podrás</strong> → Tu pourras</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box vert">
+    🗓️ <strong>Les mots du programme</strong><br><br>
+    <ul style="padding-left:20px; line-height:2.2;">
+      <li><strong>el vuelo</strong> → le vol</li>
+      <li><strong>la excursión</strong> → l'excursion</li>
+      <li><strong>la caminata</strong> → la randonnée</li>
+      <li><strong>el recorrido guiado</strong> → le parcours guidé</li>
+      <li><strong>el oasis de la Huacachina</strong> → l'oasis de Huacachina</li>
+      <li><strong>rumbo a</strong> → cap vers / en direction de</li>
+      <li><strong>desde</strong> → depuis / à partir de</li>
+      <li><strong>hacia</strong> → vers</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== SYNTHESE ===================== -->
+<div id="tab-synthese" class="tab-content">
+<div class="container">
+
+  <div class="section-title">🗂️ L'essentiel à retenir</div>
+
+  <div class="synth-card">
+    <h3>🇵🇪 Le Pérou en bref</h3>
+    <ul>
+      <li>Pays d'Amérique du Sud, capitale : <strong>Lima</strong></li>
+      <li>Langue officielle : <strong>l'espagnol</strong> (et le quechua)</li>
+      <li>Sites incontournables : Machu Picchu, Cusco, Huacachina, Paracas, laguna Humantay</li>
+    </ul>
+  </div>
+
+  <div class="synth-card">
+    <h3>🏯 Machu Picchu – Les dates clés</h3>
+    <ul>
+      <li>Construit au <strong>XVe siècle</strong> par les Incas</li>
+      <li>Abandonné au <strong>XVIe siècle</strong> à l'arrivée des Espagnols</li>
+      <li>Redécouvert en <strong>1911</strong> par Hiram Bingham</li>
+      <li>Patrimoine UNESCO en <strong>1983</strong></li>
+      <li>7e merveille du monde depuis <strong>2007</strong></li>
+    </ul>
+  </div>
+
+  <div class="synth-card">
+    <h3>🔧 Le futur proche en espagnol</h3>
+    <p><strong>IR conjugué + infinitif</strong> : <em>Vamos a visitar Machu Picchu.</em><br>
+    Les verbes du programme au futur : Visitaremos, Nos dirigiremos, Abordaremos, Tendremos, Nos trasladaremos…</p>
+  </div>
+
+  <div class="synth-card">
+    <h3>✈️ Vocabulaire voyage essentiel</h3>
+    <ul>
+      <li><strong>el vuelo</strong> = le vol • <strong>la excursión</strong> = l'excursion</li>
+      <li><strong>la caminata</strong> = la randonnée • <strong>el recorrido</strong> = le parcours</li>
+      <li><strong>desde</strong> = depuis • <strong>hacia</strong> = vers • <strong>rumbo a</strong> = cap vers</li>
+      <li><strong>se puede observar</strong> = on peut observer • <strong>podrás</strong> = tu pourras</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== VOCABULAIRE ===================== -->
+<div id="tab-vocabulaire" class="tab-content">
+<div class="container">
+
+  <div class="section-title">📝 Les mots importants du cours</div>
+  <p style="color:var(--text-light); margin-bottom:18px; font-size:0.93rem;">Espagnol → Français + explication 👇</p>
+
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <div class="vocab-mot">🌍 el quechua</div>
+      <div class="vocab-trad">le quechua</div>
+      <div class="vocab-def">L'ancienne langue des Incas, encore parlée dans les Andes.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">☀️ los incas</div>
+      <div class="vocab-trad">les Incas</div>
+      <div class="vocab-def">Grand peuple d'Amérique du Sud qui construisit Machu Picchu.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🏔️ la ciudadela</div>
+      <div class="vocab-trad">la citadelle</div>
+      <div class="vocab-def">Ville fortifiée. Machu Picchu est souvent appelée "la ciudadela".</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🌍 el Patrimonio mundial</div>
+      <div class="vocab-trad">le Patrimoine mondial</div>
+      <div class="vocab-def">Site protégé par l'UNESCO, appartenant à toute l'humanité.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">✈️ el vuelo</div>
+      <div class="vocab-trad">le vol</div>
+      <div class="vocab-def">Le trajet en avion. Ex : <em>Abordaremos un vuelo a Cusco.</em></div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🥾 la caminata</div>
+      <div class="vocab-trad">la randonnée</div>
+      <div class="vocab-def">Une longue marche dans la nature. Ex : <em>la caminata a la montaña de 7 colores.</em></div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🗺️ la excursión</div>
+      <div class="vocab-trad">l'excursion</div>
+      <div class="vocab-def">Une sortie organisée pour visiter un lieu. Ex : <em>excursión de las Islas Ballestas.</em></div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🧭 el recorrido guiado</div>
+      <div class="vocab-trad">le parcours guidé</div>
+      <div class="vocab-def">Une visite avec un guide qui explique tout.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🏜️ el oasis</div>
+      <div class="vocab-trad">l'oasis</div>
+      <div class="vocab-def">Un point d'eau dans le désert, entouré de végétation. Ex : Huacachina.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🧭 rumbo a</div>
+      <div class="vocab-trad">cap vers / en direction de</div>
+      <div class="vocab-def">Indique la direction. Ex : <em>De Cusco rumbo a la laguna Humantay.</em></div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">📍 hacia</div>
+      <div class="vocab-trad">vers</div>
+      <div class="vocab-def">Indique une direction. Ex : <em>Nos dirigiremos hacia el aeropuerto.</em></div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">📅 desde</div>
+      <div class="vocab-trad">depuis / à partir de</div>
+      <div class="vocab-def">Indique un point de départ dans le temps ou l'espace.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">👁️ se puede observar</div>
+      <div class="vocab-trad">on peut observer</div>
+      <div class="vocab-def">Expression impersonnelle pour dire ce qu'on peut voir.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🎉 disfrutar de</div>
+      <div class="vocab-trad">profiter de / apprécier</div>
+      <div class="vocab-def">Ex : <em>Podrás disfrutar del paisaje.</em> = Tu pourras profiter du paysage.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">🗿 el sitio arqueológico</div>
+      <div class="vocab-trad">le site archéologique</div>
+      <div class="vocab-def">Un lieu historique avec des ruines anciennes à découvrir.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">❄️ los nevados</div>
+      <div class="vocab-trad">les sommets enneigés</div>
+      <div class="vocab-def">Les montagnes couvertes de neige. Ex : les nevados Salcantay et Humantay.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== EXERCICES ===================== -->
+<div id="tab-exercices" class="tab-content">
+<div class="container">
+
+  <!-- QCM -->
+  <div class="exo-section">
+    <div class="exo-title">🔵 QCM – Una sola respuesta correcta !</div>
+
+    <div class="qcm-question" id="q1">
+      <p>1. Que signifie "Machu Picchu" en quechua ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q1',this,false)">Nouvelle montagne</button>
+        <button class="qcm-choice" onclick="checkQCM('q1',this,true)">Vieille montagne</button>
+        <button class="qcm-choice" onclick="checkQCM('q1',this,false)">Montagne sacrée</button>
+        <button class="qcm-choice" onclick="checkQCM('q1',this,false)">Cité des Incas</button>
+      </div>
+      <div class="qcm-feedback" id="q1-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q1')">↺ Recommencer</button>
+    </div>
+
+    <div class="qcm-question" id="q2">
+      <p>2. En quelle année Machu Picchu a-t-il été redécouvert ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q2',this,false)">1492</button>
+        <button class="qcm-choice" onclick="checkQCM('q2',this,false)">1983</button>
+        <button class="qcm-choice" onclick="checkQCM('q2',this,true)">1911</button>
+        <button class="qcm-choice" onclick="checkQCM('q2',this,false)">2007</button>
+      </div>
+      <div class="qcm-feedback" id="q2-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q2')">↺ Recommencer</button>
+    </div>
+
+    <div class="qcm-question" id="q3">
+      <p>3. Comment dit-on "la randonnée" en espagnol ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q3',this,false)">la excursión</button>
+        <button class="qcm-choice" onclick="checkQCM('q3',this,true)">la caminata</button>
+        <button class="qcm-choice" onclick="checkQCM('q3',this,false)">el vuelo</button>
+        <button class="qcm-choice" onclick="checkQCM('q3',this,false)">el recorrido</button>
+      </div>
+      <div class="qcm-feedback" id="q3-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q3')">↺ Recommencer</button>
+    </div>
+
+    <div class="qcm-question" id="q4">
+      <p>4. Quelle est la capitale du Pérou ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q4',this,false)">Cusco</button>
+        <button class="qcm-choice" onclick="checkQCM('q4',this,false)">Machu Picchu</button>
+        <button class="qcm-choice" onclick="checkQCM('q4',this,true)">Lima</button>
+        <button class="qcm-choice" onclick="checkQCM('q4',this,false)">Paracas</button>
+      </div>
+      <div class="qcm-feedback" id="q4-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q4')">↺ Recommencer</button>
+    </div>
+
+    <div class="qcm-question" id="q5">
+      <p>5. Comment se forme le futur proche en espagnol ?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQCM('q5',this,false)">Estar + infinitif</button>
+        <button class="qcm-choice" onclick="checkQCM('q5',this,false)">Ser + infinitif</button>
+        <button class="qcm-choice" onclick="checkQCM('q5',this,true)">IR (conjugué) + infinitif</button>
+        <button class="qcm-choice" onclick="checkQCM('q5',this,false)">Haber + participe passé</button>
+      </div>
+      <div class="qcm-feedback" id="q5-fb"></div>
+      <button class="btn-reset" style="margin-top:8px;" onclick="resetQCM('q5')">↺ Recommencer</button>
+    </div>
+  </div>
+
+  <!-- VRAI FAUX -->
+  <div class="exo-section">
+    <div class="exo-title">✅ Verdadero o Falso ?</div>
+
+    <div class="vf-question" data-answer="vrai">
+      <div class="vf-text">1. Machu Picchu a été construit au XVe siècle par les Incas.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="faux">
+      <div class="vf-text">2. La capitale du Pérou est Cusco.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="vrai">
+      <div class="vf-text">3. Les Incas construisaient les pierres sans ciment.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="faux">
+      <div class="vf-text">4. "La caminata" veut dire "le vol" en français.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="vrai">
+      <div class="vf-text">5. Machu Picchu est classé Patrimoine mondial de l'UNESCO depuis 1983.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+    <div class="vf-question" data-answer="faux">
+      <div class="vf-text">6. "Rumbo a" signifie "depuis" en français.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this,'vrai')">✅ Vrai</button>
+        <button class="vf-btn" onclick="checkVF(this,'faux')">❌ Faux</button>
+      </div>
+    </div>
+
+    <button class="btn-check" onclick="checkAllVF()">Vérifier mes réponses 🔍</button>
+    <button class="btn-reset" onclick="resetVF()">Recommencer</button>
+    <div class="result-msg" id="vf-result"></div>
+  </div>
+
+  <!-- ASSOCIER -->
+  <div class="exo-section">
+    <div class="exo-title">🔗 Associe le mot espagnol à sa traduction</div>
+    <div class="drag-container">
+      <p>Appuie sur un mot 🟦 puis sur sa traduction pour les associer !</p>
+      <div class="match-flat" id="match-flat">
+        <div class="match-item match-word" data-id="1" data-color="1" onclick="selectMatch(this,'word')">el vuelo</div>
+        <div class="match-item match-word" data-id="2" data-color="2" onclick="selectMatch(this,'word')">la caminata</div>
+        <div class="match-item match-word" data-id="3" data-color="3" onclick="selectMatch(this,'word')">rumbo a</div>
+        <div class="match-item match-word" data-id="4" data-color="4" onclick="selectMatch(this,'word')">disfrutar de</div>
+        <div class="match-item match-word" data-id="5" data-color="5" onclick="selectMatch(this,'word')">desde</div>
+        <div class="match-item match-def" data-id="3" data-color="3" onclick="selectMatch(this,'def')">cap vers / en direction de</div>
+        <div class="match-item match-def" data-id="1" data-color="1" onclick="selectMatch(this,'def')">le vol</div>
+        <div class="match-item match-def" data-id="5" data-color="5" onclick="selectMatch(this,'def')">depuis</div>
+        <div class="match-item match-def" data-id="2" data-color="2" onclick="selectMatch(this,'def')">la randonnée</div>
+        <div class="match-item match-def" data-id="4" data-color="4" onclick="selectMatch(this,'def')">profiter de</div>
+      </div>
+      <button class="btn-reset" onclick="resetMatch()">Recommencer</button>
+      <div class="result-msg" id="match-result"></div>
+    </div>
+  </div>
+
+  <!-- ORDRE CHRONOLOGIQUE -->
+  <div class="exo-section">
+    <div class="exo-title">🔢 Remets ces événements dans l'ordre chronologique</div>
+    <div class="drag-container">
+      <p>Glisse les événements du plus ancien au plus récent :</p>
+      <div class="order-list" id="order-list">
+        <div class="order-item" data-pos="3"><span class="order-handle">☰</span> Machu Picchu classé Patrimoine mondial UNESCO (1983)</div>
+        <div class="order-item" data-pos="1"><span class="order-handle">☰</span> Construction de Machu Picchu par les Incas (XVe siècle)</div>
+        <div class="order-item" data-pos="4"><span class="order-handle">☰</span> Machu Picchu élu 7e merveille du monde (2007)</div>
+        <div class="order-item" data-pos="2"><span class="order-handle">☰</span> Redécouverte par Hiram Bingham (1911)</div>
+      </div>
+      <button class="btn-check" onclick="checkOrder()">Vérifier l'ordre ✅</button>
+      <button class="btn-reset" onclick="resetOrder()">Mélanger à nouveau</button>
+      <div class="result-msg" id="order-result"></div>
+    </div>
+  </div>
+
+  <!-- GLISSER DEPOSER -->
+  <div class="exo-section">
+    <div class="exo-title">🧩 Complète les phrases avec le bon mot</div>
+    <div class="drag-container">
+      <p>Glisse le bon mot espagnol dans chaque phrase :</p>
+      <div class="drag-words" id="drag-bank">
+        <div class="drag-word" draggable="true" data-word="Visitaremos">Visitaremos</div>
+        <div class="drag-word" draggable="true" data-word="caminata">caminata</div>
+        <div class="drag-word" draggable="true" data-word="vuelo">vuelo</div>
+        <div class="drag-word" draggable="true" data-word="disfrutar">disfrutar</div>
+        <div class="drag-word" draggable="true" data-word="hacia">hacia</div>
+      </div>
+      <div class="drag-slots">
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 1 :</span>
+          <div style="line-height:2.2;">Abordaremos un <div class="slot-drop" data-answer="vuelo" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div> a la ciudad de Cusco.</div>
+        </div>
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 2 :</span>
+          <div style="line-height:2.2;"><div class="slot-drop" data-answer="Visitaremos" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div> el sitio arqueológico de Pisac.</div>
+        </div>
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 3 :</span>
+          <div style="line-height:2.2;">Realizaremos la <div class="slot-drop" data-answer="caminata" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div> a la montaña de 7 colores.</div>
+        </div>
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 4 :</span>
+          <div style="line-height:2.2;">Nos dirigiremos <div class="slot-drop" data-answer="hacia" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div> el aeropuerto.</div>
+        </div>
+        <div class="drag-slot">
+          <span class="slot-label">Phrase 5 :</span>
+          <div style="line-height:2.2;">Podrás <div class="slot-drop" data-answer="disfrutar" ondrop="dropWord(event,this)" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')"></div> del recorrido rodeado de montañas.</div>
+        </div>
+      </div>
+      <button class="btn-check" onclick="checkDrag()">Vérifier ✅</button>
+      <button class="btn-reset" onclick="resetDrag()">Recommencer</button>
+      <div class="result-msg" id="drag-result"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== FLASHCARDS ===================== -->
+<div id="tab-flashcards" class="tab-content">
+<div class="container">
+  <div class="section-title">🃏 Flashcards – Clique pour retourner !</div>
+  <p style="color:var(--text-light); margin-bottom:20px; font-size:0.93rem;">Lis la question, réponds dans ta tête, puis clique 🔄</p>
+
+  <div class="flashcards-grid">
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Que signifie "Machu Picchu" ? 🏔️</div>
+        <div class="flashcard-back">Vieille montagne, en quechua (la langue des Incas).</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Quelle est la capitale du Pérou ? 🏙️</div>
+        <div class="flashcard-back">Lima. Cusco est l'ancienne capitale des Incas.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Qui a redécouvert Machu Picchu ? 🧑‍🔬</div>
+        <div class="flashcard-back">Hiram Bingham, archéologue américain, en 1911.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Comment dit-on "le vol" en espagnol ? ✈️</div>
+        <div class="flashcard-back">El vuelo. Ex : Abordaremos un vuelo a Cusco.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Comment dit-on "la randonnée" en espagnol ? 🥾</div>
+        <div class="flashcard-back">La caminata. Ex : la caminata a la montaña de 7 colores.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Que veut dire "rumbo a" ? 🧭</div>
+        <div class="flashcard-back">Cap vers / en direction de. Ex : De Cusco rumbo a la laguna Humantay.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Comment se forme le futur proche en espagnol ? ⏩</div>
+        <div class="flashcard-back">IR conjugué + infinitif. Ex : Vamos a visitar Lima.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Que signifie "disfrutar de" ? 😊</div>
+        <div class="flashcard-back">Profiter de / apprécier. Ex : Podrás disfrutar del paisaje.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Quand Machu Picchu est-il devenu patrimoine UNESCO ? 🌍</div>
+        <div class="flashcard-back">En 1983. Et 7e merveille du monde en 2007.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Comment les Incas construisaient-ils ? 🧱</div>
+        <div class="flashcard-back">Avec de grandes pierres taillées qui s'emboîtent parfaitement, sans ciment.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Que veut dire "hacia" ? 📍</div>
+        <div class="flashcard-back">Vers. Ex : Nos dirigiremos hacia el aeropuerto.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">C'est quoi l'oasis de Huacachina ? 🏜️</div>
+        <div class="flashcard-back">Un lac entouré de grandes dunes de sable dans le désert péruvien.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Que veut dire "se puede observar" ? 👁️</div>
+        <div class="flashcard-back">On peut observer. Ex : se puede observar la fauna marina peruana.</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Que veut dire "podrás" ? 💪</div>
+        <div class="flashcard-back">Tu pourras. Ex : Podrás disfrutar el recorrido.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ===== TABS =====
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('tab-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ===== QCM =====
+function checkQCM(qId, btn, isCorrect) {
+  var q = document.getElementById(qId);
+  if (q.dataset.done) return;
+  q.dataset.done = '1';
+  q.querySelectorAll('.qcm-choice').forEach(function(b) { b.disabled = true; });
+  var fb = document.getElementById(qId + '-fb');
+  fb.classList.add('show');
+  if (isCorrect) {
+    btn.classList.add('correct');
+    fb.textContent = '🎉 Bravo, c\'est la bonne réponse !';
+    fb.classList.add('ok');
+  } else {
+    btn.classList.add('wrong');
+    q.querySelectorAll('.qcm-choice').forEach(function(b) {
+      if (b.getAttribute('onclick').indexOf('true') !== -1) b.classList.add('correct');
+    });
+    fb.textContent = '❌ Pas tout à fait... La bonne réponse est en vert !';
+    fb.classList.add('ko');
+  }
+}
+function resetQCM(qId) {
+  var q = document.getElementById(qId);
+  delete q.dataset.done;
+  q.querySelectorAll('.qcm-choice').forEach(function(b) {
+    b.disabled = false;
+    b.classList.remove('correct', 'wrong');
+  });
+  var fb = document.getElementById(qId + '-fb');
+  fb.className = 'qcm-feedback';
+  fb.textContent = '';
+}
+
+// ===== VRAI FAUX =====
+function checkVF(btn, answer) {
+  var q = btn.closest('.vf-question');
+  if (q.dataset.done) return;
+  q.dataset.selected = answer;
+  q.querySelectorAll('.vf-btn').forEach(function(b) { b.classList.remove('selected-vrai','selected-faux'); });
+  btn.classList.add(answer === 'vrai' ? 'selected-vrai' : 'selected-faux');
+}
+function checkAllVF() {
+  var questions = document.querySelectorAll('.vf-question');
+  var score = 0;
+  questions.forEach(function(q) {
+    var answer = q.dataset.answer;
+    var selected = q.dataset.selected;
+    q.dataset.done = '1';
+    q.querySelectorAll('.vf-btn').forEach(function(b) {
+      b.classList.remove('selected-vrai','selected-faux');
+      var type = b.getAttribute('onclick').indexOf("'vrai'") !== -1 ? 'vrai' : 'faux';
+      if (type === answer) b.classList.add('correct-btn');
+      else if (type === selected && selected !== answer) b.classList.add('wrong-btn');
+    });
+    if (selected === answer) score++;
+  });
+  var res = document.getElementById('vf-result');
+  res.classList.add('show');
+  if (score === questions.length) {
+    res.textContent = '🏆 Parfait ! ' + score + '/' + questions.length + ' – Tout bon !';
+    res.className = 'result-msg show ok';
+  } else if (score >= Math.ceil(questions.length / 2)) {
+    res.textContent = '👍 Pas mal ! ' + score + '/' + questions.length + '. Relis les réponses en vert.';
+    res.className = 'result-msg show partial';
+  } else {
+    res.textContent = '💪 ' + score + '/' + questions.length + '. Relis le cours et réessaie !';
+    res.className = 'result-msg show ko';
+  }
+}
+function resetVF() {
+  document.querySelectorAll('.vf-question').forEach(function(q) {
+    delete q.dataset.done; delete q.dataset.selected;
+    q.querySelectorAll('.vf-btn').forEach(function(b) { b.className = 'vf-btn'; });
+  });
+  var res = document.getElementById('vf-result');
+  res.className = 'result-msg'; res.textContent = '';
+}
+
+// ===== ASSOCIER =====
+var matchSelected = { word: null, def: null };
+function selectMatch(el, type) {
+  if (el.classList.contains('matched-ok')) return;
+  var selector = type === 'word' ? '.match-word' : '.match-def';
+  document.querySelectorAll(selector).forEach(function(i) {
+    if (!i.classList.contains('matched-ok')) i.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  matchSelected[type] = el;
+  if (matchSelected.word && matchSelected.def) {
+    var wId = matchSelected.word.dataset.id;
+    var dId = matchSelected.def.dataset.id;
+    if (wId === dId) {
+      matchSelected.word.classList.remove('selected'); matchSelected.def.classList.remove('selected');
+      matchSelected.word.classList.add('matched-ok'); matchSelected.def.classList.add('matched-ok');
+      matchSelected.word.onclick = null; matchSelected.def.onclick = null;
+    } else {
+      matchSelected.word.classList.add('matched-ko'); matchSelected.def.classList.add('matched-ko');
+      var w = matchSelected.word, d = matchSelected.def;
+      setTimeout(function() {
+        w.classList.remove('matched-ko','selected'); d.classList.remove('matched-ko','selected');
+      }, 700);
+    }
+    matchSelected.word = null; matchSelected.def = null;
+    var allWords = document.querySelectorAll('.match-word');
+    var matched = 0;
+    allWords.forEach(function(i) { if (i.classList.contains('matched-ok')) matched++; });
+    if (matched === allWords.length) {
+      var r = document.getElementById('match-result');
+      r.textContent = '🏆 Parfait ! Toutes les paires trouvées !';
+      r.className = 'result-msg show ok';
+    }
+  }
+}
+function resetMatch() {
+  document.querySelectorAll('.match-item').forEach(function(i) {
+    i.className = i.classList.contains('match-word') ? 'match-item match-word' : 'match-item match-def';
+    i.setAttribute('data-color', i.dataset.color);
+    i.onclick = i.classList.contains('match-word')
+      ? function() { selectMatch(this,'word'); }
+      : function() { selectMatch(this,'def'); };
+  });
+  var r = document.getElementById('match-result');
+  r.className = 'result-msg'; r.textContent = '';
+  matchSelected = { word: null, def: null };
+}
+
+// ===== ORDRE =====
+var dragSrcOrder = null;
+function initOrder() {
+  var items = document.querySelectorAll('.order-item');
+  items.forEach(function(item) {
+    item.addEventListener('dragstart', function() { dragSrcOrder = this; this.classList.add('dragging-o'); });
+    item.addEventListener('dragend', function() { this.classList.remove('dragging-o'); });
+    item.addEventListener('dragover', function(e) { e.preventDefault(); });
+    item.addEventListener('drop', function() {
+      if (dragSrcOrder !== this) {
+        var list = document.getElementById('order-list');
+        var items2 = Array.from(list.children);
+        var srcIdx = items2.indexOf(dragSrcOrder);
+        var tgtIdx = items2.indexOf(this);
+        if (srcIdx < tgtIdx) list.insertBefore(dragSrcOrder, this.nextSibling);
+        else list.insertBefore(dragSrcOrder, this);
+      }
+    });
+    item.addEventListener('touchstart', function(e) {
+      dragSrcOrder = this;
+      this.classList.add('dragging-o');
+    }, {passive:true});
+    item.addEventListener('touchend', function(e) {
+      this.classList.remove('dragging-o');
+      var touch = e.changedTouches[0];
+      var target = document.elementFromPoint(touch.clientX, touch.clientY);
+      if (target) {
+        var tgt = target.closest('.order-item');
+        if (tgt && tgt !== dragSrcOrder) {
+          var list = document.getElementById('order-list');
+          var items2 = Array.from(list.children);
+          var srcIdx = items2.indexOf(dragSrcOrder);
+          var tgtIdx = items2.indexOf(tgt);
+          if (srcIdx < tgtIdx) list.insertBefore(dragSrcOrder, tgt.nextSibling);
+          else list.insertBefore(dragSrcOrder, tgt);
+        }
+      }
+    }, {passive:true});
+  });
+}
+function checkOrder() {
+  var items = document.querySelectorAll('#order-list .order-item');
+  var correct = true;
+  items.forEach(function(item, idx) {
+    if (parseInt(item.dataset.pos) !== idx + 1) correct = false;
+  });
+  var res = document.getElementById('order-result');
+  res.classList.add('show');
+  if (correct) {
+    res.textContent = '🏆 Bravo ! L\'ordre chronologique est correct !';
+    res.className = 'result-msg show ok';
+  } else {
+    res.textContent = '❌ Ce n\'est pas encore ça. Réessaie !';
+    res.className = 'result-msg show ko';
+  }
+}
+function resetOrder() {
+  var list = document.getElementById('order-list');
+  var items = Array.from(list.children);
+  for (var i = items.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    list.insertBefore(items[j], items[i]);
+    var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+  }
+  var res = document.getElementById('order-result');
+  res.className = 'result-msg'; res.textContent = '';
+}
+
+// ===== DRAG & DROP =====
+var draggedWord = null;
+function initDrag() {
+  document.querySelectorAll('.drag-word').forEach(function(w) {
+    w.addEventListener('dragstart', function() {
+      draggedWord = this;
+      this.classList.add('dragging');
+    });
+    w.addEventListener('dragend', function() { this.classList.remove('dragging'); });
+    w.addEventListener('touchstart', function(e) {
+      draggedWord = this;
+    }, {passive:true});
+    w.addEventListener('touchend', function(e) {
+      var touch = e.changedTouches[0];
+      var target = document.elementFromPoint(touch.clientX, touch.clientY);
+      if (target) {
+        var slot = target.closest('.slot-drop');
+        if (slot) doDropWord(slot);
+      }
+    }, {passive:true});
+  });
+}
+function dropWord(event, slot) {
+  event.preventDefault();
+  slot.classList.remove('drag-over');
+  doDropWord(slot);
+}
+function doDropWord(slot) {
+  if (slot.dataset.filled) return;
+  if (!draggedWord) return;
+  var word = draggedWord.dataset.word;
+  slot.textContent = word;
+  slot.dataset.filled = word;
+  draggedWord.style.display = 'none';
+}
+function checkDrag() {
+  var slots = document.querySelectorAll('.slot-drop');
+  var score = 0;
+  slots.forEach(function(slot) {
+    slot.classList.remove('correct-drop','wrong-drop');
+    if (slot.dataset.filled === slot.dataset.answer) {
+      slot.classList.add('correct-drop'); score++;
+    } else if (slot.dataset.filled) {
+      slot.classList.add('wrong-drop');
+    }
+  });
+  var res = document.getElementById('drag-result');
+  res.classList.add('show');
+  if (score === slots.length) {
+    res.textContent = '🏆 Parfait ! ' + score + '/' + slots.length + ' !';
+    res.className = 'result-msg show ok';
+  } else if (score > 0) {
+    res.textContent = '👍 ' + score + '/' + slots.length + ' corrects. Vérifie les cases rouges.';
+    res.className = 'result-msg show partial';
+  } else {
+    res.textContent = '❌ 0/' + slots.length + '. Relis le cours et réessaie !';
+    res.className = 'result-msg show ko';
+  }
+}
+function resetDrag() {
+  document.querySelectorAll('.slot-drop').forEach(function(s) {
+    s.textContent = ''; delete s.dataset.filled;
+    s.classList.remove('correct-drop','wrong-drop','drag-over');
+  });
+  document.querySelectorAll('.drag-word').forEach(function(w) { w.style.display = ''; });
+  var res = document.getElementById('drag-result');
+  res.className = 'result-msg'; res.textContent = '';
+  draggedWord = null;
+}
+
+// ===== INIT =====
+initOrder();
+initDrag();
+</script>
+</body>
+</html>
