@@ -457,6 +457,53 @@ tr:nth-child(even) td { background: #fafafa; }
 .result-msg.partial { background: #fef9e7; color: #7d6608; }
 .result-msg.ko { background: var(--rouge-pale); color: var(--rouge-dark); }
 
+/* ===== HIGHLIGHTED WORDS WITH TOOLTIP ===== */
+.hl-word {
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-weight: 700;
+  font-style: normal;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+.hl-word.pos { background: #b6f0c2; color: #1e6b3a; }
+.hl-word.neg { background: #f5b7b1; color: #922b21; }
+.hl-word::after {
+  content: attr(data-tr);
+  display: none;
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a2e;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 50;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.hl-word::before {
+  content: '';
+  display: none;
+  position: absolute;
+  bottom: calc(130% - 7px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #1a1a2e;
+  z-index: 51;
+  pointer-events: none;
+}
+.hl-word:hover::after,
+.hl-word:hover::before,
+.hl-word.tip-open::after,
+.hl-word.tip-open::before { display: block; }
+
 @media (max-width: 600px) {
   header h1 { font-size: 1.3rem; }
   .tabs-nav { gap: 5px; padding: 14px 10px 0; }
@@ -813,6 +860,123 @@ tr:nth-child(even) td { background: #fafafa; }
     <div class="vocab-item">
       <div class="vocab-mot">experiences</div>
       <div class="vocab-def">des expériences → He has had many new experiences.</div>
+    </div>
+  </div>
+
+  <!-- JOURNAUX INTIMES -->
+  <div class="section-title">📓 Feelings in context — Two diary entries</div>
+
+  <div class="info-box">
+    Lis ces deux journaux intimes. Les mots en <span style="background:#b6f0c2;padding:1px 6px;border-radius:4px;font-weight:700;">vert</span> expriment la <strong>joie / bonheur</strong>. Les mots en <span style="background:#f5b7b1;padding:1px 6px;border-radius:4px;font-weight:700;">rouge</span> expriment la <strong>tristesse / colère</strong>.
+  </div>
+
+  <div class="letter-box" style="border-color:#27ae60;">
+    <p style="font-weight:800;font-style:normal;color:#27ae60;margin-bottom:10px;">😊 25th July — A great day!</p>
+    <p>
+      It's been a
+      <span class="hl-word pos" data-tr="merveilleux / magnifique">wonderful</span> day.
+      We haven't been so
+      <span class="hl-word pos" data-tr="heureux / content">happy</span>
+      or felt so
+      <span class="hl-word pos" data-tr="bien / en forme">good</span>
+      in a long time. The sun has been shining all day. We've had so much
+      <span class="hl-word pos" data-tr="amusement / plaisir">fun</span>
+      together! It's been so
+      <span class="hl-word pos" data-tr="super / génial">great</span>
+      to go sailing on the lake. Everyone
+      <span class="hl-word pos" data-tr="a adoré / a apprécié">enjoyed</span>
+      it! We've had
+      <span class="hl-word pos" data-tr="de grands fous rires">great laughs</span>
+      with Peter.
+      I can't believe he was afraid of water-skiing.
+      <span class="hl-word pos" data-tr="quel succès !">Great success!</span>
+      Conclusion: <span class="hl-word pos" data-tr="journée incroyable !">AWESOME DAY!</span>
+    </p>
+  </div>
+
+  <div class="letter-box" style="border-color:#e74c3c;margin-top:14px;">
+    <p style="font-weight:800;font-style:normal;color:#c0392b;margin-bottom:10px;">😠 23rd August — A terrible day!</p>
+    <p>
+      I
+      <span class="hl-word neg" data-tr="déteste">hate</span>
+      Kate! She's
+      <span class="hl-word neg" data-tr="gâché / ruiné">ruined</span>
+      my day! She's always been so
+      <span class="hl-word neg" data-tr="méchante / mauvaise">mean</span>
+      to me! I feel
+      <span class="hl-word neg" data-tr="horrible / affreux">terrible!</span>
+      This is the
+      <span class="hl-word neg" data-tr="le pire jour">worst day</span>
+      of my life! She's said
+      <span class="hl-word neg" data-tr="des choses horribles / affreuses">awful</span>
+      stuff to John. I am really
+      <span class="hl-word neg" data-tr="effrayé / apeuré">scared</span>
+      and
+      <span class="hl-word neg" data-tr="inquiet / stressé">worried.</span>
+      I can't trust this girl. She's
+      <span class="hl-word neg" data-tr="horrible / odieuse">horrible!</span>
+      I am so
+      <span class="hl-word neg" data-tr="déprimé / à plat">down</span>
+      tonight. I'm
+      <span class="hl-word neg" data-tr="j'en ai marre / ras-le-bol">fed up</span>
+      with everything. Conclusion: <span class="hl-word neg" data-tr="mauvaise journée !">BAD DAY!</span>
+    </p>
+  </div>
+
+  <!-- TABLEAU RÉCAP ÉMOTIONS -->
+  <div class="section-title">💬 Expression vocabulary — To remember!</div>
+
+  <div class="deux-cols" style="margin-top:4px;">
+    <div style="background:#eafaf1;border-radius:16px;padding:18px;box-shadow:var(--card-shadow);border-top:4px solid #27ae60;">
+      <h3 style="font-family:'Baloo 2',cursive;color:#1e8449;margin-bottom:12px;">😊 Joy &amp; Happiness</h3>
+      <ul style="list-style:none;padding:0;">
+        <li style="padding:4px 0;font-size:0.9rem;">✅ <strong>wonderful / great / awesome</strong></li>
+        <li style="padding:4px 0;font-size:0.9rem;">✅ <strong>happy / delighted / excited</strong></li>
+        <li style="padding:4px 0;font-size:0.9rem;">✅ <strong>to enjoy / to have fun / to have great laughs</strong></li>
+        <li style="padding:4px 0;font-size:0.9rem;">✅ <strong>great success / I can't believe it!</strong></li>
+        <li style="padding:4px 0;font-size:0.9rem;">✅ <strong>proud / amazed / relieved</strong></li>
+      </ul>
+    </div>
+    <div style="background:#fdedec;border-radius:16px;padding:18px;box-shadow:var(--card-shadow);border-top:4px solid #e74c3c;">
+      <h3 style="font-family:'Baloo 2',cursive;color:#c0392b;margin-bottom:12px;">😠 Sadness &amp; Anger</h3>
+      <ul style="list-style:none;padding:0;">
+        <li style="padding:4px 0;font-size:0.9rem;">❌ <strong>terrible / awful / horrible / mean</strong></li>
+        <li style="padding:4px 0;font-size:0.9rem;">❌ <strong>scared / worried / down / fed up</strong></li>
+        <li style="padding:4px 0;font-size:0.9rem;">❌ <strong>to hate / to ruin / to feel terrible</strong></li>
+        <li style="padding:4px 0;font-size:0.9rem;">❌ <strong>the worst day of my life!</strong></li>
+        <li style="padding:4px 0;font-size:0.9rem;">❌ <strong>disappointed / frustrated / nervous</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUJET EXPRESSION ECRITE -->
+  <div class="section-title">✍️ Writing task — Jamie's diary</div>
+
+  <div class="info-box or">
+    <strong>📝 Your turn to write!</strong><br><br>
+    Imagine you are <strong>Jamie</strong>, stranded on an island like Jack. Write a few lines in his diary for <strong>March 25th</strong>.<br><br>
+    Use these notes + your imagination :<br>
+    <ul style="padding-left:18px;margin-top:8px;">
+      <li>tiring day</li>
+      <li>rain all day long</li>
+      <li>built a new and bigger home</li>
+      <li>no contact with anyone for two weeks</li>
+    </ul>
+    <br>
+    <strong>Tips :</strong>
+    <ul style="padding-left:18px;margin-top:4px;">
+      <li>Use the <strong>Present Perfect</strong> for experiences → <em>I have built...</em></li>
+      <li>Use the <strong>Past Simple</strong> for specific moments → <em>It rained all day.</em></li>
+      <li>Express your feelings ! → <em>I feel exhausted / I am fed up with the rain...</em></li>
+      <li>Use adverbs → <em>I have not seen anyone for two weeks / I have already...</em></li>
+    </ul>
+  </div>
+
+  <div style="background:#fff;border-radius:16px;padding:20px;box-shadow:var(--card-shadow);margin-top:4px;">
+    <p style="font-family:'Baloo 2',cursive;color:var(--rouge-dark);font-weight:800;margin-bottom:12px;">📅 March 25th</p>
+    <p style="font-style:italic;color:#aaa;font-size:0.9rem;margin-bottom:8px;">Écris ta réponse ici (sur papier ou dans ton cahier) :</p>
+    <div style="border:2px dashed var(--rouge-light);border-radius:12px;padding:16px;min-height:120px;background:var(--rouge-pale);font-size:0.9rem;color:#bbb;font-style:italic;">
+      Dear diary, today has been...
     </div>
   </div>
 
@@ -1243,6 +1407,20 @@ function resetMatch() {
     if (items[i].classList.contains('match-def')) { delete items[i].dataset.color; }
   }
 }
+
+// ===== TOOLTIP TACTILE sur .hl-word =====
+var hlWords = document.querySelectorAll('.hl-word');
+for (var hw = 0; hw < hlWords.length; hw++) {
+  hlWords[hw].addEventListener('click', function(e) {
+    var isOpen = this.classList.contains('tip-open');
+    for (var i = 0; i < hlWords.length; i++) { hlWords[i].classList.remove('tip-open'); }
+    if (!isOpen) { this.classList.add('tip-open'); }
+    e.stopPropagation();
+  });
+}
+document.addEventListener('click', function() {
+  for (var i = 0; i < hlWords.length; i++) { hlWords[i].classList.remove('tip-open'); }
+});
 </script>
 
 </body>
