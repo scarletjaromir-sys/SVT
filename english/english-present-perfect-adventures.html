@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anglais 4e – Present Perfect &amp; Past Simple</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --rouge: #c0392b;
+  --rouge-dark: #922b21;
+  --rouge-light: #f5b7b1;
+  --rouge-pale: #fdedec;
+  --or: #c8941a;
+  --or-light: #fdf3d9;
+  --vert: #1e8449;
+  --vert-pale: #eafaf1;
+  --bleu: #2980b9;
+  --bleu-pale: #eaf4fb;
+  --text: #2c3e50;
+  --text-light: #666;
+  --bg: #fff8f8;
+  --card-shadow: 0 4px 20px rgba(192,57,43,0.10);
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, #922b21, #c0392b, #e74c3c);
+  padding: 36px 20px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+}
+.header-emoji { font-size: 2.4rem; margin-bottom: 8px; position: relative; }
+header h1 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.8rem;
+  color: #fff;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+  position: relative;
+  line-height: 1.3;
+}
+header .subtitle {
+  color: rgba(255,255,255,0.85);
+  margin-top: 8px;
+  font-size: 0.95rem;
+  position: relative;
+}
+.back-btn {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.4);
+  color: #fff; padding: 6px 16px;
+  border-radius: 20px; font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem; cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 16px;
+  position: relative;
+  transition: background 0.2s;
+}
+.back-btn:hover { background: rgba(255,255,255,0.28); }
+
+.tabs-nav {
+  display: flex; justify-content: center; gap: 8px;
+  padding: 20px 16px 0;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  font-family: 'Baloo 2', cursive;
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  border-radius: 24px;
+  border: 2px solid var(--rouge-light);
+  background: #fff;
+  color: var(--rouge);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.tab-btn.active, .tab-btn:hover {
+  background: linear-gradient(135deg, var(--rouge), var(--rouge-dark));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(192,57,43,0.3);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 24px 18px 60px;
+}
+
+.section-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.3rem;
+  color: var(--rouge-dark);
+  margin: 32px 0 14px;
+  display: flex; align-items: center; gap: 10px;
+  border-left: 5px solid var(--rouge);
+  padding-left: 12px;
+}
+
+.info-box {
+  background: var(--rouge-pale);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  border-left: 5px solid var(--rouge);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.info-box.or { background: var(--or-light); border-left-color: var(--or); }
+.info-box.vert { background: var(--vert-pale); border-left-color: var(--vert); }
+.info-box.bleu { background: var(--bleu-pale); border-left-color: var(--bleu); }
+
+/* Letter box */
+.letter-box {
+  background: #fffef5;
+  border: 2px solid #d4c97a;
+  border-radius: 16px;
+  padding: 24px 26px;
+  margin: 18px 0;
+  font-style: italic;
+  line-height: 1.85;
+  font-size: 0.97rem;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(212,201,122,0.2);
+}
+.letter-box::before {
+  content: '✉️';
+  position: absolute; top: -14px; left: 20px;
+  font-size: 1.6rem;
+}
+.letter-highlight {
+  background: #ffe066;
+  border-radius: 4px;
+  padding: 1px 4px;
+  font-weight: 700;
+  font-style: normal;
+}
+.letter-highlight.blue {
+  background: #b3d8f5;
+}
+
+/* Grammar table */
+.grammar-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--rouge);
+}
+.grammar-box h3 {
+  font-family: 'Baloo 2', cursive;
+  color: var(--rouge-dark);
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+.formula {
+  background: linear-gradient(135deg, var(--rouge), var(--rouge-dark));
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.formula.green {
+  background: linear-gradient(135deg, #27ae60, #1e8449);
+}
+.formula.blue {
+  background: linear-gradient(135deg, #2980b9, #1a5276);
+}
+.formula.orange {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+}
+
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; }
+th {
+  background: var(--rouge-pale);
+  color: var(--rouge-dark);
+  font-family: 'Baloo 2', cursive;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid var(--rouge-light);
+}
+td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #fafafa; }
+
+/* Adverbes grid */
+.adv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.adv-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: var(--card-shadow);
+  border-top: 3px solid var(--rouge);
+}
+.adv-card .adv-word {
+  font-family: 'Baloo 2', cursive;
+  color: var(--rouge-dark);
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.adv-card .adv-fr { font-size: 0.82rem; color: var(--text-light); margin-bottom: 6px; }
+.adv-card .adv-ex { font-size: 0.85rem; font-style: italic; color: var(--text); line-height: 1.5; border-top: 1px solid #f0f0f0; padding-top: 6px; margin-top: 4px; }
+
+/* Emotions grid */
+.emo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.emo-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: var(--card-shadow);
+  text-align: center;
+}
+.emo-card .emo-icon { font-size: 1.8rem; margin-bottom: 6px; }
+.emo-card .emo-word { font-family: 'Baloo 2', cursive; font-size: 0.92rem; color: var(--rouge-dark); font-weight: 800; }
+.emo-card .emo-fr { font-size: 0.78rem; color: var(--text-light); margin-top: 2px; }
+.emo-card.pos { border-top: 3px solid #27ae60; }
+.emo-card.neg { border-top: 3px solid var(--rouge); }
+.emo-card.mixt { border-top: 3px solid var(--or); }
+
+/* Vocab */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+.vocab-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: var(--card-shadow);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.vocab-mot { font-family: 'Baloo 2', cursive; color: var(--rouge-dark); font-size: 0.95rem; font-weight: 800; }
+.vocab-def { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+
+/* Synthèse */
+.synth-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--card-shadow);
+  border-top: 4px solid var(--rouge);
+}
+.synth-card h3 { font-family: 'Baloo 2', cursive; color: var(--rouge-dark); font-size: 1.1rem; margin-bottom: 10px; }
+.synth-card p, .synth-card li { font-size: 0.95rem; line-height: 1.75; }
+.synth-card ul { padding-left: 20px; }
+.synth-card li { margin-bottom: 5px; }
+
+/* Exercices */
+.exo-section { margin-bottom: 32px; }
+.exo-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.15rem;
+  color: var(--rouge-dark);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.qcm-question {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--card-shadow);
+}
+.qcm-question p { font-weight: 700; margin-bottom: 12px; font-size: 0.97rem; line-height: 1.5; }
+.qcm-choices { display: flex; flex-direction: column; gap: 8px; }
+.qcm-choice {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--rouge-light);
+  background: var(--rouge-pale);
+  cursor: pointer;
+  font-size: 0.93rem;
+  transition: all 0.18s;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  text-align: left;
+}
+.qcm-choice:hover { border-color: var(--rouge); background: #f9d0cc; }
+.qcm-choice.correct { background: var(--vert-pale); border-color: var(--vert); color: #1e8449; }
+.qcm-choice.wrong { background: var(--rouge-pale); border-color: var(--rouge); color: var(--rouge-dark); }
+.qcm-feedback {
+  margin-top: 10px; font-size: 0.88rem; font-weight: 700;
+  display: none; padding: 8px 12px; border-radius: 10px;
+}
+.qcm-feedback.show { display: block; }
+.qcm-feedback.ok { background: var(--vert-pale); color: #1e8449; }
+.qcm-feedback.ko { background: var(--rouge-pale); color: var(--rouge-dark); }
+
+.vf-question {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--card-shadow);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.vf-text { flex: 1; font-size: 0.95rem; font-weight: 600; min-width: 180px; line-height: 1.5; }
+.vf-btns { display: flex; gap: 8px; }
+.vf-btn {
+  padding: 7px 16px; border-radius: 20px;
+  border: 2px solid var(--rouge-light);
+  background: var(--rouge-pale);
+  cursor: pointer; font-family: 'Nunito', sans-serif;
+  font-weight: 700; font-size: 0.88rem; transition: all 0.18s;
+}
+.vf-btn:hover { border-color: var(--rouge); }
+.vf-btn.selected-vrai { background: var(--vert-pale); border-color: var(--vert); color: #1e8449; }
+.vf-btn.selected-faux { background: var(--rouge-pale); border-color: var(--rouge); color: var(--rouge-dark); }
+.vf-btn.correct-btn { background: var(--vert-pale); border-color: var(--vert); color: #1e8449; }
+.vf-btn.wrong-btn { background: var(--rouge-pale); border-color: var(--rouge); color: var(--rouge-dark); }
+
+/* Fill in the blanks */
+.fill-container {
+  background: #fff; border-radius: 16px; padding: 20px;
+  box-shadow: var(--card-shadow); margin-bottom: 16px;
+}
+.fill-container p { font-weight: 700; margin-bottom: 14px; font-size: 0.97rem; line-height: 1.5; }
+.fill-sentence {
+  font-size: 0.95rem; line-height: 2.2; margin-bottom: 6px;
+}
+.fill-input {
+  border: none; border-bottom: 2px solid var(--rouge-light);
+  background: var(--rouge-pale); border-radius: 6px;
+  padding: 2px 8px; font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem; width: 130px; text-align: center;
+  transition: border-color 0.2s;
+}
+.fill-input:focus { outline: none; border-color: var(--rouge); }
+.fill-input.correct { border-color: var(--vert); background: var(--vert-pale); color: #1e8449; font-weight: 700; }
+.fill-input.wrong { border-color: var(--rouge); background: var(--rouge-pale); color: var(--rouge-dark); font-weight: 700; }
+.word-bank {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  background: var(--rouge-pale); border-radius: 12px;
+  padding: 12px; margin: 12px 0;
+  border: 2px dashed var(--rouge-light);
+}
+.word-tag {
+  background: linear-gradient(135deg, var(--rouge), var(--rouge-dark));
+  color: #fff; padding: 5px 14px; border-radius: 20px;
+  font-size: 0.85rem; font-weight: 700; font-family: 'Baloo 2', cursive;
+}
+
+/* Match */
+.match-flat {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 4px;
+}
+.match-item {
+  background: #fff; border: 2px solid var(--rouge-light); border-radius: 12px;
+  padding: 10px 14px; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all 0.18s; text-align: center; line-height: 1.4;
+}
+.match-word { border-style: solid; font-weight: 800; }
+.match-def { border-style: dashed; }
+.match-word[data-color="1"] { background: #fde8e8; border-color: #e74c3c; color: #c0392b; }
+.match-word[data-color="2"] { background: #fef0e0; border-color: #e67e22; color: #d35400; }
+.match-word[data-color="3"] { background: #e8f4fd; border-color: #3498db; color: #2980b9; }
+.match-word[data-color="4"] { background: #f5eef8; border-color: #8e44ad; color: #6c3483; }
+.match-word[data-color="5"] { background: #e8f8f0; border-color: #27ae60; color: #1e8449; }
+.match-word[data-color="6"] { background: #fef9e7; border-color: #f1c40f; color: #9a7d0a; }
+.match-word:hover { opacity: 0.8; }
+.match-def:hover { border-color: var(--rouge); background: var(--rouge-pale); }
+.match-word.selected { color: #fff !important; border-style: solid !important; }
+.match-word[data-color="1"].selected { background: #e74c3c !important; border-color: #c0392b !important; }
+.match-word[data-color="2"].selected { background: #e67e22 !important; border-color: #d35400 !important; }
+.match-word[data-color="3"].selected { background: #3498db !important; border-color: #2980b9 !important; }
+.match-word[data-color="4"].selected { background: #8e44ad !important; border-color: #6c3483 !important; }
+.match-word[data-color="5"].selected { background: #27ae60 !important; border-color: #1e8449 !important; }
+.match-word[data-color="6"].selected { background: #f1c40f !important; border-color: #9a7d0a !important; color: #333 !important; }
+.match-def.selected { background: var(--rouge); color: #fff; border-color: var(--rouge-dark); border-style: solid !important; }
+.match-item.matched-ok { color: #fff !important; border-style: solid !important; opacity: 1; }
+.match-item[data-color="1"].matched-ok { background: #e74c3c !important; border-color: #c0392b !important; }
+.match-item[data-color="2"].matched-ok { background: #e67e22 !important; border-color: #d35400 !important; }
+.match-item[data-color="3"].matched-ok { background: #3498db !important; border-color: #2980b9 !important; }
+.match-item[data-color="4"].matched-ok { background: #8e44ad !important; border-color: #6c3483 !important; }
+.match-item[data-color="5"].matched-ok { background: #27ae60 !important; border-color: #1e8449 !important; }
+.match-item[data-color="6"].matched-ok { background: #f1c40f !important; border-color: #9a7d0a !important; color: #333 !important; }
+.match-item.matched-ko { background: var(--rouge-pale) !important; border-color: var(--rouge) !important; color: var(--rouge-dark) !important; }
+
+/* Flashcards */
+.flashcards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.flashcard { height: 140px; perspective: 1000px; cursor: pointer; }
+.flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.5s; transform-style: preserve-3d; }
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back {
+  position: absolute; inset: 0; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px; text-align: center; backface-visibility: hidden;
+  font-size: 0.88rem; font-weight: 700; line-height: 1.4; box-shadow: var(--card-shadow);
+}
+.flashcard-front { background: linear-gradient(135deg, var(--rouge), var(--rouge-dark)); color: #fff; }
+.flashcard-back { background: #fff; color: var(--rouge-dark); transform: rotateY(180deg); border: 2px solid var(--rouge-light); }
+
+.btn-check {
+  background: linear-gradient(135deg, var(--rouge), var(--rouge-dark));
+  color: #fff; border: none; border-radius: 14px;
+  padding: 10px 24px; font-family: 'Baloo 2', cursive;
+  font-size: 1rem; cursor: pointer; margin-top: 12px;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-check:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-reset {
+  background: none; border: 2px solid var(--rouge-light);
+  color: var(--rouge); border-radius: 14px; padding: 8px 20px;
+  font-family: 'Nunito', sans-serif; font-size: 0.9rem;
+  cursor: pointer; margin-top: 8px; margin-left: 8px; transition: all 0.2s;
+}
+.btn-reset:hover { border-color: var(--rouge); background: var(--rouge-pale); }
+.result-msg {
+  margin-top: 12px; padding: 12px 16px; border-radius: 12px;
+  font-weight: 700; font-size: 0.95rem; display: none;
+}
+.result-msg.show { display: block; }
+.result-msg.ok { background: var(--vert-pale); color: #1e8449; }
+.result-msg.partial { background: #fef9e7; color: #7d6608; }
+.result-msg.ko { background: var(--rouge-pale); color: var(--rouge-dark); }
+
+@media (max-width: 600px) {
+  header h1 { font-size: 1.3rem; }
+  .tabs-nav { gap: 5px; padding: 14px 10px 0; }
+  .tab-btn { font-size: 0.78rem; padding: 7px 10px; }
+  .container { padding: 12px; }
+  .match-flat { grid-template-columns: 1fr; }
+  .flashcards-grid { grid-template-columns: 1fr 1fr; }
+  .adv-grid { grid-template-columns: 1fr; }
+  .emo-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="text-align:center; margin-bottom:12px;">
+    <a href="../index.html" class="back-btn">&#8592; Retour</a>
+  </div>
+  <div class="header-emoji">🏝️</div>
+  <h1>Jack's Island — Aventures &amp; Expression écrite</h1>
+  <div class="subtitle">English &middot; 4e &mdash; PP / Past Simple / Emotions</div>
+</header>
+
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="showTab('cours', this)">📖 Lesson</button>
+  <button class="tab-btn" onclick="showTab('synthese', this)">🗂️ Summary</button>
+  <button class="tab-btn" onclick="showTab('vocabulaire', this)">📝 Vocabulary</button>
+  <button class="tab-btn" onclick="showTab('exercices', this)">✏️ Exercises</button>
+  <button class="tab-btn" onclick="showTab('flashcards', this)">🃏 Flashcards</button>
+</div>
+
+<!-- ==================== LESSON ==================== -->
+<div id="tab-cours" class="tab-content active">
+<div class="container">
+
+  <!-- LETTER -->
+  <div class="section-title">📬 1. Jack's Letter — Read &amp; Discover</div>
+
+  <div class="info-box">
+    Lis cette lettre de Jack, qui vit sur une île depuis plusieurs mois. Les mots en <span style="background:#ffe066;padding:1px 6px;border-radius:4px;font-weight:700;">jaune</span> sont au <strong>Present Perfect</strong>. Les mots en <span style="background:#b3d8f5;padding:1px 6px;border-radius:4px;font-weight:700;">bleu</span> sont au <strong>Past Simple</strong>.
+  </div>
+
+  <div class="letter-box">
+    <p>My dear family,</p>
+    <br>
+    <p>
+      <span class="letter-highlight">I have been here</span> for two months now and I really like my new life on the island.
+      <span class="letter-highlight blue">Last week on my birthday</span>, my new best friend
+      <span class="letter-highlight blue">told</span> me "Jack, you're 21 now, you're a real man".
+      <span class="letter-highlight blue">We laughed.</span>
+    </p>
+    <br>
+    <p>
+      <span class="letter-highlight">I have learnt</span> a lot of things since I have arrived.
+      I feel like one of the natives.
+      <span class="letter-highlight">I have managed</span> to build a fire using just two sticks of wood.
+      <span class="letter-highlight">I have caught</span> fish.
+      In a way, I feel like <span class="letter-highlight">I have always lived</span> here.
+    </p>
+    <br>
+    <p>
+      <span class="letter-highlight blue">Yesterday</span>, my friend
+      <span class="letter-highlight blue">took</span> me on his little boat and
+      <span class="letter-highlight blue">we went</span> down the river for about 4 miles.
+      <span class="letter-highlight blue">We saw</span> crocodiles and strange birds. It was scary.
+    </p>
+    <br>
+    <p>I hope to hear from you soon,<br>Your son.</p>
+  </div>
+
+  <div class="info-box or">
+    <strong>💡 As-tu remarqué ?</strong> Jack utilise deux temps différents :
+    <ul style="padding-left:18px;margin-top:8px;">
+      <li>Le <strong>Present Perfect</strong> (jaune) → pour parler de ses <em>expériences</em> depuis qu'il est sur l'île</li>
+      <li>Le <strong>Past Simple</strong> (bleu) → pour raconter une <em>anecdote précise</em> (hier, la semaine dernière)</li>
+    </ul>
+  </div>
+
+  <!-- RAPPEL GRAMMAIRE -->
+  <div class="section-title">✅ 2. Quick Grammar Reminder</div>
+
+  <div class="info-box bleu">
+    <strong>📚 Tu as déjà étudié ces temps en détail dans d'autres cours !</strong><br>
+    Voici juste un rappel rapide pour lire la lettre de Jack. Pour les formules complètes → voir <em>Present Perfect &amp; Sydney</em> et <em>Simple Past vs Present Perfect</em>.
+  </div>
+
+  <div class="grammar-box">
+    <h3>⚡ Rappel éclair — Present Perfect</h3>
+    <div class="formula">Subject + HAVE / HAS + Past Participle</div>
+    <p style="margin-top:10px;font-size:0.93rem;line-height:1.7;">
+      → Expériences de vie (sans date précise) : <em>I <strong>have caught</strong> fish.</em><br>
+      → Action qui dure depuis le passé : <em>I <strong>have been</strong> here <strong>for</strong> two months.</em><br>
+      → Avec : <strong>for / since / just / already / never / not yet / ever</strong>
+    </p>
+  </div>
+
+  <div class="grammar-box">
+    <h3>⚡ Rappel éclair — Past Simple</h3>
+    <div class="formula orange">Regular: verb + ED &nbsp;|&nbsp; Irregular: special form (go→went, see→saw, take→took)</div>
+    <p style="margin-top:10px;font-size:0.93rem;line-height:1.7;">
+      → Action terminée à un moment <strong>précis et connu</strong> : <em><strong>Yesterday</strong>, we <strong>went</strong> down the river.</em><br>
+      → Avec : <strong>yesterday / last week / ago / in 2020 / last night</strong>
+    </p>
+  </div>
+
+  <!-- ADVERBES -->
+  <div class="section-title">⏱️ 3. Key adverbs with the Present Perfect</div>
+
+  <div class="adv-grid">
+    <div class="adv-card">
+      <div class="adv-word">FOR</div>
+      <div class="adv-fr">pendant (une durée)</div>
+      <div class="adv-ex">I have been here <strong>for</strong> two months.<br>→ dit combien de temps</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-word">SINCE</div>
+      <div class="adv-fr">depuis (un point de départ)</div>
+      <div class="adv-ex">I have learnt a lot <strong>since</strong> I arrived.<br>→ dit depuis quand</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-word">JUST</div>
+      <div class="adv-fr">juste, tout à l'heure</div>
+      <div class="adv-ex">He has <strong>just</strong> caught a fish.<br>→ ça vient de se passer</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-word">ALREADY</div>
+      <div class="adv-fr">déjà</div>
+      <div class="adv-ex">I have <strong>already</strong> built a fire.<br>→ c'est fait, plus tôt que prévu</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-word">NEVER</div>
+      <div class="adv-fr">jamais</div>
+      <div class="adv-ex">I have <strong>never</strong> seen a crocodile.<br>→ expérience nulle</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-word">NOT YET</div>
+      <div class="adv-fr">pas encore</div>
+      <div class="adv-ex">I have <strong>not</strong> replied <strong>yet</strong>.<br>→ action prévue mais non faite</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-word">EVER</div>
+      <div class="adv-fr">déjà (dans une question)</div>
+      <div class="adv-ex">Have you <strong>ever</strong> seen a crocodile?<br>→ expérience dans la vie</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-word">ALWAYS</div>
+      <div class="adv-fr">toujours</div>
+      <div class="adv-ex">I feel like I have <strong>always</strong> lived here.<br>→ depuis très longtemps</div>
+    </div>
+  </div>
+
+  <div class="info-box vert">
+    <strong>🧠 Astuce FOR vs SINCE — comment ne pas confondre :</strong><br><br>
+    <strong>FOR</strong> + <em>durée</em> (combien de temps ?) : <em>for two months / for a week / for ages / for 3 years</em><br>
+    <strong>SINCE</strong> + <em>point de départ</em> (depuis quand ?) : <em>since January / since I arrived / since 2020 / since his birthday</em><br><br>
+    💡 Test : si tu peux répondre à "combien de temps ?" → <strong>FOR</strong>. Si tu réponds à "depuis quand ?" → <strong>SINCE</strong>.
+  </div>
+
+  <!-- VERBES DE LA LETTRE -->
+  <div class="section-title">📋 4. Verbes irréguliers de la lettre de Jack</div>
+
+  <div class="grammar-box">
+    <h3>🔑 Les formes à retenir pour l'évaluation</h3>
+    <table>
+      <tr><th>Infinitive</th><th>Past Simple</th><th>Past Participle</th><th>Dans la lettre</th></tr>
+      <tr><td>tell</td><td><strong>told</strong></td><td><strong>told</strong></td><td><em>My friend told me...</em></td></tr>
+      <tr><td>go</td><td><strong>went</strong></td><td><strong>gone</strong></td><td><em>We went down the river.</em></td></tr>
+      <tr><td>see</td><td><strong>saw</strong></td><td><strong>seen</strong></td><td><em>We saw crocodiles.</em></td></tr>
+      <tr><td>take</td><td><strong>took</strong></td><td><strong>taken</strong></td><td><em>My friend took me on his boat.</em></td></tr>
+      <tr><td>catch</td><td><strong>caught</strong></td><td><strong>caught</strong></td><td><em>I have caught fish.</em></td></tr>
+      <tr><td>build</td><td><strong>built</strong></td><td><strong>built</strong></td><td><em>I have managed to build a fire.</em></td></tr>
+      <tr><td>learn</td><td><strong>learnt</strong></td><td><strong>learnt</strong></td><td><em>I have learnt a lot of things.</em></td></tr>
+    </table>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== SUMMARY ==================== -->
+<div id="tab-synthese" class="tab-content">
+<div class="container">
+
+  <div class="synth-card">
+    <h3>📬 La lettre de Jack — Ce qu'elle contient</h3>
+    <ul>
+      <li><strong>Type :</strong> une lettre (pas un journal intime / not a diary)</li>
+      <li><strong>Auteur :</strong> Jack, 21 ans, sur une île depuis 2 mois</li>
+      <li><strong>Destinataire :</strong> sa famille ("My dear family")</li>
+      <li><strong>Expériences (PP) :</strong> a appris à faire du feu, à pêcher, se sent comme un natif</li>
+      <li><strong>Anecdote (Past Simple) :</strong> hier, son ami l'a emmené en bateau → ils ont vu des crocodiles</li>
+      <li><strong>Ton :</strong> positif, aventurier, mais parfois effrayant ("It was scary")</li>
+    </ul>
+  </div>
+
+  <div class="synth-card">
+    <h3>🆚 PP vs Past Simple — L'essentiel</h3>
+    <ul>
+      <li><em>I <strong>have caught</strong> fish.</em> → expérience, pas de date → <strong>Present Perfect</strong></li>
+      <li><em><strong>Yesterday</strong>, we <strong>went</strong> down the river.</em> → date précise → <strong>Past Simple</strong></li>
+      <li><em>I <strong>have been</strong> here <strong>for</strong> two months.</em> → durée qui continue → <strong>PP + for</strong></li>
+      <li><em>I <strong>have learnt</strong> a lot <strong>since</strong> I arrived.</em> → depuis un événement → <strong>PP + since</strong></li>
+    </ul>
+  </div>
+
+  <div class="synth-card">
+    <h3>🔑 Verbes irréguliers clés</h3>
+    <ul>
+      <li>go → <strong>went</strong> → <strong>gone</strong></li>
+      <li>see → <strong>saw</strong> → <strong>seen</strong></li>
+      <li>take → <strong>took</strong> → <strong>taken</strong></li>
+      <li>catch → <strong>caught</strong> → <strong>caught</strong></li>
+      <li>build → <strong>built</strong> → <strong>built</strong></li>
+      <li>tell → <strong>told</strong> → <strong>told</strong></li>
+    </ul>
+  </div>
+
+  <div class="synth-card">
+    <h3>😊 Emotions à connaître pour l'éval</h3>
+    <ul>
+      <li><strong>scared / frightened</strong> → effrayé(e) — <em>"It was scary."</em></li>
+      <li><strong>excited</strong> → enthousiaste</li>
+      <li><strong>proud</strong> → fier(e)</li>
+      <li><strong>amazed</strong> → émerveillé(e)</li>
+      <li><strong>worried</strong> → inquiet(e)</li>
+    </ul>
+    <p style="margin-top:10px;font-size:0.9rem;"><strong>Phrases utiles :</strong> <em>I feel like... / It was scary. / I couldn't believe it! / In a way, ...</em></p>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== VOCABULARY ==================== -->
+<div id="tab-vocabulaire" class="tab-content">
+<div class="container">
+
+  <div class="section-title">😊 Emotions &amp; Feelings</div>
+
+  <div class="emo-grid">
+    <div class="emo-card pos">
+      <div class="emo-icon">😄</div>
+      <div class="emo-word">excited</div>
+      <div class="emo-fr">enthousiaste, excité</div>
+    </div>
+    <div class="emo-card pos">
+      <div class="emo-icon">😊</div>
+      <div class="emo-word">proud</div>
+      <div class="emo-fr">fier(e)</div>
+    </div>
+    <div class="emo-card pos">
+      <div class="emo-icon">🤩</div>
+      <div class="emo-word">amazed</div>
+      <div class="emo-fr">émerveillé(e), stupéfait(e)</div>
+    </div>
+    <div class="emo-card pos">
+      <div class="emo-icon">😌</div>
+      <div class="emo-word">relieved</div>
+      <div class="emo-fr">soulagé(e)</div>
+    </div>
+    <div class="emo-card pos">
+      <div class="emo-icon">🥰</div>
+      <div class="emo-word">delighted</div>
+      <div class="emo-fr">ravi(e), enchanté(e)</div>
+    </div>
+    <div class="emo-card neg">
+      <div class="emo-icon">😨</div>
+      <div class="emo-word">scared / frightened</div>
+      <div class="emo-fr">effrayé(e), avoir peur</div>
+    </div>
+    <div class="emo-card neg">
+      <div class="emo-icon">😤</div>
+      <div class="emo-word">frustrated</div>
+      <div class="emo-fr">frustré(e)</div>
+    </div>
+    <div class="emo-card neg">
+      <div class="emo-icon">😔</div>
+      <div class="emo-word">disappointed</div>
+      <div class="emo-fr">déçu(e)</div>
+    </div>
+    <div class="emo-card neg">
+      <div class="emo-icon">😰</div>
+      <div class="emo-word">worried</div>
+      <div class="emo-fr">inquiet(e)</div>
+    </div>
+    <div class="emo-card mixt">
+      <div class="emo-icon">😮</div>
+      <div class="emo-word">surprised</div>
+      <div class="emo-fr">surpris(e)</div>
+    </div>
+    <div class="emo-card mixt">
+      <div class="emo-icon">🤔</div>
+      <div class="emo-word">confused</div>
+      <div class="emo-fr">perdu(e), confus(e)</div>
+    </div>
+    <div class="emo-card mixt">
+      <div class="emo-icon">😬</div>
+      <div class="emo-word">nervous</div>
+      <div class="emo-fr">nerveux(se), stressé(e)</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>💬 Useful phrases to express feelings:</strong><br>
+    → <em>I feel like... / It was scary. / I was amazed. / I couldn't believe it!</em><br>
+    → <em>To be honest, ... / In a way, ... / Luckily, ...</em>
+  </div>
+
+  <div class="section-title">🏝️ Adventure &amp; Survival Vocabulary</div>
+
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <div class="vocab-mot">to build a fire</div>
+      <div class="vocab-def">faire du feu → He has built a fire using two sticks.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">to catch fish</div>
+      <div class="vocab-def">attraper du poisson → I have caught fish in the river.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">to survive</div>
+      <div class="vocab-def">survivre → He has survived on the island for months.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">native(s)</div>
+      <div class="vocab-def">habitant(s) d'origine → He feels like one of the natives.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">a stick</div>
+      <div class="vocab-def">un bâton → He built a fire using two sticks of wood.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">a crocodile</div>
+      <div class="vocab-def">un crocodile → They saw crocodiles in the river.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">an island</div>
+      <div class="vocab-def">une île → Jack lives on an island.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">to explore</div>
+      <div class="vocab-def">explorer → They went down the river to explore.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">an adventure</div>
+      <div class="vocab-def">une aventure → It was a scary adventure!</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">a stranger / a foreigner</div>
+      <div class="vocab-def">un étranger → He no longer feels like a foreigner.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">scary / frightening</div>
+      <div class="vocab-def">effrayant(e) → It was scary to see the crocodiles.</div>
+    </div>
+    <div class="vocab-item">
+      <div class="vocab-mot">experiences</div>
+      <div class="vocab-def">des expériences → He has had many new experiences.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== EXERCISES ==================== -->
+<div id="tab-exercices" class="tab-content">
+<div class="container">
+
+  <!-- TRUE / FALSE -->
+  <div class="exo-section">
+    <div class="exo-title">📬 True or False? — Jack's letter</div>
+
+    <div class="vf-question">
+      <div class="vf-text">a) This document is a diary.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this, false)">True</button>
+        <button class="vf-btn" onclick="checkVF(this, true)">False</button>
+      </div>
+    </div>
+    <div class="vf-question">
+      <div class="vf-text">b) It was written by Jack to his best friend.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this, false)">True</button>
+        <button class="vf-btn" onclick="checkVF(this, true)">False</button>
+      </div>
+    </div>
+    <div class="vf-question">
+      <div class="vf-text">c) Jack has been on the island for two months.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this, true)">True</button>
+        <button class="vf-btn" onclick="checkVF(this, false)">False</button>
+      </div>
+    </div>
+    <div class="vf-question">
+      <div class="vf-text">d) He is bored with his new life.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this, false)">True</button>
+        <button class="vf-btn" onclick="checkVF(this, true)">False</button>
+      </div>
+    </div>
+    <div class="vf-question">
+      <div class="vf-text">e) Jack feels like a foreigner on the island.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this, false)">True</button>
+        <button class="vf-btn" onclick="checkVF(this, true)">False</button>
+      </div>
+    </div>
+    <div class="vf-question">
+      <div class="vf-text">f) Yesterday, Jack and his friend went down the river and saw crocodiles.</div>
+      <div class="vf-btns">
+        <button class="vf-btn" onclick="checkVF(this, true)">True</button>
+        <button class="vf-btn" onclick="checkVF(this, false)">False</button>
+      </div>
+    </div>
+    <button class="btn-reset" onclick="resetVF()">&#8635; Recommencer</button>
+  </div>
+
+  <!-- QCM GRAMMAIRE -->
+  <div class="exo-section">
+    <div class="exo-title">🔵 Grammar QCM — Choose the right tense</div>
+
+    <div class="qcm-question" id="q1">
+      <p>1. Jack _____ on the island for two months. (He's still there!)</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQcm('q1',this,false)">A. was</button>
+        <button class="qcm-choice" onclick="checkQcm('q1',this,true)">B. has been</button>
+        <button class="qcm-choice" onclick="checkQcm('q1',this,false)">C. is been</button>
+        <button class="qcm-choice" onclick="checkQcm('q1',this,false)">D. have been</button>
+      </div>
+      <div class="qcm-feedback"></div>
+    </div>
+
+    <div class="qcm-question" id="q2">
+      <p>2. Yesterday, they _____ crocodiles in the river.</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQcm('q2',this,false)">A. have seen</button>
+        <button class="qcm-choice" onclick="checkQcm('q2',this,true)">B. saw</button>
+        <button class="qcm-choice" onclick="checkQcm('q2',this,false)">C. have saw</button>
+        <button class="qcm-choice" onclick="checkQcm('q2',this,false)">D. see</button>
+      </div>
+      <div class="qcm-feedback"></div>
+    </div>
+
+    <div class="qcm-question" id="q3">
+      <p>3. I _____ fish. (general experience, no specific time)</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQcm('q3',this,false)">A. catched</button>
+        <button class="qcm-choice" onclick="checkQcm('q3',this,false)">B. caught</button>
+        <button class="qcm-choice" onclick="checkQcm('q3',this,true)">C. have caught</button>
+        <button class="qcm-choice" onclick="checkQcm('q3',this,false)">D. has caught</button>
+      </div>
+      <div class="qcm-feedback"></div>
+    </div>
+
+    <div class="qcm-question" id="q4">
+      <p>4. She has never _____ a fire. Which is correct?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQcm('q4',this,false)">A. builded</button>
+        <button class="qcm-choice" onclick="checkQcm('q4',this,true)">B. built</button>
+        <button class="qcm-choice" onclick="checkQcm('q4',this,false)">C. builds</button>
+        <button class="qcm-choice" onclick="checkQcm('q4',this,false)">D. build</button>
+      </div>
+      <div class="qcm-feedback"></div>
+    </div>
+
+    <div class="qcm-question" id="q5">
+      <p>5. "I have been here _____ I arrived." Which word fits?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQcm('q5',this,false)">A. for</button>
+        <button class="qcm-choice" onclick="checkQcm('q5',this,true)">B. since</button>
+        <button class="qcm-choice" onclick="checkQcm('q5',this,false)">C. already</button>
+        <button class="qcm-choice" onclick="checkQcm('q5',this,false)">D. yet</button>
+      </div>
+      <div class="qcm-feedback"></div>
+    </div>
+
+    <div class="qcm-question" id="q6">
+      <p>6. "I have been here _____ two months." Which word fits?</p>
+      <div class="qcm-choices">
+        <button class="qcm-choice" onclick="checkQcm('q6',this,true)">A. for</button>
+        <button class="qcm-choice" onclick="checkQcm('q6',this,false)">B. since</button>
+        <button class="qcm-choice" onclick="checkQcm('q6',this,false)">C. just</button>
+        <button class="qcm-choice" onclick="checkQcm('q6',this,false)">D. never</button>
+      </div>
+      <div class="qcm-feedback"></div>
+    </div>
+
+    <button class="btn-reset" onclick="resetQcm()">&#8635; Recommencer le QCM</button>
+  </div>
+
+  <!-- FILL IN THE BLANKS -->
+  <div class="exo-section">
+    <div class="exo-title">✍️ Fill in the blanks — FOR or SINCE?</div>
+    <div class="fill-container">
+      <p>Complete with <strong>FOR</strong> or <strong>SINCE</strong>:</p>
+      <div class="word-bank">
+        <span class="word-tag">for</span>
+        <span class="word-tag">since</span>
+      </div>
+      <div class="fill-sentence">1. I have lived on this island _____ three weeks. <input class="fill-input" data-answer="for" placeholder="?"></div>
+      <div class="fill-sentence">2. He has not written to his family _____ he left. <input class="fill-input" data-answer="since" placeholder="?"></div>
+      <div class="fill-sentence">3. They have been friends _____ years. <input class="fill-input" data-answer="for" placeholder="?"></div>
+      <div class="fill-sentence">4. She has felt scared _____ she saw the crocodile. <input class="fill-input" data-answer="since" placeholder="?"></div>
+      <div class="fill-sentence">5. We have explored the island _____ a month. <input class="fill-input" data-answer="for" placeholder="?"></div>
+      <div class="fill-sentence">6. Jack has caught fish _____ his first day on the island. <input class="fill-input" data-answer="since" placeholder="?"></div>
+      <button class="btn-check" onclick="checkFill()">Check my answers</button>
+      <button class="btn-reset" onclick="resetFill()">&#8635; Recommencer</button>
+      <div class="result-msg" id="fill-result"></div>
+    </div>
+  </div>
+
+  <!-- ASSOCIER -->
+  <div class="exo-section">
+    <div class="exo-title">🔗 Match — Adverb to its meaning</div>
+    <div style="background:#fff;border-radius:16px;padding:20px;box-shadow:var(--card-shadow);">
+      <div class="match-flat" id="match-grid">
+        <button class="match-item match-word" data-id="1" data-color="1" onclick="selectMatch(this)">just</button>
+        <button class="match-item match-def" data-id="3" onclick="selectMatch(this)">jamais (expérience nulle)</button>
+        <button class="match-item match-word" data-id="2" data-color="2" onclick="selectMatch(this)">already</button>
+        <button class="match-item match-def" data-id="5" onclick="selectMatch(this)">depuis (un point de départ)</button>
+        <button class="match-item match-word" data-id="3" data-color="3" onclick="selectMatch(this)">never</button>
+        <button class="match-item match-def" data-id="1" onclick="selectMatch(this)">vient juste de se passer</button>
+        <button class="match-item match-word" data-id="4" data-color="4" onclick="selectMatch(this)">not yet</button>
+        <button class="match-item match-def" data-id="2" onclick="selectMatch(this)">déjà (plus tôt que prévu)</button>
+        <button class="match-item match-word" data-id="5" data-color="5" onclick="selectMatch(this)">since</button>
+        <button class="match-item match-def" data-id="4" onclick="selectMatch(this)">pas encore fait</button>
+      </div>
+      <button class="btn-reset" onclick="resetMatch()">&#8635; Recommencer</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ==================== FLASHCARDS ==================== -->
+<div id="tab-flashcards" class="tab-content">
+<div class="container">
+
+  <div class="section-title">🃏 Click a card to flip it!</div>
+
+  <div class="flashcards-grid">
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Formula: Present Perfect?</div>
+        <div class="flashcard-back">Subject + HAVE / HAS + Past Participle</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">FOR vs SINCE — difference?</div>
+        <div class="flashcard-back"><strong>FOR</strong> + durée (for 2 months)<br><strong>SINCE</strong> + point de départ (since January)</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Past Participle of GO?</div>
+        <div class="flashcard-back">GONE<br><em>He has gone to the island.</em></div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Past Participle of SEE?</div>
+        <div class="flashcard-back">SEEN<br><em>They have seen crocodiles.</em></div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Past Simple of TAKE?</div>
+        <div class="flashcard-back">TOOK<br><em>He took me on his boat.</em></div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Past Simple of SEE?</div>
+        <div class="flashcard-back">SAW<br><em>We saw crocodiles yesterday.</em></div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Which adverb = "vient de se passer"?</div>
+        <div class="flashcard-back">JUST<br><em>He has just caught a fish.</em></div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Which adverb = "pas encore"?</div>
+        <div class="flashcard-back">NOT YET<br><em>I haven't replied yet.</em></div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Present Perfect ou Past Simple ?<br><em>"Yesterday, we ___ the river."</em></div>
+        <div class="flashcard-back">Past Simple → WENT<br>"Yesterday" = moment précis !</div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">How to say "effrayé(e)" in English?</div>
+        <div class="flashcard-back">scared / frightened<br><em>It was scary!</em></div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Past Participle of BUILD?</div>
+        <div class="flashcard-back">BUILT<br><em>He has built a fire.</em></div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">Which adverb = "déjà" (experience question)?</div>
+        <div class="flashcard-back">EVER<br><em>Have you ever seen a crocodile?</em></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+// ===== TABS =====
+function showTab(id, btn) {
+  var contents = document.querySelectorAll('.tab-content');
+  var btns = document.querySelectorAll('.tab-btn');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].classList.remove('active');
+    btns[i].classList.remove('active');
+  }
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ===== QCM =====
+function checkQcm(qid, btn, correct) {
+  var block = document.getElementById(qid);
+  if (block.dataset.done) return;
+  block.dataset.done = '1';
+  var choices = block.querySelectorAll('.qcm-choice');
+  for (var i = 0; i < choices.length; i++) { choices[i].style.cursor = 'default'; }
+  var fb = block.querySelector('.qcm-feedback');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = '✅ Correct!';
+    fb.className = 'qcm-feedback show ok';
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = '❌ Not quite... Check the lesson!';
+    fb.className = 'qcm-feedback show ko';
+    for (var j = 0; j < choices.length; j++) {
+      var oc = choices[j].getAttribute('onclick') || '';
+      if (oc.indexOf('true') !== -1) { choices[j].classList.add('correct'); }
+    }
+  }
+}
+function resetQcm() {
+  var blocks = document.querySelectorAll('.qcm-question');
+  for (var i = 0; i < blocks.length; i++) {
+    delete blocks[i].dataset.done;
+    var choices = blocks[i].querySelectorAll('.qcm-choice');
+    for (var j = 0; j < choices.length; j++) {
+      choices[j].className = 'qcm-choice';
+      choices[j].style.cursor = 'pointer';
+    }
+    var fb = blocks[i].querySelector('.qcm-feedback');
+    fb.className = 'qcm-feedback';
+    fb.textContent = '';
+  }
+}
+
+// ===== VRAI/FAUX =====
+function checkVF(btn, isTrue) {
+  var row = btn.parentElement;
+  if (row.dataset.done) return;
+  row.dataset.done = '1';
+  var btns = row.querySelectorAll('.vf-btn');
+  var clickedTrue = (btn.textContent.trim() === 'True');
+  var correct = (clickedTrue === isTrue);
+  if (correct) {
+    btn.classList.add(clickedTrue ? 'selected-vrai' : 'selected-faux');
+    btn.classList.add('correct-btn');
+  } else {
+    btn.classList.add('wrong-btn');
+    for (var i = 0; i < btns.length; i++) {
+      if (btns[i] !== btn) { btns[i].classList.add('correct-btn'); }
+    }
+  }
+}
+function resetVF() {
+  var rows = document.querySelectorAll('.vf-btns');
+  for (var i = 0; i < rows.length; i++) {
+    var parent = rows[i].parentElement;
+    delete parent.dataset.done;
+    var btns = rows[i].querySelectorAll('.vf-btn');
+    for (var j = 0; j < btns.length; j++) { btns[j].className = 'vf-btn'; }
+  }
+}
+
+// ===== FILL IN THE BLANKS =====
+function checkFill() {
+  var inputs = document.querySelectorAll('.fill-input');
+  var correct = 0;
+  for (var i = 0; i < inputs.length; i++) {
+    var val = inputs[i].value.trim().toLowerCase();
+    var ans = inputs[i].dataset.answer.toLowerCase();
+    if (val === ans) {
+      inputs[i].className = 'fill-input correct';
+      correct++;
+    } else {
+      inputs[i].className = 'fill-input wrong';
+    }
+  }
+  var res = document.getElementById('fill-result');
+  var total = inputs.length;
+  if (correct === total) {
+    res.className = 'result-msg show ok';
+    res.textContent = '🎉 Perfect! ' + correct + '/' + total + ' — Great job!';
+  } else if (correct >= total / 2) {
+    res.className = 'result-msg show partial';
+    res.textContent = '👍 ' + correct + '/' + total + ' — Almost there! Check the wrong ones.';
+  } else {
+    res.className = 'result-msg show ko';
+    res.textContent = '❌ ' + correct + '/' + total + ' — Go back to the lesson on FOR and SINCE!';
+  }
+}
+function resetFill() {
+  var inputs = document.querySelectorAll('.fill-input');
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].value = '';
+    inputs[i].className = 'fill-input';
+  }
+  document.getElementById('fill-result').className = 'result-msg';
+}
+
+// ===== ASSOCIER =====
+var matchSelected = null;
+function selectMatch(el) {
+  if (el.classList.contains('matched-ok') || el.classList.contains('matched-ko')) return;
+  var isWord = el.classList.contains('match-word');
+  if (!matchSelected) {
+    if (isWord) { matchSelected = el; el.classList.add('selected'); }
+    return;
+  }
+  var prevWord = matchSelected.classList.contains('match-word');
+  if (isWord && prevWord) {
+    matchSelected.classList.remove('selected');
+    matchSelected = el;
+    el.classList.add('selected');
+    return;
+  }
+  if (!isWord && !prevWord) {
+    matchSelected.classList.remove('selected');
+    matchSelected = null;
+    return;
+  }
+  var word = prevWord ? matchSelected : el;
+  var def = prevWord ? el : matchSelected;
+  var wid = word.dataset.id;
+  var did = def.dataset.id;
+  var color = word.dataset.color;
+  if (wid === did) {
+    word.classList.remove('selected');
+    word.classList.add('matched-ok');
+    def.dataset.color = color;
+    def.classList.add('matched-ok');
+  } else {
+    word.classList.remove('selected');
+    word.classList.add('matched-ko');
+    def.classList.add('matched-ko');
+    setTimeout(function() {
+      word.classList.remove('matched-ko');
+      def.classList.remove('matched-ko');
+    }, 800);
+  }
+  matchSelected = null;
+}
+function resetMatch() {
+  matchSelected = null;
+  var items = document.querySelectorAll('#match-grid .match-item');
+  for (var i = 0; i < items.length; i++) {
+    items[i].classList.remove('matched-ok', 'matched-ko', 'selected');
+    if (items[i].classList.contains('match-def')) { delete items[i].dataset.color; }
+  }
+}
+</script>
+
+</body>
+</html>
